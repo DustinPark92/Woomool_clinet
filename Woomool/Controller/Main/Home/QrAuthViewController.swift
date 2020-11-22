@@ -46,8 +46,8 @@ class QrAuthViewController: UIViewController {
     
     private let starView = UIView()
     var counter = 60
-    
-    
+    var storeLookUpModel = StoreLookUpModel()
+    var serialNo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,7 @@ class QrAuthViewController: UIViewController {
     
     
     func configureUI() {
+        cafeNameLabel.text = storeLookUpModel.name
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         view.addSubview(mainView)
         mainView.center(inView: view)
@@ -68,6 +69,22 @@ class QrAuthViewController: UIViewController {
         
         expandButton.addTarget(self, action: #selector(handleExpand), for: .touchUpInside)
         expandButton.isSelected = false
+    }
+    
+    func configureConfirmView() {
+        
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        mainView = QrViewModel().popUpViewConfirm(image: imageView, centerlabel: centerLabel, countLabel: countLabel, confirmButton: completeButton, cancelButton: expandButton, starRateView: starRateView, starView: starView)
+        
+        
+        starRateView.show(type: .half, isPanEnable: true, leastStar: 0) { score in
+            print(score)
+        }
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        
+        
+        configureUI()
+        // dismiss(animated: true, completion: nil)
     }
     
     //MARK : - Objc
@@ -98,20 +115,19 @@ class QrAuthViewController: UIViewController {
     }
     
     @objc func handleConfirm() {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-        mainView = QrViewModel().popUpViewConfirm(image: imageView, centerlabel: centerLabel, countLabel: countLabel, confirmButton: completeButton, cancelButton: expandButton, starRateView: starRateView, starView: starView)
-        
-        
-        starRateView.show(type: .half, isPanEnable: true, leastStar: 0) { score in
-            print(score)
+        Request.shared.postStoreUse(storeId: storeLookUpModel.storeId) { json in
+            self.serialNo = json["serialNo"].intValue
+            self.configureConfirmView()
+        } refreshSuccess: {
+            Request.shared.postStoreUse(storeId: self.storeLookUpModel.storeId) { json in
+                self.serialNo = json["serialNo"].intValue
+                self.configureConfirmView()
+            } refreshSuccess: {
+                print("nil")
+            }
         }
-        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-        
-        
-        configureUI()
-        // dismiss(animated: true, completion: nil)
-        
-        
+
+
     }
     
     @objc func handleComplete() {

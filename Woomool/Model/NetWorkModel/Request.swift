@@ -318,19 +318,13 @@ class Request {
             }
          }
     
-    func getStoreLookUp(inputStoreName Name : String,success : @escaping (JSON) -> ()) {
-        let escapingCharacterSet: CharacterSet = {
-            var cs = CharacterSet.alphanumerics
-            cs.insert(charactersIn: "-_.~")
-            return cs }()
-        
-       let encodingName =  Name.addingPercentEncoding(withAllowedCharacters: escapingCharacterSet)!
-        
+    func getStoreLookUp(storeId : String,success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
+
      
-        let url = URLSource.storeFind + encodingName
+        let url = URLSource.store + "/" + storeId
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
         let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        AF.request(url, method: .get,encoding: URLEncoding.default, headers: header).validate().responseJSON { response in
+        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
 
                 switch response.result {
                 case .success(let value):
@@ -340,12 +334,65 @@ class Request {
 
                 case .failure(let error):
                     print(error.localizedDescription)
+                    
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
                 }
 
             }
          }
     
+    func postStoreUse(storeId:String, success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> () ) {
+
+        let url = URLSource.store
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        let params = [
+              "storeId": storeId,
+              "userId": userId
+        ]
+
+        let header : HTTPHeaders = ["Content-Type" : "application/json",
+                                    "authorization" : "Bearer \(token)" ]
+
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    
+                case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
     
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+
 
     //MARK: - NOTICE
     

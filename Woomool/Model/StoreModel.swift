@@ -79,3 +79,9 @@ struct StoreFindModel {
     let address : String
     
 }
+
+
+class StoreLookUpModel {
+    var storeId : String = ""
+    var name : String = ""
+}

@@ -15,24 +15,10 @@ class QrScannverViewController: UIViewController {
     var captureSession = AVCaptureSession()
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-//    var qrCodeFrameView: UIView?
-//
-//    lazy var qrcodePreView : UIView = {
-//        let uv = UIView()
-//        uv.layer.borderColor = UIColor.green.cgColor
-//        uv.layer.borderWidth = 2
-//        uv.setDimensions(width: 100, height: 100)
-//
-//        return uv
-//    }()
     
     lazy var notiView : UIView = QrViewModel().NotiView(label:mainLabel)
     
-//    private let iconImg : UIImageView = {
-//        let iv = UIImageView()
-//        iv.image = UIImage(systemName: "plus")
-//        return iv
-//    }()
+    let storeLookUpModel = StoreLookUpModel()
     
     private let mainLabel : UILabel = {
         let lb = UILabel()
@@ -158,9 +144,30 @@ class QrScannverViewController: UIViewController {
             return
         }
         
-        let controller = QrAuthViewController()
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true, completion: nil)
+        Request.shared.getStoreLookUp(storeId: storeId) { json in
+            self.storeLookUpModel.name = json["name"].stringValue
+            self.storeLookUpModel.storeId = json["storeId"].stringValue
+            let controller = QrAuthViewController()
+            controller.modalPresentationStyle = .overCurrentContext
+            controller.storeLookUpModel = self.storeLookUpModel
+            self.present(controller, animated: true, completion: nil)
+            
+        } refreshSuccess: {
+            Request.shared.getStoreLookUp(storeId: storeId) { json in
+                self.storeLookUpModel.name = json["name"].stringValue
+                self.storeLookUpModel.storeId = json["storeId"].stringValue
+                let controller = QrAuthViewController()
+                controller.storeLookUpModel = self.storeLookUpModel
+                controller.modalPresentationStyle = .overCurrentContext
+                self.present(controller, animated: true, completion: nil)
+                
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
+
+        
+
         
 
     }
