@@ -41,15 +41,28 @@ class NoticeTableViewController: UITableViewController {
     
     func callRequest() {
         
-        for _ in 0...2 {
-            let noticeModel = NoticeModel()
-            
-            noticeList.append(noticeModel)
+        Request.shared.getUserNoti { json in
+            for item in json.arrayValue {
+                let notiItem = NoticeModel(open: false, serialNo: item["serialNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
+                self.noticeList.append(notiItem)
+            }
+            self.tableView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getUserNoti { json in
+                for item in json.arrayValue {
+                    let notiItem = NoticeModel(open: false, serialNo: item["serialNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
+                    self.noticeList.append(notiItem)
+                }
+                self.tableView.reloadData()
+            } refreshSuccess: {
+                print("nil")
+            }
         }
-                    
-                    
-                   
+    }
+    
+    func callUserNotiReaing() {
         
+
     }
     
     func configureUI() {
@@ -84,10 +97,14 @@ class NoticeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let item = noticeList[indexPath.section]
 
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NoticeTableViewCell
             
+            cell.typeLabel.text = item.category
+            cell.noticeLabel.text = item.title
             if noticeList[indexPath.section].open {
                 cell.foldButotn.setImage(UIImage(named: "arrow_bottom"), for: .normal)
             } else {
@@ -98,7 +115,7 @@ class NoticeTableViewController: UITableViewController {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierDetail, for: indexPath) as! NoticeDetailTableViewCell
-
+            cell.contentLabel.text = item.contents
             return cell
         }
     }
@@ -135,12 +152,23 @@ class NoticeTableViewController: UITableViewController {
                     tableView.reloadSections(section, with: .fade)
                     
                 }else {
-                    noticeList[indexPath.section].open = true
                     
-                    
-                    
-                    let section = IndexSet.init(integer: indexPath.section)
-                    tableView.reloadSections(section, with: .fade)
+                    Request.shared.putUserNotiReading(serialNo: noticeList[indexPath.section].serialNo) { json in
+                        print(json)
+                        self.noticeList[indexPath.section].open = true
+                        let section = IndexSet.init(integer: indexPath.section)
+                        tableView.reloadSections(section, with: .fade)
+                    } refreshSuccess: {
+                        Request.shared.putUserNotiReading(serialNo: self.noticeList[indexPath.section].serialNo) { json in
+                            self.noticeList[indexPath.section].open = true
+                            let section = IndexSet.init(integer: indexPath.section)
+                            tableView.reloadSections(section, with: .fade)
+                        } refreshSuccess: {
+                            print("nil")
+                        }
+                    }
+
+
                     
                 }
                 

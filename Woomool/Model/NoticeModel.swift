@@ -9,8 +9,21 @@
 import UIKit
 
 struct NoticeModel {
-    var open = false
     
+    /*
+     {
+       "serialNo": 2,
+       "category": "가입축하",
+       "title": "우물 회원이 되신걸 축하드립니다.",
+       "contents": "추카추카",
+       "status"
+     */
+    var open = false
+    var serialNo : Int
+    var category : String
+    var title : String
+    var contents : String
+    var status : String
     
     
     

@@ -11,6 +11,7 @@ import UIKit
 class InviteViewController: UIViewController {
     
     let viewModel = MypageViewModel()
+    var url = ""
     
     lazy var centerView = viewModel.inviteCenterView(inviteCodeLabel: inviteCodeLabel)
     
@@ -56,9 +57,26 @@ class InviteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        callRequst()
         configureUI()
     }
     
+    
+    func callRequst() {
+        
+        Request.shared.getInviteCode { json in
+            self.inviteCodeLabel.text = json["inviteCd"].stringValue
+            self.url = json["url"].stringValue
+        } refreshSuccess: {
+            Request.shared.getInviteCode { json in
+                self.inviteCodeLabel.text = json["inviteCd"].stringValue
+                self.url = json["url"].stringValue
+            } refreshSuccess: {
+                
+            }
+        }
+
+    }
 
     func configureUI() {
         title = "친구 초대"
@@ -81,12 +99,27 @@ class InviteViewController: UIViewController {
         view.addSubview(stack)
         stack.centerX(inView: view, topAnchor: subLabelBelowCenterView.bottomAnchor, paddingTop: 52)
         
+        kakaoButton.addTarget(self, action: #selector(handleKaKaoButton), for: .touchUpInside)
+        urlButton.addTarget(self, action: #selector(handleUrlButton), for: .touchUpInside)
+        
         
         
     }
     
     @objc func handleDismiss() {
         navigationController?.popViewController(animated: true)
+    }
+    
+   
+    
+    @objc func handleKaKaoButton() {
+        
+        
+    }
+    
+    @objc func handleUrlButton() {
+        
+        UIPasteboard.general.string = url
     }
 
 }

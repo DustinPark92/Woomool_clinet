@@ -48,6 +48,7 @@ class QrAuthViewController: UIViewController {
     var counter = 60
     var storeLookUpModel = StoreLookUpModel()
     var serialNo = 0
+    var scope : Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +79,7 @@ class QrAuthViewController: UIViewController {
         
         
         starRateView.show(type: .half, isPanEnable: true, leastStar: 0) { score in
-            print(score)
+            self.scope = Float(score)
         }
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
         
@@ -131,9 +132,24 @@ class QrAuthViewController: UIViewController {
     }
     
     @objc func handleComplete() {
-        dismiss(animated: true) {
-             NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
+        
+        Request.shared.putStoreScope(serialNo: serialNo, scope: scope) { json in
+            print(json)
+            self.dismiss(animated: true) {
+                 NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
+            }
+        } refreshSuccess: {
+            Request.shared.putStoreScope(serialNo: self.serialNo, scope: self.scope) { json in
+                print(json)
+                self.dismiss(animated: true) {
+                     NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
+                }
+            } refreshSuccess: {
+                print("nil")
+            }
         }
+
+
        
         
     }

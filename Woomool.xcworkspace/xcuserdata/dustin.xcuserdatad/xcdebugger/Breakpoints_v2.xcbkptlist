@@ -1743,7 +1743,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "752"
-            endingLineNumber = "752">
+            endingLineNumber = "752"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1757,7 +1759,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "754"
-            endingLineNumber = "754">
+            endingLineNumber = "754"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1771,7 +1775,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "758"
-            endingLineNumber = "758">
+            endingLineNumber = "758"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1785,7 +1791,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "759"
-            endingLineNumber = "759">
+            endingLineNumber = "759"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1943,7 +1951,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "761"
-            endingLineNumber = "761">
+            endingLineNumber = "761"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1957,7 +1967,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "762"
-            endingLineNumber = "762">
+            endingLineNumber = "762"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "97280E36-3CF2-4940-8B91-AF3BB58B971A - cc58f7922e10f1e6"
@@ -2083,7 +2095,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "763"
-            endingLineNumber = "763">
+            endingLineNumber = "763"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2409,54 +2423,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "95459476-D918-4583-B878-CEE7451CBD3C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "callRequest()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "576F625A-8A21-449B-8F2D-C3630CA75F28"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "callRequest()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "33583843-15F6-404C-A064-CF9170215BAD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "callRequest()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "BEBCA9A8-DC18-4D7E-B1BB-F347327DA43B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2464,10 +2430,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "NoticeTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2480,10 +2446,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "configureUI()"
-            landmarkType = "7">
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2496,10 +2462,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "NoticeTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2512,10 +2478,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "handleDismiss()"
-            landmarkType = "7">
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2528,58 +2494,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "handleDismiss()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "155836A3-E273-4CA2-B980-6CB120247B5C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "callRequest()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "155836A3-E273-4CA2-B980-6CB120247B5C - bcf3f8b36d786f79"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Woomool.NoticeTableViewController.callRequest() -&gt; ()"
-                  moduleName = "Woomool"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dustin/Desktop/Woomool/Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  uuid = "155836A3-E273-4CA2-B980-6CB120247B5C - 33518bc166d17a9b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in Woomool.NoticeTableViewController.callRequest() -&gt; ()"
-                  moduleName = "Woomool"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dustin/Desktop/Woomool/Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "152">
-               </Location>
-            </Locations>
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2601,54 +2519,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F5C2432-2C61-4773-92C2-3AAF8EE68B43"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "callRequest()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8F5C2432-2C61-4773-92C2-3AAF8EE68B43 - bcf3f8b36d786f79"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Woomool.NoticeTableViewController.callRequest() -&gt; ()"
-                  moduleName = "Woomool"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dustin/Desktop/Woomool/Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  uuid = "8F5C2432-2C61-4773-92C2-3AAF8EE68B43 - 33518bc166d17a9b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SwiftyJSON.JSON) -&gt; () in Woomool.NoticeTableViewController.callRequest() -&gt; ()"
-                  moduleName = "Woomool"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/dustin/Desktop/Woomool/Woomool/Controller/Main/Home/NoticeTableViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "152">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "190BD8A5-DC5F-4EFD-A593-7829CC42A251"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2657,7 +2527,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "776"
-            endingLineNumber = "776">
+            endingLineNumber = "776"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2671,7 +2543,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "777"
-            endingLineNumber = "777">
+            endingLineNumber = "777"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2685,7 +2559,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "778"
-            endingLineNumber = "778">
+            endingLineNumber = "778"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2699,7 +2575,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "779"
-            endingLineNumber = "779">
+            endingLineNumber = "779"
+            landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2712,8 +2590,10 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "782"
-            endingLineNumber = "782">
+            startingLineNumber = "820"
+            endingLineNumber = "820"
+            landmarkName = "Request"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2980,10 +2860,10 @@
             filePath = "Woomool/Controller/Main/Home/NoticeTableViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "handleDismiss()"
-            landmarkType = "7">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getUserNoti(success:refreshSuccess:)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

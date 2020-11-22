@@ -143,4 +143,11 @@ struct URLSource {
     
     static let banner = common + "v1/banner/position/"
     
+    //MARK: - 유저 알림
+    
+    static let userNoti = common + "v1/message/users/"
+    
+    //MARK: - 초대코드
+    static let invite = common + "v1/invite/users/"
+    
 }
