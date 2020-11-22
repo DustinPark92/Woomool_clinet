@@ -15,25 +15,16 @@ class NotificationViewController: UITableViewController {
     let adView = UIView()
     var noticeListModel = [NoticeListModel]()
     var type = "공지사항"
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        Request.shared.getNoticeList { (json) in
-            for item in json.array! {
-                let noticeItem = NoticeListModel(noticeId: item["noticeId"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue)
-                
-                
-                self.noticeListModel.append(noticeItem)
-            }
-            
-            self.tableView.reloadData()
-        }
+        callRequest()
         
         configureUI()
-
-       
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +32,35 @@ class NotificationViewController: UITableViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-
+    func callRequest() {
+        
+        Request.shared.getNoticeList { (json) in
+            for item in json.array! {
+                let noticeItem = NoticeListModel(noticeId: item["noticeId"].stringValue, title: item["title"].stringValue, postDate: item["postDate"].stringValue, contents: item["contents"].stringValue, image: item["image"].stringValue)
+                
+                self.noticeListModel.append(noticeItem)
+            }
+            
+            self.tableView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getNoticeList { (json) in
+                for item in json.array! {
+                    let noticeItem = NoticeListModel(noticeId: item["noticeId"].stringValue, title: item["title"].stringValue, postDate: item["postDate"].stringValue, contents: item["contents"].stringValue, image: item["image"].stringValue)
+                    
+                    
+                    self.noticeListModel.append(noticeItem)
+                }
+                
+                self.tableView.reloadData()
+            } refreshSuccess: {
+                print("nil")
+                
+            }
+            
+        }
+    }
+    
+    
     func configureUI () {
         title = type
         view.backgroundColor = .white
@@ -63,9 +82,9 @@ class NotificationViewController: UITableViewController {
         
         let item = noticeListModel[indexPath.row]
         cell.titleLabel.text = item.title
-        cell.dateLabel.text = item.displayDate
+        cell.dateLabel.text = item.postDate
         
-    
+        
         return cell
     }
     
@@ -86,13 +105,13 @@ class NotificationViewController: UITableViewController {
         
         let item = noticeListModel[indexPath.row]
         let controller = NotificationDetailTableViewController()
-        controller.noticeId = item.noticeId
+        controller.noticeModel = item
         navigationController?.pushViewController(controller, animated: true)
         
-
+        
         
     }
     
     
-
+    
 }

@@ -21,10 +21,12 @@ class MyAreaViewController: UIViewController {
     
 //    let marker = NMFMarker()
 //    let mapView = NMFMapView()
+    let topView = UIView()
     let tableView = SelfSizedTableView()
     let bottomActionSheet = MyAreaBottomSheetHeaderView()
     let bottomActionSheetFooter = MyAreaBottomActionSheetFooterView()
     let viewModel = MyWoomoolViewModel()
+    let cafeDetailView = MyAreaBottomSheetCafeDetail()
     
 
     
@@ -111,30 +113,24 @@ class MyAreaViewController: UIViewController {
     
     
     func configureTV() {
-//        view.addSubview(tableView)
-//        view.addSubview(bottomActionSheet)
-//        view.addSubview(bottomActionSheetFooter)
-//        view.addSubview(myLocationButton)
-//        myLocationButton.anchor(left:mapView.leftAnchor,bottom: mapView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
-//        
-//        myLocationButton.addTarget(self, action: #selector(handleMyLocation), for: .touchUpInside)
-//        
-//        
-//        tableView.anchor(top:bottomActionSheet.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,height: 200)
-//        
-//        
-//        
-//        
-//        bottomActionSheet.anchor(top:mapView.bottomAnchor,left:view.leftAnchor,bottom: tableView.topAnchor,right: view.rightAnchor,height: 80)
-//        bottomActionSheetFooter.anchor(top:tableView.bottomAnchor,left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,height: 95)
-//        tableView.tableFooterView?.backgroundColor = .white
-//        tableView.register(MyAreaTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-//        tableView.delegate = self
-//        tableView.dataSource = self
+        
+
+
+        let stack = UIStackView(arrangedSubviews: [topView,bottomActionSheet,cafeDetailView,tableView,bottomActionSheetFooter])
+        view.addSubview(stack)
+        stack.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.bottomAnchor,right: view.rightAnchor)
+        
+        view.addSubview(myLocationButton)
+        myLocationButton.anchor(left:topView.leftAnchor,bottom: topView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
+  
+        tableView.tableFooterView?.backgroundColor = .white
+        tableView.register(MyAreaTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
 //       
 //        
-//        bottomActionSheet.topButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-//        bottomActionSheetFooter.serviceRequestButton.addTarget(self, action: #selector(handleRequest), for: .touchUpInside)
+        bottomActionSheet.topButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+        bottomActionSheetFooter.serviceRequestButton.addTarget(self, action: #selector(handleRequest), for: .touchUpInside)
 //        
     }
     

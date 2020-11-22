@@ -53,13 +53,13 @@ class QrAuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
+        cafeNameLabel.text = storeLookUpModel.name
         
     }
     
     
     func configureUI() {
-        cafeNameLabel.text = storeLookUpModel.name
+        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         view.addSubview(mainView)
         mainView.center(inView: view)

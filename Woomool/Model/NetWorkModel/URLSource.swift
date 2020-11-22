@@ -9,7 +9,8 @@
 import Foundation
 
 struct URLSource {
-    static let common = "http://211.250.213.5:21120/"
+    
+    static let common = "http://211.250.213.5:21100/wsa/"
     //MARK: - TOKEN
     //0. Access Token 관련
     /*
@@ -17,7 +18,7 @@ struct URLSource {
      
      */
     
-    static let token = "http://211.250.213.5:21110/oauth/token"
+    static let token = "http://211.250.213.5:21100/woa/oauth/token"
     //MARK: - 회원처리
 
     //1. 회원처리

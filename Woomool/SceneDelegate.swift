@@ -22,11 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         if defaults.object(forKey: "refreshToken") as? String != nil {
-                
+
                let vc = MainTC()
-         
+
                //let nav = UINavigationController(rootViewController: vc)
                window?.rootViewController = vc
                window?.makeKeyAndVisible()
@@ -34,26 +34,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            } else {
                let vc = OnBoardingViewController()
                let nav = UINavigationController(rootViewController: vc)
-            
-             
+
+
                window?.rootViewController = nav
                window?.makeKeyAndVisible()
 
            }
-    //   let tabBar = MainTC()
-
-
+////       let tabBar = MainTC()
+//
+//
 ////        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 ////        window?.windowScene = windowScene
 //////
 //        window?.rootViewController = UINavigationController(rootViewController: OnBoardingViewController())
 ////    window?.rootViewController = UINavigationController(rootViewController: tabBar)
 ////
-//        tabBar.selectedIndex = 0
-//        window?.rootViewController = tabBar
-////
+////        tabBar.selectedIndex = 0
+////        window?.rootViewController = tabBar
 //
-//        window?.makeKeyAndVisible()
+
+        window?.makeKeyAndVisible()
         
     }
     

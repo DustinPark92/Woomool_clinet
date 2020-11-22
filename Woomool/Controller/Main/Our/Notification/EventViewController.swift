@@ -20,11 +20,22 @@ class EventViewController: UITableViewController {
         super.viewDidLoad()
         Request.shared.getEventList { (json) in
             for item in json.array! {
-                let eventItem = EventListModel(eventId: item["eventId"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
-                self.eventListModel.append(eventItem)
+                let eventItem = EventListModel(eventId: item["eventId"].stringValue, contents: item["contents"].stringValue, postDate: item["postDate"].stringValue, endDate: item["endDate"].stringValue, startDate: item["startDate"].stringValue, image: item["image"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
+                    self.eventListModel.append(eventItem)
             }
             
             self.tableView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getEventList { (json) in
+                for item in json.array! {
+                    let eventItem = EventListModel(eventId: item["eventId"].stringValue, contents: item["contents"].stringValue, postDate: item["postDate"].stringValue, endDate: item["endDate"].stringValue, startDate: item["startDate"].stringValue, image: item["image"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
+                        self.eventListModel.append(eventItem)
+                }
+                
+                self.tableView.reloadData()
+            } refreshSuccess: {
+              print("nil")
+            }
         }
         configureUI()
         addNavbackButton(selector: #selector(handleDismiss))
@@ -56,7 +67,7 @@ class EventViewController: UITableViewController {
         let item = eventListModel[indexPath.row]
         
         cell.titleLabel.text = item.title
-        cell.dateLabel.text = item.displayDate
+        cell.dateLabel.text = item.postDate
         cell.progressLabel.text = EventViewModel(event: item).eventStatusLabel
         cell.progressLabel.backgroundColor = EventViewModel(event: item).eventStatusColor
         
@@ -79,7 +90,7 @@ class EventViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let controller = EventDetailTableViewController()
         let item = eventListModel[indexPath.row]
-        controller.eventId = item.eventId
+        controller.eventModel = item
         navigationController?.pushViewController(controller, animated: true)
     }
 

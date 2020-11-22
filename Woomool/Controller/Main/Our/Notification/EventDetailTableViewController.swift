@@ -11,10 +11,7 @@ import UIKit
 private let reuseIdentifier = "EventTableViewCell"
 
 class EventDetailTableViewController: UITableViewController {
-    var eventId = ""
-    var eventTitle = ""
-    var eventDate = ""
-    var eventStatus = ""
+    var eventModel = EventListModel(eventId: "", contents: "", postDate: "", endDate: "", startDate: "", image: "", title: "", displayDate: "", eventStatus: "")
     
     
     let footerView = UIView()
@@ -44,13 +41,6 @@ class EventDetailTableViewController: UITableViewController {
     func configureUI () {
         
         
-        Request.shared.getEventListDetail(inputEventId: eventId) { json in
-            self.eventTitle = json["title"].stringValue
-            self.eventDate = json["displayDate"].stringValue
-            self.footerImageView.kf.setImage(with: URL(string: json["image"].stringValue))
-            self.tableView.reloadData()
-        }
-        
         
         view.backgroundColor = .white
         tableView.tableFooterView = footerView
@@ -74,7 +64,10 @@ class EventDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EventTableViewCell
-    
+        cell.dateLabel.text = eventModel.postDate
+        cell.titleLabel.text = eventModel.title
+        cell.progressLabel.text = EventViewModel(event: eventModel).eventStatusLabel
+        cell.progressLabel.backgroundColor = EventViewModel(event: eventModel).eventStatusColor
         return cell
     }
     

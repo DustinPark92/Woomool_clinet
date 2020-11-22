@@ -31,15 +31,20 @@ struct NoticeModel {
 
 struct NoticeListModel {
     /*
-     "noticeId": "N1",
-     "title": "공지사항1",
-     "displayDate": "2020-11-02"
+     {
+       "title" : "우물 서비스 개시",
+       "image" : "http:\/\/",
+       "contents" : "우물 서비스를 개시하다.",
+       "noticeId" : "NT20201111204815999",
+       "postDate" : "2020-11-11"
+     }
      */
     
     let noticeId : String
     let title : String
-    let displayDate : String
-    
+    let postDate : String
+    let contents : String
+    let image : String
     
 
 }

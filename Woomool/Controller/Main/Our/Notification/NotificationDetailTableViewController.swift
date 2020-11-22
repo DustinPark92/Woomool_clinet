@@ -12,9 +12,7 @@ import Kingfisher
 private let reuseIdentifier = "NoticeTableViewCell"
 
 class NotificationDetailTableViewController: UITableViewController {
-    var noticeId = ""
-    var noticeTitle = ""
-    var noticeDate = ""
+    var noticeModel = NoticeListModel(noticeId: "", title: "", postDate: "", contents: "", image: "")
     let footerView = UIView()
     let footerImageView : UIImageView = {
         let iv = UIImageView()
@@ -42,13 +40,7 @@ class NotificationDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Request.shared.getNoticeListDetail(inputNoticeId: noticeId) { json in
-            self.noticeTitle = json["title"].stringValue
-            self.footerLabel.text = json["contents"].stringValue
-            self.noticeDate = json["displayDate"].stringValue
-            self.footerImageView.kf.setImage(with: URL(string: json["image"].stringValue))
-            self.tableView.reloadData()
-        }
+
         configureUI()
         
         addNavbackButton(selector: #selector(handleDismiss))
@@ -66,6 +58,14 @@ class NotificationDetailTableViewController: UITableViewController {
         footerLabel.anchor(top:footerView.topAnchor,left:footerView.leftAnchor,right: footerView.rightAnchor,
                            paddingTop: 16,paddingLeft: 32,paddingRight: 32)
         footerImageView.anchor(top:footerLabel.bottomAnchor,left: footerView.leftAnchor,right: footerView.rightAnchor,paddingTop: 16)
+        
+        footerLabel.text = noticeModel.contents
+        footerImageView.kf.setImage(with: URL(string: noticeModel.image))
+        
+        
+        
+        
+        
         sbView.anchor(top:footerView.topAnchor)
         tableView.separatorInset = .zero
         footerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - 100)
@@ -79,8 +79,9 @@ class NotificationDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NotificationTableViewCell
-        cell.titleLabel.text = noticeTitle
-        cell.dateLabel.text = noticeDate
+        cell.titleLabel.text = noticeModel.title
+        cell.dateLabel.text = noticeModel.postDate
+        
         
         return cell
     }

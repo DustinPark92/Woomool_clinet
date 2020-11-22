@@ -435,7 +435,7 @@ class Request {
     //MARK: - NOTICE
     
     
-    func getNoticeList(success : @escaping (JSON) -> ()) {
+    func getNoticeList(success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
 
         let url = URLSource.notice
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -449,6 +449,18 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
                     print(error.localizedDescription)
                 }
 
@@ -479,7 +491,7 @@ class Request {
     //MARK: - EVENT
     
     
-    func getEventList(success : @escaping (JSON) -> ()) {
+    func getEventList(success : @escaping (JSON) -> (),refreshSuccess: @escaping()->()) {
 
         let url = URLSource.event
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -493,6 +505,18 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
                     print(error.localizedDescription)
                 }
 
