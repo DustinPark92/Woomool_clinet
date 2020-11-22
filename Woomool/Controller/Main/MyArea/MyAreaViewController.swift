@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import NMapsMap
+//import NMapsMap
 import CoreLocation
 
 
@@ -19,16 +19,15 @@ class MyAreaViewController: UIViewController {
     
 
     
-    let marker = NMFMarker()
+//    let marker = NMFMarker()
+//    let mapView = NMFMapView()
     let tableView = SelfSizedTableView()
     let bottomActionSheet = MyAreaBottomSheetHeaderView()
     let bottomActionSheetFooter = MyAreaBottomActionSheetFooterView()
     let viewModel = MyWoomoolViewModel()
     
-    let name = ["카페 알파카","카페 오소리","카페 수달","북극곰"]
-    let distance = ["2M","3M","4M","4M","5M"]
-    let adress = ["서울 광진구 능동로 200","서울 광진구 능동로201","서울 광진구 능동로 203","서울 광진구 능동로 204","서울 광진구 능동로 205"]
-    let mapView = NMFMapView()
+
+    
     let myLocationButton : UIButton = {
         let bt = UIButton()
         bt.setImage(UIImage(named: "iconMyLocation"), for: .normal)
@@ -87,13 +86,13 @@ class MyAreaViewController: UIViewController {
     func configureMap() {
         
 
-        view.addSubview(mapView)
-        mapView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
-        mapView.positionMode = .compass
-
-        
-        viewModel.setActiveIcon(mapView: mapView, lat: 37.5451851, lng: 127.0705772, setActive: "pos_active")
-        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive")
+//        view.addSubview(mapView)
+//        mapView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
+//        mapView.positionMode = .compass
+//
+//        
+//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5451851, lng: 127.0705772, setActive: "pos_active")
+//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive")
         
 
         
@@ -112,31 +111,31 @@ class MyAreaViewController: UIViewController {
     
     
     func configureTV() {
-        view.addSubview(tableView)
-        view.addSubview(bottomActionSheet)
-        view.addSubview(bottomActionSheetFooter)
-        view.addSubview(myLocationButton)
-        myLocationButton.anchor(left:mapView.leftAnchor,bottom: mapView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
-        
-        myLocationButton.addTarget(self, action: #selector(handleMyLocation), for: .touchUpInside)
-        
-        
-        tableView.anchor(top:bottomActionSheet.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,height: 200)
-        
-        
-        
-        
-        bottomActionSheet.anchor(top:mapView.bottomAnchor,left:view.leftAnchor,bottom: tableView.topAnchor,right: view.rightAnchor,height: 80)
-        bottomActionSheetFooter.anchor(top:tableView.bottomAnchor,left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,height: 95)
-        tableView.tableFooterView?.backgroundColor = .white
-        tableView.register(MyAreaTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-       
-        
-        bottomActionSheet.topButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-        bottomActionSheetFooter.serviceRequestButton.addTarget(self, action: #selector(handleRequest), for: .touchUpInside)
-        
+//        view.addSubview(tableView)
+//        view.addSubview(bottomActionSheet)
+//        view.addSubview(bottomActionSheetFooter)
+//        view.addSubview(myLocationButton)
+//        myLocationButton.anchor(left:mapView.leftAnchor,bottom: mapView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
+//        
+//        myLocationButton.addTarget(self, action: #selector(handleMyLocation), for: .touchUpInside)
+//        
+//        
+//        tableView.anchor(top:bottomActionSheet.bottomAnchor,left:view.leftAnchor,right: view.rightAnchor,height: 200)
+//        
+//        
+//        
+//        
+//        bottomActionSheet.anchor(top:mapView.bottomAnchor,left:view.leftAnchor,bottom: tableView.topAnchor,right: view.rightAnchor,height: 80)
+//        bottomActionSheetFooter.anchor(top:tableView.bottomAnchor,left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,height: 95)
+//        tableView.tableFooterView?.backgroundColor = .white
+//        tableView.register(MyAreaTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+//        tableView.delegate = self
+//        tableView.dataSource = self
+//       
+//        
+//        bottomActionSheet.topButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+//        bottomActionSheetFooter.serviceRequestButton.addTarget(self, action: #selector(handleRequest), for: .touchUpInside)
+//        
     }
     
     
@@ -265,9 +264,9 @@ extension MyAreaViewController: CLLocationManagerDelegate {
         }
         
         
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude))
-        mapView.moveCamera(cameraUpdate)
-        
+//        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude))
+//        mapView.moveCamera(cameraUpdate)
+//        
         locationManager.stopUpdatingLocation()
         
         

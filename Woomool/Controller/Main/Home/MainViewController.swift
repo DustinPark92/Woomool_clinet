@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private let reuseIdentifier = "MainCollectionViewCell"
 
@@ -36,12 +37,7 @@ class MainViewController: UIViewController {
     }()
     
     let mainCetnerView = MainCenterView()
-    
-
-    
-
-    
-
+    var bannerModelHome = [BannerModelHome]()
     
     
     lazy var collectionView : UICollectionView = {
@@ -65,6 +61,7 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         configureUI()
         configureCV()
+        callBannerHomeRequst()
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -112,6 +109,36 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
     }
     
+    func callBannerHomeRequst() {
+        Request.shared.getBanner(postion: "HOME") { json in
+            for item in json.arrayValue {
+                let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
+            
+                
+                self.bannerModelHome.append(bannerItem)
+            }
+            
+            self.collectionView.reloadData()
+            
+        } refreshSuccess: {
+            Request.shared.getBanner(postion: "Home") { json in
+                for item in json.arrayValue {
+                    let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
+                
+                    
+                    self.bannerModelHome.append(bannerItem)
+                }
+                
+                self.collectionView.reloadData()
+                
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
+
+        
+    }
+    
 
     
     //MARK: -
@@ -133,11 +160,14 @@ class MainViewController: UIViewController {
 
 extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return bannerModelHome.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MainCollectionViewCell
+        
+        cell.bannerImg.kf.setImage(with: URL(string: bannerModelHome[indexPath.item].image))
+        
         
         return cell
     }

@@ -152,7 +152,7 @@ class QrScannverViewController: UIViewController {
     
     // MARK: - Helper methods
     
-    func launchApp(decodedURL: String) {
+    func launchApp(storeId: String) {
         
         if presentedViewController != nil {
             return
@@ -162,22 +162,7 @@ class QrScannverViewController: UIViewController {
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true, completion: nil)
         
-//        let alertPrompt = UIAlertController(title: "Open App", message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
-//        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-//
-//            if let url = URL(string: decodedURL) {
-//                if UIApplication.shared.canOpenURL(url) {
-//                    UIApplication.shared.open(url)
-//                }
-//            }
-//        })
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
-//
-//        alertPrompt.addAction(confirmAction)
-//        alertPrompt.addAction(cancelAction)
-//
-//        present(alertPrompt, animated: true, completion: nil)
+
     }
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
         layer.videoOrientation = orientation
@@ -235,7 +220,7 @@ extension QrScannverViewController: AVCaptureMetadataOutputObjectsDelegate {
 //            qrcodePreView.isHidden = true
             
             if metadataObj.stringValue != nil {
-                launchApp(decodedURL: metadataObj.stringValue!)
+                launchApp(storeId: metadataObj.stringValue!)
                 
 
                 

@@ -29,6 +29,7 @@ struct UserModel {
     let ableCount : Int
     let levelName : String
     let levelOrder : Int
+    let joinMonth : String
     
 
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NMapsMap
+//import NMapsMap
 
 
 enum WoomoolService : Int, CaseIterable {
@@ -53,16 +53,16 @@ class MyWoomoolViewModel {
     var woomoolServiceTfContents = ["","",""]
     
   
-    func setActiveIcon(mapView: NMFMapView, lat: Double , lng : Double, setActive image : String){
-            
-            let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: lat, lng: lng)
-            marker.mapView = mapView
-            //마커색 ,이미지
-            marker.iconImage = .init(image: UIImage(named: image)!)
-            marker.iconTintColor = .blue
-      
-        }
+//    func setActiveIcon(mapView: NMFMapView, lat: Double , lng : Double, setActive image : String){
+//            
+//            let marker = NMFMarker()
+//            marker.position = NMGLatLng(lat: lat, lng: lng)
+//            marker.mapView = mapView
+//            //마커색 ,이미지
+//            marker.iconImage = .init(image: UIImage(named: image)!)
+//            marker.iconTintColor = .blue
+//      
+//        }
     
     func inputContainerView(textField: UITextField, sv : UIView) -> UIView {
         let view = UIView()

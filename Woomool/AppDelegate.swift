@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import NMapsMap
+//import NMapsMap
 import NaverThirdPartyLogin
 import KakaoSDKAuth
 import KakaoSDKCommon
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 애플리케이션 이름
         instance?.appName = kServiceAppName
         
-        NMFAuthManager.shared().clientId = "h1ck34g0c5"
+        //NMFAuthManager.shared().clientId = "h1ck34g0c5"
         return true
     }
 

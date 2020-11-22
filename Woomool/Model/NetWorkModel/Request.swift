@@ -46,6 +46,37 @@ class Request {
 
          }
     }
+        
+    func postUserRefreshToken(success : @escaping (JSON) -> () ) {
+
+
+            let url = URLSource.token
+            guard  let refresToken = defaults.object(forKey: "refreshToken") else { return }
+            let params = ["grant_type": "refresh_token",
+                          "scope" : "read+write",
+                          "refresh_token" : refresToken]
+            let headers : HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded",
+                                         "Authorization" : "\(SecretKey.authorization)"]
+
+            AF.request(url, method: .post, parameters: params,encoding:URLEncoding.default ,headers: headers)
+                .responseJSON
+                 { response in
+          
+                    switch response.result {
+                    case .success(let value):
+                        let json = JSON(value)
+                        print("JSON: \(json)")
+                        success(json)
+                        
+                        self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                        self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+
+             }
+    
+    }
     
     //MARK: - TERMS
     
@@ -117,7 +148,7 @@ class Request {
             }
          }
     
-    func getUserInfo(success : @escaping (JSON) -> ()) {
+    func getUserInfo(success : @escaping (JSON) -> (),refreshSuccess: @escaping () -> ()) {
 
         guard let userId = defaults.object(forKey: "userId") else { return }
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -133,6 +164,17 @@ class Request {
 
                 case .failure(let error):
                     print(error.localizedDescription)
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
                 }
 
             }
@@ -269,6 +311,33 @@ class Request {
                     print("JSON: \(json)")
                     success(json)
                     
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func getStoreLookUp(inputStoreName Name : String,success : @escaping (JSON) -> ()) {
+        let escapingCharacterSet: CharacterSet = {
+            var cs = CharacterSet.alphanumerics
+            cs.insert(charactersIn: "-_.~")
+            return cs }()
+        
+       let encodingName =  Name.addingPercentEncoding(withAllowedCharacters: escapingCharacterSet)!
+        
+     
+        let url = URLSource.storeFind + encodingName
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: URLEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -520,5 +589,39 @@ class Request {
          }
     
     
+    //MARK: - 배너
+    func getBanner(postion : String,success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        
+
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.banner + postion
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                }
+
+            }
+         }
     
 }

@@ -104,7 +104,7 @@ class SignUpViewController: UITableViewController {
             Request.shared.postUserToken(parameters: params) { json in
                 print(json)
 
-                let controller = PhoneAuthViewController()
+                let controller = MainTC()
                 self.navigationController?.pushViewController(controller, animated: true)
                 
                 

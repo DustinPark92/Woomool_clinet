@@ -111,6 +111,7 @@
 		DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE124F23E91005F9C6D /* Main.storyboard */; };
 		DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE424F23E94005F9C6D /* Assets.xcassets */; };
 		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
+		DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FB1256A60A200150773 /* BannerModel.swift */; };
 		DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */; };
 		DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */; };
 		DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */; };
@@ -274,6 +275,7 @@
 		DAAA7EE424F23E94005F9C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAAA7EE724F23E94005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAAF5FB1256A60A200150773 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFilterView.swift; sourceTree = "<group>"; };
 		DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewController.swift; sourceTree = "<group>"; };
 		DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -359,7 +361,7 @@
 		DA36459424F6830A00294C2B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DAE782EA25065C4900944B4A /* mypage 임시 */,
+				DAE782EA25065C4900944B4A /* mypage 임시 */,
 				DA8191D224FA3C640021F2B5 /* OnBoarding */,
 				DA3645C924F7A1FA00294C2B /* Main */,
 				DA3645C324F7613A00294C2B /* Authentication */,
@@ -402,6 +404,7 @@
 				DAF4D3392542C09A007F9AC5 /* StoreModel.swift */,
 				DA913DD825500A620087464A /* GoodsModel.swift */,
 				DA913DDB2550197F0087464A /* FAQModel.swift */,
+				DAAF5FB1256A60A200150773 /* BannerModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -883,7 +886,7 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
+		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
 			isa = PBXGroup;
 			children = (
 				DAE782E825065BAB00944B4A /* MypageVC.swift */,
@@ -925,6 +928,8 @@
 				DAAA7ED424F23E91005F9C6D /* Sources */,
 				DAAA7ED524F23E91005F9C6D /* Frameworks */,
 				DAAA7ED624F23E91005F9C6D /* Resources */,
+				9D3D06479BFF4D5CF23358CD /* [CP] Embed Pods Frameworks */,
+				52B50A913F6A5640069B1A73 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -989,6 +994,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		52B50A913F6A5640069B1A73 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		61F838862B31A71B225FBBF8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1009,6 +1031,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D3D06479BFF4D5CF23358CD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1037,6 +1076,7 @@
 				DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */,
 				DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */,
 				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
+				DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */,
 				DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */,
 				DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */,
 				DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */,

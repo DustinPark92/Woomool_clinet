@@ -139,4 +139,8 @@ struct URLSource {
     
     static let userRank = common + "v1/level/"
     
+    //MARK: - 배너
+    
+    static let banner = common + "v1/banner/position/"
+    
 }

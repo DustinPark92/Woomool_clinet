@@ -126,11 +126,7 @@ class LoginViewController: UITableViewController {
             
             Request.shared.postUserToken(parameters: params) { json in
                 print(json)
-                UserDefaults.standard.removeObject(forKey: "access_token")
-                UserDefaults.standard.removeObject(forKey: "refresh_token")
-                UserDefaults.standard.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                UserDefaults.standard.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                
+  
                 let params = [
                     "email": self.ViewModel.textFieldContents[0],
                     "password": self.ViewModel.textFieldContents[1]
