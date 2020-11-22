@@ -23,11 +23,13 @@ class MyAreaDetailTableViewController: UIViewController {
         return bt
     }()
     let tableView = UITableView()
+    var storeModel = [StoreModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
+        callRequest()
     }
     
     func configureUI() {
@@ -43,6 +45,40 @@ class MyAreaDetailTableViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         bottomActionSheetFooter.anchor(top:tableView.bottomAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right: view.rightAnchor,paddingBottom: 50,width: view.frame.width,height: 56)
         bottomActionSheetFooter.delegate = self
+    }
+    
+    func callRequest() {
+        Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
+            
+            
+            for item in json.array! {
+                
+                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                           , longitude: item["longitude"].doubleValue)
+                
+                
+                self.storeModel.append(storeData)
+            }
+            
+            self.tableView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
+                
+                
+                for item in json.array! {
+                    
+                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                               , longitude: item["longitude"].doubleValue)
+                    
+                    
+                    self.storeModel.append(storeData)
+                }
+                
+                self.tableView.reloadData()
+            } refreshSuccess: {
+                
+            }
+        }
     }
 
     // MARK: - Table view data source

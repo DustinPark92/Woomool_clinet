@@ -494,8 +494,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "configureUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1414,8 +1414,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1430,8 +1430,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "MyAreaViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1446,8 +1446,10 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312">
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1460,8 +1462,10 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299">
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1474,8 +1478,10 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300">
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1488,8 +1494,10 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301">
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "locationManager(_:didChangeAuthorization:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1502,8 +1510,10 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "306"
-            endingLineNumber = "306">
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1614,8 +1624,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "pushWooMoolService(noti:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1630,8 +1640,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "pushWooMoolService(noti:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1646,8 +1656,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "pushWooMoolService(noti:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1662,8 +1672,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "handleMyLocation()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1678,8 +1688,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1694,8 +1704,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1710,8 +1720,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "MyAreaViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1726,8 +1736,8 @@
             filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "MyAreaViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -1742,8 +1752,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "776"
-            endingLineNumber = "776"
+            startingLineNumber = "806"
+            endingLineNumber = "806"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1758,8 +1768,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "778"
-            endingLineNumber = "778"
+            startingLineNumber = "808"
+            endingLineNumber = "808"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1774,8 +1784,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "782"
-            endingLineNumber = "782"
+            startingLineNumber = "812"
+            endingLineNumber = "812"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1790,8 +1800,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "783"
-            endingLineNumber = "783"
+            startingLineNumber = "813"
+            endingLineNumber = "813"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1950,8 +1960,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "785"
-            endingLineNumber = "785"
+            startingLineNumber = "815"
+            endingLineNumber = "815"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1966,8 +1976,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "786"
-            endingLineNumber = "786"
+            startingLineNumber = "816"
+            endingLineNumber = "816"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
             <Locations>
@@ -2094,8 +2104,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "787"
-            endingLineNumber = "787"
+            startingLineNumber = "817"
+            endingLineNumber = "817"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2526,8 +2536,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "800"
-            endingLineNumber = "800"
+            startingLineNumber = "830"
+            endingLineNumber = "830"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2542,8 +2552,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "801"
-            endingLineNumber = "801"
+            startingLineNumber = "831"
+            endingLineNumber = "831"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2558,8 +2568,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "802"
-            endingLineNumber = "802"
+            startingLineNumber = "832"
+            endingLineNumber = "832"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2574,8 +2584,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "803"
-            endingLineNumber = "803"
+            startingLineNumber = "833"
+            endingLineNumber = "833"
             landmarkName = "putUserNotiReading(serialNo:success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2590,8 +2600,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "844"
-            endingLineNumber = "844"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
             landmarkName = "Request"
             landmarkType = "3">
          </BreakpointContent>
@@ -2606,8 +2616,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
+            startingLineNumber = "838"
+            endingLineNumber = "838"
             landmarkName = "Request"
             landmarkType = "3">
          </BreakpointContent>
@@ -2622,8 +2632,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "810"
-            endingLineNumber = "810"
+            startingLineNumber = "840"
+            endingLineNumber = "840"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2702,8 +2712,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "843"
+            endingLineNumber = "843"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
             <Locations>
@@ -2750,8 +2760,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "814"
-            endingLineNumber = "814"
+            startingLineNumber = "844"
+            endingLineNumber = "844"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2766,8 +2776,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "816"
-            endingLineNumber = "816"
+            startingLineNumber = "846"
+            endingLineNumber = "846"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2782,8 +2792,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "819"
-            endingLineNumber = "819"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2798,8 +2808,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "821"
-            endingLineNumber = "821"
+            startingLineNumber = "851"
+            endingLineNumber = "851"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2814,8 +2824,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "825"
-            endingLineNumber = "825"
+            startingLineNumber = "855"
+            endingLineNumber = "855"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
             <Locations>
@@ -2862,8 +2872,8 @@
             filePath = "Woomool/Model/NetWorkModel/Request.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "824"
-            endingLineNumber = "824"
+            startingLineNumber = "854"
+            endingLineNumber = "854"
             landmarkName = "getInviteCode(success:refreshSuccess:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2882,6 +2892,86 @@
             endingLineNumber = "78"
             landmarkName = "getUserNoti(success:refreshSuccess:)"
             landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A20A6A2-88DD-4F53-8CFC-996003B1DD60"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "handleMapList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "481B18CA-DCCE-4930-8DE3-FFD1CE33568A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "handleMapList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "55606A27-9E54-4B04-82EA-87A4A4DBDA76"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "handleMapList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D86340B-92BB-46D8-854F-E55F55AC565C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "handleMapList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD7D0D5C-1237-4102-B446-F42D20099C23"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Woomool/Controller/Main/MyArea/MyAreaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "handleMapList()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

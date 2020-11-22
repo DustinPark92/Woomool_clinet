@@ -52,6 +52,8 @@ class MyWoomoolViewModel {
     
     var woomoolServiceTfContents = ["","",""]
     
+    var bottomSheetCondition = "basicUnFold"
+    
   
 //    func setActiveIcon(mapView: NMFMapView, lat: Double , lng : Double, setActive image : String){
 //            

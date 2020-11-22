@@ -10,6 +10,7 @@
 import UIKit
 //import NMapsMap
 import CoreLocation
+import MapKit
 
 
 
@@ -21,7 +22,7 @@ class MyAreaViewController: UIViewController {
     
 //    let marker = NMFMarker()
 //    let mapView = NMFMapView()
-    let topView = UIView()
+    let topView = MKMapView()
     let tableView = SelfSizedTableView()
     let bottomActionSheet = MyAreaBottomSheetHeaderView()
     let bottomActionSheetFooter = MyAreaBottomActionSheetFooterView()
@@ -40,6 +41,8 @@ class MyAreaViewController: UIViewController {
     var count = 3
     var locationManager = CLLocationManager()
     
+    lazy var rightBarButton = UIBarButtonItem(image: UIImage(named: "list"), style: .done, target: self, action: #selector(handleMapList))
+    
 
     
     //MARK: - LifeCycles
@@ -51,9 +54,18 @@ class MyAreaViewController: UIViewController {
         configureUI()
         configureMap()
         configureTV()
+        callRequest()
         NotificationCenter.default.addObserver(self, selector: #selector(pushWooMoolService(noti:)), name: NSNotification.Name("pushWooMoolService"), object: nil)
         
-        Request.shared.getStoreList { json in
+ 
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
+    func callRequest() {
+        Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
             
             
             for item in json.array! {
@@ -66,13 +78,25 @@ class MyAreaViewController: UIViewController {
             }
             
             self.tableView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
+                
+                
+                for item in json.array! {
+                    
+                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                               , longitude: item["longitude"].doubleValue)
+                    
+                    
+                    self.storeModel.append(storeData)
+                }
+                
+                self.tableView.reloadData()
+            } refreshSuccess: {
+                
+            }
         }
     }
-    
-    override func viewWillLayoutSubviews() {
-        
-    }
-    
     
     //MARK: - Helpers
     
@@ -80,7 +104,7 @@ class MyAreaViewController: UIViewController {
         view.backgroundColor = .white
 
         title = "내 근처 우물"
-
+        topView.backgroundColor = .red
         
 
     }
@@ -88,8 +112,8 @@ class MyAreaViewController: UIViewController {
     func configureMap() {
         
 
-//        view.addSubview(mapView)
-//        mapView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
+        view.addSubview(topView)
+        topView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
 //        mapView.positionMode = .compass
 //
 //        
@@ -118,11 +142,19 @@ class MyAreaViewController: UIViewController {
 
         let stack = UIStackView(arrangedSubviews: [topView,bottomActionSheet,cafeDetailView,tableView,bottomActionSheetFooter])
         view.addSubview(stack)
-        stack.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.bottomAnchor,right: view.rightAnchor)
-        
+        stack.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor)
+        stack.axis = .vertical
+        stack.spacing = 0
         view.addSubview(myLocationButton)
         myLocationButton.anchor(left:topView.leftAnchor,bottom: topView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
+        cafeDetailView.setDimensions(width: view.frame.width, height: 220)
+        bottomActionSheet.setDimensions(width: view.frame.width, height: 56)
+        bottomActionSheetFooter.setDimensions(width: view.frame.width, height: 100)
+        tableView.setDimensions(width: view.frame.width, height: 220)
   
+        cafeDetailView.isHidden = true
+        
+
         tableView.tableFooterView?.backgroundColor = .white
         tableView.register(MyAreaTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.delegate = self
@@ -140,7 +172,36 @@ class MyAreaViewController: UIViewController {
     
     
     @objc func handleDismiss() {
-        
+        if viewModel.bottomSheetCondition == "basicUnFold" {
+            viewModel.bottomSheetCondition = "basicFold"
+            cafeDetailView.isHidden = true
+            bottomActionSheet.isHidden = false
+            bottomActionSheetFooter.isHidden = true
+            tableView.isHidden = true
+            self.navigationItem.rightBarButtonItem = nil
+        } else if viewModel.bottomSheetCondition == "basicFold" {
+            viewModel.bottomSheetCondition = "basicUnFold"
+            cafeDetailView.isHidden = true
+            bottomActionSheet.isHidden = false
+            bottomActionSheetFooter.isHidden = false
+            tableView.isHidden = false
+            self.navigationItem.rightBarButtonItem = nil
+        } else if viewModel.bottomSheetCondition == "cafeUnFold" {
+            viewModel.bottomSheetCondition = "cafeFold"
+            cafeDetailView.isHidden = false
+            bottomActionSheet.isHidden = false
+            bottomActionSheetFooter.isHidden = true
+            tableView.isHidden = true
+            self.navigationItem.rightBarButtonItem = rightBarButton
+        } else if viewModel.bottomSheetCondition == "cafeFold" {
+            viewModel.bottomSheetCondition = "cafeUnFold"
+            cafeDetailView.isHidden = false
+            bottomActionSheet.isHidden = false
+            bottomActionSheetFooter.isHidden = true
+            tableView.isHidden = true
+            self.navigationItem.rightBarButtonItem = rightBarButton
+            
+        }
     }
     
     @objc func handleRequest() {
@@ -161,12 +222,22 @@ class MyAreaViewController: UIViewController {
     }
     
     
+    @objc func handleMapList() {
+        viewModel.bottomSheetCondition = "basicUnFold"
+        cafeDetailView.isHidden = true
+        bottomActionSheet.isHidden = false
+        bottomActionSheetFooter.isHidden = false
+        tableView.isHidden = false
+    }
+    
+    
 }
 
 
 extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return storeModel.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -174,10 +245,10 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         
         cell.selectionStyle = .none
         
-//        let storeItem = storeModel[indexPath.row]
-//
-//        cell.cafeNameLabel.text = storeItem.name
-//        cell.adressLabel.text = storeItem.address
+        let storeItem = storeModel[indexPath.row]
+
+        cell.cafeNameLabel.text = storeItem.name
+        cell.adressLabel.text = storeItem.address
 //        viewModel.setActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_inactive")
         
         
@@ -200,7 +271,12 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("handle Cell")
+        cafeDetailView.isHidden = false
+        bottomActionSheet.isHidden = false
+        bottomActionSheetFooter.isHidden = true
+        tableView.isHidden = true
+        self.navigationItem.rightBarButtonItem = rightBarButton
+  
     }
     
     

@@ -28,4 +28,16 @@ extension UIViewController {
 
     }
     
+    
+    func showOkAlert(title : String, message : String ,fail : @escaping () -> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let addAction = UIAlertAction(title: "확인", style: .cancel) { _ in
+            fail()
+            self.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(addAction)
+        present(alert, animated: true, completion: nil)
+        
+    }
+
 }

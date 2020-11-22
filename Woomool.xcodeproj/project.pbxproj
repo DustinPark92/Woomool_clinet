@@ -112,6 +112,7 @@
 		DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE424F23E94005F9C6D /* Assets.xcassets */; };
 		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
 		DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FB1256A60A200150773 /* BannerModel.swift */; };
+		DAAF5FBE256A785C00150773 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FBD256A785C00150773 /* IntExtension.swift */; };
 		DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */; };
 		DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */; };
 		DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */; };
@@ -276,6 +277,7 @@
 		DAAA7EE724F23E94005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAAF5FB1256A60A200150773 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
+		DAAF5FBD256A785C00150773 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFilterView.swift; sourceTree = "<group>"; };
 		DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewController.swift; sourceTree = "<group>"; };
 		DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				DA6E2D8E2504BA5200A0A548 /* ViewControllerExtension.swift */,
 				DA6E2DAC25062A8400A0A548 /* UILabelExtension.swift */,
 				DA6E2DBA25063BB000A0A548 /* TableViewExtension.swift */,
+				DAAF5FBD256A785C00150773 /* IntExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				DA6E2D992504EE7E00A0A548 /* ChagneNicknameViewController.swift in Sources */,
 				DA6E2D9B2504F29600A0A548 /* ChangePasswordViewController.swift in Sources */,
 				DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */,
+				DAAF5FBE256A785C00150773 /* IntExtension.swift in Sources */,
 				DAC73E1824FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift in Sources */,
 				DA3645D524F7C36300294C2B /* MypageViewModel.swift in Sources */,
 				DA913DDC2550197F0087464A /* FAQModel.swift in Sources */,

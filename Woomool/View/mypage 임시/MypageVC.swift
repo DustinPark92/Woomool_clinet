@@ -130,17 +130,17 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func handlePay() {
-//        Request.shared.PostGoodsPurchase(couponId: "", goodsId: goodsModel[viewModel.couponSelected].goodsId, buyInfo: "카드결제", buyMethod: "C", buyPrice: goodsModel[viewModel.couponSelected].salePrice) { json in
-//            self.showOkAlert(title: "\(self.goodsModel[self.viewModel.couponSelected].goodsId)\n\(self.goodsModel[self.viewModel.couponSelected].salePrice)원 결제완료.", message: "결제완료") {
-//                print("아아")
-//            }
-//        } refreshSuccess: {
-//            Request.shared.PostGoodsPurchase(couponId: "", goodsId: "", buyInfo: "카드결제", buyMethod: "C", buyPrice: 9900) { json in
-//                print("Success")
-//            } refreshSuccess: {
-//                print("nil")
-//            }
-//        }
+        Request.shared.PostGoodsPurchase(couponId: "", goodsId: goodsModel[viewModel.couponSelected].goodsId, buyInfo: "카드결제", buyMethod: "C", buyPrice: goodsModel[viewModel.couponSelected].salePrice) { json in
+            self.showOkAlert(title: "\(self.goodsModel[self.viewModel.couponSelected].goodsId)\n\(self.goodsModel[self.viewModel.couponSelected].salePrice)원 결제완료.", message: "결제완료") {
+                print("아아")
+            }
+        } refreshSuccess: {
+            Request.shared.PostGoodsPurchase(couponId: "", goodsId: "", buyInfo: "카드결제", buyMethod: "C", buyPrice: 9900) { json in
+                print("Success")
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
 
     }
     
@@ -152,20 +152,20 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
 
     
     func callGoodsList() {
-//        Request.shared.getGoodsList { json in
-//            
-//            self.couponAbleCount = json["couponCount"].intValue
-//            
-//            
-//            for item in json["goods"].arrayValue {
-//                let goodsList = GoodsModel(goodsId: item["goodsId"].stringValue, name: item["name"].stringValue, description: item["description"].stringValue, image: item["image"].stringValue, goodsType:  item["types"].stringValue, ableCount: item["ableCount"].intValue, originPrice: item["originPrice"].intValue, salePrice: item["salePrice"].intValue, discountRate: item["discountRate"].intValue, offerCount: item["offerCount"].intValue)
-//                
-//                
-//                self.goodsModel.append(goodsList)
-//            }
-//            
-//            self.bottomView.reloadData()
-//        }
+        Request.shared.getGoodsList { json in
+            
+            self.couponAbleCount = json["couponCount"].intValue
+            
+            
+            for item in json["goods"].arrayValue {
+                let goodsList = GoodsModel(goodsId: item["goodsId"].stringValue, name: item["name"].stringValue, description: item["description"].stringValue, image: item["image"].stringValue, goodsType:  item["types"].stringValue, ableCount: item["ableCount"].intValue, originPrice: item["originPrice"].intValue, salePrice: item["salePrice"].intValue, discountRate: item["discountRate"].intValue, offerCount: item["offerCount"].intValue)
+                
+                
+                self.goodsModel.append(goodsList)
+            }
+            
+            self.bottomView.reloadData()
+        }
         
     }
     
@@ -261,9 +261,9 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "CouponPayReciptTableViewCell", for: indexPath) as! CouponPayReciptTableViewCell
                 cell.selectionStyle = .none
-//                cell.priceLabel.text = viewModel.goodsPrice
-//                cell.usingCountLabel.text = viewModel.goodsCount
-//
+                cell.priceLabel.text = viewModel.goodsPrice
+                cell.usingCountLabel.text = viewModel.goodsCount
+
         
                 
                 
@@ -359,18 +359,18 @@ extension MypageVC : MypageHistoryFilterViewDelegate {
         guard let filter = MypageHistroyOption(rawValue: indexPath) else { return }
 
 
-//        viewModel.filterIndex = indexPath
-//
-//        switch viewModel.filterIndex {
-//        case 0:
-//            print("123")
-//        case 1:
-//            print("123")
-//        case 2:
-//            print("123")
-//        default:
-//            break
-//        }
+        viewModel.filterIndex = indexPath
+
+        switch viewModel.filterIndex {
+        case 0:
+            print("123")
+        case 1:
+            print("123")
+        case 2:
+            print("123")
+        default:
+            break
+        }
         
         
         
@@ -390,8 +390,9 @@ func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath:
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CouponBuyCollectionViewCell", for: indexPath) as! CouponBuyCollectionViewCell
     let item = goodsModel[indexPath.item]
     
-    cell.priceLabel.text = String(item.name)
-    //cell.couponQuantityLabel.text = String(item.offerCount)
+    cell.priceLabel.text = "\(item.salePrice.withCommas()) 원"
+    cell.couponDescriptionLabel.text =  String(item.name)
+    cell.couponQuantityLabel.text = String(item.offerCount)
     
     
     
@@ -415,8 +416,8 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
         let item = goodsModel[indexPath.item]
         
         viewModel.couponSelected = indexPath.item
-//        viewModel.goodsPrice = String(item.salePrice.withCommas())
-//        viewModel.goodsCount = "\(item.offerCount) 회"
+        viewModel.goodsPrice = "\(item.salePrice.withCommas()) 원"
+        viewModel.goodsCount = "\(item.offerCount) 회"
      
         let indexPath = IndexPath(row: 0, section: 2)
         

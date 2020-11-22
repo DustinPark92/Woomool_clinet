@@ -20,7 +20,7 @@ class MyAreaBottomSheetHeaderView: UIView {
     lazy var topButton : UIButton = {
         let bt = UIButton()
         bt.backgroundColor = UIColor.gray300
-        bt.setDimensions(width: 60, height: 6)
+        bt.setDimensions(width: 60, height: 10)
         bt.makeAborder(radius: 10)
         return bt
     }()
@@ -41,7 +41,7 @@ class MyAreaBottomSheetHeaderView: UIView {
         addSubview(topButton)
         addSubview(distanceNotiLabel)
         topButton.centerX(inView: self, topAnchor: topAnchor, paddingTop: 24)
-        distanceNotiLabel.centerX(inView: self, topAnchor: topButton.bottomAnchor, paddingTop: 5)
+        distanceNotiLabel.centerX(inView: self, topAnchor: topButton.bottomAnchor, paddingTop: 2)
         backgroundColor = .white
     
         

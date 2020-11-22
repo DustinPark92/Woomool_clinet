@@ -53,6 +53,10 @@ class MypageViewModel {
     var seperatorView = true
     var i = 0
     var couponSelected = 0
+    var goodsPrice = ""
+    var goodsCount = ""
+    var filterIndex = 0
+    
     
     
     func CouponView(topLabel : UILabel, bottomLabel: UILabel, imageView : UIImageView,sv : UIView ) -> UIView {

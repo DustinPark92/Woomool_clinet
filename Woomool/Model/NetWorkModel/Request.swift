@@ -225,11 +225,17 @@ class Request {
     
     //MARK: - STORE
     
-    func getStoreList(success : @escaping (JSON) -> ()) {
+    func getStoreList(lat : Double,lon : Double,success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
 
         let url = URLSource.store
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
         let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        
+        let params = [
+            "latitude" : lat,
+            "longitude" : lon
+        ]
+        
         AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
 
                 switch response.result {
@@ -239,6 +245,18 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
                     print(error.localizedDescription)
                 }
 
@@ -594,7 +612,7 @@ class Request {
             }
          }
     
-    func PostGoodsPurchase(_ couponId : String, _ goodsId : String, _ payInfo : String, _ payMethod : String , _ payPrice : Int ,   success : @escaping (JSON) -> ()) {
+    func PostGoodsPurchase(couponId : String, goodsId : String, buyInfo : String,buyMethod : String , buyPrice : Int , success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -602,11 +620,11 @@ class Request {
         guard let userId = defaults.object(forKey: "userId") as? String else { return }
         
         let parameters = [
-            "couponId": "",
-            "goodsId": "G1",
-            "payInfo": "현대카드",
-            "payMethod": "C",
-            "payPrice": 9900,
+            "couponId": couponId,
+            "goodsId": goodsId,
+            "buyInfo": buyInfo,
+            "buyMethod": buyMethod,
+            "buyPrice": buyPrice,
             "userId": userId
         ] as [String : Any]
         
@@ -622,6 +640,18 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
                     print(error.localizedDescription)
                 }
 

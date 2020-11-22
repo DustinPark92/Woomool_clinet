@@ -35,5 +35,7 @@ struct GoodsModel {
     let originPrice : Int
     let salePrice : Int
     let discountRate : Int
+    let offerCount : Int
+    
     
 }
