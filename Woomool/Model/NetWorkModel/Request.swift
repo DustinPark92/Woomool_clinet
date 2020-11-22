@@ -871,4 +871,38 @@ class Request {
             }
          }
     
+    //MARK: - 쿠폰 / coupon
+    func getUserCoupon(success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        guard let userId = defaults.object(forKey: "userId") else { return }
+
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.coupon + "\(userId)"
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                }
+
+            }
+         }
 }

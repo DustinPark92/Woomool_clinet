@@ -133,7 +133,7 @@ struct URLSource {
      1. 쿠폰 GET : v1/coupon/{userId}
      */
     
-    static let coupon = common + "v1/coupon"
+    static let coupon = common + "v1/coupon/users/"
     
     //MARK: - 회원 등록
     //11. 회원등급

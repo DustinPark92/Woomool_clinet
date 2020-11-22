@@ -18,16 +18,46 @@ class CouponViewController: UIViewController {
         layout.scrollDirection = .vertical
         return cv
     }()
+    
+    var couponModol = [CouponModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        callRequest()
         configureCollectionView()
-       
+        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    func callRequest() {
+        
+        Request.shared.getUserCoupon { json in
+            for item in json.arrayValue {
+                let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, serialNo: item["serialNo"].intValue)
+                
+                self.couponModol.append(couponItem)
+            }
+            
+            self.collectionView.reloadData()
+        } refreshSuccess: {
+            Request.shared.getUserCoupon { json in
+                for item in json.arrayValue {
+                    let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, serialNo: item["serialNo"].intValue)
+                    
+                    self.couponModol.append(couponItem)
+                }
+                
+                self.collectionView.reloadData()
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
+
     }
     
     
@@ -79,6 +109,7 @@ extension CouponViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  
         navigationController?.popViewController(animated: true)
     }
     
@@ -87,12 +118,18 @@ extension CouponViewController : UICollectionViewDelegateFlowLayout {
 extension CouponViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return couponModol.count
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CouponCell
+        let item = couponModol[indexPath.item]
         cell.backgroundColor = .white
+        cell.mainLabel.text = item.description
+        cell.subLabel.text = item.name
+        cell.dateLabel.text = "~ \(item.expiryDate) 까지 이용가능"
+        
+        
         return cell
     }
     
@@ -104,4 +141,6 @@ extension CouponViewController : UICollectionViewDelegate, UICollectionViewDataS
             return header
             
     }
+    
+    
 }

@@ -113,6 +113,7 @@
 		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
 		DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FB1256A60A200150773 /* BannerModel.swift */; };
 		DAAF5FBE256A785C00150773 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FBD256A785C00150773 /* IntExtension.swift */; };
+		DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FC1256A822300150773 /* CouponModel.swift */; };
 		DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */; };
 		DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */; };
 		DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */; };
@@ -278,6 +279,7 @@
 		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAAF5FB1256A60A200150773 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		DAAF5FBD256A785C00150773 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		DAAF5FC1256A822300150773 /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
 		DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFilterView.swift; sourceTree = "<group>"; };
 		DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewController.swift; sourceTree = "<group>"; };
 		DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 		DA36459824F6831F00294C2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DAAF5FC0256A821D00150773 /* Item */,
 				DA8E89CF2532E05A0021BE23 /* SecretKey */,
 				DA8325D3250263FF005EA0EE /* NetWorkModel */,
 				DA8191D724FA454C0021F2B5 /* ImageModel.swift */,
@@ -778,6 +781,14 @@
 			path = Woomool;
 			sourceTree = "<group>";
 		};
+		DAAF5FC0256A821D00150773 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				DAAF5FC1256A822300150773 /* CouponModel.swift */,
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		DAB61A262500BFA50066EA29 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1097,6 +1108,7 @@
 				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
 				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
 				DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */,
+				DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */,
 				DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */,
 				DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */,
 				DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */,
