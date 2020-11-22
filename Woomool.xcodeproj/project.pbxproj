@@ -1,0 +1,1370 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA2119192514839600419AD7 /* WoomoolServieceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */; };
+		DA21191B251488B400419AD7 /* WoomoolServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */; };
+		DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EE86255E4B16000F7356 /* FindPassViewController.swift */; };
+		DA30EE98255E6CAA000F7356 /* MyAreaBottomSheetCafeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EE97255E6CAA000F7356 /* MyAreaBottomSheetCafeDetail.swift */; };
+		DA30EE9B255E6E31000F7356 /* CouponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EE9A255E6E31000F7356 /* CouponViewController.swift */; };
+		DA30EE9E255E6E79000F7356 /* CouponHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EE9D255E6E79000F7356 /* CouponHeader.swift */; };
+		DA30EEA1255E6E93000F7356 /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EEA0255E6E93000F7356 /* CouponCell.swift */; };
+		DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36459B24F6838400294C2B /* ViewExtension.swift */; };
+		DA36459E24F684EB00294C2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36459D24F684EB00294C2B /* LoginViewController.swift */; };
+		DA3645A024F6856C00294C2B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA36459F24F6856C00294C2B /* ColorExtension.swift */; };
+		DA3645A224F688CA00294C2B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645A124F688CA00294C2B /* LoginViewModel.swift */; };
+		DA3645A424F68ED600294C2B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645A324F68ED600294C2B /* SignUpViewController.swift */; };
+		DA3645AA24F68F6400294C2B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645A924F68F6400294C2B /* MainViewController.swift */; };
+		DA3645AE24F6901D00294C2B /* MainTC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645AD24F6901D00294C2B /* MainTC.swift */; };
+		DA3645B024F690C400294C2B /* MyAreaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645AF24F690C400294C2B /* MyAreaViewController.swift */; };
+		DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645B424F6979200294C2B /* NotificationViewController.swift */; };
+		DA3645B724F6A0A700294C2B /* FindUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645B624F6A0A700294C2B /* FindUserInfoViewModel.swift */; };
+		DA3645B924F6A5A500294C2B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645B824F6A5A500294C2B /* StringExtension.swift */; };
+		DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645BA24F6AE4B00294C2B /* SignUpViewModel.swift */; };
+		DA3645C824F79ACD00294C2B /* QrScannverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645C724F79ACD00294C2B /* QrScannverViewController.swift */; };
+		DA3645CB24F7A20800294C2B /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645CA24F7A20800294C2B /* MainCollectionViewCell.swift */; };
+		DA3645CD24F7A7D600294C2B /* QrViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645CC24F7A7D600294C2B /* QrViewModel.swift */; };
+		DA3645CF24F7AAD100294C2B /* QrAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645CE24F7AAD100294C2B /* QrAuthViewController.swift */; };
+		DA3645D124F7BA7900294C2B /* MyPageCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645D024F7BA7900294C2B /* MyPageCollectionReusableView.swift */; };
+		DA3645D324F7BC2700294C2B /* MypageFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645D224F7BC2700294C2B /* MypageFilterCell.swift */; };
+		DA3645D524F7C36300294C2B /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645D424F7C36300294C2B /* MypageViewModel.swift */; };
+		DA3645D724F7C5A200294C2B /* MyCouponListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3645D624F7C5A200294C2B /* MyCouponListCollectionViewCell.swift */; };
+		DA3ED1F5250A265100E4D64C /* ChangePassAuthPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3ED1F4250A265100E4D64C /* ChangePassAuthPopUpViewController.swift */; };
+		DA4C10D324FF89D7009DBBE2 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C10D224FF89D7009DBBE2 /* NotificationViewModel.swift */; };
+		DA4C10D524FF8C4A009DBBE2 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C10D424FF8C4A009DBBE2 /* NotificationTableViewCell.swift */; };
+		DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */; };
+		DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */; };
+		DA6A75A7250A15A200B96C32 /* MyAreaDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */; };
+		DA6B78A6250C7496000466F1 /* ManagementHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B78A5250C7496000466F1 /* ManagementHeaderView.swift */; };
+		DA6B78A8250C74DF000466F1 /* ManagementTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B78A7250C74DF000466F1 /* ManagementTableViewCell.swift */; };
+		DA6B78AB250C766B000466F1 /* ManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B78AA250C766B000466F1 /* ManagementViewModel.swift */; };
+		DA6B78AE250C803A000466F1 /* ManagementWrtieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B78AD250C803A000466F1 /* ManagementWrtieViewController.swift */; };
+		DA6E2D7A2504A52900A0A548 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D792504A52900A0A548 /* SettingViewController.swift */; };
+		DA6E2D7E2504A5AB00A0A548 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D7D2504A5AB00A0A548 /* SettingTableViewCell.swift */; };
+		DA6E2D802504A69000A0A548 /* SettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D7F2504A69000A0A548 /* SettingHeaderView.swift */; };
+		DA6E2D832504AF5D00A0A548 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D822504AF5D00A0A548 /* SettingViewModel.swift */; };
+		DA6E2D852504B23300A0A548 /* UserRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D842504B23300A0A548 /* UserRequestViewController.swift */; };
+		DA6E2D872504B26400A0A548 /* UserRequestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D862504B26400A0A548 /* UserRequestHeaderView.swift */; };
+		DA6E2D892504B2E600A0A548 /* UserRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D882504B2E600A0A548 /* UserRequestViewModel.swift */; };
+		DA6E2D8B2504B53400A0A548 /* UserRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D8A2504B53400A0A548 /* UserRequestTableViewCell.swift */; };
+		DA6E2D8D2504BA1500A0A548 /* BestAskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D8C2504BA1500A0A548 /* BestAskTableViewController.swift */; };
+		DA6E2D8F2504BA5200A0A548 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D8E2504BA5200A0A548 /* ViewControllerExtension.swift */; };
+		DA6E2D912504BBD000A0A548 /* ManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D902504BBD000A0A548 /* ManagementViewController.swift */; };
+		DA6E2D932504BC0600A0A548 /* BestAskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D922504BC0600A0A548 /* BestAskViewModel.swift */; };
+		DA6E2D952504BC4600A0A548 /* BestAskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D942504BC4600A0A548 /* BestAskTableViewCell.swift */; };
+		DA6E2D972504BF4800A0A548 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D962504BF4800A0A548 /* InviteViewController.swift */; };
+		DA6E2D992504EE7E00A0A548 /* ChagneNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D982504EE7E00A0A548 /* ChagneNicknameViewController.swift */; };
+		DA6E2D9B2504F29600A0A548 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D9A2504F29600A0A548 /* ChangePasswordViewController.swift */; };
+		DA6E2D9D2504F2A800A0A548 /* ChangePhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D9C2504F2A800A0A548 /* ChangePhoneNumberViewController.swift */; };
+		DA6E2D9F2504F6FB00A0A548 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2D9E2504F6FB00A0A548 /* EventViewController.swift */; };
+		DA6E2DA22504F79A00A0A548 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DA12504F79A00A0A548 /* EventTableViewCell.swift */; };
+		DA6E2DA42506186D00A0A548 /* BestAskDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DA32506186D00A0A548 /* BestAskDetailTableViewController.swift */; };
+		DA6E2DA7250618DC00A0A548 /* BestAskDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DA6250618DC00A0A548 /* BestAskDetailTableViewCell.swift */; };
+		DA6E2DA925061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DA825061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift */; };
+		DA6E2DAB2506263100A0A548 /* BestAskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DAA2506263100A0A548 /* BestAskModel.swift */; };
+		DA6E2DAD25062A8400A0A548 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DAC25062A8400A0A548 /* UILabelExtension.swift */; };
+		DA6E2DB125062F2900A0A548 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DB025062F2900A0A548 /* EventDetailTableViewController.swift */; };
+		DA6E2DB92506354700A0A548 /* BestWoomoolTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DB82506354700A0A548 /* BestWoomoolTableViewCell.swift */; };
+		DA6E2DBB25063BB000A0A548 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DBA25063BB000A0A548 /* TableViewExtension.swift */; };
+		DA6E2DBD25064AC700A0A548 /* NotificationDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6E2DBC25064AC700A0A548 /* NotificationDetailTableViewController.swift */; };
+		DA72B693250C819C006E6075 /* ManagementWriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B692250C819C006E6075 /* ManagementWriteTableViewCell.swift */; };
+		DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B694250C8896006E6075 /* OurwoomoolViewModel.swift */; };
+		DA72B697250C89F0006E6075 /* BestWoomoolCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */; };
+		DA72B699250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */; };
+		DA79E98625020393001B73FA /* AuthPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79E98525020393001B73FA /* AuthPopUpViewController.swift */; };
+		DA79E98A25021301001B73FA /* PrivateUserInfoAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */; };
+		DA7C245124FCD6B20061C1BE /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245024FCD6B20061C1BE /* MainViewModel.swift */; };
+		DA7C245324FCD7330061C1BE /* MainCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245224FCD7330061C1BE /* MainCenterView.swift */; };
+		DA7C245524FCD7ED0061C1BE /* OurWoomoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245424FCD7ED0061C1BE /* OurWoomoolViewController.swift */; };
+		DA8191D124FA3A650021F2B5 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191D024FA3A650021F2B5 /* OnBoardingViewController.swift */; };
+		DA8191D424FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191D324FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift */; };
+		DA8191D824FA454C0021F2B5 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191D724FA454C0021F2B5 /* ImageModel.swift */; };
+		DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191DA24FA47940021F2B5 /* OnBoardingModel.swift */; };
+		DA8191DD24FA52160021F2B5 /* SignUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */; };
+		DA8325D525026415005EA0EE /* URLSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8325D425026415005EA0EE /* URLSource.swift */; };
+		DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */; };
+		DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */; };
+		DA8A31D8250F25660049CD8C /* PhoneAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */; };
+		DA8E89B82532D7440021BE23 /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89B72532D7440021BE23 /* NoticeTableViewController.swift */; };
+		DA8E89BC2532D8910021BE23 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89BB2532D8910021BE23 /* NoticeTableViewCell.swift */; };
+		DA8E89BF2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89BE2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift */; };
+		DA8E89C42532DACA0021BE23 /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89C32532DACA0021BE23 /* NoticeViewModel.swift */; };
+		DA8E89C82532DAE40021BE23 /* NoticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89C72532DAE40021BE23 /* NoticeModel.swift */; };
+		DA8E89D22532E0620021BE23 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89D12532E0620021BE23 /* SecretKey.swift */; };
+		DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89D42532EADE0021BE23 /* UserModel.swift */; };
+		DA913DD6254FEB840087464A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD5254FEB840087464A /* EventModel.swift */; };
+		DA913DD925500A620087464A /* GoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD825500A620087464A /* GoodsModel.swift */; };
+		DA913DDC2550197F0087464A /* FAQModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DDB2550197F0087464A /* FAQModel.swift */; };
+		DA959745252716A1002A4271 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA959744252716A1002A4271 /* Request.swift */; };
+		DAA3509C254C01D6005D4071 /* WoomoolImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */; };
+		DAA3509F254C07BD005D4071 /* TermsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509E254C07BD005D4071 /* TermsModel.swift */; };
+		DAA350A2254C095B005D4071 /* AuthDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */; };
+		DAA350A5254C0971005D4071 /* AuthDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA350A4254C0971005D4071 /* AuthDetailTableViewCell.swift */; };
+		DAA350A9254C19E0005D4071 /* TermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA350A8254C19E0005D4071 /* TermsViewModel.swift */; };
+		DAAA7EDC24F23E91005F9C6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAA7EDB24F23E91005F9C6D /* AppDelegate.swift */; };
+		DAAA7EDE24F23E91005F9C6D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAA7EDD24F23E91005F9C6D /* SceneDelegate.swift */; };
+		DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE124F23E91005F9C6D /* Main.storyboard */; };
+		DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE424F23E94005F9C6D /* Assets.xcassets */; };
+		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
+		DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */; };
+		DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */; };
+		DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */; };
+		DAB61A322500D0FD0066EA29 /* StarRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A312500D0FD0066EA29 /* StarRateView.swift */; };
+		DAB61A342500E81A0066EA29 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A332500E81A0066EA29 /* UserInfoTableViewCell.swift */; };
+		DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */; };
+		DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */; };
+		DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */; };
+		DAC73DFD24FF5ACF00E2B419 /* MyAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */; };
+		DAC73DFF24FF5B2B00E2B419 /* NearShopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */; };
+		DAC73E0824FF5F9E00E2B419 /* NanumSquareRoundEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0324FF5EBB00E2B419 /* NanumSquareRoundEB.ttf */; };
+		DAC73E0924FF5F9E00E2B419 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0224FF5EBB00E2B419 /* NotoSansCJKkr-Bold.otf */; };
+		DAC73E0A24FF5F9E00E2B419 /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0624FF5EBB00E2B419 /* NotoSansCJKkr-Light.otf */; };
+		DAC73E0B24FF5F9E00E2B419 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0424FF5EBB00E2B419 /* NotoSansCJKkr-Medium.otf */; };
+		DAC73E0C24FF5F9E00E2B419 /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0524FF5EBB00E2B419 /* NotoSansCJKkr-Regular.otf */; };
+		DAC73E0D24FF5F9E00E2B419 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0724FF5EBB00E2B419 /* Roboto-Bold.ttf */; };
+		DAC73E0E24FF5F9E00E2B419 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0124FF5EBB00E2B419 /* Roboto-Regular.ttf */; };
+		DAC73E1024FF5FFE00E2B419 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E0F24FF5FFE00E2B419 /* FontExtension.swift */; };
+		DAC73E1224FF651200E2B419 /* MyAreaBottomSheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1124FF651200E2B419 /* MyAreaBottomSheetHeaderView.swift */; };
+		DAC73E1424FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1324FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift */; };
+		DAC73E1624FF755A00E2B419 /* SelfSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1524FF755A00E2B419 /* SelfSizedTableView.swift */; };
+		DAC73E1824FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1724FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift */; };
+		DAC73E1A24FF853C00E2B419 /* MyWoomoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1924FF853C00E2B419 /* MyWoomoolViewModel.swift */; };
+		DAC73E1C24FF878700E2B419 /* OurWoomoolBestShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1B24FF878700E2B419 /* OurWoomoolBestShopView.swift */; };
+		DAE782E52506585600944B4A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782E42506585600944B4A /* MyPageTableViewCell.swift */; };
+		DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782E825065BAB00944B4A /* MypageVC.swift */; };
+		DAE782EC25065C6600944B4A /* MyPageTopVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */; };
+		DAE782EE2506637F00944B4A /* CouponBuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782ED2506637F00944B4A /* CouponBuyTableViewCell.swift */; };
+		DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */; };
+		DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */; };
+		DAE782F625067A0600944B4A /* CouponUsingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F525067A0600944B4A /* CouponUsingTableViewCell.swift */; };
+		DAE782F82506822D00944B4A /* CouponPayReciptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */; };
+		DAE782FA2507692F00944B4A /* HistoryFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */; };
+		DAE782FC25076A4300944B4A /* MypageHistoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */; };
+		DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */; };
+		DAE783002507722F00944B4A /* HistoryFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */; };
+		DAE783022507724000944B4A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE783012507724000944B4A /* HistoryTableViewCell.swift */; };
+		DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3392542C09A007F9AC5 /* StoreModel.swift */; };
+		DAF4D33D2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */; };
+		DAF4D3412542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */; };
+		DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */; };
+		DAF9EB302514C9F900B40270 /* CouponPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */; };
+		DAF9EB412515C73B00B40270 /* UserGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB402515C73B00B40270 /* UserGradeViewController.swift */; };
+		DAF9EB462515E5D700B40270 /* UserGradeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB452515E5D700B40270 /* UserGradeCollectionViewCell.swift */; };
+		DAF9EB4A2515EA1400B40270 /* UserGradeCircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB492515EA1400B40270 /* UserGradeCircularView.swift */; };
+		DAF9EB4D2515FD9D00B40270 /* UserGradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB4C2515FD9D00B40270 /* UserGradeViewModel.swift */; };
+		DAF9EB50251606C000B40270 /* HowtoUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB4F251606C000B40270 /* HowtoUseViewController.swift */; };
+		DAF9EB532516074800B40270 /* HowToUseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB522516074800B40270 /* HowToUseCollectionViewCell.swift */; };
+		DAF9EB5625160BB800B40270 /* HowtoUseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB5525160BB800B40270 /* HowtoUseViewModel.swift */; };
+		DAF9EB59251610F700B40270 /* WoomoolStoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB58251610F700B40270 /* WoomoolStoryCollectionViewController.swift */; };
+		F55B44FF0F58FBF13127616D /* Pods_Woomool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.debug.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.debug.xcconfig"; sourceTree = "<group>"; };
+		5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.release.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.release.xcconfig"; sourceTree = "<group>"; };
+		DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServieceHeaderView.swift; sourceTree = "<group>"; };
+		DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServiceTableViewCell.swift; sourceTree = "<group>"; };
+		DA30EE86255E4B16000F7356 /* FindPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPassViewController.swift; sourceTree = "<group>"; };
+		DA30EE97255E6CAA000F7356 /* MyAreaBottomSheetCafeDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaBottomSheetCafeDetail.swift; sourceTree = "<group>"; };
+		DA30EE9A255E6E31000F7356 /* CouponViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponViewController.swift; sourceTree = "<group>"; };
+		DA30EE9D255E6E79000F7356 /* CouponHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponHeader.swift; sourceTree = "<group>"; };
+		DA30EEA0255E6E93000F7356 /* CouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
+		DA36459B24F6838400294C2B /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		DA36459D24F684EB00294C2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		DA36459F24F6856C00294C2B /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		DA3645A124F688CA00294C2B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		DA3645A324F68ED600294C2B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DA3645A924F68F6400294C2B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		DA3645AD24F6901D00294C2B /* MainTC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTC.swift; sourceTree = "<group>"; };
+		DA3645AF24F690C400294C2B /* MyAreaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaViewController.swift; sourceTree = "<group>"; };
+		DA3645B424F6979200294C2B /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		DA3645B624F6A0A700294C2B /* FindUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserInfoViewModel.swift; sourceTree = "<group>"; };
+		DA3645B824F6A5A500294C2B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		DA3645BA24F6AE4B00294C2B /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		DA3645C724F79ACD00294C2B /* QrScannverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrScannverViewController.swift; sourceTree = "<group>"; };
+		DA3645CA24F7A20800294C2B /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA3645CC24F7A7D600294C2B /* QrViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrViewModel.swift; sourceTree = "<group>"; };
+		DA3645CE24F7AAD100294C2B /* QrAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrAuthViewController.swift; sourceTree = "<group>"; };
+		DA3645D024F7BA7900294C2B /* MyPageCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCollectionReusableView.swift; sourceTree = "<group>"; };
+		DA3645D224F7BC2700294C2B /* MypageFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFilterCell.swift; sourceTree = "<group>"; };
+		DA3645D424F7C36300294C2B /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
+		DA3645D624F7C5A200294C2B /* MyCouponListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCouponListCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA3ED1F4250A265100E4D64C /* ChangePassAuthPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassAuthPopUpViewController.swift; sourceTree = "<group>"; };
+		DA3EF11A25666DD0002FF5A5 /* Woomool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Woomool.entitlements; sourceTree = "<group>"; };
+		DA4C10D224FF89D7009DBBE2 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		DA4C10D424FF8C4A009DBBE2 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServiceRequestViewController.swift; sourceTree = "<group>"; };
+		DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewController.swift; sourceTree = "<group>"; };
+		DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DA6B78A5250C7496000466F1 /* ManagementHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementHeaderView.swift; sourceTree = "<group>"; };
+		DA6B78A7250C74DF000466F1 /* ManagementTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementTableViewCell.swift; sourceTree = "<group>"; };
+		DA6B78AA250C766B000466F1 /* ManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewModel.swift; sourceTree = "<group>"; };
+		DA6B78AD250C803A000466F1 /* ManagementWrtieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementWrtieViewController.swift; sourceTree = "<group>"; };
+		DA6E2D792504A52900A0A548 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		DA6E2D7D2504A5AB00A0A548 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2D7F2504A69000A0A548 /* SettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeaderView.swift; sourceTree = "<group>"; };
+		DA6E2D822504AF5D00A0A548 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		DA6E2D842504B23300A0A548 /* UserRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestViewController.swift; sourceTree = "<group>"; };
+		DA6E2D862504B26400A0A548 /* UserRequestHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestHeaderView.swift; sourceTree = "<group>"; };
+		DA6E2D882504B2E600A0A548 /* UserRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestViewModel.swift; sourceTree = "<group>"; };
+		DA6E2D8A2504B53400A0A548 /* UserRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2D8C2504BA1500A0A548 /* BestAskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskTableViewController.swift; sourceTree = "<group>"; };
+		DA6E2D8E2504BA5200A0A548 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
+		DA6E2D902504BBD000A0A548 /* ManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementViewController.swift; sourceTree = "<group>"; };
+		DA6E2D922504BC0600A0A548 /* BestAskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskViewModel.swift; sourceTree = "<group>"; };
+		DA6E2D942504BC4600A0A548 /* BestAskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2D962504BF4800A0A548 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		DA6E2D982504EE7E00A0A548 /* ChagneNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChagneNicknameViewController.swift; sourceTree = "<group>"; };
+		DA6E2D9A2504F29600A0A548 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		DA6E2D9C2504F2A800A0A548 /* ChangePhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePhoneNumberViewController.swift; sourceTree = "<group>"; };
+		DA6E2D9E2504F6FB00A0A548 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		DA6E2DA12504F79A00A0A548 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2DA32506186D00A0A548 /* BestAskDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskDetailTableViewController.swift; sourceTree = "<group>"; };
+		DA6E2DA6250618DC00A0A548 /* BestAskDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2DA825061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskDetailContentsTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2DAA2506263100A0A548 /* BestAskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestAskModel.swift; sourceTree = "<group>"; };
+		DA6E2DAC25062A8400A0A548 /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		DA6E2DB025062F2900A0A548 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
+		DA6E2DB82506354700A0A548 /* BestWoomoolTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolTableViewCell.swift; sourceTree = "<group>"; };
+		DA6E2DBA25063BB000A0A548 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
+		DA6E2DBC25064AC700A0A548 /* NotificationDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailTableViewController.swift; sourceTree = "<group>"; };
+		DA72B692250C819C006E6075 /* ManagementWriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementWriteTableViewCell.swift; sourceTree = "<group>"; };
+		DA72B694250C8896006E6075 /* OurwoomoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurwoomoolViewModel.swift; sourceTree = "<group>"; };
+		DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewController.swift; sourceTree = "<group>"; };
+		DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA79E98525020393001B73FA /* AuthPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopUpViewController.swift; sourceTree = "<group>"; };
+		DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUserInfoAuthViewController.swift; sourceTree = "<group>"; };
+		DA7C245024FCD6B20061C1BE /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		DA7C245224FCD7330061C1BE /* MainCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCenterView.swift; sourceTree = "<group>"; };
+		DA7C245424FCD7ED0061C1BE /* OurWoomoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurWoomoolViewController.swift; sourceTree = "<group>"; };
+		DA8191D024FA3A650021F2B5 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		DA8191D324FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA8191D724FA454C0021F2B5 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		DA8191DA24FA47940021F2B5 /* OnBoardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingModel.swift; sourceTree = "<group>"; };
+		DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewCell.swift; sourceTree = "<group>"; };
+		DA8325D425026415005EA0EE /* URLSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSource.swift; sourceTree = "<group>"; };
+		DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthNameTableViewCell.swift; sourceTree = "<group>"; };
+		DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthAgreeTableViewCell.swift; sourceTree = "<group>"; };
+		DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewModel.swift; sourceTree = "<group>"; };
+		DA8E89B72532D7440021BE23 /* NoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
+		DA8E89BB2532D8910021BE23 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		DA8E89BE2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DA8E89C32532DACA0021BE23 /* NoticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
+		DA8E89C72532DAE40021BE23 /* NoticeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeModel.swift; sourceTree = "<group>"; };
+		DA8E89D12532E0620021BE23 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
+		DA8E89D42532EADE0021BE23 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		DA913DD5254FEB840087464A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		DA913DD825500A620087464A /* GoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsModel.swift; sourceTree = "<group>"; };
+		DA913DDB2550197F0087464A /* FAQModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQModel.swift; sourceTree = "<group>"; };
+		DA959744252716A1002A4271 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolImageCell.swift; sourceTree = "<group>"; };
+		DAA3509E254C07BD005D4071 /* TermsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsModel.swift; sourceTree = "<group>"; };
+		DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailTableViewController.swift; sourceTree = "<group>"; };
+		DAA350A4254C0971005D4071 /* AuthDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailTableViewCell.swift; sourceTree = "<group>"; };
+		DAA350A8254C19E0005D4071 /* TermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewModel.swift; sourceTree = "<group>"; };
+		DAAA7ED824F23E91005F9C6D /* Woomool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Woomool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAAA7EDB24F23E91005F9C6D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DAAA7EDD24F23E91005F9C6D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		DAAA7EE224F23E91005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DAAA7EE424F23E94005F9C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DAAA7EE724F23E94005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFilterView.swift; sourceTree = "<group>"; };
+		DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewController.swift; sourceTree = "<group>"; };
+		DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAB61A312500D0FD0066EA29 /* StarRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRateView.swift; sourceTree = "<group>"; };
+		DAB61A332500E81A0066EA29 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponSelectViewController.swift; sourceTree = "<group>"; };
+		DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaTableViewCell.swift; sourceTree = "<group>"; };
+		DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearShopModel.swift; sourceTree = "<group>"; };
+		DAC73E0124FF5EBB00E2B419 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		DAC73E0224FF5EBB00E2B419 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		DAC73E0324FF5EBB00E2B419 /* NanumSquareRoundEB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundEB.ttf; sourceTree = "<group>"; };
+		DAC73E0424FF5EBB00E2B419 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		DAC73E0524FF5EBB00E2B419 /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		DAC73E0624FF5EBB00E2B419 /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
+		DAC73E0724FF5EBB00E2B419 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		DAC73E0F24FF5FFE00E2B419 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
+		DAC73E1124FF651200E2B419 /* MyAreaBottomSheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaBottomSheetHeaderView.swift; sourceTree = "<group>"; };
+		DAC73E1324FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaBottomActionSheetFooterView.swift; sourceTree = "<group>"; };
+		DAC73E1524FF755A00E2B419 /* SelfSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfSizedTableView.swift; sourceTree = "<group>"; };
+		DAC73E1724FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWoomoolNotiCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAC73E1924FF853C00E2B419 /* MyWoomoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWoomoolViewModel.swift; sourceTree = "<group>"; };
+		DAC73E1B24FF878700E2B419 /* OurWoomoolBestShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurWoomoolBestShopView.swift; sourceTree = "<group>"; };
+		DAE782E42506585600944B4A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
+		DAE782E825065BAB00944B4A /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
+		DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyPageTopVIew.swift; path = "../mypage 임시/MyPageTopVIew.swift"; sourceTree = "<group>"; };
+		DAE782ED2506637F00944B4A /* CouponBuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyTableViewCell.swift; sourceTree = "<group>"; };
+		DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyEnvironmentTableViewCell.swift; path = "../../mypage 임시/MyEnvironmentTableViewCell.swift"; sourceTree = "<group>"; };
+		DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAE782F525067A0600944B4A /* CouponUsingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponUsingTableViewCell.swift; sourceTree = "<group>"; };
+		DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPayReciptTableViewCell.swift; sourceTree = "<group>"; };
+		DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryFilterCollectionViewCell.swift; path = "../../mypage 임시/HistoryFilterCollectionViewCell.swift"; sourceTree = "<group>"; };
+		DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MypageHistoryFilterView.swift; path = "../../mypage 임시/MypageHistoryFilterView.swift"; sourceTree = "<group>"; };
+		DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryDateTableViewCell.swift; path = "../../mypage 임시/HistoryDateTableViewCell.swift"; sourceTree = "<group>"; };
+		DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryFilterTableViewCell.swift; path = "../../mypage 임시/HistoryFilterTableViewCell.swift"; sourceTree = "<group>"; };
+		DAE783012507724000944B4A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryTableViewCell.swift; path = "../../mypage 임시/HistoryTableViewCell.swift"; sourceTree = "<group>"; };
+		DAF4D3392542C09A007F9AC5 /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
+		DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryViewModel.swift; sourceTree = "<group>"; };
+		DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPopUpViewController.swift; sourceTree = "<group>"; };
+		DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPopUpView.swift; sourceTree = "<group>"; };
+		DAF9EB402515C73B00B40270 /* UserGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGradeViewController.swift; sourceTree = "<group>"; };
+		DAF9EB452515E5D700B40270 /* UserGradeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGradeCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAF9EB492515EA1400B40270 /* UserGradeCircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGradeCircularView.swift; sourceTree = "<group>"; };
+		DAF9EB4C2515FD9D00B40270 /* UserGradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGradeViewModel.swift; sourceTree = "<group>"; };
+		DAF9EB4F251606C000B40270 /* HowtoUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowtoUseViewController.swift; sourceTree = "<group>"; };
+		DAF9EB522516074800B40270 /* HowToUseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAF9EB5525160BB800B40270 /* HowtoUseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowtoUseViewModel.swift; sourceTree = "<group>"; };
+		DAF9EB58251610F700B40270 /* WoomoolStoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryCollectionViewController.swift; sourceTree = "<group>"; };
+		EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Woomool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAAA7ED524F23E91005F9C6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F55B44FF0F58FBF13127616D /* Pods_Woomool.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		077252F24989F26A60E6C6A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B374B3DC5731B089AAA1D3AE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */,
+				5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		DA36459424F6830A00294C2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DAE782EA25065C4900944B4A /* mypage 임시 */,
+				DA8191D224FA3C640021F2B5 /* OnBoarding */,
+				DA3645C924F7A1FA00294C2B /* Main */,
+				DA3645C324F7613A00294C2B /* Authentication */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DA36459624F6831500294C2B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA8191D924FA47850021F2B5 /* OnBoarding */,
+				DA3645C624F796D900294C2B /* Main */,
+				DA3645C024F75E9D00294C2B /* Authentication */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DA36459724F6831A00294C2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DA8191CD24FA39880021F2B5 /* OnBoarding */,
+				DA3645A824F68F3A00294C2B /* Main */,
+				DA3645A524F68EF500294C2B /* Authentication */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DA36459824F6831F00294C2B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DA8E89CF2532E05A0021BE23 /* SecretKey */,
+				DA8325D3250263FF005EA0EE /* NetWorkModel */,
+				DA8191D724FA454C0021F2B5 /* ImageModel.swift */,
+				DAA3509E254C07BD005D4071 /* TermsModel.swift */,
+				DA8E89C72532DAE40021BE23 /* NoticeModel.swift */,
+				DA913DD5254FEB840087464A /* EventModel.swift */,
+				DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */,
+				DA6E2DAA2506263100A0A548 /* BestAskModel.swift */,
+				DA8E89D42532EADE0021BE23 /* UserModel.swift */,
+				DAF4D3392542C09A007F9AC5 /* StoreModel.swift */,
+				DA913DD825500A620087464A /* GoodsModel.swift */,
+				DA913DDB2550197F0087464A /* FAQModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DA36459924F6832A00294C2B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DA36459A24F6837700294C2B /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DA36459A24F6837700294C2B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DA36459B24F6838400294C2B /* ViewExtension.swift */,
+				DA36459F24F6856C00294C2B /* ColorExtension.swift */,
+				DA3645B824F6A5A500294C2B /* StringExtension.swift */,
+				DAC73E0F24FF5FFE00E2B419 /* FontExtension.swift */,
+				DA6E2D8E2504BA5200A0A548 /* ViewControllerExtension.swift */,
+				DA6E2DAC25062A8400A0A548 /* UILabelExtension.swift */,
+				DA6E2DBA25063BB000A0A548 /* TableViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DA3645A524F68EF500294C2B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DA36459D24F684EB00294C2B /* LoginViewController.swift */,
+				DA3645A324F68ED600294C2B /* SignUpViewController.swift */,
+				DA30EE86255E4B16000F7356 /* FindPassViewController.swift */,
+				DA79E98525020393001B73FA /* AuthPopUpViewController.swift */,
+				DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */,
+				DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */,
+				DA6E2D982504EE7E00A0A548 /* ChagneNicknameViewController.swift */,
+				DA6E2D9A2504F29600A0A548 /* ChangePasswordViewController.swift */,
+				DA6E2D9C2504F2A800A0A548 /* ChangePhoneNumberViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DA3645A824F68F3A00294C2B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DA6A75A3250A10E300B96C32 /* MyArea */,
+				DA6A75A2250A109E00B96C32 /* Home */,
+				DA6E2DB22506345900A0A548 /* Our */,
+				DA6E2D782504A51100A0A548 /* Mypage */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DA3645B324F6977300294C2B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				DAA35099254BFFD6005D4071 /* WoomoolStory */,
+				DA6E2D9E2504F6FB00A0A548 /* EventViewController.swift */,
+				DA6E2DB025062F2900A0A548 /* EventDetailTableViewController.swift */,
+				DA3645B424F6979200294C2B /* NotificationViewController.swift */,
+				DA6E2DBC25064AC700A0A548 /* NotificationDetailTableViewController.swift */,
+				DAF9EB4F251606C000B40270 /* HowtoUseViewController.swift */,
+				DAF9EB58251610F700B40270 /* WoomoolStoryCollectionViewController.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		DA3645C024F75E9D00294C2B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DA3645B624F6A0A700294C2B /* FindUserInfoViewModel.swift */,
+				DA3645A124F688CA00294C2B /* LoginViewModel.swift */,
+				DA3645BA24F6AE4B00294C2B /* SignUpViewModel.swift */,
+				DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */,
+				DAA350A8254C19E0005D4071 /* TermsViewModel.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DA3645C324F7613A00294C2B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DA8A31D0250F22070049CD8C /* PhoneAuth */,
+				DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */,
+				DAA350A4254C0971005D4071 /* AuthDetailTableViewCell.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		DA3645C624F796D900294C2B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DA8E89C22532DAC40021BE23 /* Home */,
+				DA6A75A8250A1E3700B96C32 /* My */,
+				DA6E2DB32506347600A0A548 /* Our */,
+				DAB61A2A2500C7C90066EA29 /* Mypage */,
+				DA3645CC24F7A7D600294C2B /* QrViewModel.swift */,
+				DA7C245024FCD6B20061C1BE /* MainViewModel.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DA3645C924F7A1FA00294C2B /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2DA02504F78D00A0A548 /* Our */,
+				DAB61A2E2500C8920066EA29 /* MyArea */,
+				DAB61A2C2500C8740066EA29 /* Home */,
+				DAB61A262500BFA50066EA29 /* Mypage */,
+				DAC73E1524FF755A00E2B419 /* SelfSizedTableView.swift */,
+				DAC73E1724FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift */,
+				DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DA4C10D024FF89AC009DBBE2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				DA4C10D424FF8C4A009DBBE2 /* NotificationTableViewCell.swift */,
+				DAF9EB522516074800B40270 /* HowToUseCollectionViewCell.swift */,
+				DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		DA4C10D124FF89C1009DBBE2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				DA4C10D224FF89D7009DBBE2 /* NotificationViewModel.swift */,
+				DAF9EB5525160BB800B40270 /* HowtoUseViewModel.swift */,
+				DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		DA6A75A2250A109E00B96C32 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DA3645A924F68F6400294C2B /* MainViewController.swift */,
+				DA3645AD24F6901D00294C2B /* MainTC.swift */,
+				DA3645C724F79ACD00294C2B /* QrScannverViewController.swift */,
+				DA3645CE24F7AAD100294C2B /* QrAuthViewController.swift */,
+				DA8E89B72532D7440021BE23 /* NoticeTableViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DA6A75A3250A10E300B96C32 /* MyArea */ = {
+			isa = PBXGroup;
+			children = (
+				DA3645AF24F690C400294C2B /* MyAreaViewController.swift */,
+				DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */,
+				DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */,
+			);
+			path = MyArea;
+			sourceTree = "<group>";
+		};
+		DA6A75A8250A1E3700B96C32 /* My */ = {
+			isa = PBXGroup;
+			children = (
+				DAC73E1924FF853C00E2B419 /* MyWoomoolViewModel.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		DA6B78A9250C74E5000466F1 /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B78A5250C7496000466F1 /* ManagementHeaderView.swift */,
+				DA6B78A7250C74DF000466F1 /* ManagementTableViewCell.swift */,
+				DA72B692250C819C006E6075 /* ManagementWriteTableViewCell.swift */,
+			);
+			path = Management;
+			sourceTree = "<group>";
+		};
+		DA6B78AC250C7FE1000466F1 /* Management */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2D902504BBD000A0A548 /* ManagementViewController.swift */,
+				DA6B78AD250C803A000466F1 /* ManagementWrtieViewController.swift */,
+			);
+			path = Management;
+			sourceTree = "<group>";
+		};
+		DA6E2D782504A51100A0A548 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				DAF9EB442515E59400B40270 /* UserGrade */,
+				DA6E2DA5250618AD00A0A548 /* Setting */,
+				DA6E2D842504B23300A0A548 /* UserRequestViewController.swift */,
+				DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */,
+				DA6E2D962504BF4800A0A548 /* InviteViewController.swift */,
+				DA3ED1F4250A265100E4D64C /* ChangePassAuthPopUpViewController.swift */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		DA6E2D7C2504A59800A0A548 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2D7D2504A5AB00A0A548 /* SettingTableViewCell.swift */,
+				DA6B78A9250C74E5000466F1 /* Management */,
+				DA6E2D7F2504A69000A0A548 /* SettingHeaderView.swift */,
+				DA6E2D862504B26400A0A548 /* UserRequestHeaderView.swift */,
+				DA6E2D8A2504B53400A0A548 /* UserRequestTableViewCell.swift */,
+				DA6E2D942504BC4600A0A548 /* BestAskTableViewCell.swift */,
+				DA6E2DA6250618DC00A0A548 /* BestAskDetailTableViewCell.swift */,
+				DA6E2DA825061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		DA6E2D812504AF5400A0A548 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2D822504AF5D00A0A548 /* SettingViewModel.swift */,
+				DA6E2D882504B2E600A0A548 /* UserRequestViewModel.swift */,
+				DA6E2D922504BC0600A0A548 /* BestAskViewModel.swift */,
+				DA6B78AA250C766B000466F1 /* ManagementViewModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		DA6E2DA02504F78D00A0A548 /* Our */ = {
+			isa = PBXGroup;
+			children = (
+				DA4C10D024FF89AC009DBBE2 /* Notification */,
+				DA6E2DA12504F79A00A0A548 /* EventTableViewCell.swift */,
+				DAC73E1B24FF878700E2B419 /* OurWoomoolBestShopView.swift */,
+				DA6E2DB82506354700A0A548 /* BestWoomoolTableViewCell.swift */,
+				DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */,
+			);
+			name = Our;
+			sourceTree = "<group>";
+		};
+		DA6E2DA5250618AD00A0A548 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DA6B78AC250C7FE1000466F1 /* Management */,
+				DA6E2DA32506186D00A0A548 /* BestAskDetailTableViewController.swift */,
+				DA6E2D8C2504BA1500A0A548 /* BestAskTableViewController.swift */,
+				DA6E2D792504A52900A0A548 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		DA6E2DB22506345900A0A548 /* Our */ = {
+			isa = PBXGroup;
+			children = (
+				DA7C245424FCD7ED0061C1BE /* OurWoomoolViewController.swift */,
+				DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */,
+				DA3645B324F6977300294C2B /* Notification */,
+			);
+			path = Our;
+			sourceTree = "<group>";
+		};
+		DA6E2DB32506347600A0A548 /* Our */ = {
+			isa = PBXGroup;
+			children = (
+				DA4C10D124FF89C1009DBBE2 /* Notification */,
+				DA72B694250C8896006E6075 /* OurwoomoolViewModel.swift */,
+			);
+			path = Our;
+			sourceTree = "<group>";
+		};
+		DA8191CD24FA39880021F2B5 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				DA8191D024FA3A650021F2B5 /* OnBoardingViewController.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		DA8191D224FA3C640021F2B5 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				DA8191D324FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		DA8191D924FA47850021F2B5 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				DA8191DA24FA47940021F2B5 /* OnBoardingModel.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		DA8325D3250263FF005EA0EE /* NetWorkModel */ = {
+			isa = PBXGroup;
+			children = (
+				DA8325D425026415005EA0EE /* URLSource.swift */,
+				DA959744252716A1002A4271 /* Request.swift */,
+			);
+			path = NetWorkModel;
+			sourceTree = "<group>";
+		};
+		DA8A31D0250F22070049CD8C /* PhoneAuth */ = {
+			isa = PBXGroup;
+			children = (
+				DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */,
+				DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */,
+			);
+			path = PhoneAuth;
+			sourceTree = "<group>";
+		};
+		DA8E89C22532DAC40021BE23 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DA8E89C32532DACA0021BE23 /* NoticeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DA8E89CF2532E05A0021BE23 /* SecretKey */ = {
+			isa = PBXGroup;
+			children = (
+				DA8E89D12532E0620021BE23 /* SecretKey.swift */,
+			);
+			path = SecretKey;
+			sourceTree = "<group>";
+		};
+		DAA35099254BFFD6005D4071 /* WoomoolStory */ = {
+			isa = PBXGroup;
+			children = (
+				DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */,
+			);
+			path = WoomoolStory;
+			sourceTree = "<group>";
+		};
+		DAAA7ECF24F23E91005F9C6D = {
+			isa = PBXGroup;
+			children = (
+				DAAA7EDA24F23E91005F9C6D /* Woomool */,
+				DAAA7ED924F23E91005F9C6D /* Products */,
+				B374B3DC5731B089AAA1D3AE /* Pods */,
+				077252F24989F26A60E6C6A6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DAAA7ED924F23E91005F9C6D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAAA7ED824F23E91005F9C6D /* Woomool.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DAAA7EDA24F23E91005F9C6D /* Woomool */ = {
+			isa = PBXGroup;
+			children = (
+				DA3EF11A25666DD0002FF5A5 /* Woomool.entitlements */,
+				DAC73E0024FF5DF100E2B419 /* Font */,
+				DA36459924F6832A00294C2B /* Utils */,
+				DA36459824F6831F00294C2B /* Model */,
+				DA36459724F6831A00294C2B /* Controller */,
+				DA36459624F6831500294C2B /* ViewModel */,
+				DA36459424F6830A00294C2B /* View */,
+				DAAA7EDB24F23E91005F9C6D /* AppDelegate.swift */,
+				DAAA7EDD24F23E91005F9C6D /* SceneDelegate.swift */,
+				DAAA7EE124F23E91005F9C6D /* Main.storyboard */,
+				DAAA7EE424F23E94005F9C6D /* Assets.xcassets */,
+				DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */,
+				DAAA7EE924F23E94005F9C6D /* Info.plist */,
+			);
+			path = Woomool;
+			sourceTree = "<group>";
+		};
+		DAB61A262500BFA50066EA29 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				DAF9EB3F2515C72C00B40270 /* UserGrade */,
+				DAB9D73A2514A1EA002C7867 /* Coupon */,
+				DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */,
+				DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */,
+				DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */,
+				DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */,
+				DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */,
+				DAE783012507724000944B4A /* HistoryTableViewCell.swift */,
+				DA6E2D7C2504A59800A0A548 /* Setting */,
+				DAB61A272500C7640066EA29 /* UserInfo */,
+				DA3645D024F7BA7900294C2B /* MyPageCollectionReusableView.swift */,
+				DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */,
+				DA3645D224F7BC2700294C2B /* MypageFilterCell.swift */,
+				DA3645D624F7C5A200294C2B /* MyCouponListCollectionViewCell.swift */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		DAB61A272500C7640066EA29 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DAB61A332500E81A0066EA29 /* UserInfoTableViewCell.swift */,
+				DAE782E42506585600944B4A /* MyPageTableViewCell.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		DAB61A2A2500C7C90066EA29 /* Mypage */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2D812504AF5400A0A548 /* Setting */,
+				DA3645D424F7C36300294C2B /* MypageViewModel.swift */,
+				DAF9EB4C2515FD9D00B40270 /* UserGradeViewModel.swift */,
+				DAB61A2B2500C7D10066EA29 /* UserInfo */,
+			);
+			path = Mypage;
+			sourceTree = "<group>";
+		};
+		DAB61A2B2500C7D10066EA29 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
+		DAB61A2C2500C8740066EA29 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DAB61A2D2500C88A0066EA29 /* Qr */,
+				DA3645CA24F7A20800294C2B /* MainCollectionViewCell.swift */,
+				DA8E89BB2532D8910021BE23 /* NoticeTableViewCell.swift */,
+				DA7C245224FCD7330061C1BE /* MainCenterView.swift */,
+				DA8E89BE2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		DAB61A2D2500C88A0066EA29 /* Qr */ = {
+			isa = PBXGroup;
+			children = (
+				DAB61A2F2500C9C50066EA29 /* StarCollectionViewCell.swift */,
+				DAB61A312500D0FD0066EA29 /* StarRateView.swift */,
+			);
+			path = Qr;
+			sourceTree = "<group>";
+		};
+		DAB61A2E2500C8920066EA29 /* MyArea */ = {
+			isa = PBXGroup;
+			children = (
+				DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */,
+				DAC73E1124FF651200E2B419 /* MyAreaBottomSheetHeaderView.swift */,
+				DAC73E1324FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift */,
+				DA30EE97255E6CAA000F7356 /* MyAreaBottomSheetCafeDetail.swift */,
+				DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */,
+				DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */,
+				DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */,
+			);
+			path = MyArea;
+			sourceTree = "<group>";
+		};
+		DAB9D73A2514A1EA002C7867 /* Coupon */ = {
+			isa = PBXGroup;
+			children = (
+				DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */,
+				DAE782ED2506637F00944B4A /* CouponBuyTableViewCell.swift */,
+				DAE782F525067A0600944B4A /* CouponUsingTableViewCell.swift */,
+				DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */,
+				DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */,
+				DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */,
+			);
+			path = Coupon;
+			sourceTree = "<group>";
+		};
+		DAC73E0024FF5DF100E2B419 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				DAC73E0324FF5EBB00E2B419 /* NanumSquareRoundEB.ttf */,
+				DAC73E0224FF5EBB00E2B419 /* NotoSansCJKkr-Bold.otf */,
+				DAC73E0624FF5EBB00E2B419 /* NotoSansCJKkr-Light.otf */,
+				DAC73E0424FF5EBB00E2B419 /* NotoSansCJKkr-Medium.otf */,
+				DAC73E0524FF5EBB00E2B419 /* NotoSansCJKkr-Regular.otf */,
+				DAC73E0724FF5EBB00E2B419 /* Roboto-Bold.ttf */,
+				DAC73E0124FF5EBB00E2B419 /* Roboto-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
+			isa = PBXGroup;
+			children = (
+				DAE782E825065BAB00944B4A /* MypageVC.swift */,
+				DA30EE9A255E6E31000F7356 /* CouponViewController.swift */,
+				DA30EE9D255E6E79000F7356 /* CouponHeader.swift */,
+				DA30EEA0255E6E93000F7356 /* CouponCell.swift */,
+				DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */,
+				DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */,
+			);
+			name = "mypage 임시";
+			path = "mypage 임시";
+			sourceTree = "<group>";
+		};
+		DAF9EB3F2515C72C00B40270 /* UserGrade */ = {
+			isa = PBXGroup;
+			children = (
+				DAF9EB452515E5D700B40270 /* UserGradeCollectionViewCell.swift */,
+				DAF9EB492515EA1400B40270 /* UserGradeCircularView.swift */,
+			);
+			path = UserGrade;
+			sourceTree = "<group>";
+		};
+		DAF9EB442515E59400B40270 /* UserGrade */ = {
+			isa = PBXGroup;
+			children = (
+				DAF9EB402515C73B00B40270 /* UserGradeViewController.swift */,
+			);
+			path = UserGrade;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAAA7ED724F23E91005F9C6D /* Woomool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAAA7EEC24F23E94005F9C6D /* Build configuration list for PBXNativeTarget "Woomool" */;
+			buildPhases = (
+				61F838862B31A71B225FBBF8 /* [CP] Check Pods Manifest.lock */,
+				DAAA7ED424F23E91005F9C6D /* Sources */,
+				DAAA7ED524F23E91005F9C6D /* Frameworks */,
+				DAAA7ED624F23E91005F9C6D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Woomool;
+			productName = Woomool;
+			productReference = DAAA7ED824F23E91005F9C6D /* Woomool.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAAA7ED024F23E91005F9C6D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = Woomool;
+				TargetAttributes = {
+					DAAA7ED724F23E91005F9C6D = {
+						CreatedOnToolsVersion = 11.6;
+					};
+				};
+			};
+			buildConfigurationList = DAAA7ED324F23E91005F9C6D /* Build configuration list for PBXProject "Woomool" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAAA7ECF24F23E91005F9C6D;
+			productRefGroup = DAAA7ED924F23E91005F9C6D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAAA7ED724F23E91005F9C6D /* Woomool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAAA7ED624F23E91005F9C6D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAC73E0824FF5F9E00E2B419 /* NanumSquareRoundEB.ttf in Resources */,
+				DAC73E0924FF5F9E00E2B419 /* NotoSansCJKkr-Bold.otf in Resources */,
+				DAC73E0A24FF5F9E00E2B419 /* NotoSansCJKkr-Light.otf in Resources */,
+				DAC73E0B24FF5F9E00E2B419 /* NotoSansCJKkr-Medium.otf in Resources */,
+				DAC73E0C24FF5F9E00E2B419 /* NotoSansCJKkr-Regular.otf in Resources */,
+				DAC73E0D24FF5F9E00E2B419 /* Roboto-Bold.ttf in Resources */,
+				DAC73E0E24FF5F9E00E2B419 /* Roboto-Regular.ttf in Resources */,
+				DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */,
+				DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */,
+				DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		61F838862B31A71B225FBBF8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Woomool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAAA7ED424F23E91005F9C6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6E2DA22504F79A00A0A548 /* EventTableViewCell.swift in Sources */,
+				DAC73E1A24FF853C00E2B419 /* MyWoomoolViewModel.swift in Sources */,
+				DA6E2D952504BC4600A0A548 /* BestAskTableViewCell.swift in Sources */,
+				DA8E89BC2532D8910021BE23 /* NoticeTableViewCell.swift in Sources */,
+				DA6B78AE250C803A000466F1 /* ManagementWrtieViewController.swift in Sources */,
+				DA6E2D972504BF4800A0A548 /* InviteViewController.swift in Sources */,
+				DA6B78A8250C74DF000466F1 /* ManagementTableViewCell.swift in Sources */,
+				DAAA7EDC24F23E91005F9C6D /* AppDelegate.swift in Sources */,
+				DA913DD925500A620087464A /* GoodsModel.swift in Sources */,
+				DA6E2D8F2504BA5200A0A548 /* ViewControllerExtension.swift in Sources */,
+				DA6E2DB92506354700A0A548 /* BestWoomoolTableViewCell.swift in Sources */,
+				DA6E2DBD25064AC700A0A548 /* NotificationDetailTableViewController.swift in Sources */,
+				DAC73DFD24FF5ACF00E2B419 /* MyAreaTableViewCell.swift in Sources */,
+				DA8A31D8250F25660049CD8C /* PhoneAuthViewModel.swift in Sources */,
+				DAC73E1424FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift in Sources */,
+				DA8191D824FA454C0021F2B5 /* ImageModel.swift in Sources */,
+				DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */,
+				DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */,
+				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
+				DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */,
+				DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */,
+				DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */,
+				DA8191D424FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift in Sources */,
+				DAF4D3412542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift in Sources */,
+				DAC73E1024FF5FFE00E2B419 /* FontExtension.swift in Sources */,
+				DA21191B251488B400419AD7 /* WoomoolServiceTableViewCell.swift in Sources */,
+				DAE782F82506822D00944B4A /* CouponPayReciptTableViewCell.swift in Sources */,
+				DA3645A424F68ED600294C2B /* SignUpViewController.swift in Sources */,
+				DA8E89BF2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift in Sources */,
+				DAF9EB50251606C000B40270 /* HowtoUseViewController.swift in Sources */,
+				DA8E89C42532DACA0021BE23 /* NoticeViewModel.swift in Sources */,
+				DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */,
+				DA6E2D7E2504A5AB00A0A548 /* SettingTableViewCell.swift in Sources */,
+				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
+				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
+				DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */,
+				DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */,
+				DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */,
+				DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */,
+				DA3645CB24F7A20800294C2B /* MainCollectionViewCell.swift in Sources */,
+				DA6B78AB250C766B000466F1 /* ManagementViewModel.swift in Sources */,
+				DA6E2D872504B26400A0A548 /* UserRequestHeaderView.swift in Sources */,
+				DA4C10D324FF89D7009DBBE2 /* NotificationViewModel.swift in Sources */,
+				DAF9EB4A2515EA1400B40270 /* UserGradeCircularView.swift in Sources */,
+				DAB61A342500E81A0066EA29 /* UserInfoTableViewCell.swift in Sources */,
+				DA913DD6254FEB840087464A /* EventModel.swift in Sources */,
+				DA6B78A6250C7496000466F1 /* ManagementHeaderView.swift in Sources */,
+				DAC73E1224FF651200E2B419 /* MyAreaBottomSheetHeaderView.swift in Sources */,
+				DA3645B024F690C400294C2B /* MyAreaViewController.swift in Sources */,
+				DA8191D124FA3A650021F2B5 /* OnBoardingViewController.swift in Sources */,
+				DA3645A024F6856C00294C2B /* ColorExtension.swift in Sources */,
+				DA6E2D8B2504B53400A0A548 /* UserRequestTableViewCell.swift in Sources */,
+				DA3645B924F6A5A500294C2B /* StringExtension.swift in Sources */,
+				DA36459E24F684EB00294C2B /* LoginViewController.swift in Sources */,
+				DA6E2D7A2504A52900A0A548 /* SettingViewController.swift in Sources */,
+				DA3645AE24F6901D00294C2B /* MainTC.swift in Sources */,
+				DAE783002507722F00944B4A /* HistoryFilterTableViewCell.swift in Sources */,
+				DAC73E1C24FF878700E2B419 /* OurWoomoolBestShopView.swift in Sources */,
+				DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */,
+				DAF9EB302514C9F900B40270 /* CouponPopUpView.swift in Sources */,
+				DA79E98A25021301001B73FA /* PrivateUserInfoAuthViewController.swift in Sources */,
+				DAE783022507724000944B4A /* HistoryTableViewCell.swift in Sources */,
+				DA6E2D892504B2E600A0A548 /* UserRequestViewModel.swift in Sources */,
+				DA6E2DBB25063BB000A0A548 /* TableViewExtension.swift in Sources */,
+				DAC73E1624FF755A00E2B419 /* SelfSizedTableView.swift in Sources */,
+				DA6A75A7250A15A200B96C32 /* MyAreaDetailTableViewCell.swift in Sources */,
+				DA7C245324FCD7330061C1BE /* MainCenterView.swift in Sources */,
+				DAF9EB462515E5D700B40270 /* UserGradeCollectionViewCell.swift in Sources */,
+				DA2119192514839600419AD7 /* WoomoolServieceHeaderView.swift in Sources */,
+				DAE782FA2507692F00944B4A /* HistoryFilterCollectionViewCell.swift in Sources */,
+				DAE782F625067A0600944B4A /* CouponUsingTableViewCell.swift in Sources */,
+				DA8191DD24FA52160021F2B5 /* SignUpTableViewCell.swift in Sources */,
+				DA6E2DAB2506263100A0A548 /* BestAskModel.swift in Sources */,
+				DA72B693250C819C006E6075 /* ManagementWriteTableViewCell.swift in Sources */,
+				DAF9EB532516074800B40270 /* HowToUseCollectionViewCell.swift in Sources */,
+				DAAA7EDE24F23E91005F9C6D /* SceneDelegate.swift in Sources */,
+				DA3645CF24F7AAD100294C2B /* QrAuthViewController.swift in Sources */,
+				DAB61A322500D0FD0066EA29 /* StarRateView.swift in Sources */,
+				DA30EE9E255E6E79000F7356 /* CouponHeader.swift in Sources */,
+				DAE782FC25076A4300944B4A /* MypageHistoryFilterView.swift in Sources */,
+				DAA350A5254C0971005D4071 /* AuthDetailTableViewCell.swift in Sources */,
+				DAA3509F254C07BD005D4071 /* TermsModel.swift in Sources */,
+				DA6E2D852504B23300A0A548 /* UserRequestViewController.swift in Sources */,
+				DA72B699250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift in Sources */,
+				DA30EE9B255E6E31000F7356 /* CouponViewController.swift in Sources */,
+				DA30EE98255E6CAA000F7356 /* MyAreaBottomSheetCafeDetail.swift in Sources */,
+				DA6E2D9D2504F2A800A0A548 /* ChangePhoneNumberViewController.swift in Sources */,
+				DA6E2D832504AF5D00A0A548 /* SettingViewModel.swift in Sources */,
+				DA30EEA1255E6E93000F7356 /* CouponCell.swift in Sources */,
+				DA8E89B82532D7440021BE23 /* NoticeTableViewController.swift in Sources */,
+				DA959745252716A1002A4271 /* Request.swift in Sources */,
+				DAF4D33D2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift in Sources */,
+				DAC73DFF24FF5B2B00E2B419 /* NearShopModel.swift in Sources */,
+				DA6E2D992504EE7E00A0A548 /* ChagneNicknameViewController.swift in Sources */,
+				DA6E2D9B2504F29600A0A548 /* ChangePasswordViewController.swift in Sources */,
+				DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */,
+				DAC73E1824FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift in Sources */,
+				DA3645D524F7C36300294C2B /* MypageViewModel.swift in Sources */,
+				DA913DDC2550197F0087464A /* FAQModel.swift in Sources */,
+				DA6E2DB125062F2900A0A548 /* EventDetailTableViewController.swift in Sources */,
+				DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */,
+				DA3645A224F688CA00294C2B /* LoginViewModel.swift in Sources */,
+				DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */,
+				DAA350A9254C19E0005D4071 /* TermsViewModel.swift in Sources */,
+				DA6E2DAD25062A8400A0A548 /* UILabelExtension.swift in Sources */,
+				DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */,
+				DAF9EB59251610F700B40270 /* WoomoolStoryCollectionViewController.swift in Sources */,
+				DA8325D525026415005EA0EE /* URLSource.swift in Sources */,
+				DAF9EB5625160BB800B40270 /* HowtoUseViewModel.swift in Sources */,
+				DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */,
+				DA3645D724F7C5A200294C2B /* MyCouponListCollectionViewCell.swift in Sources */,
+				DA3645AA24F68F6400294C2B /* MainViewController.swift in Sources */,
+				DA3645D124F7BA7900294C2B /* MyPageCollectionReusableView.swift in Sources */,
+				DA72B697250C89F0006E6075 /* BestWoomoolCollectionViewController.swift in Sources */,
+				DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */,
+				DA6E2D8D2504BA1500A0A548 /* BestAskTableViewController.swift in Sources */,
+				DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */,
+				DAA350A2254C095B005D4071 /* AuthDetailTableViewController.swift in Sources */,
+				DA6E2D912504BBD000A0A548 /* ManagementViewController.swift in Sources */,
+				DA3645B724F6A0A700294C2B /* FindUserInfoViewModel.swift in Sources */,
+				DA6E2D9F2504F6FB00A0A548 /* EventViewController.swift in Sources */,
+				DA4C10D524FF8C4A009DBBE2 /* NotificationTableViewCell.swift in Sources */,
+				DAE782E52506585600944B4A /* MyPageTableViewCell.swift in Sources */,
+				DA7C245524FCD7ED0061C1BE /* OurWoomoolViewController.swift in Sources */,
+				DA79E98625020393001B73FA /* AuthPopUpViewController.swift in Sources */,
+				DA3645C824F79ACD00294C2B /* QrScannverViewController.swift in Sources */,
+				DAF9EB4D2515FD9D00B40270 /* UserGradeViewModel.swift in Sources */,
+				DAE782EC25065C6600944B4A /* MyPageTopVIew.swift in Sources */,
+				DA3645CD24F7A7D600294C2B /* QrViewModel.swift in Sources */,
+				DA6E2DA925061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift in Sources */,
+				DAE782EE2506637F00944B4A /* CouponBuyTableViewCell.swift in Sources */,
+				DA3ED1F5250A265100E4D64C /* ChangePassAuthPopUpViewController.swift in Sources */,
+				DA8E89D22532E0620021BE23 /* SecretKey.swift in Sources */,
+				DA6E2DA42506186D00A0A548 /* BestAskDetailTableViewController.swift in Sources */,
+				DA6E2D802504A69000A0A548 /* SettingHeaderView.swift in Sources */,
+				DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */,
+				DA8E89C82532DAE40021BE23 /* NoticeModel.swift in Sources */,
+				DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */,
+				DA6E2D932504BC0600A0A548 /* BestAskViewModel.swift in Sources */,
+				DA3645D324F7BC2700294C2B /* MypageFilterCell.swift in Sources */,
+				DA6E2DA7250618DC00A0A548 /* BestAskDetailTableViewCell.swift in Sources */,
+				DA7C245124FCD6B20061C1BE /* MainViewModel.swift in Sources */,
+				DAF9EB412515C73B00B40270 /* UserGradeViewController.swift in Sources */,
+				DAA3509C254C01D6005D4071 /* WoomoolImageCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DAAA7EE124F23E91005F9C6D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAAA7EE224F23E91005F9C6D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DAAA7EE724F23E94005F9C6D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DAAA7EEA24F23E94005F9C6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DAAA7EEB24F23E94005F9C6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAAA7EED24F23E94005F9C6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3VT454RG8M;
+				INFOPLIST_FILE = Woomool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAAA7EEE24F23E94005F9C6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3VT454RG8M;
+				INFOPLIST_FILE = Woomool/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAAA7ED324F23E91005F9C6D /* Build configuration list for PBXProject "Woomool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAAA7EEA24F23E94005F9C6D /* Debug */,
+				DAAA7EEB24F23E94005F9C6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAAA7EEC24F23E94005F9C6D /* Build configuration list for PBXNativeTarget "Woomool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAAA7EED24F23E94005F9C6D /* Debug */,
+				DAAA7EEE24F23E94005F9C6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAAA7ED024F23E91005F9C6D /* Project object */;
+}

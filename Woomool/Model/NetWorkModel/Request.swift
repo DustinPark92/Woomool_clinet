@@ -1,0 +1,524 @@
+//
+//  Request.swift
+//  Woomool
+//
+//  Created by Dustin on 2020/10/02.
+//  Copyright © 2020 Woomool. All rights reserved.
+//
+
+
+import Foundation
+import Alamofire
+import SwiftyJSON
+import UIKit
+
+
+class Request {
+    
+    let defaults = UserDefaults.standard
+    
+    static let shared = Request()
+    
+    
+     //MARK: - TOKEN
+    func postUserToken(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+
+
+        let url = URLSource.token
+        let headers : HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded",
+                                     "Authorization" : "\(SecretKey.authorization)"]
+
+        AF.request(url, method: .post, parameters: parameters,encoding:URLEncoding.default ,headers: headers)
+            .responseJSON
+             { response in
+      
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    
+                    self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                    self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+         }
+    }
+    
+    //MARK: - TERMS
+    
+    func getTerms(success : @escaping (JSON) -> () ) {
+
+        
+        let url = URLSource.terms
+       
+        
+        AF.request(url, method: .get)
+            .responseJSON
+             { response in
+      
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+         }
+    }
+
+    
+    //MARK: - USER
+    func postUserSignUp(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+
+        let url = URLSource.user
+
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func postUserLogin(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+
+        let url = URLSource.login
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+
+        let header : HTTPHeaders = ["Content-Type" : "application/json",
+                                    "authorization" : "Bearer \(token)" ]
+
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func getUserInfo(success : @escaping (JSON) -> ()) {
+
+        guard let userId = defaults.object(forKey: "userId") else { return }
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.user + "/" + "\(userId)"
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func delUser(success : @escaping (JSON) -> ()) {
+
+        guard let userId = defaults.object(forKey: "userId") else { return }
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.user + "/" + "\(userId)"
+        AF.request(url, method: .delete,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func putChangeUserInfo(parameters : Parameters,success : @escaping (JSON) -> ()) {
+
+
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.user
+        AF.request(url, method: .put,parameters: parameters,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+
+    
+    //MARK: - STORE
+    
+    func getStoreList(success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.store
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    func getBestStoreList(success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.storeBest
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    func getFindStoreList(inputStoreName Name : String,success : @escaping (JSON) -> ()) {
+        let escapingCharacterSet: CharacterSet = {
+            var cs = CharacterSet.alphanumerics
+            cs.insert(charactersIn: "-_.~")
+            return cs }()
+        
+       let encodingName =  Name.addingPercentEncoding(withAllowedCharacters: escapingCharacterSet)!
+        
+     
+        let url = URLSource.storeFind + encodingName
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: URLEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func postStoreApply(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+
+        let url = URLSource.storeApply
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+
+        let header : HTTPHeaders = ["Content-Type" : "application/json",
+                                    "authorization" : "Bearer \(token)" ]
+
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+
+    //MARK: - NOTICE
+    
+    
+    func getNoticeList(success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.notice
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func getNoticeListDetail(inputNoticeId id : String,success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.notice + "/" + id
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    //MARK: - EVENT
+    
+    
+    func getEventList(success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.event
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func getEventListDetail(inputEventId id : String,success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.event + "/" + id
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    //MARK: - Goods
+    
+    
+    func getGoodsList(success : @escaping (JSON) -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        //let url = "http://211.250.213.5:21120/v1/goods/user/2a8d64cc27c94eab8c3738d528035e34"
+        let url = URLSource.goods + userId
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    func getPurchaseHistory(success : @escaping (JSON) -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.goodPurchase + userId
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func PostGoodsPurchase(_ couponId : String, _ goodsId : String, _ payInfo : String, _ payMethod : String , _ payPrice : Int ,   success : @escaping (JSON) -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        
+        let parameters = [
+            "couponId": "",
+            "goodsId": "G1",
+            "payInfo": "현대카드",
+            "payMethod": "C",
+            "payPrice": 9900,
+            "userId": userId
+        ] as [String : Any]
+        
+        
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.goodPurchase
+        AF.request(url, method: .post,parameters: parameters,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    //MARK: - FAQ
+    
+    
+    func getFAQCategory(success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.faq
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    func getEventListDetail(inputFAQId id : String,success : @escaping (JSON) -> ()) {
+
+        let url = URLSource.faq + "/" + id
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    //MARK: - 회원 등급별 목록
+    func getUserRank(success : @escaping (JSON) -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.userRank + userId
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    
+}

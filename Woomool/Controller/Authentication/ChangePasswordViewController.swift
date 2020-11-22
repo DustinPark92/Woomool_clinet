@@ -1,0 +1,223 @@
+//
+//  ChangePasswordViewController.swift
+//  Woomool
+//
+//  Created by Dustin on 2020/09/06.
+//  Copyright © 2020 Woomool. All rights reserved.
+//
+
+import UIKit
+
+private let reuseIdetifier = "SignUpTableViewCell"
+
+class ChangePasswordViewController: UITableViewController {
+
+
+            let ViewModel = SignUpViewModel()
+            var testCode = "Woomool"
+            var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
+            var viewUpSize = 1
+            
+
+            
+            lazy var headerView : UIView = {
+                let uv = UIView()
+                return uv
+            }()
+            
+            override func viewDidLoad() {
+                super.viewDidLoad()
+                configureTV()
+                configureUI()
+
+            }
+            
+            
+            func configureUI() {
+                UIView.animate(withDuration: 1, animations: {
+                    self.SendButton.frame = CGRect(x: 0, y: -340, width: self.view.frame.width, height: 50)
+                })
+                SendButton.backgroundColor = UIColor.blue500
+                SendButton.setTitle("다음", for: .normal)
+                SendButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+                
+                navigationController?.navigationBar.isHidden = false
+                navigationController?.navigationBar.barTintColor = .white
+                tabBarController?.tabBar.isHidden = true
+                
+                view.backgroundColor = .white
+                tableView.backgroundColor = .white
+                title = "닉네임 변경"
+                ViewModel.subjectList.remove(at: 0)
+                ViewModel.subjectList.insert("가존 비밀번호", at: 0)
+                ViewModel.placeholderList.remove(at: 0)
+                ViewModel.placeholderList.insert("기존 비밀번호를 입력해 주세요.", at: 0)
+                ViewModel.textFieldSecure.remove(at: 0)
+                ViewModel.textFieldSecure.insert(true, at: 0)
+                addNavbackButton(selector: #selector(handledismiss))
+                
+            }
+            
+            func addKeyboardToolbar(tf: UITextField)  {
+                var button = UIButton(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 60))
+                
+                button.backgroundColor = UIColor.blue
+                button.setTitle("다음", for: .normal)
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+                tf.inputAccessoryView = button
+                
+            }
+            
+            func configureTV() {
+                tableView.keyboardDismissMode = .onDrag
+                headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+                tableView.tableHeaderView = headerView
+                tableView.allowsSelection = false
+                tableView.separatorStyle = .none
+                tableView.register(SignUpTableViewCell.self, forCellReuseIdentifier: reuseIdetifier)
+                
+                
+                
+                
+            }
+            
+            func validCheckWithButton(listInsert : String , placeHolderInsert: String , textFieldSecureList : Bool) {
+                ViewModel.subjectList.insert(listInsert, at: 0)
+                ViewModel.placeholderList.insert(placeHolderInsert, at: 0)
+                ViewModel.textFieldSecure.insert(textFieldSecureList, at: 0)
+
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                tableView.insertRows(at: [indexPath], with: .bottom)
+                tableView.reloadData()
+            }
+            
+            func inValidMessage(invalid:String,subject:String,at:Int) {
+                ViewModel.invalidMessage.remove(at: at)
+                ViewModel.subjectList.remove(at: at)
+                ViewModel.invalidMessage.insert(invalid, at: at)
+                ViewModel.subjectList.insert(subject, at: at)
+                tableView.reloadData()
+            }
+            
+            @objc func keyboardWillShow(_ sender: Notification) {
+                
+                self.view.frame.origin.y = -CGFloat(viewUpSize) // Move view 150 points upward
+                
+            }
+            
+            @objc func keyboardWillHide(_ sender: Notification) {
+                
+                self.view.frame.origin.y = 0 // Move view to original position
+                
+            }
+            
+            
+            
+            @objc func handleNext() {
+                
+                switch ViewModel.subjectList.count {
+                case 1:
+                    if ViewModel.nickNameValid {
+                        validCheckWithButton(listInsert: "새 비밀번호 확인", placeHolderInsert: "비밀번호 확인", textFieldSecureList: true)
+                        SendButton.setTitle("완료", for: .normal)
+                        
+                    } else {
+                    _ = !ViewModel.nickNameValid ? inValidMessage(invalid: "유효하지 않은 닉네임", subject: "", at: 0) : inValidMessage(invalid: "", subject: "닉네임", at: 0)
+                        
+                    }
+    //            case 2:
+    //                let controller = MainTC()
+    //                UIApplication.shared.windows.first?.rootViewController = controller
+    //                UIApplication.shared.windows.first?.makeKeyAndVisible()
+                default:
+                    break
+                }
+            }
+            
+            @objc func handledismiss() {
+                navigationController?.popViewController(animated: true)
+            }
+            
+            override func viewWillAppear(_ animated: Bool) {
+                
+            }
+            
+            
+            override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                return ViewModel.subjectList.count
+            }
+            
+            override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdetifier, for: indexPath) as! SignUpTableViewCell
+                
+                
+                
+                cell.backgroundColor = .white
+                cell.mainLabel.text = ViewModel.subjectList[indexPath.row]
+                cell.TextField.placeholder = ViewModel.placeholderList[indexPath.row]
+                cell.TextField.isSecureTextEntry = ViewModel.textFieldSecure[indexPath.row]
+                cell.mainLabelInvalid.text = ViewModel.invalidMessage[indexPath.row]
+                cell.TextField.delegate = self
+                cell.bottomLabel.text = ViewModel.warningMessage[indexPath.row]
+                cell.bottomLabel.textColor = ViewModel.warningColor[indexPath.row]
+                cell.TextField.tag = indexPath.row
+                if cell.TextField.text == "" {
+                    cell.TextField.becomeFirstResponder()
+                    
+                }
+                
+                return cell
+                
+                
+            }
+            
+            override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+                return tableView.estimatedRowHeight
+                
+            }
+            
+            
+            override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+                return 100
+            }
+            
+            
+            
+            
+            
+        }
+
+
+
+        extension ChangePasswordViewController : UITextFieldDelegate  {
+            
+            func textFieldDidChangeSelection(_ textField: UITextField) {
+                guard let text = textField.text else { return }
+                
+                if text.count < 8 {
+                    ViewModel.nickNameValid = true
+                }
+                
+            }
+            
+            func textFieldDidBeginEditing(_ textField: UITextField) {
+                textField.inputAccessoryView = self.SendButton
+                
+            }
+            
+            
+            func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+                NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+                
+                NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+                
+                return true
+            }
+        }
+
+
+
