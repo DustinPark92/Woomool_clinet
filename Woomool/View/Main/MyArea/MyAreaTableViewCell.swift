@@ -40,13 +40,13 @@ class MyAreaTableViewCell: UITableViewCell {
     let newImageView : UIImageView = {
         let iv = UIImageView()
         iv.setDimensions(width: 24, height: 24)
-        iv.image = UIImage(named: "icon_bestWoomool")
+        iv.image = UIImage(named: "icon_newWoomool")
         return iv
     }()
     let bestImageView : UIImageView = {
         let iv = UIImageView()
         iv.setDimensions(width: 24, height: 24)
-        iv.image = UIImage(named: "icon_newWoomool")
+        iv.image = UIImage(named: "icon_bestWoomool")
         return iv
     }()
     

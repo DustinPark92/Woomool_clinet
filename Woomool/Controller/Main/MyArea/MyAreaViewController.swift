@@ -70,8 +70,8 @@ class MyAreaViewController: UIViewController {
             
             for item in json.array! {
                 
-                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                           , longitude: item["longitude"].doubleValue)
+                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                           , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
                 
                 
                 self.storeModel.append(storeData)
@@ -84,8 +84,8 @@ class MyAreaViewController: UIViewController {
                 
                 for item in json.array! {
                     
-                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                               , longitude: item["longitude"].doubleValue)
+                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                               , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
                     
                     
                     self.storeModel.append(storeData)
@@ -110,7 +110,7 @@ class MyAreaViewController: UIViewController {
     }
     
     func configureMap() {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(cafeDetailAppear(noti:)), name: NSNotification.Name("cafeDetailAppear"), object: nil)
 
         view.addSubview(topView)
         topView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
@@ -121,6 +121,33 @@ class MyAreaViewController: UIViewController {
 //        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive")
         
 
+        
+    }
+    
+    @objc func cafeDetailAppear(noti : Notification) {
+        guard let storeModel = noti.object.unsafelyUnwrapped as? StoreModel
+        else { return }
+    
+        
+        viewModel.bottomSheetCondition = "cafeUnFold"
+        cafeDetailView.isHidden = false
+        bottomActionSheet.isHidden = false
+        bottomActionSheetFooter.isHidden = true
+        tableView.isHidden = true
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        
+        bottomActionSheet.distanceNotiLabel.isHidden = true
+        cafeDetailView.adressLabel.text = storeModel.address
+        cafeDetailView.distanceLabel.text = storeModel.distance
+        cafeDetailView.cafeNameLabel.text = storeModel.name
+        cafeDetailView.phoneLabel.text = storeModel.contact
+        cafeDetailView.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeModel.scopeColor)
+        
+        if storeModel.fresh == "N" {
+            cafeDetailView.newImageView.isHidden = true
+        }
+        
         
     }
     
@@ -174,6 +201,7 @@ class MyAreaViewController: UIViewController {
     @objc func handleDismiss() {
         if viewModel.bottomSheetCondition == "basicUnFold" {
             viewModel.bottomSheetCondition = "basicFold"
+            bottomActionSheet.distanceNotiLabel.isHidden = true
             cafeDetailView.isHidden = true
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
@@ -181,6 +209,7 @@ class MyAreaViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = nil
         } else if viewModel.bottomSheetCondition == "basicFold" {
             viewModel.bottomSheetCondition = "basicUnFold"
+            bottomActionSheet.distanceNotiLabel.isHidden = false
             cafeDetailView.isHidden = true
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = false
@@ -188,7 +217,8 @@ class MyAreaViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = nil
         } else if viewModel.bottomSheetCondition == "cafeUnFold" {
             viewModel.bottomSheetCondition = "cafeFold"
-            cafeDetailView.isHidden = false
+            bottomActionSheet.distanceNotiLabel.isHidden = true
+            cafeDetailView.isHidden = true
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
             tableView.isHidden = true
@@ -196,6 +226,7 @@ class MyAreaViewController: UIViewController {
         } else if viewModel.bottomSheetCondition == "cafeFold" {
             viewModel.bottomSheetCondition = "cafeUnFold"
             cafeDetailView.isHidden = false
+            bottomActionSheet.distanceNotiLabel.isHidden = true
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
             tableView.isHidden = true
@@ -249,6 +280,11 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
 
         cell.cafeNameLabel.text = storeItem.name
         cell.adressLabel.text = storeItem.address
+        cell.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
+        
+        if storeItem.fresh == "N" {
+            cell.newImageView.isHidden = true
+        }
 //        viewModel.setActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_inactive")
         
         
@@ -271,11 +307,27 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storeItem = storeModel[indexPath.row]
+        
+        
+        viewModel.bottomSheetCondition = "cafeUnFold"
         cafeDetailView.isHidden = false
         bottomActionSheet.isHidden = false
+        bottomActionSheet.distanceNotiLabel.isHidden = true
         bottomActionSheetFooter.isHidden = true
         tableView.isHidden = true
         self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        
+        cafeDetailView.adressLabel.text = storeItem.address
+        cafeDetailView.distanceLabel.text = storeItem.distance
+        cafeDetailView.cafeNameLabel.text = storeItem.name
+        cafeDetailView.phoneLabel.text = storeItem.contact
+        cafeDetailView.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
+        
+        if storeItem.fresh == "N" {
+            cafeDetailView.isHidden = true
+        }
   
     }
     

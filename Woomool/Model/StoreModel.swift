@@ -12,29 +12,33 @@ import Foundation
 struct StoreModel {
     /*
      {
-       "contact" : "0507-1318-8215",
-       "storeId" : "NABNN8D06ZJ6436WN439",
-       "operatingTime" : "매일 11:30 - 22:00",
-       "latitude" : 37.5738731,
-       "address" : "서울특별시 종로구 돈화문로11나길 31-9",
-       "scope" : 0,
-       "longitude" : 126.98976089999999,
-       "image" : "",
-       "name" : "청수당"
+     "operTime" : "월요일 09:00 - 22:00",
+     "scope" : 4.5,
+     "latitude" : 37.4987858,
+     "name" : "앤트러사이트 강남점",
+     "address" : "서울 서초구 강남대로 405 1층",
+     "storeId" : "V7T1P08C895SPDJ78IZ8",
+     "contact" : "02-6402-2929",
+     "longitude" : 127.02671170000001,
+     "image" : "",
+     "scopeColor" : "INDIGO",
+     "distance" : "1.5km",
+     "fresh" : "Y"
      }
      */
     
     let contact : String
     let storeId : String
-    let operatingTime : String
+    let operTime : String
     let address : String
     let scope : Int
     let image : String
     let name : String
     let latitude : Double
     let longitude : Double
-    
-    
+    let scopeColor : String
+    let distance : String
+    let fresh : String
 
     
     

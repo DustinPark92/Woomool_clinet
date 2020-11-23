@@ -90,6 +90,7 @@ struct URLSource {
      */
     
     static let store = common + "v1/store"
+    static let storeDetail = common + "v1/store/detail"
     static let storeApply = common + "v1/store/apply"
     static let storeBest = common + "v1/store/best"
     static let storeFind = common + "v1/store/find/"

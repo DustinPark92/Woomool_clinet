@@ -243,11 +243,11 @@ class Request {
         let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
         
         let params = [
-            "latitude" : lat,
-            "longitude" : lon
+            "latitude" : String(lat),
+            "longitude" : String(lon)
         ]
         
-        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+        AF.request(url, method: .get,parameters: params, headers: header).validate().responseJSON { response in
 
                 switch response.result {
                 case .success(let value):
@@ -273,7 +273,44 @@ class Request {
 
             }
          }
+    func getStoreDetail(storeId : String,lat : Double,lon : Double,success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
+
+        let url = URLSource.storeDetail
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        
+        let params = [
+            "storeId" : storeId,
+            "latitude" : String(lat),
+            "longitude" : String(lon)
+        ]
+        
+        AF.request(url, method: .get,parameters: params, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
     
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
     
     func getBestStoreList(success : @escaping (JSON) -> ()) {
 

@@ -54,6 +54,20 @@ class MyWoomoolViewModel {
     
     var bottomSheetCondition = "basicUnFold"
     
+    
+    func setScopeIcon(scopeColor : String) -> UIImage{
+        var imageName =  ""
+        
+        if scopeColor == "GRAY" {
+            imageName = "icon_bestWoomool2"
+        } else {
+            imageName = "icon_bestWoomool"
+        }
+        
+        
+        return UIImage(named: imageName)!
+    }
+    
   
 //    func setActiveIcon(mapView: NMFMapView, lat: Double , lng : Double, setActive image : String){
 //            

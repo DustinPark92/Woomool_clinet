@@ -24,6 +24,8 @@ class MyAreaDetailTableViewController: UIViewController {
     }()
     let tableView = UITableView()
     var storeModel = [StoreModel]()
+    let viewModel = MyWoomoolViewModel()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +55,8 @@ class MyAreaDetailTableViewController: UIViewController {
             
             for item in json.array! {
                 
-                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                           , longitude: item["longitude"].doubleValue)
+                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                           , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
                 
                 
                 self.storeModel.append(storeData)
@@ -67,8 +69,8 @@ class MyAreaDetailTableViewController: UIViewController {
                 
                 for item in json.array! {
                     
-                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operatingTime: item["operatingTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                               , longitude: item["longitude"].doubleValue)
+                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                                               , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
                     
                     
                     self.storeModel.append(storeData)
@@ -100,12 +102,20 @@ class MyAreaDetailTableViewController: UIViewController {
 extension MyAreaDetailTableViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 50
+        return storeModel.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! MyAreaDetailTableViewCell
+        let storeItem = storeModel[indexPath.row]
+
+        cell.cafeNameLabel.text = storeItem.name
+        cell.adressLabel.text = storeItem.address
+        cell.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
         
+        if storeItem.fresh == "N" {
+            cell.newImageView.isHidden = true
+        }
         return cell
     }
     
@@ -116,6 +126,17 @@ extension MyAreaDetailTableViewController : UITableViewDelegate,UITableViewDataS
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storeItem = storeModel[indexPath.row]
+        
+        dismiss(animated: true) {
+            
+            NotificationCenter.default.post(name: NSNotification.Name("cafeDetailAppear"), object: storeItem)
+            
+        }
     }
     
     
