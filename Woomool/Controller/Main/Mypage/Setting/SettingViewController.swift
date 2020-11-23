@@ -51,6 +51,17 @@ class SettingViewController: UITableViewController {
         
     }
     
+    func delUserInfo() {
+        let controller = OnBoardingViewController()
+        
+        UIApplication.shared.windows.first?.rootViewController = controller
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+        UserDefaults.standard.removeObject(forKey: "refreshToken")
+        UserDefaults.standard.removeObject(forKey: "userId")
+        UserDefaults.standard.removeObject(forKey: "")
+    }
+    
     @objc func handleDismiss() {
         navigationController?.popViewController(animated: true)
     }
@@ -134,12 +145,41 @@ class SettingViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if indexPath.row == 0 {
+        
+        switch indexPath.section {
+        case 0:
+            
                 let controller = UserRequestViewController()
                 navigationController?.pushViewController(controller, animated: true)
+        case 1:
+            print("약관 정보")
+        case 2:
+            print("이메일 정보 수신 설정")
+        case 3:
+            if indexPath.row == 0 {
+
+            } else if indexPath.row == 1 {
+                delUserInfo()
+                
+
+            } else if indexPath.row == 2 {
+                Request.shared.delUser { json in
+                   
+
+                    self.delUserInfo()
+                } refreshSuccess: {
+                    Request.shared.delUser { json in
+       
+                        self.delUserInfo()
+                    } refreshSuccess: {
+                        print("nil")
+                    }
+                }
             }
+        default:
+            break
         }
+        
     }
     
 

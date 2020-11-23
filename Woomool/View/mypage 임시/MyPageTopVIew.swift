@@ -142,6 +142,7 @@ class MyPageTopView: UIView {
     }
     
 
+
     
     func configureCV() {
         collectionViewTop.makeAborderWidth(border: 1, color: UIColor.blue500.cgColor.copy(alpha: 0.5)!)
@@ -153,9 +154,9 @@ class MyPageTopView: UIView {
         guard let userModel = userModel else { return }
         nameLabel.text = "\(userModel.nickname) 님"
         userRank.text = "\(userModel.levelName) 회원입니다."
-//        viewModel.couponCount.insert(userModel.buyCount, at: 0)
-//        viewModel.couponCount.insert(userModel.useCount, at: 1)
-//        viewModel.couponCount.insert(userModel.remCount, at: 2)
+        viewModel.couponCount.insert(userModel.buyCount, at: 0)
+        viewModel.couponCount.insert(userModel.useCount, at: 1)
+        viewModel.couponCount.insert(userModel.remCount, at: 2)
         
     }
     

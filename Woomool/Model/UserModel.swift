@@ -11,14 +11,19 @@ import Foundation
 
 struct UserModel {
     /*
-     "userId": "2a0f9a17175b488b8c1d31583e76fd1e",
-     "email": "test9810@gmail.com",
-     "nickname": "테스트9810",
-     "useCount": 0,
-     "ableCount": 0,
-     "level": {
-       "name": "이슬",
-       "order": 0
+     JSON: {
+       "remCount" : 0,
+       "useCount" : 0,
+       "userId" : "1c0b23efe07143968585ffdef3c02a84",
+       "buyCount" : 0,
+       "level" : {
+         "orders" : 1,
+         "name" : "이슬",
+         "levelId" : "LV1"
+       },
+       "email" : "p4569@naver.com",
+       "joinMonth" : "2020-11",
+       "nickname" : "테스토오호"
      }
      */
     
@@ -26,9 +31,11 @@ struct UserModel {
     let email : String
     let nickname : String
     let useCount : Int
-    let ableCount : Int
+    let remCount : Int
+    let buyCount : Int
     let levelName : String
     let levelOrder : Int
+    let levelId : String
     let joinMonth : String
     
 

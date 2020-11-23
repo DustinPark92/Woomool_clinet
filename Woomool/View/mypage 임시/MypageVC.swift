@@ -27,10 +27,16 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     var showingPayPage = false
     var userModel : UserModel?
     
+    //Network Model
     var goodsModel = [GoodsModel]()
+    var historyAllModel = [HistoryAllModel]()
+    
+    
     var couponAbleCount = 0
     var goodsPrice = "9,900원"
     var viewModel = MypageViewModel()
+    
+    
     
     
     weak var delegate : MypageVCDelegate?
@@ -86,6 +92,56 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
         
     }
     
+    
+    func callHistroyRequest(type : String, searchMonth : String) {
+        Request.shared.getHistory(type: type, searchMonth: searchMonth) { json in
+            if type == "" {
+                for item in json.arrayValue {
+                    let historyAllItem = HistoryAllModel(name: item["name"].stringValue, countPrice: item["countPrice"].intValue, date: item["date"].stringValue, serialNo: item["serialNo"].intValue, types: item["types"].stringValue)
+                    self.historyAllModel.append(historyAllItem)
+                }
+                self.bottomView.reloadData()
+            } else if type == "/store"{
+                
+            } else if type == "/goods" {
+                
+            }
+        } refreshSuccess: {
+            
+        }
+
+    }
+    
+    func callRequest() {
+            
+            Request.shared.getUserInfo() { [self] json in
+                
+                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                guard let userModel = userModel else { return }
+                viewModel.couponCount.insert(userModel.buyCount, at: 0)
+                viewModel.couponCount.insert(userModel.useCount, at: 1)
+                viewModel.couponCount.insert(userModel.remCount, at: 2)
+                
+                self.topView.collectionViewTop.reloadData()
+                    
+            } refreshSuccess: {
+                Request.shared.getUserInfo() { [self] json in
+                    
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                    
+            
+                    
+                    self.topView.collectionViewTop.reloadData()
+        
+                } refreshSuccess: {
+                    print("nil")
+                    
+                }
+                
+            }
+           
+    }
+    
     //MARK: - objc
     
     
@@ -131,17 +187,30 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func handlePay() {
         Request.shared.PostGoodsPurchase(couponId: "", goodsId: goodsModel[viewModel.couponSelected].goodsId, buyInfo: "카드결제", buyMethod: "C", buyPrice: goodsModel[viewModel.couponSelected].salePrice) { json in
+            
             self.showOkAlert(title: "\(self.goodsModel[self.viewModel.couponSelected].goodsId)\n\(self.goodsModel[self.viewModel.couponSelected].salePrice)원 결제완료.", message: "결제완료") {
-                print("아아")
+                self.callRequest()
             }
         } refreshSuccess: {
             Request.shared.PostGoodsPurchase(couponId: "", goodsId: "", buyInfo: "카드결제", buyMethod: "C", buyPrice: 9900) { json in
-                print("Success")
+               
+                self.showOkAlert(title: "\(self.goodsModel[self.viewModel.couponSelected].goodsId)\n\(self.goodsModel[self.viewModel.couponSelected].salePrice)원 결제완료.", message: "결제완료") {
+                    self.callRequest()
+                }
             } refreshSuccess: {
                 print("nil")
             }
         }
 
+    }
+    
+    @objc func handleMinusMonth() {
+        
+        
+    }
+    
+    @objc func handlePlusMonth() {
+        
     }
     
     func configureRequest() {
@@ -195,6 +264,9 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 1:
                 return 1
             case 2:
+                if viewModel.historyType == "" {
+                return historyAllModel.count
+                }
                 return 5
             default:
                 return 1
@@ -226,9 +298,18 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryDateTableViewCell", for: indexPath) as! HistoryDateTableViewCell
                 cell.selectionStyle = .none
+                cell.dateLabel.text = viewModel.getCurrenYearMonths(plusAction: 0, minusAction: 0)
+                cell.leftButton.addTarget(self, action: #selector(handleMinusMonth), for: .touchUpInside)
+                cell.rightButton.addTarget(self, action: #selector(handlePlusMonth), for: .touchUpInside)
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
+                
+                if viewModel.historyType == "" {
+                    let item = historyAllModel[indexPath.row]
+                    cell.nameLabel.text = item.name
+                    cell.dateLabel.text = item.date
+                }
                 cell.selectionStyle = .none
                 return cell
             default:
@@ -338,6 +419,7 @@ extension MypageVC: MypageFilterViewDelegate {
             delegate?.didSelect(filter: filter)
         case 1:
             print("이용내역")
+            callHistroyRequest(type: "", searchMonth: viewModel.getCurrenYearMonths(plusAction: , minusAction: <#Int#>))
             bottomView.reloadData()
             delegate?.didSelect(filter: filter)
         case 2:
@@ -363,11 +445,14 @@ extension MypageVC : MypageHistoryFilterViewDelegate {
 
         switch viewModel.filterIndex {
         case 0:
-            print("123")
+            viewModel.historyType = ""
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
         case 1:
-            print("123")
+            viewModel.historyType = "/store"
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
         case 2:
-            print("123")
+            viewModel.historyType = "/goods"
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
         default:
             break
         }
@@ -424,6 +509,13 @@ func collectionView(_ collectionView: UICollectionView, layout collectionViewLay
         bottomView.reloadRows(at: [indexPath], with: .none)
         
     }
+    
+    
+}
+
+
+extension MainTC : UITabBarControllerDelegate  {
+    
     
     
 }

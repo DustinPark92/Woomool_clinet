@@ -36,12 +36,13 @@ class MainTC: UITabBarController {
             
             Request.shared.getUserInfo() { [self] json in
                 
-                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, ableCount: json["ableCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["order"].intValue, joinMonth: json["joinMonth"].stringValue)
+                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
     
             } refreshSuccess: {
                 Request.shared.getUserInfo() { [self] json in
                     
-                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, ableCount: json["ableCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["order"].intValue, joinMonth: json["joinMonth"].stringValue)
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+        
         
                 } refreshSuccess: {
                     print("nil")

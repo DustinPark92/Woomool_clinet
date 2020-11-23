@@ -76,18 +76,17 @@ class SignUpViewController: UITableViewController {
     func callRequest() {
         let params : [String : Any] =
             [
-                "creator": "iOS",
                 "email": ViewModel.textFieldContents[0],
                 "inviteCd": "",
                 "nickname": ViewModel.textFieldContents[3],
                 "password": ViewModel.textFieldContents[2],
                 "terms":
                     [
-                        ["assent": "Y",
+                        ["status": "Y",
                          "termsId": "TM20201110233345997"]
-                        ,["assent": "Y",
+                        ,["status": "Y",
                           "termsId": "TM20201110233345998"]
-                        ,["assent": "Y",
+                        ,["status": "Y",
                           "termsId": "TM20201110233345999"]
                     ]
                 
@@ -104,8 +103,9 @@ class SignUpViewController: UITableViewController {
             Request.shared.postUserToken(parameters: params) { json in
                 print(json)
 
-                let controller = MainTC()
-                self.navigationController?.pushViewController(controller, animated: true)
+                        let controller = MainTC()
+                        UIApplication.shared.windows.first?.rootViewController = controller
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
                 
                 
             }

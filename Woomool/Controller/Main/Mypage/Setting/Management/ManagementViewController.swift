@@ -21,9 +21,15 @@ class ManagementViewController: UIViewController {
 
 
 
-        configureUI()
+        
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        configureUI()
+    }
     func configureUI() {
         view.backgroundColor = .white
         title = "수질관리 요청"
@@ -33,7 +39,7 @@ class ManagementViewController: UIViewController {
         
         view.addSubview(tableView)
         view.addSubview(headerView)
-        
+        headerView.cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         headerView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor,width: view.frame.width,height: 176)
         headerView.textField.delegate = self
         tableView.anchor(top:headerView.bottomAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor)
@@ -43,6 +49,12 @@ class ManagementViewController: UIViewController {
         tableView.tableFooterView = UIView()
 
         
+    }
+    
+    @objc func handleCancel() {
+        headerView.cancelButton.isHidden = true
+        storeFindModel.removeAll()
+        tableView.reloadData()
     }
     
     @objc func handleDismiss() {
@@ -84,6 +96,7 @@ extension ManagementViewController : UITableViewDelegate,UITableViewDataSource {
         let controller = ManagementWrtieViewController()
         controller.cafeName = item.name
         controller.cafeAddress = item.address
+        controller.storeId = item.storeId
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -99,24 +112,31 @@ extension ManagementViewController : UITableViewDelegate,UITableViewDataSource {
 extension ManagementViewController : UITextFieldDelegate {
     
     
-    
-    func textFieldDidChangeSelection(_ textField: UITextField) {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         storeFindModel.removeAll()
         
-        guard let text = textField.text else { return }
         
-//        Request.shared.getFindStoreList(inputStoreName: text) { json in
-//
-//            for item in json.array! {
-//                let storeFindItem = StoreFindModel(storeId: item["storeId"].stringValue, name: item["name"].stringValue, address: item["address"].stringValue)
-//
-//
-//                self.storeFindModel.append(storeFindItem)
-//            }
-//
-//            self.tableView.reloadData()
-//
-//        }
+        
+        Request.shared.getFindStoreList(inputStoreName: textField.text ?? "") { json in
+
+            for item in json.array! {
+                let storeFindItem = StoreFindModel(storeId: item["storeId"].stringValue, name: item["name"].stringValue, address: item["address"].stringValue)
+
+
+                self.storeFindModel.append(storeFindItem)
+            }
+
+            self.tableView.reloadData()
+
+        }
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+       
+        
+      
+
 
 
     }

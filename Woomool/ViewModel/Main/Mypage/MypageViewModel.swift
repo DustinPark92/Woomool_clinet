@@ -56,7 +56,31 @@ class MypageViewModel {
     var goodsPrice = ""
     var goodsCount = ""
     var filterIndex = 0
+    var historyType = ""
     
+    var historyYear = 0
+    var historyMonth = 0
+    
+    func getCurrenYearMonths(plusAction : Int , minusAction : Int) -> String {
+        let currentDateTime = Date()
+
+        // get the user's calendar
+        let userCalendar = Calendar.current
+
+        // choose which date and time components are needed
+        let requestedComponents: Set<Calendar.Component> = [
+            .year,
+            .month,
+        ]
+
+        // get the components
+        let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+        
+        let year = "\(dateTimeComponents.year ?? 2020)"
+        let month = "\(dateTimeComponents.month ?? 11 - minusAction + plusAction )"
+        
+        return "\(year)-\(month)"
+    }
     
     
     func CouponView(topLabel : UILabel, bottomLabel: UILabel, imageView : UIImageView,sv : UIView ) -> UIView {

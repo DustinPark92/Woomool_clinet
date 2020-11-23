@@ -19,7 +19,8 @@ class ManagementWrtieViewController: UIViewController {
     
     var cafeName = ""
     var cafeAddress = ""
-
+    var storeId = ""
+    var contents = ""
 
     
     let mainLabel : UILabel = {
@@ -84,6 +85,22 @@ class ManagementWrtieViewController: UIViewController {
     
     @objc func handleNext() {
         
+        Request.shared.postStoreComplain(storeId: storeId, contents: contents) { json in
+            print(json)
+            self.showOkAlert(title: "고객님의 소중한 의견 감사합니다.", message: "") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        } refreshSuccess: {
+            Request.shared.postStoreComplain(storeId: self.storeId, contents: self.contents) { json in
+                self.showOkAlert(title: "고객님의 소중한 의견 감사합니다.", message: "") {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
+
+        
     }
 }
 
@@ -133,6 +150,17 @@ extension ManagementWrtieViewController : UITableViewDelegate,UITableViewDataSou
 }
 
 extension ManagementWrtieViewController : UITextViewDelegate {
+    
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        guard let text = textView.text else {
+            return
+        }
+        
+        contents = text
+    }
+    
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         
               

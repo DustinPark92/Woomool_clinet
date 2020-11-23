@@ -18,7 +18,7 @@ class HistoryTableViewCell: UITableViewCell {
         return iv
     }()
     
-    let typeLabel : UILabel = {
+    let nameLabel : UILabel = {
         let lb = UILabel()
         lb.text = "우물 사용"
         lb.font = UIFont.NotoMedium14
@@ -34,7 +34,7 @@ class HistoryTableViewCell: UITableViewCell {
         return lb
     }()
     
-    let storeName : UILabel = {
+    let countPriceLabel : UILabel = {
         let lb = UILabel()
         lb.text = "카페 알파카"
         lb.font = UIFont.NotoMedium14
@@ -54,16 +54,16 @@ class HistoryTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(typeImg)
-        addSubview(typeLabel)
+        addSubview(nameLabel)
         addSubview(extraLabel)
-        addSubview(storeName)
+        addSubview(countPriceLabel)
         addSubview(dateLabel)
         
         typeImg.anchor(top:topAnchor,left: leftAnchor,paddingTop: 16,paddingLeft: 24)
-        typeLabel.anchor(top:topAnchor,left: typeImg.rightAnchor,paddingTop:15 ,paddingLeft:8)
-        extraLabel.anchor(top:typeLabel.bottomAnchor,left: typeImg.rightAnchor,bottom: bottomAnchor,paddingTop:2 ,paddingLeft:8,paddingBottom: 19)
-        storeName.anchor(top:topAnchor,right: rightAnchor,paddingTop:15 ,paddingRight:32)
-        dateLabel.anchor(top:storeName.bottomAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:1.38,paddingBottom: 18.62,paddingRight: 32)
+        nameLabel.anchor(top:topAnchor,left: typeImg.rightAnchor,paddingTop:15 ,paddingLeft:8)
+        extraLabel.anchor(top:nameLabel.bottomAnchor,left: typeImg.rightAnchor,bottom: bottomAnchor,paddingTop:2 ,paddingLeft:8,paddingBottom: 19)
+        countPriceLabel.anchor(top:topAnchor,right: rightAnchor,paddingTop:15 ,paddingRight:32)
+        dateLabel.anchor(top:countPriceLabel.bottomAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:1.38,paddingBottom: 18.62,paddingRight: 32)
         
         
         

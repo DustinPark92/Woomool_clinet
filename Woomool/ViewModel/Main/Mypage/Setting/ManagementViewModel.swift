@@ -29,7 +29,7 @@ class ManagementViewModel {
         
         
         searchImg.anchor(top:view.topAnchor,left: view.leftAnchor,paddingTop: 8,paddingLeft: 8)
-        textField.anchor(top:view.topAnchor,left: searchImg.rightAnchor,paddingTop:12,paddingRight:8)
+        textField.anchor(top:view.topAnchor,left: searchImg.rightAnchor,right: view.rightAnchor,paddingTop:12,paddingRight:8)
  
        
         return view

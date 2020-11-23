@@ -180,7 +180,7 @@ class Request {
             }
          }
     
-    func delUser(success : @escaping (JSON) -> ()) {
+    func delUser(success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
 
         guard let userId = defaults.object(forKey: "userId") else { return }
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -195,6 +195,17 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -905,4 +916,92 @@ class Request {
 
             }
          }
+    
+    
+    //MARK: - 불만 사항 / Complain
+    
+    func postStoreComplain(storeId:String,contents: String, success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> () ) {
+
+        let url = URLSource.storeComplain
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        guard let userId = defaults.object(forKey: "userId") as? String else { return }
+        let params = [
+              "contents": contents,
+              "storeId": storeId,
+              "userId": userId
+        ]
+
+        let header : HTTPHeaders = ["Content-Type" : "application/json",
+                                    "authorization" : "Bearer \(token)" ]
+
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    
+                case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    //MARK: - 내역 / History
+    
+    func getHistory(type : String,searchMonth : String,success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+
+        
+        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+        guard let userId = defaults.object(forKey: "userId") else { return }
+
+        
+        
+        let params = [
+              "searchMonth" : searchMonth,
+              "userId": userId
+        ]
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        let url = URLSource.history + type
+        AF.request(url, method: .get,parameters: params, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                }
+
+            }
+         }
+    
 }

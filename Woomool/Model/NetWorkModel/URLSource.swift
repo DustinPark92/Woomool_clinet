@@ -123,9 +123,9 @@ struct URLSource {
      2. 매장 불만 POT : v1/complaint/store
      */
     
-    static let serviceComplaint = common + "v1/complaint"
+    static let serviceComplain = common + "v1/complain"
     
-    static let storeComplaint = common + "v1/complaint/store"
+    static let storeComplain = common + "v1/complain/stores"
     
     //MARK: - 쿠폰
     //10. 쿠폰
@@ -150,5 +150,12 @@ struct URLSource {
     
     //MARK: - 초대코드
     static let invite = common + "v1/invite/users/"
+    
+    
+    //MARK: - 내역
+    
+    static let history = common + "v1/history"
+    static let historyGoods = common + "v1/history/goods"
+    static let historyStore = common + "v1/history/store"
     
 }

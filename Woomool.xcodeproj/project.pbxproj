@@ -90,6 +90,7 @@
 		DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */; };
 		DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */; };
 		DA8A31D8250F25660049CD8C /* PhoneAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */; };
+		DA8A43A8256B8619009CFACF /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A43A7256B8619009CFACF /* HistoryModel.swift */; };
 		DA8E89B82532D7440021BE23 /* NoticeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89B72532D7440021BE23 /* NoticeTableViewController.swift */; };
 		DA8E89BC2532D8910021BE23 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89BB2532D8910021BE23 /* NoticeTableViewCell.swift */; };
 		DA8E89BF2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8E89BE2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift */; };
@@ -254,6 +255,7 @@
 		DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthNameTableViewCell.swift; sourceTree = "<group>"; };
 		DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthAgreeTableViewCell.swift; sourceTree = "<group>"; };
 		DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewModel.swift; sourceTree = "<group>"; };
+		DA8A43A7256B8619009CFACF /* HistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModel.swift; sourceTree = "<group>"; };
 		DA8E89B72532D7440021BE23 /* NoticeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewController.swift; sourceTree = "<group>"; };
 		DA8E89BB2532D8910021BE23 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		DA8E89BE2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -785,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				DAAF5FC1256A822300150773 /* CouponModel.swift */,
+				DA8A43A7256B8619009CFACF /* HistoryModel.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -1103,6 +1106,7 @@
 				DA8E89BF2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift in Sources */,
 				DAF9EB50251606C000B40270 /* HowtoUseViewController.swift in Sources */,
 				DA8E89C42532DACA0021BE23 /* NoticeViewModel.swift in Sources */,
+				DA8A43A8256B8619009CFACF /* HistoryModel.swift in Sources */,
 				DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */,
 				DA6E2D7E2504A5AB00A0A548 /* SettingTableViewCell.swift in Sources */,
 				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
