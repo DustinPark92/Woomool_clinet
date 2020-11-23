@@ -44,11 +44,11 @@ class HistoryDateTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(mainView)
+        contentView.addSubview(mainView)
         mainView.anchor(top:topAnchor,left: leftAnchor,bottom: bottomAnchor,right: rightAnchor)
         
-        mainView.addSubview(leftButton)
-        mainView.addSubview(rightButton)
+        contentView.addSubview(leftButton)
+        contentView.addSubview(rightButton)
         mainView.addSubview(dateLabel)
         
         leftButton.anchor(top:mainView.topAnchor,left: mainView.leftAnchor,paddingTop:10 ,paddingLeft:24 )

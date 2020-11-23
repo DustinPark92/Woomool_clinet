@@ -58,10 +58,14 @@ class MypageViewModel {
     var filterIndex = 0
     var historyType = ""
     
-    var historyYear = 0
-    var historyMonth = 0
+    var yearConfig = 0
+    var monthConfig = 0
+    var dateConfig = 0
     
-    func getCurrenYearMonths(plusAction : Int , minusAction : Int) -> String {
+    var month = 0
+    var year = 0
+    
+    func getCurrenYearMonths(monthConfig : Int) -> String {
         let currentDateTime = Date()
 
         // get the user's calendar
@@ -75,9 +79,65 @@ class MypageViewModel {
 
         // get the components
         let dateTimeComponents = userCalendar.dateComponents(requestedComponents, from: currentDateTime)
+
+        let thisYear = dateTimeComponents.year!
+        let thisMonth = dateTimeComponents.month!
         
-        let year = "\(dateTimeComponents.year ?? 2020)"
-        let month = "\(dateTimeComponents.month ?? 11 - minusAction + plusAction )"
+        
+        print("아아 \(-12/12)")
+        if thisMonth + monthConfig - 1 >= 0 {
+            month = (thisMonth + monthConfig - 1)%12 + 1
+            year = thisYear + (thisMonth + monthConfig - 1) / 12
+        } else {
+            month = 12 - abs((thisMonth + monthConfig)%12)
+            year = thisYear - (12 + abs(thisMonth + monthConfig))/12
+        }
+
+        
+
+        print((thisMonth + monthConfig - 1)%12)
+        print(month)
+       
+        print("\(thisMonth),\(monthConfig)")
+        
+//        month = thisMonth + monthConfig
+//
+//
+//
+//        if month > 12 {
+//            if month % 12 == 0 {
+//                month = 12
+//            } else {
+//                month = month % 12
+//            }
+//        } else if month < 1{
+//
+//        } else {
+//            month = thisMonth + monthConfig
+//        }
+//
+//        print(month)
+        
+//
+//        if thisMonth + monthConfig > 12  {
+//
+//            if (thisMonth + monthConfig) % 12 == 0  {
+//
+//                thisMonth = 12
+//            } else {
+//            thisMonth = (thisMonth + monthConfig) % 12
+//
+//            }
+//        } else if thisMonth + monthConfig < 1 {
+//            thisMonth = 12
+//
+//        } else {
+//            thisMonth = thisMonth + monthConfig
+//        }
+//
+       
+        
+        
         
         return "\(year)-\(month)"
     }

@@ -673,7 +673,7 @@ class Request {
     //MARK: - FAQ
     
     
-    func getFAQCategory(success : @escaping (JSON) -> ()) {
+    func getFAQCategory(success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
 
         let url = URLSource.faq
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -687,6 +687,49 @@ class Request {
                     success(json)
 
                 case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
+    
+    func getFAQDetail(groupId : String,success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
+
+        let url = URLSource.faq  + "/" + groupId
+        guard let token = defaults.object(forKey: "accessToken") else { return }
+        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    if response.response?.statusCode == 401 {
+                        
+                        Request.shared.postUserRefreshToken { json in
+                            refreshSuccess()
+    
+                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        }
+                       
+                        
+                    }
                     print(error.localizedDescription)
                 }
 

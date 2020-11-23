@@ -21,9 +21,9 @@ class UserGradeViewController: UIViewController {
         return cv
     }()
     
-    let pageControl: UIPageControl = {
+    lazy var pageControl: UIPageControl = {
         let pc = UIPageControl()
-        pc.currentPage = 1
+        pc.currentPage = viewModel.firstPage
         pc.numberOfPages = 5
         pc.currentPageIndicatorTintColor = .black
         pc.pageIndicatorTintColor = .lightGray
@@ -41,11 +41,33 @@ class UserGradeViewController: UIViewController {
     
     var userRankModel = [UserRankModel]()
     var index = 3
-
+    var viewModel = UserGradeViewModel()
+    var onceOnly = false
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        callRequest()
+
+        collectionView.contentSize = CGSize(width: collectionView.bounds.width * CGFloat(5), height: collectionView.bounds.height)
+        collectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .left, animated: false)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//
+//        let indexPath = IndexPath(item: 3, section: 0)
+//        self.collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
+//
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+ 
+ 
+    }
+    
+    func callRequest() {
         Request.shared.getUserRank { json in
             print(json)
             
@@ -58,26 +80,12 @@ class UserGradeViewController: UIViewController {
                 self.userRankModel.append(userRankItem)
             }
             
-            
 
             self.collectionView.reloadData()
-    
+
   
             
         }
-       
-    }
-    
-    override func viewDidLayoutSubviews() {
-        collectionView.scrollToItem(at:IndexPath(item: index, section: 0), at: .right, animated: false)
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-            
-        
- 
     }
     
     func configureUI() {
@@ -116,9 +124,8 @@ class UserGradeViewController: UIViewController {
 extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDataSource  {
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
         let page = Int((targetContentOffset.pointee.x) / collectionView.frame.width)
-        self.pageControl.currentPage = page
+        self.pageControl.currentPage = page + viewModel.firstPage
     }
     
     
@@ -128,9 +135,45 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UserGradeCollectionViewCell
-
-        let item = userRankModel[indexPath.row]
+        //initaillize
+        cell.trackLayer.isHidden = false
+        cell.shapeLayer.isHidden = false
+        cell.userNowImg.isHidden = false
+        cell.userLockImg.isHidden = false
+        cell.userGradeimg.backgroundColor = .gray300
+        cell.userNowImg.image = UIImage(named: "")
         
+        let item = userRankModel[indexPath.row]
+        cell.userLockImg.isHidden = true
+        if item.userStatus == "LOCK" {
+            cell.trackLayer.isHidden = true
+            cell.shapeLayer.isHidden = true
+            cell.userNowImg.isHidden = true
+            cell.userGradeimg.backgroundColor = .gray400
+            cell.userLockImg.isHidden = false
+        } else if item.userStatus == "NOW" {
+            
+            viewModel.firstPage = indexPath.row
+            
+            cell.trackLayer.isHidden = false
+            cell.shapeLayer.isHidden = false
+            cell.userNowImg.isHidden = false
+            cell.userLockImg.isHidden = true
+            cell.userNowImg.image = UIImage(named: "now")
+            cell.userGradeimg.backgroundColor = .gray300
+        } else if item.userStatus == "CLEAR" {
+            cell.trackLayer.isHidden = true
+            cell.shapeLayer.isHidden = true
+            cell.userNowImg.isHidden = false
+            cell.userNowImg.image = UIImage(named: "clear")
+            cell.userLockImg.isHidden = true
+            cell.userGradeimg.backgroundColor = .gray300
+        }
+        
+       
+        
+        
+        cell.userGradeimg.image = UsergradeOptions.init(rawValue: indexPath.row)!.gradeImage
         cell.benefitLabel.text = item.benefits
         cell.levelNameLabel.text = "\(item.levelId) \(item.name)"
         
@@ -149,7 +192,11 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-    //    self.collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
+        if !onceOnly {
+            let indexToScrollTo = IndexPath(item: 2, section: indexPath.section)
+            self.collectionView.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
+          onceOnly = true
+        }
         
     }
     

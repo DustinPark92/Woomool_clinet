@@ -17,6 +17,13 @@ class BestAskTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        callRequst()
+        configureTV()
+        configureUI()
+       
+    }
+    
+    func callRequst() {
         Request.shared.getFAQCategory { json in
             
             for item in json.array! {
@@ -27,10 +34,24 @@ class BestAskTableViewController: UITableViewController {
             
             self.tableView.reloadData()
            
+        } refreshSuccess: {
+            
+            Request.shared.getFAQCategory { json in
+                
+                for item in json.array! {
+                    let faqItem = FAQModel(groupId: item["groupId"].stringValue, title: item["title"].stringValue)
+                    
+                    self.faqModel.append(faqItem)
+                }
+                
+                self.tableView.reloadData()
+               
+            } refreshSuccess: {
+                print("nil")
+                
+            }
         }
-        configureTV()
-        configureUI()
-       
+        
     }
     
     func configureUI() {

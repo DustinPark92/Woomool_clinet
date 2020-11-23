@@ -138,7 +138,7 @@ struct URLSource {
     //MARK: - 회원 등록
     //11. 회원등급
     
-    static let userRank = common + "v1/level/"
+    static let userRank = common + "v1/level/user/"
     
     //MARK: - 배너
     

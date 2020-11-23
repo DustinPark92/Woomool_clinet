@@ -80,10 +80,15 @@ enum UsergradeOptions : Int, CaseIterable {
         }
     }
 
-struct UserGradeViewModel {
-
-
 
 }
+
+
+class UserGradeViewModel {
+
+    
+    var firstPage = 0
+    var afterPage = 0 
+    
 
 }

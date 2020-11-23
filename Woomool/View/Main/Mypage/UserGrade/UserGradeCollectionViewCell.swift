@@ -31,12 +31,29 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
+    let userLockImg : UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "lock")
+        iv.setDimensions(width: 70, height: 70)
+        iv.contentMode = .scaleAspectFit
+       return iv
+    }()
+    
+    let userNowImg : UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "now")
+        iv.setDimensions(width: 57, height: 26)
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+    
     let mainView : UIView = {
         let uv = UIView()
         return uv
     }()
     
     let shapeLayer = CAShapeLayer()
+    let trackLayer = CAShapeLayer()
     
     let levelNameLabel : UILabel = {
         let lb = UILabel()
@@ -70,6 +87,9 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
       
         addSubview(mainView)
    
+        userGradeimg.addSubview(userLockImg)
+        
+        userLockImg.center(inView: userGradeimg)
 
         
         addSubview(levelNameLabel)
@@ -84,7 +104,7 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         conditionLabel.centerX(inView: self, topAnchor: levelNameLabel.bottomAnchor, paddingTop: 7.16)
         benefitLabel.centerX(inView: self, topAnchor: conditionLabel.bottomAnchor, paddingTop: 0)
 
-        let trackLayer = CAShapeLayer()
+        
         
         
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: -CGFloat.pi / 2 , endAngle: 2 * CGFloat.pi, clockwise: true)
@@ -96,7 +116,7 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         trackLayer.lineWidth = 5
         mainView.layer.addSublayer(trackLayer)
         
-        let circularPathMain = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: -CGFloat.pi / 2 , endAngle: CGFloat.pi / 2, clockwise: true)
+        let circularPathMain = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: CGFloat.pi / 2 , endAngle: -CGFloat.pi / 2, clockwise: true)
 
         shapeLayer.backgroundColor = UIColor.white.cgColor
         shapeLayer.strokeEnd = 0
@@ -108,8 +128,9 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         mainView.layer.addSublayer(shapeLayer)
         
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
-        
-
+        mainView.addSubview(userNowImg)
+        userNowImg.centerX(inView: mainView, topAnchor: mainView.bottomAnchor, paddingTop: 0)
+        userNowImg.bringSubviewToFront(mainView)
         
     }
     

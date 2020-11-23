@@ -35,8 +35,21 @@ class BestAskDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
+        callRequest()
         addNavbackButton(selector: #selector(handleDismiss))
+    }
+    
+    func callRequest() {
+        Request.shared.getFAQDetail(groupId: groupId) { json in
+            print(json)
+        } refreshSuccess: {
+            Request.shared.getFAQDetail(groupId: self.groupId) { json in
+                print(json)
+            } refreshSuccess: {
+                print("nil")
+            }
+        }
+
     }
     
     func configureUI() {

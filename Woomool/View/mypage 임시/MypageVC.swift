@@ -35,8 +35,8 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     var couponAbleCount = 0
     var goodsPrice = "9,900원"
     var viewModel = MypageViewModel()
-    
-    
+    lazy var historyDate = viewModel.getCurrenYearMonths(monthConfig: 0)
+
     
     
     weak var delegate : MypageVCDelegate?
@@ -96,6 +96,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     func callHistroyRequest(type : String, searchMonth : String) {
         Request.shared.getHistory(type: type, searchMonth: searchMonth) { json in
             if type == "" {
+                self.historyAllModel.removeAll()
                 for item in json.arrayValue {
                     let historyAllItem = HistoryAllModel(name: item["name"].stringValue, countPrice: item["countPrice"].intValue, date: item["date"].stringValue, serialNo: item["serialNo"].intValue, types: item["types"].stringValue)
                     self.historyAllModel.append(historyAllItem)
@@ -205,12 +206,16 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func handleMinusMonth() {
-        
+        viewModel.monthConfig -= 1
+        callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
+        bottomView.reloadData()
         
     }
     
     @objc func handlePlusMonth() {
-        
+        viewModel.monthConfig += 1
+        callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
+        bottomView.reloadData()
     }
     
     func configureRequest() {
@@ -298,7 +303,10 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryDateTableViewCell", for: indexPath) as! HistoryDateTableViewCell
                 cell.selectionStyle = .none
-                cell.dateLabel.text = viewModel.getCurrenYearMonths(plusAction: 0, minusAction: 0)
+                cell.dateLabel.text = viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig)
+                
+                
+
                 cell.leftButton.addTarget(self, action: #selector(handleMinusMonth), for: .touchUpInside)
                 cell.rightButton.addTarget(self, action: #selector(handlePlusMonth), for: .touchUpInside)
                 return cell
@@ -419,7 +427,8 @@ extension MypageVC: MypageFilterViewDelegate {
             delegate?.didSelect(filter: filter)
         case 1:
             print("이용내역")
-            callHistroyRequest(type: "", searchMonth: viewModel.getCurrenYearMonths(plusAction: , minusAction: <#Int#>))
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
+            
             bottomView.reloadData()
             delegate?.didSelect(filter: filter)
         case 2:
@@ -446,13 +455,13 @@ extension MypageVC : MypageHistoryFilterViewDelegate {
         switch viewModel.filterIndex {
         case 0:
             viewModel.historyType = ""
-            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
         case 1:
             viewModel.historyType = "/store"
-            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
         case 2:
             viewModel.historyType = "/goods"
-            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths())
+            callHistroyRequest(type: viewModel.historyType, searchMonth: viewModel.getCurrenYearMonths(monthConfig: viewModel.monthConfig))
         default:
             break
         }
