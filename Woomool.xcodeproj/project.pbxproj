@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		573AD8B92AF76C26BCBCA91C /* Pods_Woomool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 982DECCB6AF3E669368C9365 /* Pods_Woomool.framework */; };
 		DA2119192514839600419AD7 /* WoomoolServieceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */; };
 		DA21191B251488B400419AD7 /* WoomoolServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */; };
 		DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30EE86255E4B16000F7356 /* FindPassViewController.swift */; };
@@ -165,12 +166,12 @@
 		DAF9EB532516074800B40270 /* HowToUseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB522516074800B40270 /* HowToUseCollectionViewCell.swift */; };
 		DAF9EB5625160BB800B40270 /* HowtoUseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB5525160BB800B40270 /* HowtoUseViewModel.swift */; };
 		DAF9EB59251610F700B40270 /* WoomoolStoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB58251610F700B40270 /* WoomoolStoryCollectionViewController.swift */; };
-		F55B44FF0F58FBF13127616D /* Pods_Woomool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.debug.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.debug.xcconfig"; sourceTree = "<group>"; };
-		5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.release.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.release.xcconfig"; sourceTree = "<group>"; };
+		3429A1BAACA9A0ACC8CC34A1 /* Pods-Woomool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.debug.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.debug.xcconfig"; sourceTree = "<group>"; };
+		982DECCB6AF3E669368C9365 /* Pods_Woomool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Woomool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD61851D9A767514D85001F5 /* Pods-Woomool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Woomool.release.xcconfig"; path = "Target Support Files/Pods-Woomool/Pods-Woomool.release.xcconfig"; sourceTree = "<group>"; };
 		DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServieceHeaderView.swift; sourceTree = "<group>"; };
 		DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServiceTableViewCell.swift; sourceTree = "<group>"; };
 		DA30EE86255E4B16000F7356 /* FindPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPassViewController.swift; sourceTree = "<group>"; };
@@ -332,7 +333,6 @@
 		DAF9EB522516074800B40270 /* HowToUseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAF9EB5525160BB800B40270 /* HowtoUseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowtoUseViewModel.swift; sourceTree = "<group>"; };
 		DAF9EB58251610F700B40270 /* WoomoolStoryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryCollectionViewController.swift; sourceTree = "<group>"; };
-		EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Woomool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,17 +340,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F55B44FF0F58FBF13127616D /* Pods_Woomool.framework in Frameworks */,
+				573AD8B92AF76C26BCBCA91C /* Pods_Woomool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		077252F24989F26A60E6C6A6 /* Frameworks */ = {
+		2E4CE4554E9731CA48EA4A86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EC2BBED0B266E3687356B3BC /* Pods_Woomool.framework */,
+				982DECCB6AF3E669368C9365 /* Pods_Woomool.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,8 +358,8 @@
 		B374B3DC5731B089AAA1D3AE /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */,
-				5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */,
+				3429A1BAACA9A0ACC8CC34A1 /* Pods-Woomool.debug.xcconfig */,
+				BD61851D9A767514D85001F5 /* Pods-Woomool.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 		DA36459424F6830A00294C2B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DAE782EA25065C4900944B4A /* mypage 임시 */,
+				DAE782EA25065C4900944B4A /* mypage 임시 */,
 				DA8191D224FA3C640021F2B5 /* OnBoarding */,
 				DA3645C924F7A1FA00294C2B /* Main */,
 				DA3645C324F7613A00294C2B /* Authentication */,
@@ -751,7 +751,7 @@
 				DAAA7EDA24F23E91005F9C6D /* Woomool */,
 				DAAA7ED924F23E91005F9C6D /* Products */,
 				B374B3DC5731B089AAA1D3AE /* Pods */,
-				077252F24989F26A60E6C6A6 /* Frameworks */,
+				2E4CE4554E9731CA48EA4A86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -903,7 +903,7 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
+		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
 			isa = PBXGroup;
 			children = (
 				DAE782E825065BAB00944B4A /* MypageVC.swift */,
@@ -941,12 +941,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAAA7EEC24F23E94005F9C6D /* Build configuration list for PBXNativeTarget "Woomool" */;
 			buildPhases = (
-				61F838862B31A71B225FBBF8 /* [CP] Check Pods Manifest.lock */,
+				06DA6C056A79970049C65A53 /* [CP] Check Pods Manifest.lock */,
 				DAAA7ED424F23E91005F9C6D /* Sources */,
 				DAAA7ED524F23E91005F9C6D /* Frameworks */,
 				DAAA7ED624F23E91005F9C6D /* Resources */,
-				9D3D06479BFF4D5CF23358CD /* [CP] Embed Pods Frameworks */,
-				52B50A913F6A5640069B1A73 /* [CP] Copy Pods Resources */,
+				59D5626A6B3441E067DCA4F2 /* [CP] Embed Pods Frameworks */,
+				567596FADCA4879A6616A748 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1011,24 +1011,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52B50A913F6A5640069B1A73 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		61F838862B31A71B225FBBF8 /* [CP] Check Pods Manifest.lock */ = {
+		06DA6C056A79970049C65A53 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1050,7 +1033,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9D3D06479BFF4D5CF23358CD /* [CP] Embed Pods Frameworks */ = {
+		567596FADCA4879A6616A748 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		59D5626A6B3441E067DCA4F2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1363,7 +1363,7 @@
 		};
 		DAAA7EED24F23E94005F9C6D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57D7AB29E5F76ED4624BB79F /* Pods-Woomool.debug.xcconfig */;
+			baseConfigurationReference = 3429A1BAACA9A0ACC8CC34A1 /* Pods-Woomool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;
@@ -1384,7 +1384,7 @@
 		};
 		DAAA7EEE24F23E94005F9C6D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5BDD62AD0ED1EB41DE7A51D2 /* Pods-Woomool.release.xcconfig */;
+			baseConfigurationReference = BD61851D9A767514D85001F5 /* Pods-Woomool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;

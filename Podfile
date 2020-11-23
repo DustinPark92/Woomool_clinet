@@ -9,7 +9,7 @@ target 'Woomool' do
 
 
 
-pod 'NMapsMap','3.10.0'
+pod 'NMapsMap'
 pod 'Hex'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'Alamofire', '~> 5.2'

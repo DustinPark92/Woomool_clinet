@@ -15,6 +15,7 @@ class UserGradeViewController: UIViewController {
     let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
         layout.scrollDirection = .horizontal
     
         
@@ -48,17 +49,13 @@ class UserGradeViewController: UIViewController {
         configureUI()
         callRequest()
 
-        collectionView.contentSize = CGSize(width: collectionView.bounds.width * CGFloat(5), height: collectionView.bounds.height)
-        collectionView.scrollToItem(at: IndexPath(row: 2, section: 0), at: .left, animated: false)
+    
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//
-//        let indexPath = IndexPath(item: 3, section: 0)
-//        self.collectionView.scrollToItem(at: indexPath, at: .right, animated: true)
-//
-        
+
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +80,11 @@ class UserGradeViewController: UIViewController {
 
             self.collectionView.reloadData()
 
-  
+            self.collectionView.reloadData()
+            self.collectionView.layoutIfNeeded()
+
+            self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.firstPage, section: 0), at: .right, animated: true)
+
             
         }
     }
@@ -103,7 +104,7 @@ class UserGradeViewController: UIViewController {
         collectionView.register(UserGradeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         collectionView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor)
-        collectionView.isPagingEnabled = true
+        //collectionView.isPagingEnabled = true
         collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         
@@ -152,9 +153,9 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
             cell.userGradeimg.backgroundColor = .gray400
             cell.userLockImg.isHidden = false
         } else if item.userStatus == "NOW" {
-            
+
             viewModel.firstPage = indexPath.row
-            
+
             cell.trackLayer.isHidden = false
             cell.shapeLayer.isHidden = false
             cell.userNowImg.isHidden = false
@@ -191,12 +192,7 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
-        if !onceOnly {
-            let indexToScrollTo = IndexPath(item: 2, section: indexPath.section)
-            self.collectionView.scrollToItem(at: indexToScrollTo, at: .bottom, animated: false)
-          onceOnly = true
-        }
+
         
     }
     

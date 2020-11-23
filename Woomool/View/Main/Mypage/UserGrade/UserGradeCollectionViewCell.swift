@@ -127,18 +127,12 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         shapeLayer.lineWidth = 5
         mainView.layer.addSublayer(shapeLayer)
         
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+//        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         mainView.addSubview(userNowImg)
         userNowImg.centerX(inView: mainView, topAnchor: mainView.bottomAnchor, paddingTop: 0)
         userNowImg.bringSubviewToFront(mainView)
         
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func handleTap() {
+        
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         basicAnimation.toValue = 1
@@ -146,6 +140,14 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func handleTap() {
+
         
     }
     
