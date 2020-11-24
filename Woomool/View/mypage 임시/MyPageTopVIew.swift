@@ -12,23 +12,15 @@ private let topCellIdentifier = "MyCouponListCollectionViewCell"
 
 
 class MyPageTopView: UIView {
+    
     var topLayout = UICollectionViewFlowLayout()
     let viewModel = MypageViewModel()
-    
-    
-    
     let filterBar = MypageFilterView()
     let tableView = UITableView()
     
-    var userModel: UserModel? {
-        didSet {
-            configure()
-        }
-    }
     
-    let nameLabel : UILabel = {
+    lazy var nameLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "일리님"
         lb.font = UIFont.NotoMedium26
         lb.textColor = .black900
         return lb
@@ -50,9 +42,8 @@ class MyPageTopView: UIView {
         return bt
     }()
     
-    let userRank : UILabel = {
+    lazy var userRank : UILabel = {
         let lb = UILabel()
-        lb.text = "샘 회원입니다."
         lb.font = UIFont.NotoMedium14
         lb.textColor = .black400
         return lb
@@ -101,6 +92,11 @@ class MyPageTopView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    
+        configureCV()
+        
+        
+        
         addSubview(nameLabel)
         addSubview(nextBtn)
         addSubview(settingBtn)
@@ -136,8 +132,7 @@ class MyPageTopView: UIView {
         
         
         filterBar.anchor(left:leftAnchor,bottom: bottomAnchor,right: rightAnchor,height: 50)
-        
-        configureCV()
+
         
     }
     
@@ -150,19 +145,12 @@ class MyPageTopView: UIView {
         
     }
     
-    func configure() {
-        guard let userModel = userModel else { return }
-        nameLabel.text = "\(userModel.nickname) 님"
-        userRank.text = "\(userModel.levelName) 회원입니다."
-        viewModel.couponCount.insert(userModel.buyCount, at: 0)
-        viewModel.couponCount.insert(userModel.useCount, at: 1)
-        viewModel.couponCount.insert(userModel.remCount, at: 2)
-        
-    }
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
 }
 
@@ -177,9 +165,7 @@ extension MyPageTopView : UICollectionViewDelegate,UICollectionViewDataSource,UI
         cell.couponImg.image = UIImage(named: viewModel.couponImage[indexPath.row])
         cell.couponLabel.text = viewModel.couponTopLabelList[indexPath.row]
         cell.coupongCount.text = "\(viewModel.couponCount[indexPath.row])"
-        if indexPath.row == 2 {
-            cell.sv.isHidden = true
-        }
+
         cell.backgroundColor = .white
         return cell
     }

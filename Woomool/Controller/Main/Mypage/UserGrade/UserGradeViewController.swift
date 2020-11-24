@@ -41,7 +41,7 @@ class UserGradeViewController: UIViewController {
     }()
     
     var userRankModel = [UserRankModel]()
-    var index = 3
+    var index = 0
     var viewModel = UserGradeViewModel()
     var onceOnly = false
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ class UserGradeViewController: UIViewController {
     }
     
     func callRequest() {
-        Request.shared.getUserRank { json in
+        Request.shared.getUserRank { [self] json in
             print(json)
             
             for item in json.array! {
@@ -77,14 +77,18 @@ class UserGradeViewController: UIViewController {
                 self.userRankModel.append(userRankItem)
             }
             
+            index = self.userRankModel.firstIndex {
+                $0.userStatus == "NOW"
+            }!
+            
+      
 
-            self.collectionView.reloadData()
-
-            self.collectionView.reloadData()
+            
             self.collectionView.layoutIfNeeded()
-
-            self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.firstPage, section: 0), at: .right, animated: true)
-
+            self.collectionView.reloadData()
+            self.pageControl.currentPage = index
+            self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: false)
+            
             
         }
     }
@@ -126,7 +130,7 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let page = Int((targetContentOffset.pointee.x) / collectionView.frame.width)
-        self.pageControl.currentPage = page + viewModel.firstPage
+        self.pageControl.currentPage = page
     }
     
     

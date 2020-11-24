@@ -6,9 +6,11 @@ ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/Hex/Hex.framework
 ${BUILT_PRODUCTS_DIR}/KakaoSDKAuth/KakaoSDKAuth.framework
 ${BUILT_PRODUCTS_DIR}/KakaoSDKCommon/KakaoSDKCommon.framework
+${BUILT_PRODUCTS_DIR}/KakaoSDKLink/KakaoSDKLink.framework
 ${BUILT_PRODUCTS_DIR}/KakaoSDKTalk/KakaoSDKTalk.framework
 ${BUILT_PRODUCTS_DIR}/KakaoSDKTemplate/KakaoSDKTemplate.framework
 ${BUILT_PRODUCTS_DIR}/KakaoSDKUser/KakaoSDKUser.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${PODS_ROOT}/NMapsMap/framework/NMapsMap.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${PODS_ROOT}/naveridlogin-sdk-ios/NaverThirdPartyLogin.framework

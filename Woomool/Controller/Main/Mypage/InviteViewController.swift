@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import KakaoSDKLink
+import KakaoSDKAuth
+import KakaoSDKTalk
+import KakaoSDKTemplate
+import KakaoSDKCommon
 
 class InviteViewController: UIViewController {
     
@@ -16,6 +21,10 @@ class InviteViewController: UIViewController {
     lazy var centerView = viewModel.inviteCenterView(inviteCodeLabel: inviteCodeLabel)
     
     lazy var inviteCodeLabel = UILabel()
+    
+    let text = "친구초대하고 우물 이용권 받으세요!\\n\\n"
+
+
     
     
     private let mainLabel : UILabel = {
@@ -113,6 +122,39 @@ class InviteViewController: UIViewController {
    
     
     @objc func handleKaKaoButton() {
+        
+        let textTemplateJsonStringData =
+        """
+        {
+            "object_type": "text",
+            "text": "\(text)",
+            "link": {
+                "web_url": "http://dev.kakao.com",
+                "mobile_web_url": "http://dev.kakao.com"
+            },
+            "button_title": "바로 확인"
+        }
+        """.data(using: .utf8)!
+        
+        
+        if let templatable = try? SdkJSONDecoder.custom.decode(TextTemplate.self, from: textTemplateJsonStringData) {
+            
+            
+            
+            LinkApi.shared.defaultLink(templatable: templatable) {(linkResult, error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("defaultLink() success.")
+
+                    if let linkResult = linkResult {
+                        UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
+                    }
+                }
+            }
+        }
+        
         
         
     }

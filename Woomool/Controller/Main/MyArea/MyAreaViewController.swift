@@ -8,9 +8,8 @@
 //
 
 import UIKit
-//import NMapsMap
+import NMapsMap
 import CoreLocation
-import MapKit
 
 
 
@@ -20,9 +19,9 @@ class MyAreaViewController: UIViewController {
     
 
     
-//    let marker = NMFMarker()
-//    let mapView = NMFMapView()
-    let topView = MKMapView()
+    let marker = NMFMarker()
+    let activeMarker = NMFMarker()
+    let mapView = NMFMapView()
     let tableView = SelfSizedTableView()
     let bottomActionSheet = MyAreaBottomSheetHeaderView()
     let bottomActionSheetFooter = MyAreaBottomActionSheetFooterView()
@@ -38,6 +37,7 @@ class MyAreaViewController: UIViewController {
         return bt
     }()
     var storeModel = [StoreModel]()
+    var pickupStoreModel = PickUpStoreModel()
     var count = 3
     var locationManager = CLLocationManager()
     
@@ -66,8 +66,7 @@ class MyAreaViewController: UIViewController {
     
     func callRequest() {
         Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
-            
-            
+
             for item in json.array! {
                 
                 let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
@@ -80,7 +79,7 @@ class MyAreaViewController: UIViewController {
             self.tableView.reloadData()
         } refreshSuccess: {
             Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
-                
+ 
                 
                 for item in json.array! {
                     
@@ -104,21 +103,21 @@ class MyAreaViewController: UIViewController {
         view.backgroundColor = .white
 
         title = "내 근처 우물"
-        topView.backgroundColor = .red
-        
+
 
     }
     
     func configureMap() {
         NotificationCenter.default.addObserver(self, selector: #selector(cafeDetailAppear(noti:)), name: NSNotification.Name("cafeDetailAppear"), object: nil)
 
-        view.addSubview(topView)
-        topView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
-//        mapView.positionMode = .compass
-//
-//        
-//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5451851, lng: 127.0705772, setActive: "pos_active")
-//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive")
+        view.addSubview(mapView)
+        mapView.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
+        mapView.positionMode = .compass
+        mapView.touchDelegate = self
+
+        
+  
+//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive", marker: marker)
         
 
         
@@ -167,13 +166,13 @@ class MyAreaViewController: UIViewController {
         
 
 
-        let stack = UIStackView(arrangedSubviews: [topView,bottomActionSheet,cafeDetailView,tableView,bottomActionSheetFooter])
+        let stack = UIStackView(arrangedSubviews: [mapView,bottomActionSheet,cafeDetailView,tableView,bottomActionSheetFooter])
         view.addSubview(stack)
         stack.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor)
         stack.axis = .vertical
         stack.spacing = 0
         view.addSubview(myLocationButton)
-        myLocationButton.anchor(left:topView.leftAnchor,bottom: topView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
+        myLocationButton.anchor(left:mapView.leftAnchor,bottom: mapView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
         cafeDetailView.setDimensions(width: view.frame.width, height: 220)
         bottomActionSheet.setDimensions(width: view.frame.width, height: 56)
         bottomActionSheetFooter.setDimensions(width: view.frame.width, height: 100)
@@ -191,6 +190,53 @@ class MyAreaViewController: UIViewController {
         bottomActionSheet.topButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         bottomActionSheetFooter.serviceRequestButton.addTarget(self, action: #selector(handleRequest), for: .touchUpInside)
 //        
+    }
+    
+    func callCafeDetailByMap(storeId : String, lat: Double,lon : Double,success : @escaping() -> ()) {
+        Request.shared.getStoreDetail(storeId: storeId, lat: lat, lon: lon) { json in
+          let pickupStoreModel = self.pickupStoreModel
+            
+            
+            pickupStoreModel.address = json["address"].stringValue
+            pickupStoreModel.operTime = json["operTime"].stringValue
+            pickupStoreModel.scopeColor = json["scopeColor"].stringValue
+            pickupStoreModel.latitude = json["latitude"].doubleValue
+            pickupStoreModel.storeId = json["storeId"].stringValue
+            pickupStoreModel.fresh = json["fresh"].stringValue
+            pickupStoreModel.scope = json["scope"].doubleValue
+            pickupStoreModel.longitude = json["longitude"].doubleValue
+            pickupStoreModel.distance = json["distance"].stringValue
+            pickupStoreModel.name = json["name"].stringValue
+            pickupStoreModel.image = json["image"].stringValue
+            pickupStoreModel.contact = json["contact"].stringValue
+        
+            success()
+            
+        } refreshSuccess: {
+            Request.shared.getStoreDetail(storeId: storeId, lat: lat, lon: lon) { json in
+              let pickupStoreModel = self.pickupStoreModel
+                
+                
+                pickupStoreModel.address = json["address"].stringValue
+                pickupStoreModel.operTime = json["operTime"].stringValue
+                pickupStoreModel.scopeColor = json["scopeColor"].stringValue
+                pickupStoreModel.latitude = json["latitude"].doubleValue
+                pickupStoreModel.storeId = json["storeId"].stringValue
+                pickupStoreModel.fresh = json["fresh"].stringValue
+                pickupStoreModel.scope = json["scope"].doubleValue
+                pickupStoreModel.longitude = json["longitude"].doubleValue
+                pickupStoreModel.distance = json["distance"].stringValue
+                pickupStoreModel.name = json["name"].stringValue
+                pickupStoreModel.image = json["image"].stringValue
+                pickupStoreModel.contact = json["contact"].stringValue
+                
+                success()
+            } refreshSuccess: {
+                   print("nil")
+               }
+            
+        }
+
     }
     
     
@@ -259,6 +305,7 @@ class MyAreaViewController: UIViewController {
         bottomActionSheet.isHidden = false
         bottomActionSheetFooter.isHidden = false
         tableView.isHidden = false
+        activeMarker.mapView = nil
     }
     
     
@@ -281,11 +328,14 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         cell.cafeNameLabel.text = storeItem.name
         cell.adressLabel.text = storeItem.address
         cell.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
+        cell.distanceLabel.text = storeItem.distance
         
         if storeItem.fresh == "N" {
             cell.newImageView.isHidden = true
         }
-//        viewModel.setActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_inactive")
+        
+        
+     viewModel.setInActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_inactive")
         
         
         return cell
@@ -309,7 +359,7 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storeItem = storeModel[indexPath.row]
         
-        
+
         viewModel.bottomSheetCondition = "cafeUnFold"
         cafeDetailView.isHidden = false
         bottomActionSheet.isHidden = false
@@ -325,6 +375,8 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         cafeDetailView.phoneLabel.text = storeItem.contact
         cafeDetailView.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
         
+        viewModel.setActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_active", marker: self.activeMarker)
+        
         if storeItem.fresh == "N" {
             cafeDetailView.isHidden = true
         }
@@ -336,6 +388,70 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     
 }
 
+//MARK: - naverMapViewDelegate
+
+
+extension MyAreaViewController : NMFMapViewTouchDelegate {
+    
+    func mapView(_ mapView: NMFMapView, didTapMap latlng: NMGLatLng, point: CGPoint) {
+        viewModel.storeId.removeAll()
+        
+        viewModel.storeId = storeModel.filter {
+            round($0.latitude*1000)/1000 == round(latlng.lat*1000)/1000 && round($0.longitude*1000)/1000 == round(latlng.lng*1000)/1000
+        }.map {
+            $0.storeId
+        }
+        
+        
+        if viewModel.storeId == [] {
+            activeMarker.mapView = nil
+            viewModel.bottomSheetCondition = "basicFold"
+            bottomActionSheet.distanceNotiLabel.isHidden = true
+            cafeDetailView.isHidden = true
+            bottomActionSheet.isHidden = false
+            bottomActionSheetFooter.isHidden = true
+            tableView.isHidden = true
+            self.navigationItem.rightBarButtonItem = nil
+        } else {
+            activeMarker.mapView = nil
+      
+            callCafeDetailByMap(storeId: viewModel.storeId[0], lat: 37.4921514, lon: 127.0118619, success: {
+                
+                self.viewModel.bottomSheetCondition = "cafeFold"
+                self.bottomActionSheet.distanceNotiLabel.isHidden = true
+                self.cafeDetailView.isHidden = false
+                self.cafeDetailView.adressLabel.text = self.pickupStoreModel.address
+                self.cafeDetailView.cafeNameLabel.text = self.pickupStoreModel.name
+                self.bottomActionSheet.distanceNotiLabel.isHidden = true
+                self.cafeDetailView.adressLabel.text = self.pickupStoreModel.address
+                self.cafeDetailView.distanceLabel.text = self.pickupStoreModel.distance
+                self.cafeDetailView.phoneLabel.text = self.pickupStoreModel.contact
+                self.cafeDetailView.bestImageView.image = self.viewModel.setScopeIcon(scopeColor: self.pickupStoreModel.scopeColor)
+                
+                if self.pickupStoreModel.fresh == "N" {
+                    self.cafeDetailView.newImageView.isHidden = true
+                }
+                
+                
+                self.bottomActionSheet.isHidden = false
+                self.bottomActionSheetFooter.isHidden = true
+                self.tableView.isHidden = true
+                self.navigationItem.rightBarButtonItem = self.rightBarButton
+                
+                self.viewModel.setActiveIcon(mapView: mapView, lat: self.pickupStoreModel.latitude, lng: self.pickupStoreModel.longitude, setActive: "pos_active", marker: self.activeMarker)
+            })
+            
+            }
+    }
+
+        
+        
+        
+        
+}
+    
+
+    
 
 // MARK: - CLLocationManagerDelegate
 //1
@@ -388,8 +504,9 @@ extension MyAreaViewController: CLLocationManagerDelegate {
         }
         
         
-//        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude))
-//        mapView.moveCamera(cameraUpdate)
+        
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.4921514, lng: 127.0118619))
+        mapView.moveCamera(cameraUpdate)
 //        
         locationManager.stopUpdatingLocation()
         

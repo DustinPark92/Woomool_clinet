@@ -30,6 +30,17 @@ class SignUpViewController: UITableViewController {
         configureUI()
     }
     
+    let termsIdArray : Array<String>
+    
+    init(termsIdArray : Array<String>) {
+        self.termsIdArray = termsIdArray
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     func configureUI() {
         UIView.animate(withDuration: 1, animations: {
@@ -83,11 +94,11 @@ class SignUpViewController: UITableViewController {
                 "terms":
                     [
                         ["status": "Y",
-                         "termsId": "TM20201110233345997"]
+                         "termsId": termsIdArray[0]]
                         ,["status": "Y",
-                          "termsId": "TM20201110233345998"]
+                          "termsId": termsIdArray[1]]
                         ,["status": "Y",
-                          "termsId": "TM20201110233345999"]
+                          "termsId": termsIdArray[2]]
                     ]
                 
             ]

@@ -237,72 +237,7 @@ class SignUpViewModel {
         svBottom.backgroundColor = .gray200
         svBottom.centerX(inView: view, topAnchor: allagreeContentsLabel.bottomAnchor, paddingTop: 12)
         
-        view.addSubview(serviceButton)
-        serviceButton.anchor(top:svBottom.bottomAnchor,left: view.leftAnchor,paddingTop:20 ,paddingLeft:12)
-        
-        let serviceLabel = listLabel(title: "[필수] 서비스 이용약관 ")
-        view.addSubview(serviceLabel)
-        serviceLabel.anchor(top:svBottom.bottomAnchor,left: serviceButton.rightAnchor,paddingTop:20,paddingLeft: 4)
-        
-        view.addSubview(privateInfoButton)
-        privateInfoButton.anchor(top:serviceButton.bottomAnchor,left: view.leftAnchor,paddingTop:4 ,paddingLeft:12)
-        
-        let privateLabel = listLabel(title: "[필수] 개인 정보 처리 방침")
-        view.addSubview(privateLabel)
-        privateLabel.anchor(top:serviceLabel.bottomAnchor,left: privateInfoButton.rightAnchor,paddingTop:4,paddingLeft: 4)
-        
-        
-        view.addSubview(locationButton)
-        locationButton.anchor(top:privateInfoButton.bottomAnchor,left: view.leftAnchor,paddingTop:4 ,paddingLeft:12)
-        
-        let locationLabel = listLabel(title: "[필수] 위치이용기반 서비스 이용 약관")
-        view.addSubview(locationLabel)
-        locationLabel.anchor(top:privateLabel.bottomAnchor,left: privateInfoButton.rightAnchor,paddingTop:4,paddingLeft: 4)
-        
-        
-        view.addSubview(marketingButton)
-        marketingButton.anchor(top:locationButton.bottomAnchor,left: view.leftAnchor,paddingTop:16 ,paddingLeft:12)
-        
-        let marketingLabel = listLabel(title: "[필수] 위치이용기반 서비스 이용 약관")
-        view.addSubview(marketingLabel)
-        marketingLabel.anchor(top:locationLabel.bottomAnchor,left: locationButton.rightAnchor,paddingTop:16,paddingLeft: 4)
-        
-        
-        view.addSubview(emailButton)
-        emailButton.anchor(top:marketingButton.bottomAnchor,left: view.leftAnchor,paddingTop:4 ,paddingLeft:25)
-        
-        let emailLabel = listLabel(title: "이메일 수신")
-        view.addSubview(emailLabel)
-        emailLabel.anchor(top:marketingLabel.bottomAnchor,left: emailButton.rightAnchor,paddingTop:4,paddingLeft: 4)
-        
-        
-        view.addSubview(smsButton)
-        smsButton.anchor(top:emailButton.bottomAnchor,left: view.leftAnchor,paddingTop:4 ,paddingLeft:25)
-        
-        let smsLabel = listLabel(title: "SMS 수신")
-        view.addSubview(smsLabel)
-        smsLabel.anchor(top:emailLabel.bottomAnchor,left: smsButton.rightAnchor,paddingTop:4,paddingLeft: 4)
-        
-        view.addSubview(pushButton)
-        pushButton.anchor(top:smsButton.bottomAnchor,left: view.leftAnchor,paddingTop:4 ,paddingLeft:25)
-        
-        let pushLabel = listLabel(title: "푸시 알림")
-        view.addSubview(pushLabel)
-        pushLabel.anchor(top:smsLabel.bottomAnchor,left: pushButton.rightAnchor,paddingTop:4,paddingLeft: 4)
-        
-        
-        view.addSubview(serviceDetail)
-        view.addSubview(locationDetail)
-        view.addSubview(privateDetail)
-        
-        serviceDetail.anchor(top: svBottom.bottomAnchor,right: view.rightAnchor,paddingTop: 20,paddingRight: 12)
-        serviceDetail.setDimensions(width: 23, height: 18)
-        
-        locationDetail.anchor(top: serviceDetail.bottomAnchor,right: view.rightAnchor,paddingTop: 4,paddingRight: 12)
-        locationDetail.setDimensions(width: 23, height: 18)
-        
-        privateDetail.anchor(top: locationDetail.bottomAnchor,right: view.rightAnchor,paddingTop: 4,paddingRight: 12)
-        privateDetail.setDimensions(width: 23, height: 18)
+
         
         view.addSubview(comfirmButton)
         comfirmButton.anchor(left:view.leftAnchor,bottom: view.bottomAnchor,right: view.rightAnchor,height: 56)

@@ -22,6 +22,9 @@ PODS:
     - KakaoSDKCommon (= 2.0.4)
   - KakaoSDKCommon (2.0.4):
     - Alamofire (~> 5.1)
+  - KakaoSDKLink (2.0.4):
+    - KakaoSDKCommon (= 2.0.4)
+    - KakaoSDKTemplate (= 2.0.4)
   - KakaoSDKTalk (2.0.4):
     - KakaoSDKAuth (= 2.0.4)
     - KakaoSDKCommon (= 2.0.4)
@@ -32,7 +35,8 @@ PODS:
     - KakaoSDKAuth (= 2.0.4)
     - KakaoSDKCommon (= 2.0.4)
   - Kingfisher (4.10.1)
-  - naveridlogin-sdk-ios (4.1.2)
+  - naveridlogin-sdk-ios (4.1.3)
+  - NMapsMap (3.10.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
@@ -41,10 +45,12 @@ DEPENDENCIES:
   - Hex
   - KakaoSDKAuth
   - KakaoSDKCommon
+  - KakaoSDKLink
   - KakaoSDKTalk
   - KakaoSDKUser
   - Kingfisher (~> 4.7)
   - naveridlogin-sdk-ios
+  - NMapsMap (= 3.10.0)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -57,11 +63,13 @@ SPEC REPOS:
     - Hex
     - KakaoSDKAuth
     - KakaoSDKCommon
+    - KakaoSDKLink
     - KakaoSDKTalk
     - KakaoSDKTemplate
     - KakaoSDKUser
     - Kingfisher
     - naveridlogin-sdk-ios
+    - NMapsMap
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -73,13 +81,15 @@ SPEC CHECKSUMS:
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
   KakaoSDKAuth: 3a88e4a110243f8c6b9948c5ec85670c7acaebf6
   KakaoSDKCommon: 070472d0638ea6b28684a23c195e47015349e51b
+  KakaoSDKLink: a90a919c4b00dc85bbf21d91842961c105317317
   KakaoSDKTalk: 8cf6299b0eea7cf3139ab0f62b415fd054f83a29
   KakaoSDKTemplate: 330007aea0b46de1ed93e4cbddc7b4c3b59bdc25
   KakaoSDKUser: 7951e09f9e6de3908ae2d7f8486290c8607c217a
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
-  naveridlogin-sdk-ios: cf8afccdb1793d4ecfcd5d46aa8729d8b5058c70
+  naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
+  NMapsMap: 17caab4af9a3fc5c25b79858de18bdeab1eaff87
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 6aa984df4890851f174c8efaf581f3845ec98503
+PODFILE CHECKSUM: adde9024c1ab7d28d72c4f234cfa1c7ef7b42f39
 
 COCOAPODS: 1.10.0

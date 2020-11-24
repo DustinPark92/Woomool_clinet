@@ -52,14 +52,17 @@ class SettingViewController: UITableViewController {
     }
     
     func delUserInfo() {
-        let controller = OnBoardingViewController()
         
-        UIApplication.shared.windows.first?.rootViewController = controller
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
         UserDefaults.standard.removeObject(forKey: "accessToken")
         UserDefaults.standard.removeObject(forKey: "refreshToken")
         UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "")
+        
+        let controller = OnBoardingViewController()
+        
+        UIApplication.shared.windows.first?.rootViewController = controller
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
+
     }
     
     @objc func handleDismiss() {

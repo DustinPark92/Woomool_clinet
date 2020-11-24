@@ -46,6 +46,26 @@ struct StoreModel {
 }
 
 
+class PickUpStoreModel {
+        
+        var contact : String = ""
+    var storeId : String = ""
+    var operTime : String = ""
+    var address : String = ""
+    var scope : Double = 0
+    var image : String = ""
+    var name : String = ""
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
+    var scopeColor : String = ""
+    var distance : String = ""
+    var fresh : String = ""
+
+        
+  
+}
+
+
 struct BestStoreModel {
     /*
      {

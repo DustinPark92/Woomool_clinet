@@ -9,15 +9,10 @@
 import Foundation
 
 
-class TermsModel {
+struct TermsModel {
 
-    var termsId : String = ""
-    var title : String = ""
-    var contents : String = ""
-    
-    var allAgreeAuth = false
-    var servieAuth = false
-    var privacyAuth = false
-    var locationAuth = false
-    
+    let required : String
+    let contents : String
+    let title : String
+    let termsId : String
 }

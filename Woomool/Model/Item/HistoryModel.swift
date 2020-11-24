@@ -33,14 +33,6 @@ struct HistoryAllModel {
     
 }
 
-struct HistoryStoreModel {
-    let serialNo : Int
-    let buyDate : String
-    let goodsId : Int
-    let name : String
-    let buyPrice : Int
-}
-
 
 struct HistoryGoodsModel {
     let serialNo : Int
@@ -59,4 +51,26 @@ struct HistoryGoodsModel {
        "buyPrice" : 18000
      },
      */
+}
+
+
+struct HistoryStoreModel {
+    /*
+     {
+       "serialNo" : 13,
+       "useCount" : 1,
+       "store" : {
+         "storeId" : "V7T1P08C895SPDJ78IZ8",
+         "name" : "앤트러사이트 강남점"
+       },
+       "useDate" : "2020-11-24"
+     }
+     */
+    let serialNo : Int
+    let useCount : Int
+    let storeId : String
+    let name : String
+    let useDate : String
+
+
 }

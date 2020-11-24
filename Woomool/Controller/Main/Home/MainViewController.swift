@@ -13,17 +13,12 @@ private let reuseIdentifier = "MainCollectionViewCell"
 
 class MainViewController: UIViewController {
     
-    var userModel: UserModel? {
-        didSet {
-            mainLabel.text = "안녕하세요 \(userModel!.nickname)님"
-//            mainCetnerView.couponCountLabel.text = "\(userModel!.ableCount)"
-        }
-    }
+    var userModel = UserModel(userId: "", email: "", nickname: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
     
 
-    private let mainLabel : UILabel = {
+    lazy var mainLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "안녕하세요 일리님"
+        lb.text =  ""
         lb.font = UIFont.NotoMedium20
         
         return lb
@@ -54,14 +49,15 @@ class MainViewController: UIViewController {
     //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        callRequest()
+        configureUI()
+        configureCV()
+        callBannerHomeRequst()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureUI()
-        configureCV()
-        callBannerHomeRequst()
+
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -137,6 +133,37 @@ class MainViewController: UIViewController {
         }
 
         
+    }
+    
+    func configure() {
+        mainLabel.text  = "안녕하세요. \(userModel.nickname)님"
+        mainCetnerView.couponCountLabel.text = "\(userModel.remCount) 회"
+    }
+    
+    func callRequest() {
+            
+            Request.shared.getUserInfo() { [self] json in
+                
+                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                
+
+                
+                configure()
+    
+            } refreshSuccess: {
+                Request.shared.getUserInfo() { [self] json in
+                    
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                    configure()
+                    
+        
+                } refreshSuccess: {
+                    print("nil")
+                    
+                }
+                
+            }
+           
     }
     
 

@@ -10,48 +10,22 @@ import UIKit
 
 class MainTC: UITabBarController {
     
-    var userModel: UserModel? {
-        didSet {
-            guard let nav1 = viewControllers?[0] as? UINavigationController else { return}
-            guard let home = nav1.viewControllers.first as? MainViewController else { return}
-            guard let nav2 = viewControllers?[3] as? UINavigationController else { return }
-            guard let myPage = nav2.viewControllers.first as? MypageVC else { return}
 
-            home.userModel = userModel
-            myPage.userModel = userModel
-        }
-    }
     
     //var userModel : UserModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
-        callRequest()
+
         tabBar.tintColor = .blue500
         tabBar.unselectedItemTintColor = .gray350
     }
     
-    func callRequest() {
-            
-            Request.shared.getUserInfo() { [self] json in
-                
-                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
-    
-            } refreshSuccess: {
-                Request.shared.getUserInfo() { [self] json in
-                    
-                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
-        
-        
-                } refreshSuccess: {
-                    print("nil")
-                    
-                }
-                
-            }
-           
+    override func viewWillAppear(_ animated: Bool) {
+        configureViewController()
     }
+    
+ 
        
     
 

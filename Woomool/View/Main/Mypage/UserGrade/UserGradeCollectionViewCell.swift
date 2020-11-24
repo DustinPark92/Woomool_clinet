@@ -106,7 +106,7 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
 
         
         
-        
+        //바깥 선
         let circularPath = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: -CGFloat.pi / 2 , endAngle: 2 * CGFloat.pi, clockwise: true)
 
         trackLayer.path = circularPath.cgPath
@@ -116,6 +116,8 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         trackLayer.lineWidth = 5
         mainView.layer.addSublayer(trackLayer)
         
+        
+        //내부 파란선
         let circularPathMain = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: CGFloat.pi / 2 , endAngle: -CGFloat.pi / 2, clockwise: true)
 
         shapeLayer.backgroundColor = UIColor.white.cgColor
@@ -127,12 +129,14 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         shapeLayer.lineWidth = 5
         mainView.layer.addSublayer(shapeLayer)
         
-//        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+
         mainView.addSubview(userNowImg)
         userNowImg.centerX(inView: mainView, topAnchor: mainView.bottomAnchor, paddingTop: 0)
         userNowImg.bringSubviewToFront(mainView)
         
         
+        
+        //에니메이션
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
         basicAnimation.toValue = 1
@@ -140,6 +144,10 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         basicAnimation.fillMode = CAMediaTimingFillMode.forwards
         basicAnimation.isRemovedOnCompletion = false
         shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        
+        
+        
+        //        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
     }
     
     required init?(coder: NSCoder) {

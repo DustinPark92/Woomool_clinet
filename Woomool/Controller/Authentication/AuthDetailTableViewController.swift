@@ -27,6 +27,9 @@ class AuthDetailTableViewController: UIViewController {
     }()
     
     let bottomView = UIView()
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

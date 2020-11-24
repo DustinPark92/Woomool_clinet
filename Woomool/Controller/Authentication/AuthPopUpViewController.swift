@@ -53,6 +53,16 @@ class AuthPopUpViewController: UIViewController {
     }()
     var titleLabel = "회원가입"
     var emailButtonTitle = "이메일로 시작하기"
+    let termsIdArray : Array<String>
+    
+    init(termsIdArray : Array<String>) {
+        self.termsIdArray = termsIdArray
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func viewDidLoad() {
@@ -143,7 +153,7 @@ class AuthPopUpViewController: UIViewController {
         weak var pvc = self.presentingViewController
         
         self.dismiss(animated: true, completion: {
-            let vc = PrivateUserInfoAuthViewController()
+            let vc = PrivateAuthVC()
             vc.modalPresentationStyle = .overCurrentContext
             pvc?.present(vc, animated: true, completion: nil)
         })
@@ -158,7 +168,7 @@ class AuthPopUpViewController: UIViewController {
         case "이메일로 시작하기":
             dismiss(animated: true) {
                 NotificationCenter.default.post(name: NSNotification.Name("dismissView"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name("pushSignUp"), object: nil)
+                NotificationCenter.default.post(name: NSNotification.Name("pushSignUp"), object: self.termsIdArray)
             }
             
         case "이메일로 로그인하기":

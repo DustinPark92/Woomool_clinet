@@ -78,7 +78,6 @@
 		DA72B697250C89F0006E6075 /* BestWoomoolCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */; };
 		DA72B699250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */; };
 		DA79E98625020393001B73FA /* AuthPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79E98525020393001B73FA /* AuthPopUpViewController.swift */; };
-		DA79E98A25021301001B73FA /* PrivateUserInfoAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */; };
 		DA7C245124FCD6B20061C1BE /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245024FCD6B20061C1BE /* MainViewModel.swift */; };
 		DA7C245324FCD7330061C1BE /* MainCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245224FCD7330061C1BE /* MainCenterView.swift */; };
 		DA7C245524FCD7ED0061C1BE /* OurWoomoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245424FCD7ED0061C1BE /* OurWoomoolViewController.swift */; };
@@ -113,6 +112,9 @@
 		DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE124F23E91005F9C6D /* Main.storyboard */; };
 		DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE424F23E94005F9C6D /* Assets.xcassets */; };
 		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
+		DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */; };
+		DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */; };
+		DAAF04EC256CE99B004D18D1 /* PrivateAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */; };
 		DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FB1256A60A200150773 /* BannerModel.swift */; };
 		DAAF5FBE256A785C00150773 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FBD256A785C00150773 /* IntExtension.swift */; };
 		DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF5FC1256A822300150773 /* CouponModel.swift */; };
@@ -243,7 +245,6 @@
 		DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewController.swift; sourceTree = "<group>"; };
 		DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewCell.swift; sourceTree = "<group>"; };
 		DA79E98525020393001B73FA /* AuthPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopUpViewController.swift; sourceTree = "<group>"; };
-		DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUserInfoAuthViewController.swift; sourceTree = "<group>"; };
 		DA7C245024FCD6B20061C1BE /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DA7C245224FCD7330061C1BE /* MainCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCenterView.swift; sourceTree = "<group>"; };
 		DA7C245424FCD7ED0061C1BE /* OurWoomoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurWoomoolViewController.swift; sourceTree = "<group>"; };
@@ -280,6 +281,9 @@
 		DAAA7EE424F23E94005F9C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAAA7EE724F23E94005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthVC.swift; sourceTree = "<group>"; };
+		DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthView.swift; sourceTree = "<group>"; };
+		DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthCell.swift; sourceTree = "<group>"; };
 		DAAF5FB1256A60A200150773 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		DAAF5FBD256A785C00150773 /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		DAAF5FC1256A822300150773 /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
@@ -446,11 +450,13 @@
 				DA3645A324F68ED600294C2B /* SignUpViewController.swift */,
 				DA30EE86255E4B16000F7356 /* FindPassViewController.swift */,
 				DA79E98525020393001B73FA /* AuthPopUpViewController.swift */,
-				DA79E98925021301001B73FA /* PrivateUserInfoAuthViewController.swift */,
 				DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */,
 				DA6E2D982504EE7E00A0A548 /* ChagneNicknameViewController.swift */,
 				DA6E2D9A2504F29600A0A548 /* ChangePasswordViewController.swift */,
 				DA6E2D9C2504F2A800A0A548 /* ChangePhoneNumberViewController.swift */,
+				DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */,
+				DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */,
+				DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -945,8 +951,8 @@
 				DAAA7ED424F23E91005F9C6D /* Sources */,
 				DAAA7ED524F23E91005F9C6D /* Frameworks */,
 				DAAA7ED624F23E91005F9C6D /* Resources */,
-				59D5626A6B3441E067DCA4F2 /* [CP] Embed Pods Frameworks */,
-				567596FADCA4879A6616A748 /* [CP] Copy Pods Resources */,
+				2165F8E1D480FF65A195D01A /* [CP] Embed Pods Frameworks */,
+				2FBFF3CF9B09151A34F48834 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1033,24 +1039,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		567596FADCA4879A6616A748 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		59D5626A6B3441E067DCA4F2 /* [CP] Embed Pods Frameworks */ = {
+		2165F8E1D480FF65A195D01A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1065,6 +1054,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2FBFF3CF9B09151A34F48834 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1095,6 +1101,7 @@
 				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
 				DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */,
 				DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */,
+				DAAF04EC256CE99B004D18D1 /* PrivateAuthCell.swift in Sources */,
 				DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */,
 				DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */,
 				DA8191D424FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift in Sources */,
@@ -1112,6 +1119,7 @@
 				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
 				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
 				DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */,
+				DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */,
 				DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */,
 				DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */,
 				DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */,
@@ -1137,7 +1145,6 @@
 				DAC73E1C24FF878700E2B419 /* OurWoomoolBestShopView.swift in Sources */,
 				DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */,
 				DAF9EB302514C9F900B40270 /* CouponPopUpView.swift in Sources */,
-				DA79E98A25021301001B73FA /* PrivateUserInfoAuthViewController.swift in Sources */,
 				DAE783022507724000944B4A /* HistoryTableViewCell.swift in Sources */,
 				DA6E2D892504B2E600A0A548 /* UserRequestViewModel.swift in Sources */,
 				DA6E2DBB25063BB000A0A548 /* TableViewExtension.swift in Sources */,
@@ -1181,6 +1188,7 @@
 				DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */,
 				DA3645A224F688CA00294C2B /* LoginViewModel.swift in Sources */,
 				DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */,
+				DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */,
 				DAA350A9254C19E0005D4071 /* TermsViewModel.swift in Sources */,
 				DA6E2DAD25062A8400A0A548 /* UILabelExtension.swift in Sources */,
 				DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */,

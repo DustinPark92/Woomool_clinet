@@ -9,39 +9,70 @@
 import UIKit
 
 
-struct TermsViewModel {
-    
-    //MARK: - Properties
-    var termList = [TermsModel]()
+class TermsViewModel {
     
     
-    var serviceAuth : Bool {
-        if let auth = UserDefaults.standard.object(forKey: termList[0].termsId) {
-            return auth as! Bool
-        }
-        return false
-    }
-    var privacyAuth : Bool {
-        if let auth = UserDefaults.standard.object(forKey: termList[1].termsId) {
-            return auth as! Bool
-        }
-        return false
-    }
-    var locationAuth : Bool {
-        if let auth = UserDefaults.standard.object(forKey: termList[2].termsId) {
-            return auth as! Bool
-        }
-        return false
-    }
+    var allAuthValid = false
     
-    var allAuth : Bool {
-        if let auth = UserDefaults.standard.object(forKey: "All") as? Bool {
-            return auth
-        }
-        
-        return false
-    }
     
+    var termsCountArray : Array<String> = []
 
     
+    lazy var  detilAllAuthValid : Bool = {
+        if allAuthValid {
+            return true
+        }
+       return false
+    }()
+    
+    
+    
+    
+
+    func allButtonCliecked() -> UIImage{
+        var imageName = ""
+        if allAuthValid {
+            allAuthValid = false
+            imageName = "check_inactive"
+            return UIImage(named: imageName)!
+        } else {
+            allAuthValid = true
+            imageName = "check_active"
+            return UIImage(named: imageName)!
+        }
+        
+    }
+    
+    func allButtonConfirmButton() -> UIColor{
+
+        if allAuthValid {
+            return UIColor.blue500
+        } else {
+            return UIColor.gray300
+        }
+    }
+    
+    func allButtonConfirmButtonIsEnable() -> Bool{
+
+        if allAuthValid {
+            return true
+        } else {
+            return false
+    }
+        
+    }
+    
+    
+    func termsCountArrayValid(termsModel : [TermsModel] ,count : Int){
+
+    if allAuthValid {
+        termsCountArray.removeAll()
+        for item in termsModel {
+            termsCountArray.append(item.termsId)
+        }
+        } else {
+            termsCountArray = Array<String>(repeating: "", count: count)
+    }
+        
+    }
 }

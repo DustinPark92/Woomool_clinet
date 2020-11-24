@@ -25,11 +25,13 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     private let bottomView = UITableView()
     var index = 0
     var showingPayPage = false
-    var userModel : UserModel?
+    var userModel = UserModel(userId: "", email: "", nickname: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
     
     //Network Model
     var goodsModel = [GoodsModel]()
     var historyAllModel = [HistoryAllModel]()
+    var historyGoodsModel = [HistoryGoodsModel]()
+    var historyStoreModel = [HistoryStoreModel]()
     
     
     var couponAbleCount = 0
@@ -46,6 +48,8 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         callGoodsList()
         configureUI()
+        
+        
         navigationController?.navigationBar.isHidden = true
         
 
@@ -53,6 +57,8 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureUI()
+        callRequest()
         tabBarController?.tabBar.isHidden = false
         navigationController?.navigationBar.isHidden = true
     }
@@ -64,8 +70,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
         topView.friendInviteButton.addTarget(self, action: #selector(handleInviteBtn), for: .touchUpInside)
         topView.settingBtn.addTarget(self, action: #selector(handleSettingBtn), for: .touchUpInside)
         topView.nextBtn.addTarget(self, action: #selector(handleUserSetting), for: .touchUpInside)
-        topView.userModel = userModel
-        
+       
         topView.userGradeButton.addTarget(self, action: #selector(handleUserGradeButton), for: .touchUpInside)
         
         
@@ -103,8 +108,27 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                 }
                 self.bottomView.reloadData()
             } else if type == "/store"{
-                
+                self.historyStoreModel.removeAll()
+                for item in json.arrayValue {
+                    
+                    
+                    let historyStoreItem = HistoryStoreModel(serialNo: item["serialNo"].intValue, useCount: item["useCount"].intValue, storeId: item["store"]["storeId"].stringValue, name: item["store"]["name"].stringValue, useDate: item["useDate"].stringValue)
+                    
+                    self.historyStoreModel.append(historyStoreItem)
+                    
+                }
+                self.bottomView.reloadData()
+
             } else if type == "/goods" {
+                self.historyGoodsModel.removeAll()
+                for item in json.arrayValue {
+                    
+                    let historyGoodsItem = HistoryGoodsModel(serialNo: item["serialNo"].intValue, buyDate: item["buyDate"].stringValue, goodsId: item["goods"]["goodsId"].intValue, name: item["goods"]["name"].stringValue, buyPrice: item["buyPrice"].intValue)
+                    
+                    self.historyGoodsModel.append(historyGoodsItem)
+                    
+                }
+                self.bottomView.reloadData()
                 
             }
         } refreshSuccess: {
@@ -118,10 +142,19 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             Request.shared.getUserInfo() { [self] json in
                 
                 userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
-                guard let userModel = userModel else { return }
+                
+                
+                topView.nameLabel.text = "\(userModel.nickname)님"
+                topView.userRank.text = "\(userModel.levelName) 회원입니다."
+                
+                
+                
+                
                 viewModel.couponCount.insert(userModel.buyCount, at: 0)
                 viewModel.couponCount.insert(userModel.useCount, at: 1)
                 viewModel.couponCount.insert(userModel.remCount, at: 2)
+         
+                topView.viewModel.couponCount = viewModel.couponCount
                 
                 self.topView.collectionViewTop.reloadData()
                     
@@ -140,6 +173,16 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                 }
                 
             }
+        
+//        func configure() {
+//            topView.nameLabel.text = "\(userModel?.nickname) 님"
+//            topView.userRank.text = "\(userModel?.levelName) 회원입니다."
+//            viewModel.couponCount.insert(userModel?.buyCount, at: 0)
+//            viewModel.couponCount.insert(userModel?.useCount, at: 1)
+//            viewModel.couponCount.insert(userModel?.remCount, at: 2)
+//            topView.collectionViewTop.reloadData()
+//
+//        }
            
     }
     
@@ -271,6 +314,10 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 2:
                 if viewModel.historyType == "" {
                 return historyAllModel.count
+                } else if viewModel.historyType == "/goods" {
+                    return  historyGoodsModel.count
+                } else if viewModel.historyType == "/store" {
+                    return historyStoreModel.count
                 }
                 return 5
             default:
@@ -313,10 +360,21 @@ extension MypageVC : UITableViewDelegate,UITableViewDataSource {
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
                 
-                if viewModel.historyType == "" {
+                if viewModel.historyType == ""  {
                     let item = historyAllModel[indexPath.row]
                     cell.nameLabel.text = item.name
                     cell.dateLabel.text = item.date
+                    cell.countPriceLabel.text = viewModel.historyAllTypeCountPrice(type: item.types, data: item.countPrice)
+                } else if viewModel.historyType == "/goods"{
+                    let item = historyGoodsModel[indexPath.row]
+                    cell.nameLabel.text = item.name
+                    cell.dateLabel.text = item.buyDate
+                    cell.countPriceLabel.text = "\(item.buyPrice.withCommas())원"
+                } else if viewModel.historyType == "/store" {
+                    let item = historyStoreModel[indexPath.row]
+                    cell.nameLabel.text = item.name
+                    cell.dateLabel.text = item.useDate
+                    cell.countPriceLabel.text = "-\(item.useCount)회"
                 }
                 cell.selectionStyle = .none
                 return cell

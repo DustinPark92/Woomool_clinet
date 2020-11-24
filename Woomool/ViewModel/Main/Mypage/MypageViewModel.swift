@@ -48,7 +48,7 @@ class MypageViewModel {
     
     let color = UIColor()
     let couponTopLabelList = ["구매","사용","잔여"]
-    var couponCount = [12,1,11]
+    var couponCount = Array<Int>(repeating: 0, count: 3)
     let couponImage = ["buy_mypage","use_mypage","coupon_mypage"]
     var seperatorView = true
     var i = 0
@@ -100,48 +100,21 @@ class MypageViewModel {
        
         print("\(thisMonth),\(monthConfig)")
         
-//        month = thisMonth + monthConfig
-//
-//
-//
-//        if month > 12 {
-//            if month % 12 == 0 {
-//                month = 12
-//            } else {
-//                month = month % 12
-//            }
-//        } else if month < 1{
-//
-//        } else {
-//            month = thisMonth + monthConfig
-//        }
-//
-//        print(month)
-        
-//
-//        if thisMonth + monthConfig > 12  {
-//
-//            if (thisMonth + monthConfig) % 12 == 0  {
-//
-//                thisMonth = 12
-//            } else {
-//            thisMonth = (thisMonth + monthConfig) % 12
-//
-//            }
-//        } else if thisMonth + monthConfig < 1 {
-//            thisMonth = 12
-//
-//        } else {
-//            thisMonth = thisMonth + monthConfig
-//        }
-//
-       
-        
-        
-        
+
         return "\(year)-\(month)"
     }
     
+    
+    func historyAllTypeCountPrice(type : String, data : Int) -> String {
+        
+        if type == "G" {
+            return "\(data.withCommas())원"
+        } else if type == "S" {
+            return "- \(data)회"
+        } else {
+            return "+ \(data)회"
+        }
+    }
     
     func CouponView(topLabel : UILabel, bottomLabel: UILabel, imageView : UIImageView,sv : UIView ) -> UIView {
         let view = UIView()

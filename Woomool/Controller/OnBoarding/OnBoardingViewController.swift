@@ -111,7 +111,7 @@ class OnBoardingViewController: UIViewController {
     //MARK: - objc
     
     @objc func handleLoginView() {
-        let controller = AuthPopUpViewController()
+        let controller = AuthPopUpViewController(termsIdArray: [])
         controller.modalPresentationStyle = .overCurrentContext
         controller.modalTransitionStyle = .coverVertical
         controller.titleLabel = "로그인"
@@ -121,7 +121,7 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func handleSignUpView() {
-        let controller = PrivateUserInfoAuthViewController()
+        let controller = PrivateAuthVC()
         controller.modalPresentationStyle = .overCurrentContext
         controller.modalTransitionStyle = .coverVertical
         present(controller, animated: true, completion: nil)
@@ -131,7 +131,12 @@ class OnBoardingViewController: UIViewController {
 //        let controller = MainTC()
 //        UIApplication.shared.windows.first?.rootViewController = controller
 //        UIApplication.shared.windows.first?.makeKeyAndVisible()
-        let controller = SignUpViewController()
+        
+        guard let termsIdArray = noti.object else {
+            return
+        }
+        
+        let controller = SignUpViewController(termsIdArray: termsIdArray as! Array<String>)
         navigationController?.pushViewController(controller, animated: true)
       }
     
