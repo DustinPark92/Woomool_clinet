@@ -32,7 +32,7 @@ struct URLSource {
      6.비밀번호 찾기 : /v1/user/password/{email}
      */
     static let user = common + "v1/user"
-    static let login = common + "v1/user/login"
+    static let login = common + "/v1/login"
     static let findPW = common + "v1/user/password/"
     
     
