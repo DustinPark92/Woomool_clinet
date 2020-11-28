@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import KakaoSDKTalk
+import SafariServices
 
 private let reuseIdentifier = "UserRequestTableViewCell"
 
@@ -30,6 +32,7 @@ class UserRequestViewController: UITableViewController {
     func configureTV() {
         tableView.tableHeaderView = headerView
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 337)
+        headerView.kakaoButton.addTarget(self, action: #selector(handleKakaoButton), for: .touchUpInside)
         tableView.register(UserRequestTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView()
        
@@ -38,6 +41,16 @@ class UserRequestViewController: UITableViewController {
     @objc func handleDismiss() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func handleKakaoButton() {
+        guard let url = URL(string: "http://pf.kakao.com/_xhbPfK/chat") else { return }
+
+        let safariViewController = SFSafariViewController(url: url)
+
+        present(safariViewController, animated: true, completion: nil)
+        }
+        
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return UserRequestOption.allCases.count

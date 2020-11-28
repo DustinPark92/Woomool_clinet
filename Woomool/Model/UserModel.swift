@@ -30,6 +30,7 @@ struct UserModel {
     let userId : String
     let email : String
     let nickname : String
+    let types : String
     let useCount : Int
     let remCount : Int
     let buyCount : Int

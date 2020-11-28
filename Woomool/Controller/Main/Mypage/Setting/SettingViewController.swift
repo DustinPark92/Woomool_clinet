@@ -7,6 +7,11 @@
 //
 
 import UIKit
+import NaverThirdPartyLogin
+import AuthenticationServices
+import KakaoSDKAuth
+import KakaoSDKUser
+import GoogleSignIn
 
 private let reuseIdentifier = "SettingTableViewCell"
 
@@ -19,7 +24,10 @@ class SettingViewController: UITableViewController {
     
     let viewModel = SettingViewModel()
     
+    var userLogintype = ""
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTV()
@@ -52,7 +60,7 @@ class SettingViewController: UITableViewController {
     }
     
     func delUserInfo() {
-        
+
         UserDefaults.standard.removeObject(forKey: "accessToken")
         UserDefaults.standard.removeObject(forKey: "refreshToken")
         UserDefaults.standard.removeObject(forKey: "userId")
@@ -63,6 +71,35 @@ class SettingViewController: UITableViewController {
         UIApplication.shared.windows.first?.rootViewController = controller
         UIApplication.shared.windows.first?.makeKeyAndVisible()
 
+
+    }
+    
+    func snsTypesLogOut() {
+        switch userLogintype {
+        case "A":
+            print("Apple")
+            self.delUserInfo()
+        case "G":
+            print("google")
+            self.delUserInfo()
+        case "K":
+            UserApi.shared.logout {(error) in
+                if let error = error {
+                    print(error)
+                }
+                else {
+                    print("logout() success.")
+                    self.delUserInfo()
+                }
+            }
+        case "N":
+         loginInstance?.requestDeleteToken()
+            self.delUserInfo()
+        default:
+            self.delUserInfo()
+        }
+        
+        
     }
     
     @objc func handleDismiss() {
@@ -162,14 +199,12 @@ class SettingViewController: UITableViewController {
             if indexPath.row == 0 {
 
             } else if indexPath.row == 1 {
-                delUserInfo()
+                self.snsTypesLogOut()
                 
 
             } else if indexPath.row == 2 {
                 Request.shared.delUser { json in
-                   
-
-                    self.delUserInfo()
+                    self.snsTypesLogOut()
                 } refreshSuccess: {
                     Request.shared.delUser { json in
        
@@ -190,3 +225,74 @@ class SettingViewController: UITableViewController {
 
 
 }
+
+
+
+
+
+extension SettingViewController: ASAuthorizationControllerPresentationContextProviding,ASAuthorizationControllerDelegate {
+    
+    // For present window
+    @available(iOS 13.0, *)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
+    }
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print(error.localizedDescription)
+    }
+
+    
+    @available(iOS 13.0, *)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+     
+    }
+    
+}
+}
+
+extension SettingViewController: NaverThirdPartyLoginConnectionDelegate {
+  // 로그인 버튼을 눌렀을 경우 열게 될 브라우저
+  func oauth20ConnectionDidOpenInAppBrowser(forOAuth request: URLRequest!) {
+
+  }
+  
+  // 로그인에 성공했을 경우 호출
+  func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
+    print("[Success] : Success Naver Login")
+  }
+  
+  // 접근 토큰 갱신
+  func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
+    
+  }
+  
+  // 로그아웃 할 경우 호출(토큰 삭제)
+  func oauth20ConnectionDidFinishDeleteToken() {
+    loginInstance?.requestDeleteToken()
+  }
+  
+  // 모든 Error
+  func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
+    print("[Error] :", error.localizedDescription)
+  }
+}
+
+
+extension SettingViewController : GIDSignInDelegate {
+    
+    // 연동을 시도 했을때 불러오는 메소드
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+
+    }
+        
+    // 구글 로그인 연동 해제했을때 불러오는 메소드
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("Disconnect")
+    }
+    
+}
+
+

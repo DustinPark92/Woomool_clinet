@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 import NaverThirdPartyLogin
 import AuthenticationServices
-import Alamofire
 import KakaoSDKAuth
 import KakaoSDKUser
 import GoogleSignIn
@@ -68,9 +69,7 @@ class AuthPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+
         
         let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .whiteOutline)
         
@@ -100,6 +99,15 @@ class AuthPopUpViewController: UIViewController {
         
 
     }
+    
+    func requestSNSConnect(type: String,snsToken : String, Success: @escaping(JSON) -> ()) {
+        
+        Request.shared.postSNSUserLogin(type: type, snsToken: snsToken) { json in
+            Success(json)
+        }
+        
+        
+    }
     @objc func handleAppleLogin() {
 
             let appleIDProvider = ASAuthorizationAppleIDProvider()
@@ -112,29 +120,50 @@ class AuthPopUpViewController: UIViewController {
         
         
     }
-    
-    @objc func handleNaverLogin() {
+    @objc private func handleNaverLogin(_ sender: UIButton) {
+        
         loginInstance?.delegate = self
         loginInstance?.requestThirdPartyLogin()
-        
+                
     }
+    
     @objc func handleKakaoLogin() {
-        AuthApi.shared.loginWithKakaoAccount {(oauthToken, error) in
+//        let controller = MainTC()
+//
+//        UserDefaults.standard.removeObject(forKey: "userId")
+//        UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
+//        UIApplication.shared.windows.first?.rootViewController = controller
+//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+
+        if (AuthApi.isKakaoTalkLoginAvailable()) {
+            AuthApi.shared.loginWithKakaoTalk { [self](oauthToken, error) in
                 if let error = error {
                     print(error)
                 }
                 else {
-                    print("loginWithKakaoAccount() success.")
-
+                    
+                    guard let accessToken = oauthToken?.accessToken else {
+                        return
+                    }
+                    print("loginWithKakaoTalk() success.")
+                    print("토큰은? \(accessToken)")
+                    requestSNSConnect(type: "K", snsToken: accessToken) { json in
+                        print(json)
+                    }
                     //do something
-                    _ = oauthToken
+                   
                 }
             }
+        }
     }
     
     @objc func handleGoogleLogin() {
-        
-        GIDSignIn.sharedInstance().signIn()
+       // loginInstance?.requestDeleteToken()
+
+//        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
+//        GIDSignIn.sharedInstance().signIn()
        
     }
     
@@ -197,21 +226,13 @@ class AuthPopUpViewController: UIViewController {
       
       guard let tokenType = loginInstance?.tokenType else { return }
       guard let accessToken = loginInstance?.accessToken else { return }
+        
+        guard let refreshToken = loginInstance?.refreshToken else { return }
       let urlStr = "https://openapi.naver.com/v1/nid/me"
-      let url = URL(string: urlStr)!
-      
-      let authorization = "\(tokenType) \(accessToken)"
-      
-      let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
-      
-        req.responseJSON { response in
-        guard let result = response.value as? [String: Any] else { return }
-        guard let object = result["response"] as? [String: Any] else { return }
-        guard let name = object["name"] as? String else { return }
-        guard let email = object["email"] as? String else { return }
-        guard let nickname = object["nickname"] as? String else { return }
-
+        requestSNSConnect(type: "N", snsToken: accessToken) { json in
+            print(json)
         }
+
     }
 
 }
@@ -309,7 +330,7 @@ extension AuthPopUpViewController : GIDSignInDelegate
             let givenName = user.profile.givenName,
             let familyName = user.profile.familyName,
             let email = user.profile.email {
-                
+            
             print("Token : \(idToken)")
             print("User ID : \(userId)")
             print("User Email : \(email)")

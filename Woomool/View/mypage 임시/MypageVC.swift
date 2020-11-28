@@ -25,7 +25,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     private let bottomView = UITableView()
     var index = 0
     var showingPayPage = false
-    var userModel = UserModel(userId: "", email: "", nickname: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
+    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
     
     //Network Model
     var goodsModel = [GoodsModel]()
@@ -141,7 +141,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             
             Request.shared.getUserInfo() { [self] json in
                 
-                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
                 
                 
                 topView.nameLabel.text = "\(userModel.nickname)님"
@@ -161,7 +161,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             } refreshSuccess: {
                 Request.shared.getUserInfo() { [self] json in
                     
-                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
                     
             
                     
@@ -198,6 +198,7 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func handleSettingBtn() {
         let controller = SettingViewController(style: .grouped)
+        controller.userLogintype = userModel.types
         navigationController?.pushViewController(controller, animated : true)
         
         

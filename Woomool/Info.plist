@@ -61,6 +61,11 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+    <key>LSApplicationQueriesSchemes</key>
+     <array>
+         <string>kakaokompassauth</string>
+         <string>kakaolink</string>
+     </array>
 	<key>NSCameraUsageDescription</key>
 	<string>Qr코드 인식을 위해서, 고객님의 카메라 기능을 사용 권한이 필요합니다.</string>
 	<key>NSLocationAlwaysUsageDescription</key>

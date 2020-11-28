@@ -59,19 +59,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         
-        if let url = URLContexts.first?.url {
-          if (AuthApi.isKakaoTalkLoginUrl(url)) {
-            _ = AuthController.handleOpenUrl(url: url)
-          }
-        }
+        guard let url = URLContexts.first?.url else { return }
         
-      NaverThirdPartyLoginConnection
-        .getSharedInstance()?
-        .receiveAccessToken(URLContexts.first?.url)
+ 
+        
+        NaverThirdPartyLoginConnection
+                    .getSharedInstance()?
+                    .receiveAccessToken(url)
         
         guard let scheme = URLContexts.first?.url.scheme else { return }
         if scheme.contains("com.googleusercontent.apps") {
             GIDSignIn.sharedInstance().handle(URLContexts.first?.url)
+        }
+        if let url = URLContexts.first?.url {
+          if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            _ = AuthController.handleOpenUrl(url: url)
+          }
         }
     }
     

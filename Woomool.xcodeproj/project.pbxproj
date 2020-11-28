@@ -371,7 +371,7 @@
 		DA36459424F6830A00294C2B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DAE782EA25065C4900944B4A /* mypage 임시 */,
+				DAE782EA25065C4900944B4A /* mypage 임시 */,
 				DA8191D224FA3C640021F2B5 /* OnBoarding */,
 				DA3645C924F7A1FA00294C2B /* Main */,
 				DA3645C324F7613A00294C2B /* Authentication */,
@@ -909,7 +909,7 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
+		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
 			isa = PBXGroup;
 			children = (
 				DAE782E825065BAB00944B4A /* MypageVC.swift */,
@@ -1378,7 +1378,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3VT454RG8M;
 				INFOPLIST_FILE = Woomool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1399,7 +1399,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3VT454RG8M;
 				INFOPLIST_FILE = Woomool/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

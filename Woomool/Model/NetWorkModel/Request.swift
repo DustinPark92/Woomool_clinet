@@ -148,6 +148,37 @@ class Request {
             }
          }
     
+    
+    
+    func postSNSUserLogin(type: String,snsToken : String, success : @escaping (JSON) -> () ) {
+
+        let url = URLSource.login + "/" + type
+        
+        let token = "4c2bd83c-c68a-4898-b5c7-7c2b74edff9a"
+
+        let header : HTTPHeaders = ["Content-Type" : "application/json","authorization" : "Bearer \(token)" ]
+        
+        let param = [
+            "token" : snsToken
+        ]
+        
+
+        AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+                    self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+
+            }
+         }
+    
     func getUserInfo(success : @escaping (JSON) -> (),refreshSuccess: @escaping () -> ()) {
 
         guard let userId = defaults.object(forKey: "userId") else { return }
