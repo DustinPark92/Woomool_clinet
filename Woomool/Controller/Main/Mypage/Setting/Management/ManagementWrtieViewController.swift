@@ -47,8 +47,15 @@ class ManagementWrtieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(popWoomoolManagement(noti:)), name: NSNotification.Name("popWoomoolManagement"), object: nil)
        
     }
+    
+    @objc func popWoomoolManagement(noti : NSNotification) {
+        navigationController?.popViewController(animated: true)
+      }
+    
     
     func configureUI() {
         title = "수질관리 요청"
@@ -85,13 +92,13 @@ class ManagementWrtieViewController: UIViewController {
     
     @objc func handleNext() {
         
-        Request.shared.postStoreComplain(storeId: storeId, contents: contents) { json in
+        APIRequest.shared.postStoreComplain(storeId: storeId, contents: contents) { json in
             print(json)
-            self.showOkAlert(title: "고객님의 소중한 의견 감사합니다.", message: "") {
-                self.navigationController?.popViewController(animated: true)
-            }
+            let controller = CustomAlertViewController(beforeType: singleAlertContent.woomoolManagement.rawValue)
+            controller.modalPresentationStyle = .overCurrentContext
+            self.present(controller, animated: true, completion: nil)
         } refreshSuccess: {
-            Request.shared.postStoreComplain(storeId: self.storeId, contents: self.contents) { json in
+            APIRequest.shared.postStoreComplain(storeId: self.storeId, contents: self.contents) { json in
                 self.showOkAlert(title: "고객님의 소중한 의견 감사합니다.", message: "") {
                     self.navigationController?.popViewController(animated: true)
                 }

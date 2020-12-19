@@ -60,6 +60,7 @@ class SettingViewController: UITableViewController {
     }
     
     func delUserInfo() {
+        
 
         UserDefaults.standard.removeObject(forKey: "accessToken")
         UserDefaults.standard.removeObject(forKey: "refreshToken")
@@ -67,8 +68,8 @@ class SettingViewController: UITableViewController {
         UserDefaults.standard.removeObject(forKey: "")
         
         let controller = OnBoardingViewController()
-        
-        UIApplication.shared.windows.first?.rootViewController = controller
+        let nav = UINavigationController(rootViewController: controller)
+        UIApplication.shared.windows.first?.rootViewController = nav
         UIApplication.shared.windows.first?.makeKeyAndVisible()
 
 
@@ -115,13 +116,13 @@ class SettingViewController: UITableViewController {
         
         switch section {
         case 0:
-            return 1
+            return viewModel.userRequest.count
         case 1:
-            return 3
+            return viewModel.clauseInfo.count
         case 2:
-            return 3
+            return viewModel.marketingInfo.count
         case 3:
-            return 3
+            return viewModel.accountSetting.count
         default:
             return 0
         }
@@ -129,6 +130,8 @@ class SettingViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
+        
+        cell.selectionStyle = .none
         switch indexPath.section {
         case 0:
             cell.mainLabel.text = viewModel.userRequest[indexPath.row]
@@ -199,20 +202,26 @@ class SettingViewController: UITableViewController {
             if indexPath.row == 0 {
 
             } else if indexPath.row == 1 {
+                let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 0)!.rawValue)
+                controller.modalPresentationStyle = .overCurrentContext
+                present(controller, animated: true, completion: nil)
+                
                 self.snsTypesLogOut()
                 
 
             } else if indexPath.row == 2 {
-                Request.shared.delUser { json in
-                    self.snsTypesLogOut()
-                } refreshSuccess: {
-                    Request.shared.delUser { json in
-       
-                        self.delUserInfo()
-                    } refreshSuccess: {
-                        print("nil")
-                    }
-                }
+                
+                let controller = UserDelViewController()
+                navigationController?.pushViewController(controller, animated: true)
+                
+                
+//                let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 1)!.rawValue)
+//                controller.modalPresentationStyle = .overCurrentContext
+//                present(controller, animated: true, completion: nil)
+//
+//                APIRequest.shared.delUser { json in
+//                    self.snsTypesLogOut()
+//                }
             }
         default:
             break

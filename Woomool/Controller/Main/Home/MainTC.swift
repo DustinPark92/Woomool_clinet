@@ -16,7 +16,6 @@ class MainTC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tabBar.tintColor = .blue500
         tabBar.unselectedItemTintColor = .gray350
     }

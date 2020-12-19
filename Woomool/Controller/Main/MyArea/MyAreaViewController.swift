@@ -41,20 +41,23 @@ class MyAreaViewController: UIViewController {
     var count = 3
     var locationManager = CLLocationManager()
     
-    lazy var rightBarButton = UIBarButtonItem(image: UIImage(named: "list"), style: .done, target: self, action: #selector(handleMapList))
+    lazy var cancelRightBarButton = UIBarButtonItem(image: UIImage(named: "MyAreaXicon"), style: .done, target: self, action: #selector(handleMapList))
+    lazy var listRightBarButton = UIBarButtonItem(image: UIImage(named: "list"), style: .done, target: self, action: #selector(handleListButton))
+    
+
     
 
     
     //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.rightBarButtonItem = listRightBarButton
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
         configureUserLocation()
-        currentLocation()
         configureUI()
         configureMap()
         configureTV()
-        callRequest()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(pushWooMoolService(noti:)), name: NSNotification.Name("pushWooMoolService"), object: nil)
         
  
@@ -65,7 +68,11 @@ class MyAreaViewController: UIViewController {
     }
     
     func callRequest() {
-        Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
+        
+        
+        print("유저 위치는? \(viewModel.userLocation)")
+        
+        APIRequest.shared.getStoreList(lat:viewModel.userLocation[0],lon: viewModel.userLocation[1]) { json in
 
             for item in json.array! {
                 
@@ -77,23 +84,6 @@ class MyAreaViewController: UIViewController {
             }
             
             self.tableView.reloadData()
-        } refreshSuccess: {
-            Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
- 
-                
-                for item in json.array! {
-                    
-                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                               , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
-                    
-                    
-                    self.storeModel.append(storeData)
-                }
-                
-                self.tableView.reloadData()
-            } refreshSuccess: {
-                
-            }
         }
     }
     
@@ -116,8 +106,7 @@ class MyAreaViewController: UIViewController {
         mapView.touchDelegate = self
 
         
-  
-//        viewModel.setActiveIcon(mapView: mapView, lat: 37.5455212, lng: 127.0711417, setActive: "pos_inactive", marker: marker)
+
         
 
         
@@ -133,7 +122,7 @@ class MyAreaViewController: UIViewController {
         bottomActionSheet.isHidden = false
         bottomActionSheetFooter.isHidden = true
         tableView.isHidden = true
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationItem.rightBarButtonItem = cancelRightBarButton
         
         
         bottomActionSheet.distanceNotiLabel.isHidden = true
@@ -163,9 +152,6 @@ class MyAreaViewController: UIViewController {
     
     
     func configureTV() {
-        
-
-
         let stack = UIStackView(arrangedSubviews: [mapView,bottomActionSheet,cafeDetailView,tableView,bottomActionSheetFooter])
         view.addSubview(stack)
         stack.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor)
@@ -173,6 +159,7 @@ class MyAreaViewController: UIViewController {
         stack.spacing = 0
         view.addSubview(myLocationButton)
         myLocationButton.anchor(left:mapView.leftAnchor,bottom: mapView.bottomAnchor,paddingLeft: 15,paddingBottom: 8)
+        myLocationButton.addTarget(self, action: #selector(handleMyLocation), for: .touchUpInside)
         cafeDetailView.setDimensions(width: view.frame.width, height: 220)
         bottomActionSheet.setDimensions(width: view.frame.width, height: 56)
         bottomActionSheetFooter.setDimensions(width: view.frame.width, height: 100)
@@ -193,7 +180,7 @@ class MyAreaViewController: UIViewController {
     }
     
     func callCafeDetailByMap(storeId : String, lat: Double,lon : Double,success : @escaping() -> ()) {
-        Request.shared.getStoreDetail(storeId: storeId, lat: lat, lon: lon) { json in
+        APIRequest.shared.getStoreDetail(storeId: storeId, lat: lat, lon: lon) { json in
           let pickupStoreModel = self.pickupStoreModel
             
             
@@ -212,29 +199,6 @@ class MyAreaViewController: UIViewController {
         
             success()
             
-        } refreshSuccess: {
-            Request.shared.getStoreDetail(storeId: storeId, lat: lat, lon: lon) { json in
-              let pickupStoreModel = self.pickupStoreModel
-                
-                
-                pickupStoreModel.address = json["address"].stringValue
-                pickupStoreModel.operTime = json["operTime"].stringValue
-                pickupStoreModel.scopeColor = json["scopeColor"].stringValue
-                pickupStoreModel.latitude = json["latitude"].doubleValue
-                pickupStoreModel.storeId = json["storeId"].stringValue
-                pickupStoreModel.fresh = json["fresh"].stringValue
-                pickupStoreModel.scope = json["scope"].doubleValue
-                pickupStoreModel.longitude = json["longitude"].doubleValue
-                pickupStoreModel.distance = json["distance"].stringValue
-                pickupStoreModel.name = json["name"].stringValue
-                pickupStoreModel.image = json["image"].stringValue
-                pickupStoreModel.contact = json["contact"].stringValue
-                
-                success()
-            } refreshSuccess: {
-                   print("nil")
-               }
-            
         }
 
     }
@@ -252,7 +216,8 @@ class MyAreaViewController: UIViewController {
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
             tableView.isHidden = true
-            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = listRightBarButton
+            self.navigationItem.rightBarButtonItem?.tintColor = .black
         } else if viewModel.bottomSheetCondition == "basicFold" {
             viewModel.bottomSheetCondition = "basicUnFold"
             bottomActionSheet.distanceNotiLabel.isHidden = false
@@ -260,7 +225,8 @@ class MyAreaViewController: UIViewController {
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = false
             tableView.isHidden = false
-            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem = listRightBarButton
+            self.navigationItem.rightBarButtonItem?.tintColor = .black
         } else if viewModel.bottomSheetCondition == "cafeUnFold" {
             viewModel.bottomSheetCondition = "cafeFold"
             bottomActionSheet.distanceNotiLabel.isHidden = true
@@ -268,7 +234,8 @@ class MyAreaViewController: UIViewController {
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
             tableView.isHidden = true
-            self.navigationItem.rightBarButtonItem = rightBarButton
+            self.navigationItem.rightBarButtonItem = cancelRightBarButton
+            self.navigationItem.rightBarButtonItem?.tintColor = .black
         } else if viewModel.bottomSheetCondition == "cafeFold" {
             viewModel.bottomSheetCondition = "cafeUnFold"
             cafeDetailView.isHidden = false
@@ -276,7 +243,8 @@ class MyAreaViewController: UIViewController {
             bottomActionSheet.isHidden = false
             bottomActionSheetFooter.isHidden = true
             tableView.isHidden = true
-            self.navigationItem.rightBarButtonItem = rightBarButton
+            self.navigationItem.rightBarButtonItem = cancelRightBarButton
+            self.navigationItem.rightBarButtonItem?.tintColor = .black
             
         }
     }
@@ -305,7 +273,14 @@ class MyAreaViewController: UIViewController {
         bottomActionSheet.isHidden = false
         bottomActionSheetFooter.isHidden = false
         tableView.isHidden = false
+        self.navigationItem.rightBarButtonItem = listRightBarButton
         activeMarker.mapView = nil
+    }
+    
+    @objc func handleListButton() {
+        let controller = MyAreaDetailTableViewController()
+        controller.userLocation = viewModel.userLocation
+           present(controller, animated: true, completion: nil)
     }
     
     
@@ -352,6 +327,7 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
             
         } else if scrollView.contentOffset.y > 3 {
             let controller = MyAreaDetailTableViewController()
+            controller.userLocation = viewModel.userLocation
                present(controller, animated: true, completion: nil)
         }
     }
@@ -366,7 +342,7 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         bottomActionSheet.distanceNotiLabel.isHidden = true
         bottomActionSheetFooter.isHidden = true
         tableView.isHidden = true
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationItem.rightBarButtonItem = cancelRightBarButton
         
         
         cafeDetailView.adressLabel.text = storeItem.address
@@ -415,7 +391,7 @@ extension MyAreaViewController : NMFMapViewTouchDelegate {
         } else {
             activeMarker.mapView = nil
       
-            callCafeDetailByMap(storeId: viewModel.storeId[0], lat: 37.4921514, lon: 127.0118619, success: {
+            callCafeDetailByMap(storeId: viewModel.storeId[0], lat: viewModel.userLocation[0], lon: viewModel.userLocation[1], success: {
                 
                 self.viewModel.bottomSheetCondition = "cafeFold"
                 self.bottomActionSheet.distanceNotiLabel.isHidden = true
@@ -436,7 +412,7 @@ extension MyAreaViewController : NMFMapViewTouchDelegate {
                 self.bottomActionSheet.isHidden = false
                 self.bottomActionSheetFooter.isHidden = true
                 self.tableView.isHidden = true
-                self.navigationItem.rightBarButtonItem = self.rightBarButton
+                self.navigationItem.rightBarButtonItem = self.cancelRightBarButton
                 
                 self.viewModel.setActiveIcon(mapView: mapView, lat: self.pickupStoreModel.latitude, lng: self.pickupStoreModel.longitude, setActive: "pos_active", marker: self.activeMarker)
             })
@@ -457,31 +433,7 @@ extension MyAreaViewController : NMFMapViewTouchDelegate {
 //1
 extension MyAreaViewController: CLLocationManagerDelegate {
     // 2
-    
-    
-    func currentLocation() {
 
-            if CLLocationManager.locationServicesEnabled() {
-                switch CLLocationManager.authorizationStatus() {
-
-                case .notDetermined, .restricted, .denied:
-                    let alert = UIAlertController(title: "위치 정보를 확인 할 수 없습니다.", message: "지도를 사용하기 위해서는 위치정보가 필요 합니다.", preferredStyle: .alert)
-                    let addAction = UIAlertAction(title: "확인", style: .cancel) { (_) in
-                        self.dismiss(animated: true, completion: nil)
-                    }
-                    alert.addAction(addAction)
-                    present(alert, animated: true, completion: nil)
-                    
-   
-                case .authorizedAlways, .authorizedWhenInUse:
-                        print("ok")
-                    @unknown default:
-                    break
-                }
-                } else {
-                    print("Location services are not enabled")
-            }
-    }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         // 3
         guard status == .authorizedWhenInUse else {
@@ -502,18 +454,18 @@ extension MyAreaViewController: CLLocationManagerDelegate {
         guard let location = locations.first else {
             return
         }
+        viewModel.userLocation.removeAll()
+        viewModel.userLocation.append(location.coordinate.latitude)
+        viewModel.userLocation.append(location.coordinate.longitude)
         
+        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: viewModel.userLocation[0], lng: viewModel.userLocation[1]))
+
+        callRequest()
         
-        
-        let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: 37.4921514, lng: 127.0118619))
         mapView.moveCamera(cameraUpdate)
-//        
+        
         locationManager.stopUpdatingLocation()
         
-        
-        // 7
 
-        // 8
-        
     }
 }

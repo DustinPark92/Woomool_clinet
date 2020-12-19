@@ -144,7 +144,7 @@ class QrScannverViewController: UIViewController {
             return
         }
         
-        Request.shared.getStoreLookUp(storeId: storeId) { json in
+        APIRequest.shared.getStoreLookUp(storeId: storeId) { json in
             self.storeLookUpModel.name = json["name"].stringValue
             self.storeLookUpModel.storeId = json["storeId"].stringValue
             let controller = QrAuthViewController()
@@ -152,23 +152,7 @@ class QrScannverViewController: UIViewController {
             controller.storeLookUpModel = self.storeLookUpModel
             self.present(controller, animated: true, completion: nil)
             
-        } refreshSuccess: {
-            Request.shared.getStoreLookUp(storeId: storeId) { json in
-                self.storeLookUpModel.name = json["name"].stringValue
-                self.storeLookUpModel.storeId = json["storeId"].stringValue
-                let controller = QrAuthViewController()
-                controller.storeLookUpModel = self.storeLookUpModel
-                controller.modalPresentationStyle = .overCurrentContext
-                self.present(controller, animated: true, completion: nil)
-                
-            } refreshSuccess: {
-                print("nil")
-            }
         }
-
-        
-
-        
 
     }
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {

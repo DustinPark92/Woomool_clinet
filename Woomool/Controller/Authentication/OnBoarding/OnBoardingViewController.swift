@@ -15,15 +15,15 @@ private let reuseIdentifier = "OnBoardingCollectionViewCell"
 class OnBoardingViewController: UIViewController {
     
 
-    private let loginLabel : UILabel = {
-        let lb = UILabel()
-        lb.text = "이미 가입하셨나요?"
-        lb.font = UIFont.NotoRegular16
-        lb.textColor = .black400
-        return lb
-    }()
-    
-    private let loginButton : UIButton = OnBoardingModel().attributedButton("로그인 하기")
+//    private let loginLabel : UILabel = {
+//        let lb = UILabel()
+//        lb.text = "이미 가입하셨나요?"
+//        lb.font = UIFont.NotoRegular16
+//        lb.textColor = .black400
+//        return lb
+//    }()
+//
+//    private let loginButton : UIButton = OnBoardingModel().attributedButton("로그인 하기")
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -51,7 +51,7 @@ class OnBoardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(pushViewSignUp(noti:)), name: NSNotification.Name("pushSignUp"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pushViewPhoneAuth(noti:)), name: NSNotification.Name("pushViewPhoneAuth"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewLogin(noti:)), name: NSNotification.Name("pushLogin"), object: nil)
         
@@ -76,12 +76,12 @@ class OnBoardingViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(pageControl)
         view.addSubview(startButton)
-        view.addSubview(loginLabel)
-        view.addSubview(loginButton)
+//        view.addSubview(loginLabel)
+//        view.addSubview(loginButton)
         
         startButton.isHidden = true
-        loginButton.isHidden = true
-        loginLabel.isHidden = true
+//        loginButton.isHidden = true
+//        loginLabel.isHidden = true
         
         
 
@@ -89,10 +89,10 @@ class OnBoardingViewController: UIViewController {
         pageControl.anchor(top:collectionView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 10,paddingLeft: 37,paddingRight: 38)
         startButton.anchor(top:pageControl.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 46,paddingLeft:37,paddingRight:38)
         
-        loginLabel.centerX(inView: view, topAnchor: loginButton.topAnchor, paddingTop: -20)
-        loginButton.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor ,paddingBottom: view.frame.height/13)
-        loginButton.centerX(inView: view)
-        loginButton.addTarget(self, action: #selector(handleLoginView), for: .touchUpInside)
+//        loginLabel.centerX(inView: view, topAnchor: loginButton.topAnchor, paddingTop: -20)
+//        loginButton.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor ,paddingBottom: view.frame.height/13)
+//        loginButton.centerX(inView: view)
+//        loginButton.addTarget(self, action: #selector(handleLoginView), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(handleSignUpView), for: .touchUpInside)
     }
     
@@ -121,22 +121,28 @@ class OnBoardingViewController: UIViewController {
     }
     
     @objc func handleSignUpView() {
-        let controller = PrivateAuthVC()
+        let controller = AuthPopUpViewController(termsIdArray: [])
         controller.modalPresentationStyle = .overCurrentContext
         controller.modalTransitionStyle = .coverVertical
+        controller.titleLabel = "로그인"
+        controller.emailButtonTitle = "이메일로 로그인하기"
         present(controller, animated: true, completion: nil)
+//        let controller = PrivateAuthVC()
+//        controller.modalPresentationStyle = .overCurrentContext
+//        controller.modalTransitionStyle = .coverVertical
+//        present(controller, animated: true, completion: nil)
     }
     
-    @objc func pushViewSignUp(noti : NSNotification) {
+    @objc func pushViewPhoneAuth(noti : NSNotification) {
 //        let controller = MainTC()
 //        UIApplication.shared.windows.first?.rootViewController = controller
 //        UIApplication.shared.windows.first?.makeKeyAndVisible()
         
-        guard let termsIdArray = noti.object else {
-            return
-        }
+//        guard let termsIdArray = noti.object else {
+//            return
+//        }
         
-        let controller = SignUpViewController(termsIdArray: termsIdArray as! Array<String>)
+        let controller = PhoneAuthViewController()
         navigationController?.pushViewController(controller, animated: true)
       }
     
@@ -185,14 +191,10 @@ extension OnBoardingViewController : UICollectionViewDelegate,UICollectionViewDa
         if indexPath.row == 2 {
             UIView.animate(withDuration: 3.0) {
                 self.startButton.isHidden = false
-                self.loginButton.isHidden = false
-                self.loginLabel.isHidden = false
             }
             
         } else {
             startButton.isHidden = true
-            loginButton.isHidden = true
-            loginLabel.isHidden = true
         }
     }
     

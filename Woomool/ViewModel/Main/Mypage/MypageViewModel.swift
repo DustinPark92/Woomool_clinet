@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 enum MypageFilterOptions : Int, CaseIterable {
     case my
@@ -44,6 +45,59 @@ enum MypageHistroyOption : Int, CaseIterable {
 }
 
 
+enum PaymethodList : Int , CaseIterable{
+    case credit
+    case bank
+    case fakeAccount
+    
+    var description : String {
+        switch self {
+        case .credit:
+            return "신용 카드"
+        case .bank:
+            return "계좌 이체"
+        case .fakeAccount:
+            return "가상 계좌"
+        }
+    }
+    
+    var activeImage : UIImage {
+        switch self {
+        case .credit:
+            return UIImage(named: "cardActive")!
+        case .bank:
+            return UIImage(named: "bankActive")!
+        case .fakeAccount:
+            return UIImage(named: "fakeAccountActive")!
+        }
+    }
+    
+    var inactiveImage : UIImage {
+        switch self {
+        case .credit:
+            return UIImage(named: "cardInactive")!
+        case .bank:
+            return UIImage(named: "bankInactive")!
+        case .fakeAccount:
+            return UIImage(named: "fakeAccountInactive")!
+        }
+    }
+    
+    
+    var methodCode : String {
+        switch self {
+        case .credit:
+            return "C"
+        case .bank:
+            return "B"
+        case .fakeAccount:
+            return "A"
+        }
+    }
+    
+}
+
+
 class MypageViewModel {
     
     let color = UIColor()
@@ -52,6 +106,7 @@ class MypageViewModel {
     let couponImage = ["buy_mypage","use_mypage","coupon_mypage"]
     var seperatorView = true
     var i = 0
+    var couponAbleCount = 0
     var couponSelected = 0
     var goodsPrice = ""
     var goodsCount = ""
@@ -64,6 +119,29 @@ class MypageViewModel {
     
     var month = 0
     var year = 0
+    
+    
+    var firstPaymentTab = false
+    var couponUsing = false
+    
+    
+    
+    //구매 관련
+    
+    var paymentMethodSelected = ""
+    
+    
+    var couponModel = CouponModel(expiryDate: "", name: "", description: "", minusPrice: 0, types: "", plusCount: 0, expiryDays: 0, couponId: "", imgae: "", couponNo: 0)
+    
+    
+    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
+    
+    var myEnvirModel = MyEnvirModel(useCount: 0, carbonUnit: "", totalCount: 0, carbon: "")
+    
+    
+    var goodsModel = [GoodsModel]()
+    
+    
     
     func getCurrenYearMonths(monthConfig : Int) -> String {
         let currentDateTime = Date()
@@ -105,14 +183,12 @@ class MypageViewModel {
     }
     
     
-    func historyAllTypeCountPrice(type : String, data : Int) -> String {
+    func historyAllTypeCountPrice(priceUnit : String , countUnit : String, price : Int, count : Int) -> String {
         
-        if type == "G" {
-            return "\(data.withCommas())원"
-        } else if type == "S" {
-            return "- \(data)회"
+        if priceUnit == "" {
+            return "\(count)\(countUnit)"
         } else {
-            return "+ \(data)회"
+            return "\(price)\(priceUnit)"
         }
     }
     
@@ -326,6 +402,88 @@ class MypageViewModel {
     }
 
     
+    
+    
+    //MypageNetwork Request
+    
+    func callRequestMyPage(success : @escaping() -> ()) {
+            
+            APIRequest.shared.getUserInfo() {  json in
+                
+                self.userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                
+                DispatchQueue.main.async {
+                    self.couponCount.insert(self.userModel.buyCount, at: 0)
+                    self.couponCount.insert(self.userModel.useCount, at: 1)
+                    self.couponCount.insert(self.userModel.remCount, at: 2)
+                    success()
+                }
+ 
+                    
+            }
+
+    }
+    
+    
+    func callGoodsList(success: @escaping() ->()) {
+        APIRequest.shared.getGoodsList { json in
+            
+            self.couponAbleCount = json["couponCount"].intValue
+            
+            
+            for item in json["goods"].arrayValue {
+                let goodsList = GoodsModel(goodsId: item["goodsId"].stringValue, name: item["name"].stringValue, description: item["description"].stringValue, image: item["image"].stringValue, goodsType:  item["types"].stringValue, ableCount: item["ableCount"].intValue, originPrice: item["originPrice"].intValue, salePrice: item["salePrice"].intValue, discountRate: item["discountRate"].intValue, offerCount: item["offerCount"].intValue)
+                
+                
+                self.goodsModel.append(goodsList)
+            }
+            
+            DispatchQueue.main.async {
+                success()
+            }
+            
+           
+        }
+        
+    }
+    
+    func callPostGoodsPurchase(suceess : @escaping(JSON) -> (), fail : @escaping() ->()) {
+        //        let controller = PaymentExtension()
+        //        present(controller, animated: true, completion: nil)
+        
+        if paymentMethodSelected != "" {
+        APIRequest.shared.PostGoodsPurchase(couponId: couponModel.couponId, goodsId: goodsModel[couponSelected].goodsId, payMethod: paymentMethodSelected, amount: goodsModel[couponSelected].salePrice) { json in
+                    
+                    DispatchQueue.main.async {
+                        suceess(json)
+                    }
+
+//
+//                    }
+                }
+    
+    } else {
+        fail()
+    }
+    }
+    
+    
+    func callUserEnviroment(success : @escaping() -> ()) {
+        APIRequest.shared.getUserEnviroment { json in
+            var myEnvirModel = self.myEnvirModel
+            
+            myEnvirModel.carbon = json["carbon"].stringValue
+            myEnvirModel.carbonUnit = json["carbonUnit"].stringValue
+            myEnvirModel.totalCount = json["totalCount"].intValue
+            myEnvirModel.useCount = json["useCount"].intValue
+            
+            DispatchQueue.main.async {
+                success()
+            }
+        }
+        
+        
+    }
  
     
 }

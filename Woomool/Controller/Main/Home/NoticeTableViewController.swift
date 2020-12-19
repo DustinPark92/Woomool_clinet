@@ -41,16 +41,16 @@ class NoticeTableViewController: UITableViewController {
     
     func callRequest() {
         
-        Request.shared.getUserNoti { json in
+        APIRequest.shared.getUserNoti { json in
             for item in json.arrayValue {
-                let notiItem = NoticeModel(open: false, serialNo: item["serialNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
+                let notiItem = NoticeModel(open: false, messageNo: item["messageNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
                 self.noticeList.append(notiItem)
             }
             self.tableView.reloadData()
         } refreshSuccess: {
-            Request.shared.getUserNoti { json in
+            APIRequest.shared.getUserNoti { json in
                 for item in json.arrayValue {
-                    let notiItem = NoticeModel(open: false, serialNo: item["serialNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
+                    let notiItem = NoticeModel(open: false, messageNo: item["messageNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
                     self.noticeList.append(notiItem)
                 }
                 self.tableView.reloadData()
@@ -105,6 +105,12 @@ class NoticeTableViewController: UITableViewController {
             
             cell.typeLabel.text = item.category
             cell.noticeLabel.text = item.title
+            
+            if noticeList[indexPath.section].status == "Y" {
+                cell.typeLabel.textColor = .black400
+                cell.noticeLabel.textColor = .black400
+                
+            }
             if noticeList[indexPath.section].open {
                 cell.foldButotn.setImage(UIImage(named: "arrow_bottom"), for: .normal)
             } else {
@@ -153,13 +159,13 @@ class NoticeTableViewController: UITableViewController {
                     
                 }else {
                     
-                    Request.shared.putUserNotiReading(serialNo: noticeList[indexPath.section].serialNo) { json in
+                    APIRequest.shared.putUserNotiReading(messageNo: noticeList[indexPath.section].messageNo) { json in
                         print(json)
                         self.noticeList[indexPath.section].open = true
                         let section = IndexSet.init(integer: indexPath.section)
                         tableView.reloadSections(section, with: .fade)
                     } refreshSuccess: {
-                        Request.shared.putUserNotiReading(serialNo: self.noticeList[indexPath.section].serialNo) { json in
+                        APIRequest.shared.putUserNotiReading(messageNo: self.noticeList[indexPath.section].messageNo) { json in
                             self.noticeList[indexPath.section].open = true
                             let section = IndexSet.init(integer: indexPath.section)
                             tableView.reloadSections(section, with: .fade)

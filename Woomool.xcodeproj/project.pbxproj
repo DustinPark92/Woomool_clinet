@@ -77,6 +77,7 @@
 		DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B694250C8896006E6075 /* OurwoomoolViewModel.swift */; };
 		DA72B697250C89F0006E6075 /* BestWoomoolCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */; };
 		DA72B699250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */; };
+		DA730C69258C7EDF00D82F6F /* MyEnvirModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA730C68258C7EDF00D82F6F /* MyEnvirModel.swift */; };
 		DA79E98625020393001B73FA /* AuthPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA79E98525020393001B73FA /* AuthPopUpViewController.swift */; };
 		DA7C245124FCD6B20061C1BE /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245024FCD6B20061C1BE /* MainViewModel.swift */; };
 		DA7C245324FCD7330061C1BE /* MainCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7C245224FCD7330061C1BE /* MainCenterView.swift */; };
@@ -87,6 +88,10 @@
 		DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191DA24FA47940021F2B5 /* OnBoardingModel.swift */; };
 		DA8191DD24FA52160021F2B5 /* SignUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */; };
 		DA8325D525026415005EA0EE /* URLSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8325D425026415005EA0EE /* URLSource.swift */; };
+		DA88ED882584793F0078CB12 /* PhoneAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA88ED872584793F0078CB12 /* PhoneAuthViewController.swift */; };
+		DA88ED8B2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA88ED8A2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift */; };
+		DA88ED8E2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA88ED8D2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift */; };
+		DA88ED91258525150078CB12 /* PaymentAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA88ED90258525150078CB12 /* PaymentAuthViewController.swift */; };
 		DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */; };
 		DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */; };
 		DA8A31D8250F25660049CD8C /* PhoneAuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */; };
@@ -101,7 +106,7 @@
 		DA913DD6254FEB840087464A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD5254FEB840087464A /* EventModel.swift */; };
 		DA913DD925500A620087464A /* GoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD825500A620087464A /* GoodsModel.swift */; };
 		DA913DDC2550197F0087464A /* FAQModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DDB2550197F0087464A /* FAQModel.swift */; };
-		DA959745252716A1002A4271 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA959744252716A1002A4271 /* Request.swift */; };
+		DA959745252716A1002A4271 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA959744252716A1002A4271 /* APIRequest.swift */; };
 		DAA3509C254C01D6005D4071 /* WoomoolImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */; };
 		DAA3509F254C07BD005D4071 /* TermsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509E254C07BD005D4071 /* TermsModel.swift */; };
 		DAA350A2254C095B005D4071 /* AuthDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */; };
@@ -112,6 +117,22 @@
 		DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE124F23E91005F9C6D /* Main.storyboard */; };
 		DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE424F23E94005F9C6D /* Assets.xcassets */; };
 		DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */; };
+		DAAB9591257B5A6600697104 /* TokenIntercepter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9590257B5A6600697104 /* TokenIntercepter.swift */; };
+		DAAB9595257B70A200697104 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9594257B70A200697104 /* Utilites.swift */; };
+		DAAB9598257B73FA00697104 /* CustomAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB9597257B73FA00697104 /* CustomAlertViewController.swift */; };
+		DAAB959C257B7C1600697104 /* MyEnvirCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB959B257B7C1600697104 /* MyEnvirCell1.swift */; };
+		DAAB95A0257B80AF00697104 /* MyEnvirCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB959F257B80AF00697104 /* MyEnvirCell2.swift */; };
+		DAAB95A7257B9D3400697104 /* CustomAlertViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95A6257B9D3400697104 /* CustomAlertViewController2.swift */; };
+		DAAB95AA257BA2F900697104 /* UserDelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95A9257BA2F900697104 /* UserDelViewController.swift */; };
+		DAAB95AE257BA4E500697104 /* UserDelReasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95AD257BA4E500697104 /* UserDelReasonCell.swift */; };
+		DAAB95B6257C8E6800697104 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAAB95B5257C8E6800697104 /* WebKit.framework */; };
+		DAAB95BB257C931F00697104 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95BA257C931F00697104 /* Define.swift */; };
+		DAAB95BE257C938300697104 /* pay_app_urls.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAAB95BD257C938300697104 /* pay_app_urls.plist */; };
+		DAAB95C1257C93E000697104 /* PaymentExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95C0257C93E000697104 /* PaymentExtension.swift */; };
+		DAAB95C5257C948100697104 /* WhiteListSchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95C4257C948100697104 /* WhiteListSchemeHandler.swift */; };
+		DAAB95C8257C949C00697104 /* SchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95C7257C949C00697104 /* SchemeHandler.swift */; };
+		DAAB95CB257C94B200697104 /* SamplePlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95CA257C94B200697104 /* SamplePlistManager.swift */; };
+		DAAB95CF257CA13B00697104 /* UserDelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95CE257CA13B00697104 /* UserDelViewModel.swift */; };
 		DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */; };
 		DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */; };
 		DAAF04EC256CE99B004D18D1 /* PrivateAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */; };
@@ -126,6 +147,7 @@
 		DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */; };
 		DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */; };
 		DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */; };
+		DABD6D4D258CDF69000720C2 /* DeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */; };
 		DAC73DFD24FF5ACF00E2B419 /* MyAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */; };
 		DAC73DFF24FF5B2B00E2B419 /* NearShopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */; };
 		DAC73E0824FF5F9E00E2B419 /* NanumSquareRoundEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0324FF5EBB00E2B419 /* NanumSquareRoundEB.ttf */; };
@@ -158,6 +180,7 @@
 		DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3392542C09A007F9AC5 /* StoreModel.swift */; };
 		DAF4D33D2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */; };
 		DAF4D3412542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */; };
+		DAF4DED6258CE865005B3995 /* KeychainExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4DED5258CE865005B3995 /* KeychainExtension.swift */; };
 		DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */; };
 		DAF9EB302514C9F900B40270 /* CouponPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */; };
 		DAF9EB412515C73B00B40270 /* UserGradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9EB402515C73B00B40270 /* UserGradeViewController.swift */; };
@@ -244,6 +267,7 @@
 		DA72B694250C8896006E6075 /* OurwoomoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurwoomoolViewModel.swift; sourceTree = "<group>"; };
 		DA72B696250C89F0006E6075 /* BestWoomoolCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewController.swift; sourceTree = "<group>"; };
 		DA72B698250C8A31006E6075 /* BestWoomoolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestWoomoolCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA730C68258C7EDF00D82F6F /* MyEnvirModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyEnvirModel.swift; path = ../../../../MyEnvirModel.swift; sourceTree = "<group>"; };
 		DA79E98525020393001B73FA /* AuthPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPopUpViewController.swift; sourceTree = "<group>"; };
 		DA7C245024FCD6B20061C1BE /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		DA7C245224FCD7330061C1BE /* MainCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCenterView.swift; sourceTree = "<group>"; };
@@ -254,6 +278,10 @@
 		DA8191DA24FA47940021F2B5 /* OnBoardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingModel.swift; sourceTree = "<group>"; };
 		DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTableViewCell.swift; sourceTree = "<group>"; };
 		DA8325D425026415005EA0EE /* URLSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSource.swift; sourceTree = "<group>"; };
+		DA88ED872584793F0078CB12 /* PhoneAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewController.swift; sourceTree = "<group>"; };
+		DA88ED8A2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyMethodTableViewCell.swift; sourceTree = "<group>"; };
+		DA88ED8D2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyMethodCollectionViewCell.swift; sourceTree = "<group>"; };
+		DA88ED90258525150078CB12 /* PaymentAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAuthViewController.swift; sourceTree = "<group>"; };
 		DA8A31D3250F22350049CD8C /* PhoneAuthNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthNameTableViewCell.swift; sourceTree = "<group>"; };
 		DA8A31D5250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthAgreeTableViewCell.swift; sourceTree = "<group>"; };
 		DA8A31D7250F25660049CD8C /* PhoneAuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneAuthViewModel.swift; sourceTree = "<group>"; };
@@ -268,7 +296,7 @@
 		DA913DD5254FEB840087464A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		DA913DD825500A620087464A /* GoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsModel.swift; sourceTree = "<group>"; };
 		DA913DDB2550197F0087464A /* FAQModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQModel.swift; sourceTree = "<group>"; };
-		DA959744252716A1002A4271 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		DA959744252716A1002A4271 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolImageCell.swift; sourceTree = "<group>"; };
 		DAA3509E254C07BD005D4071 /* TermsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsModel.swift; sourceTree = "<group>"; };
 		DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +309,22 @@
 		DAAA7EE424F23E94005F9C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAAA7EE724F23E94005F9C6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAAA7EE924F23E94005F9C6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAAB9590257B5A6600697104 /* TokenIntercepter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIntercepter.swift; sourceTree = "<group>"; };
+		DAAB9594257B70A200697104 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
+		DAAB9597257B73FA00697104 /* CustomAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController.swift; sourceTree = "<group>"; };
+		DAAB959B257B7C1600697104 /* MyEnvirCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEnvirCell1.swift; sourceTree = "<group>"; };
+		DAAB959F257B80AF00697104 /* MyEnvirCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEnvirCell2.swift; sourceTree = "<group>"; };
+		DAAB95A6257B9D3400697104 /* CustomAlertViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertViewController2.swift; sourceTree = "<group>"; };
+		DAAB95A9257BA2F900697104 /* UserDelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelViewController.swift; sourceTree = "<group>"; };
+		DAAB95AD257BA4E500697104 /* UserDelReasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelReasonCell.swift; sourceTree = "<group>"; };
+		DAAB95B5257C8E6800697104 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		DAAB95BA257C931F00697104 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		DAAB95BD257C938300697104 /* pay_app_urls.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = pay_app_urls.plist; sourceTree = "<group>"; };
+		DAAB95C0257C93E000697104 /* PaymentExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentExtension.swift; sourceTree = "<group>"; };
+		DAAB95C4257C948100697104 /* WhiteListSchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteListSchemeHandler.swift; sourceTree = "<group>"; };
+		DAAB95C7257C949C00697104 /* SchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeHandler.swift; sourceTree = "<group>"; };
+		DAAB95CA257C94B200697104 /* SamplePlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePlistManager.swift; sourceTree = "<group>"; };
+		DAAB95CE257CA13B00697104 /* UserDelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelViewModel.swift; sourceTree = "<group>"; };
 		DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthVC.swift; sourceTree = "<group>"; };
 		DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthView.swift; sourceTree = "<group>"; };
 		DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthCell.swift; sourceTree = "<group>"; };
@@ -295,6 +339,7 @@
 		DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponSelectViewController.swift; sourceTree = "<group>"; };
 		DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
+		DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceExtension.swift; path = ../../../../../DeviceExtension.swift; sourceTree = "<group>"; };
 		DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaTableViewCell.swift; sourceTree = "<group>"; };
 		DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearShopModel.swift; sourceTree = "<group>"; };
 		DAC73E0124FF5EBB00E2B419 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -327,6 +372,7 @@
 		DAF4D3392542C09A007F9AC5 /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryViewModel.swift; sourceTree = "<group>"; };
 		DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAF4DED5258CE865005B3995 /* KeychainExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainExtension.swift; path = ../../../../../KeychainExtension.swift; sourceTree = "<group>"; };
 		DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPopUpViewController.swift; sourceTree = "<group>"; };
 		DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPopUpView.swift; sourceTree = "<group>"; };
 		DAF9EB402515C73B00B40270 /* UserGradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGradeViewController.swift; sourceTree = "<group>"; };
@@ -344,6 +390,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAAB95B6257C8E6800697104 /* WebKit.framework in Frameworks */,
 				573AD8B92AF76C26BCBCA91C /* Pods_Woomool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +401,7 @@
 		2E4CE4554E9731CA48EA4A86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAAB95B5257C8E6800697104 /* WebKit.framework */,
 				982DECCB6AF3E669368C9365 /* Pods_Woomool.framework */,
 			);
 			name = Frameworks;
@@ -392,7 +440,6 @@
 		DA36459724F6831A00294C2B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DA8191CD24FA39880021F2B5 /* OnBoarding */,
 				DA3645A824F68F3A00294C2B /* Main */,
 				DA3645A524F68EF500294C2B /* Authentication */,
 			);
@@ -402,11 +449,13 @@
 		DA36459824F6831F00294C2B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DAAB95B9257C930B00697104 /* DanalPaymentService */,
 				DAAF5FC0256A821D00150773 /* Item */,
 				DA8E89CF2532E05A0021BE23 /* SecretKey */,
 				DA8325D3250263FF005EA0EE /* NetWorkModel */,
 				DA8191D724FA454C0021F2B5 /* ImageModel.swift */,
 				DAA3509E254C07BD005D4071 /* TermsModel.swift */,
+				DA730C68258C7EDF00D82F6F /* MyEnvirModel.swift */,
 				DA8E89C72532DAE40021BE23 /* NoticeModel.swift */,
 				DA913DD5254FEB840087464A /* EventModel.swift */,
 				DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */,
@@ -424,6 +473,9 @@
 			isa = PBXGroup;
 			children = (
 				DA36459A24F6837700294C2B /* Extension */,
+				DAAB9594257B70A200697104 /* Utilites.swift */,
+				DAAB9597257B73FA00697104 /* CustomAlertViewController.swift */,
+				DAAB95A6257B9D3400697104 /* CustomAlertViewController2.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -439,6 +491,8 @@
 				DA6E2DAC25062A8400A0A548 /* UILabelExtension.swift */,
 				DA6E2DBA25063BB000A0A548 /* TableViewExtension.swift */,
 				DAAF5FBD256A785C00150773 /* IntExtension.swift */,
+				DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */,
+				DAF4DED5258CE865005B3995 /* KeychainExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -448,6 +502,7 @@
 			children = (
 				DA36459D24F684EB00294C2B /* LoginViewController.swift */,
 				DA3645A324F68ED600294C2B /* SignUpViewController.swift */,
+				DA88ED872584793F0078CB12 /* PhoneAuthViewController.swift */,
 				DA30EE86255E4B16000F7356 /* FindPassViewController.swift */,
 				DA79E98525020393001B73FA /* AuthPopUpViewController.swift */,
 				DAA350A1254C095B005D4071 /* AuthDetailTableViewController.swift */,
@@ -457,6 +512,7 @@
 				DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */,
 				DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */,
 				DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */,
+				DA8191CD24FA39880021F2B5 /* OnBoarding */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -607,6 +663,7 @@
 		DA6E2D782504A51100A0A548 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				DAAB95CD257CA12A00697104 /* UserDelete */,
 				DAF9EB442515E59400B40270 /* UserGrade */,
 				DA6E2DA5250618AD00A0A548 /* Setting */,
 				DA6E2D842504B23300A0A548 /* UserRequestViewController.swift */,
@@ -713,7 +770,8 @@
 			isa = PBXGroup;
 			children = (
 				DA8325D425026415005EA0EE /* URLSource.swift */,
-				DA959744252716A1002A4271 /* Request.swift */,
+				DA959744252716A1002A4271 /* APIRequest.swift */,
+				DAAB9590257B5A6600697104 /* TokenIntercepter.swift */,
 			);
 			path = NetWorkModel;
 			sourceTree = "<group>";
@@ -784,9 +842,41 @@
 				DAAA7EE124F23E91005F9C6D /* Main.storyboard */,
 				DAAA7EE424F23E94005F9C6D /* Assets.xcassets */,
 				DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */,
+				DAAB95BD257C938300697104 /* pay_app_urls.plist */,
 				DAAA7EE924F23E94005F9C6D /* Info.plist */,
 			);
 			path = Woomool;
+			sourceTree = "<group>";
+		};
+		DAAB959A257B7BED00697104 /* MyEnviorment */ = {
+			isa = PBXGroup;
+			children = (
+				DAAB959B257B7C1600697104 /* MyEnvirCell1.swift */,
+				DAAB959F257B80AF00697104 /* MyEnvirCell2.swift */,
+			);
+			path = MyEnviorment;
+			sourceTree = "<group>";
+		};
+		DAAB95B9257C930B00697104 /* DanalPaymentService */ = {
+			isa = PBXGroup;
+			children = (
+				DAAB95BA257C931F00697104 /* Define.swift */,
+				DAAB95C0257C93E000697104 /* PaymentExtension.swift */,
+				DAAB95C4257C948100697104 /* WhiteListSchemeHandler.swift */,
+				DAAB95C7257C949C00697104 /* SchemeHandler.swift */,
+				DAAB95CA257C94B200697104 /* SamplePlistManager.swift */,
+			);
+			path = DanalPaymentService;
+			sourceTree = "<group>";
+		};
+		DAAB95CD257CA12A00697104 /* UserDelete */ = {
+			isa = PBXGroup;
+			children = (
+				DAAB95A9257BA2F900697104 /* UserDelViewController.swift */,
+				DAAB95CE257CA13B00697104 /* UserDelViewModel.swift */,
+				DAAB95AD257BA4E500697104 /* UserDelReasonCell.swift */,
+			);
+			path = UserDelete;
 			sourceTree = "<group>";
 		};
 		DAAF5FC0256A821D00150773 /* Item */ = {
@@ -801,6 +891,7 @@
 		DAB61A262500BFA50066EA29 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				DAAB959A257B7BED00697104 /* MyEnviorment */,
 				DAF9EB3F2515C72C00B40270 /* UserGrade */,
 				DAB9D73A2514A1EA002C7867 /* Coupon */,
 				DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */,
@@ -891,6 +982,8 @@
 				DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */,
 				DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */,
 				DAF9EB2F2514C9F900B40270 /* CouponPopUpView.swift */,
+				DA88ED8A2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift */,
+				DA88ED8D2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift */,
 			);
 			path = Coupon;
 			sourceTree = "<group>";
@@ -918,6 +1011,7 @@
 				DA30EEA0255E6E93000F7356 /* CouponCell.swift */,
 				DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */,
 				DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */,
+				DA88ED90258525150078CB12 /* PaymentAuthViewController.swift */,
 			);
 			name = "mypage 임시";
 			path = "mypage 임시";
@@ -1008,6 +1102,7 @@
 				DAC73E0C24FF5F9E00E2B419 /* NotoSansCJKkr-Regular.otf in Resources */,
 				DAC73E0D24FF5F9E00E2B419 /* Roboto-Bold.ttf in Resources */,
 				DAC73E0E24FF5F9E00E2B419 /* Roboto-Regular.ttf in Resources */,
+				DAAB95BE257C938300697104 /* pay_app_urls.plist in Resources */,
 				DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */,
 				DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */,
 				DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */,
@@ -1080,12 +1175,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA730C69258C7EDF00D82F6F /* MyEnvirModel.swift in Sources */,
 				DA6E2DA22504F79A00A0A548 /* EventTableViewCell.swift in Sources */,
 				DAC73E1A24FF853C00E2B419 /* MyWoomoolViewModel.swift in Sources */,
 				DA6E2D952504BC4600A0A548 /* BestAskTableViewCell.swift in Sources */,
 				DA8E89BC2532D8910021BE23 /* NoticeTableViewCell.swift in Sources */,
 				DA6B78AE250C803A000466F1 /* ManagementWrtieViewController.swift in Sources */,
 				DA6E2D972504BF4800A0A548 /* InviteViewController.swift in Sources */,
+				DAAB95AA257BA2F900697104 /* UserDelViewController.swift in Sources */,
 				DA6B78A8250C74DF000466F1 /* ManagementTableViewCell.swift in Sources */,
 				DAAA7EDC24F23E91005F9C6D /* AppDelegate.swift in Sources */,
 				DA913DD925500A620087464A /* GoodsModel.swift in Sources */,
@@ -1099,10 +1196,15 @@
 				DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */,
 				DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */,
 				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
+				DAAB95A0257B80AF00697104 /* MyEnvirCell2.swift in Sources */,
 				DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */,
+				DAAB9595257B70A200697104 /* Utilites.swift in Sources */,
 				DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */,
 				DAAF04EC256CE99B004D18D1 /* PrivateAuthCell.swift in Sources */,
+				DAAB95BB257C931F00697104 /* Define.swift in Sources */,
+				DA88ED882584793F0078CB12 /* PhoneAuthViewController.swift in Sources */,
 				DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */,
+				DAAB95AE257BA4E500697104 /* UserDelReasonCell.swift in Sources */,
 				DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */,
 				DA8191D424FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift in Sources */,
 				DAF4D3412542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift in Sources */,
@@ -1112,6 +1214,7 @@
 				DA3645A424F68ED600294C2B /* SignUpViewController.swift in Sources */,
 				DA8E89BF2532D8BB0021BE23 /* NoticeDetailTableViewCell.swift in Sources */,
 				DAF9EB50251606C000B40270 /* HowtoUseViewController.swift in Sources */,
+				DAAB95C5257C948100697104 /* WhiteListSchemeHandler.swift in Sources */,
 				DA8E89C42532DACA0021BE23 /* NoticeViewModel.swift in Sources */,
 				DA8A43A8256B8619009CFACF /* HistoryModel.swift in Sources */,
 				DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */,
@@ -1120,12 +1223,14 @@
 				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
 				DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */,
 				DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */,
+				DAAB95A7257B9D3400697104 /* CustomAlertViewController2.swift in Sources */,
 				DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */,
 				DAB61A302500C9C50066EA29 /* StarCollectionViewCell.swift in Sources */,
 				DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */,
 				DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */,
 				DA3645CB24F7A20800294C2B /* MainCollectionViewCell.swift in Sources */,
 				DA6B78AB250C766B000466F1 /* ManagementViewModel.swift in Sources */,
+				DAAB95C8257C949C00697104 /* SchemeHandler.swift in Sources */,
 				DA6E2D872504B26400A0A548 /* UserRequestHeaderView.swift in Sources */,
 				DA4C10D324FF89D7009DBBE2 /* NotificationViewModel.swift in Sources */,
 				DAF9EB4A2515EA1400B40270 /* UserGradeCircularView.swift in Sources */,
@@ -1136,6 +1241,7 @@
 				DA3645B024F690C400294C2B /* MyAreaViewController.swift in Sources */,
 				DA8191D124FA3A650021F2B5 /* OnBoardingViewController.swift in Sources */,
 				DA3645A024F6856C00294C2B /* ColorExtension.swift in Sources */,
+				DA88ED91258525150078CB12 /* PaymentAuthViewController.swift in Sources */,
 				DA6E2D8B2504B53400A0A548 /* UserRequestTableViewCell.swift in Sources */,
 				DA3645B924F6A5A500294C2B /* StringExtension.swift in Sources */,
 				DA36459E24F684EB00294C2B /* LoginViewController.swift in Sources */,
@@ -1155,6 +1261,7 @@
 				DA2119192514839600419AD7 /* WoomoolServieceHeaderView.swift in Sources */,
 				DAE782FA2507692F00944B4A /* HistoryFilterCollectionViewCell.swift in Sources */,
 				DAE782F625067A0600944B4A /* CouponUsingTableViewCell.swift in Sources */,
+				DAAB959C257B7C1600697104 /* MyEnvirCell1.swift in Sources */,
 				DA8191DD24FA52160021F2B5 /* SignUpTableViewCell.swift in Sources */,
 				DA6E2DAB2506263100A0A548 /* BestAskModel.swift in Sources */,
 				DA72B693250C819C006E6075 /* ManagementWriteTableViewCell.swift in Sources */,
@@ -1163,6 +1270,7 @@
 				DA3645CF24F7AAD100294C2B /* QrAuthViewController.swift in Sources */,
 				DAB61A322500D0FD0066EA29 /* StarRateView.swift in Sources */,
 				DA30EE9E255E6E79000F7356 /* CouponHeader.swift in Sources */,
+				DAAB95CB257C94B200697104 /* SamplePlistManager.swift in Sources */,
 				DAE782FC25076A4300944B4A /* MypageHistoryFilterView.swift in Sources */,
 				DAA350A5254C0971005D4071 /* AuthDetailTableViewCell.swift in Sources */,
 				DAA3509F254C07BD005D4071 /* TermsModel.swift in Sources */,
@@ -1174,10 +1282,11 @@
 				DA6E2D832504AF5D00A0A548 /* SettingViewModel.swift in Sources */,
 				DA30EEA1255E6E93000F7356 /* CouponCell.swift in Sources */,
 				DA8E89B82532D7440021BE23 /* NoticeTableViewController.swift in Sources */,
-				DA959745252716A1002A4271 /* Request.swift in Sources */,
+				DA959745252716A1002A4271 /* APIRequest.swift in Sources */,
 				DAF4D33D2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift in Sources */,
 				DAC73DFF24FF5B2B00E2B419 /* NearShopModel.swift in Sources */,
 				DA6E2D992504EE7E00A0A548 /* ChagneNicknameViewController.swift in Sources */,
+				DAAB95C1257C93E000697104 /* PaymentExtension.swift in Sources */,
 				DA6E2D9B2504F29600A0A548 /* ChangePasswordViewController.swift in Sources */,
 				DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */,
 				DAAF5FBE256A785C00150773 /* IntExtension.swift in Sources */,
@@ -1185,14 +1294,18 @@
 				DA3645D524F7C36300294C2B /* MypageViewModel.swift in Sources */,
 				DA913DDC2550197F0087464A /* FAQModel.swift in Sources */,
 				DA6E2DB125062F2900A0A548 /* EventDetailTableViewController.swift in Sources */,
+				DABD6D4D258CDF69000720C2 /* DeviceExtension.swift in Sources */,
 				DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */,
 				DA3645A224F688CA00294C2B /* LoginViewModel.swift in Sources */,
 				DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */,
 				DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */,
+				DAAB9598257B73FA00697104 /* CustomAlertViewController.swift in Sources */,
 				DAA350A9254C19E0005D4071 /* TermsViewModel.swift in Sources */,
 				DA6E2DAD25062A8400A0A548 /* UILabelExtension.swift in Sources */,
 				DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */,
+				DA88ED8B2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift in Sources */,
 				DAF9EB59251610F700B40270 /* WoomoolStoryCollectionViewController.swift in Sources */,
+				DAAB95CF257CA13B00697104 /* UserDelViewModel.swift in Sources */,
 				DA8325D525026415005EA0EE /* URLSource.swift in Sources */,
 				DAF9EB5625160BB800B40270 /* HowtoUseViewModel.swift in Sources */,
 				DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */,
@@ -1200,9 +1313,11 @@
 				DA3645AA24F68F6400294C2B /* MainViewController.swift in Sources */,
 				DA3645D124F7BA7900294C2B /* MyPageCollectionReusableView.swift in Sources */,
 				DA72B697250C89F0006E6075 /* BestWoomoolCollectionViewController.swift in Sources */,
+				DAAB9591257B5A6600697104 /* TokenIntercepter.swift in Sources */,
 				DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */,
 				DA6E2D8D2504BA1500A0A548 /* BestAskTableViewController.swift in Sources */,
 				DAB61A252500B9AE0066EA29 /* MypageFilterView.swift in Sources */,
+				DA88ED8E2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift in Sources */,
 				DAA350A2254C095B005D4071 /* AuthDetailTableViewController.swift in Sources */,
 				DA6E2D912504BBD000A0A548 /* ManagementViewController.swift in Sources */,
 				DA3645B724F6A0A700294C2B /* FindUserInfoViewModel.swift in Sources */,
@@ -1224,6 +1339,7 @@
 				DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */,
 				DA8E89C82532DAE40021BE23 /* NoticeModel.swift in Sources */,
 				DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */,
+				DAF4DED6258CE865005B3995 /* KeychainExtension.swift in Sources */,
 				DA6E2D932504BC0600A0A548 /* BestAskViewModel.swift in Sources */,
 				DA3645D324F7BC2700294C2B /* MypageFilterCell.swift in Sources */,
 				DA6E2DA7250618DC00A0A548 /* BestAskDetailTableViewCell.swift in Sources */,
@@ -1376,13 +1492,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3VT454RG8M;
+				DEVELOPMENT_TEAM = GS9XBPFBS9;
 				INFOPLIST_FILE = Woomool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1397,13 +1514,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Woomool/Woomool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3VT454RG8M;
+				DEVELOPMENT_TEAM = GS9XBPFBS9;
 				INFOPLIST_FILE = Woomool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

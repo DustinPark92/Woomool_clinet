@@ -33,7 +33,7 @@ class CouponPayReciptTableViewCell: UITableViewCell {
     
     let sv2 : UIView = {
         let uv = UIView()
-        uv.backgroundColor = .lightGray
+        uv.backgroundColor = .bestAsk
         return uv
     }()
     
@@ -87,6 +87,7 @@ class CouponPayReciptTableViewCell: UITableViewCell {
     }()
     
     
+    
     let totalLabel : UILabel = {
         let lb = UILabel()
         lb.text = "총"
@@ -105,15 +106,7 @@ class CouponPayReciptTableViewCell: UITableViewCell {
     }()
     
     
-    let privacyLabel : UILabel = {
-        let lb = UILabel()
-        lb.text = "개인정보 제3자 제공 내용 확인하였으며, 결제에 동의합니다."
-        lb.textColor = .black400
-        lb.font = UIFont.NotoMedium12
-        return lb
-    }()
-    
-    lazy var payButton : UIButton = viewModel.payButtonUI(setTitle: "결제하기")
+
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -131,8 +124,7 @@ class CouponPayReciptTableViewCell: UITableViewCell {
         contentView.addSubview(totalPriceLabel)
         contentView.addSubview(sv2)
         
-        contentView.addSubview(privacyLabel)
-        contentView.addSubview(payButton)
+
         
         mainLabel.anchor(top:topAnchor,left:leftAnchor,paddingTop: 32,paddingLeft: 17)
        
@@ -150,10 +142,7 @@ class CouponPayReciptTableViewCell: UITableViewCell {
         totalPriceLabel.anchor(top:sv.bottomAnchor,right: rightAnchor,paddingTop:8 ,paddingRight:16)
         
         sv2.anchor(top:totalPriceLabel.bottomAnchor,left: leftAnchor,right: rightAnchor,paddingTop:38,height: 6)
-        privacyLabel.centerX(inView: self, topAnchor: sv2.bottomAnchor, paddingTop: 16)
-        
-        
-        payButton.anchor(top:privacyLabel.bottomAnchor,left:leftAnchor,bottom: bottomAnchor,right: rightAnchor,paddingTop: 41)
+
         
         
     }

@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+ 
+
+        
         let instance = NaverThirdPartyLoginConnection.getSharedInstance()
         
         KakaoSDKCommon.initSDK(appKey: "c78838ca6c936a9fbd48a33c9e559f89")
@@ -54,8 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
+        if( true == url.absoluteString.contains(Define.SAMPLE_APP_SCHEME) )
+        {
+        /*
+            앱으로 복귀 하였을때 별도의 처리가 필요 할 경우
+        수신된 url.absoluteString 값을 통하여 조치 하면 됩니다.
+        */
+        }
+        return true;
+
+        
         
         NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
+        
+        
         
 
         
@@ -80,6 +96,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
+    func cookieSetting() -> Void
+    {
+        // 공용쿠키 설정
+        let cookieStorage : HTTPCookieStorage = HTTPCookieStorage.shared;
+        cookieStorage.cookieAcceptPolicy = HTTPCookie.AcceptPolicy.always;
+        
+        
+        /// 기존에 쿠키를 저장한 내역이 있다면,,
+        let cookiesData = UserDefaults.standard.data(forKey: "SavedCookies");
+        
+        if( false == cookiesData?.isEmpty )
+        {
+            let cookies = NSKeyedUnarchiver.unarchiveObject(with: cookiesData!) as? [HTTPCookie];
+            
+            for cookie in cookies!
+            {
+                HTTPCookieStorage.shared.setCookie(cookie);
+            }
+        }
+        
+        
+        
+    }
+    
+    /// @brief 쿠키 저장
+    func saveCookie() -> Void
+    {
+        let cookies = HTTPCookieStorage.shared.cookies;
+        let cookieData = NSKeyedArchiver.archivedData(withRootObject: cookies!);
+        
+        let userDefault : UserDefaults = UserDefaults.standard;
+        userDefault.set(cookieData, forKey: "SavedCookies");
+        userDefault.synchronize();
+    }
+    
+    
 
 }
 

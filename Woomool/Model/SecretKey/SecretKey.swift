@@ -10,5 +10,6 @@ import Foundation
 
 
 struct SecretKey {
-    static let authorization = "Basic d29vbW9vbC1zZXJ2aWNlOjYyMzEzNzM2MzQzNDM1NjMyRDM3NjU2NTM3MkQzNDY1MzgzMDJEMzgzNTM3MzgyRDM4MzY2NjMyNjMzOTM2MzI2MjY1MzIzMA=="
+    static let id = "woomool-app"
+    static let authorization = "6130323436306234636264343465666439306239313132333032633636613833"
 }

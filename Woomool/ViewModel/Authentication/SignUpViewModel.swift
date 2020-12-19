@@ -14,6 +14,7 @@ class SignUpViewModel {
     var emailValid = false
     var passValid = false
     var passCheckValid = false
+    var passValidOneMore = false
     var nickNameValid = false
     var recomdValid = false
     

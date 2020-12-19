@@ -34,7 +34,7 @@ class NotificationViewController: UITableViewController {
     
     func callRequest() {
         
-        Request.shared.getNoticeList { (json) in
+        APIRequest.shared.getNoticeList { (json) in
             for item in json.array! {
                 let noticeItem = NoticeListModel(noticeId: item["noticeId"].stringValue, title: item["title"].stringValue, postDate: item["postDate"].stringValue, contents: item["contents"].stringValue, image: item["image"].stringValue)
                 
@@ -42,22 +42,7 @@ class NotificationViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-        } refreshSuccess: {
-            Request.shared.getNoticeList { (json) in
-                for item in json.array! {
-                    let noticeItem = NoticeListModel(noticeId: item["noticeId"].stringValue, title: item["title"].stringValue, postDate: item["postDate"].stringValue, contents: item["contents"].stringValue, image: item["image"].stringValue)
-                    
-                    
-                    self.noticeListModel.append(noticeItem)
-                }
-                
-                self.tableView.reloadData()
-            } refreshSuccess: {
-                print("nil")
-                
-            }
-            
-        }
+        } 
     }
     
     

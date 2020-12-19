@@ -28,7 +28,6 @@ class HistoryTableViewCell: UITableViewCell {
     
     let extraLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "잔여횟수 : 12"
         lb.font = UIFont.NotoMedium14
         lb.textColor = .black400
         return lb

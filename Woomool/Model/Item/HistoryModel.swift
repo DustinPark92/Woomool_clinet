@@ -24,10 +24,16 @@ struct HistoryAllModel {
      */
     
     let name : String
-    let countPrice : Int
+   
+    let count : Int
+    let countUnit : String
+    
+    let price : Int
+    let priceUnit : String
+    
     let date : String
-    let serialNo : Int
-    let types : String
+    let image : String
+    let historyNo : Int
     
     
     
@@ -35,21 +41,25 @@ struct HistoryAllModel {
 
 
 struct HistoryGoodsModel {
-    let serialNo : Int
-    let buyDate : String
+    let historyNo : Int
+    let date : String
     let goodsId : Int
     let name : String
-    let buyPrice : Int
+    let price : Int
+    let image : String
+    let priceUnit : String
     /*
      {
-       "serialNo" : 10,
-       "buyDate" : "2020-11-23",
        "goods" : {
-         "goodsId" : "GD20201111143844998",
-         "name" : "31회 이용권"
+         "name" : "15회 이용권",
+         "goodsId" : "GD20201111143844999"
        },
-       "buyPrice" : 18000
-     },
+       "historyNo" : 170,
+       "price" : 100,
+       "date" : "2020-12-19",
+       "image" : null,
+       "priceUnit" : "원"
+     }
      */
 }
 
@@ -66,7 +76,7 @@ struct HistoryStoreModel {
        "useDate" : "2020-11-24"
      }
      */
-    let serialNo : Int
+    let historyNo : Int
     let useCount : Int
     let storeId : String
     let name : String

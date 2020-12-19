@@ -24,7 +24,7 @@ class BestAskTableViewController: UITableViewController {
     }
     
     func callRequst() {
-        Request.shared.getFAQCategory { json in
+        APIRequest.shared.getFAQCategory { json in
             
             for item in json.array! {
                 let faqItem = FAQModel(groupId: item["groupId"].stringValue, title: item["title"].stringValue)
@@ -34,23 +34,7 @@ class BestAskTableViewController: UITableViewController {
             
             self.tableView.reloadData()
            
-        } refreshSuccess: {
-            
-            Request.shared.getFAQCategory { json in
-                
-                for item in json.array! {
-                    let faqItem = FAQModel(groupId: item["groupId"].stringValue, title: item["title"].stringValue)
-                    
-                    self.faqModel.append(faqItem)
-                }
-                
-                self.tableView.reloadData()
-               
-            } refreshSuccess: {
-                print("nil")
-                
-            }
-        }
+        } 
         
     }
     

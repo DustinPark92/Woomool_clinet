@@ -10,7 +10,14 @@ import UIKit
 private let reuseIdentifier = "CouponCell"
 private let headerIdentifier = "CouponHeader"
 
+
+protocol CouponViewControllerDelegate : class {
+    func couponSelected(couponModel : CouponModel)
+}
+
 class CouponViewController: UIViewController {
+    
+    weak var delegate : CouponViewControllerDelegate?
     
     let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,18 +43,18 @@ class CouponViewController: UIViewController {
     
     func callRequest() {
         
-        Request.shared.getUserCoupon { json in
+        APIRequest.shared.getUserCoupon { json in
             for item in json.arrayValue {
-                let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, serialNo: item["serialNo"].intValue)
+                let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, couponNo: item["couponNo"].intValue)
                 
                 self.couponModol.append(couponItem)
             }
             
             self.collectionView.reloadData()
         } refreshSuccess: {
-            Request.shared.getUserCoupon { json in
+            APIRequest.shared.getUserCoupon { json in
                 for item in json.arrayValue {
-                    let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, serialNo: item["serialNo"].intValue)
+                    let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, couponNo: item["couponNo"].intValue)
                     
                     self.couponModol.append(couponItem)
                 }
@@ -80,6 +87,7 @@ class CouponViewController: UIViewController {
     }
     
     @objc func handleDismiss() {
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -109,7 +117,7 @@ extension CouponViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-  
+        delegate?.couponSelected(couponModel: couponModol[indexPath.item])
         navigationController?.popViewController(animated: true)
     }
     

@@ -18,7 +18,7 @@ class BestWoomoolCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Request.shared.getBestStoreList { json in
+        APIRequest.shared.getBestStoreList { json in
             
             for item in json.array! {
                 let bestWoomoolItem = BestStoreModel(orders: item["orders"].intValue, storeId: item["storeId"].stringValue, name: item["name"].stringValue, address: item["address"].stringValue, scope: item["scope"].doubleValue)

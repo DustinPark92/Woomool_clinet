@@ -17,29 +17,11 @@ class MainCenterView: UIView {
     
     let mainImg : UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "qrMain1")
+        iv.image = UIImage(named: "qrMain")
         iv.contentMode = .scaleAspectFit
         return iv
     }()
     
-    let couponCountLabel : UILabel = {
-        let lb = UILabel()
-        lb.text = "15개"
-        lb.textColor = .white
-        lb.font = UIFont.NanumExtraBold34
-        lb.textAlignment = .center
-        
-        return lb
-    }()
-    
-    
-    let couponLabel : UILabel = {
-            let lb = UILabel()
-            lb.text = "우물 이용권"
-            lb.font = UIFont.NanumExtraBold16
-            lb.textColor = .white
-            return lb
-        }()
 
     
     let qrButton : UIButton = {
@@ -48,15 +30,7 @@ class MainCenterView: UIView {
         bt.addTarget(self, action: #selector(handleQrButton), for: .touchUpInside)
         return bt
     }()
-    
-    let qrLabel : UILabel = {
-        let lb = UILabel()
-        lb.text = "사용 하기"
-        lb.font = UIFont.NanumExtraBold20
-        lb.textColor = .blue500
-        return lb
-    }()
-    
+
 
     
     var delegate : MainCenterViewDelegate?
@@ -68,16 +42,10 @@ class MainCenterView: UIView {
 
         addSubview(qrButton)
         
-        mainImg.center(inView: self)
-        
+        mainImg.addConstraintsToFillView(self)
+    
         qrButton.addConstraintsToFillView(mainImg)
         
-        addSubview(couponCountLabel)
-
-//
-        couponCountLabel.anchor(bottom:mainImg.bottomAnchor,right: mainImg.rightAnchor,paddingBottom: 21.84,paddingRight: 19.21)
-//
-//        couponLabel.anchor(bottom:couponLabel.topAnchor,right: rightAnchor,paddingTop: 220,paddingRight: 44)
         
     }
     

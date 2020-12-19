@@ -56,6 +56,10 @@ class AuthPopUpViewController: UIViewController {
     var emailButtonTitle = "이메일로 시작하기"
     let termsIdArray : Array<String>
     
+    var appleUsername = ""
+    var appleUserEmail = ""
+    var appleId = ""
+    
     init(termsIdArray : Array<String>) {
         self.termsIdArray = termsIdArray
         super.init(nibName: nil, bundle: nil)
@@ -71,7 +75,9 @@ class AuthPopUpViewController: UIViewController {
         configureUI()
 
         
-        let authorizationButton = ASAuthorizationAppleIDButton(type: .signIn, style: .whiteOutline)
+
+        
+        
         
         //googleButtonTest.style = .iconOnly
         NotificationCenter.default.post(name: NSNotification.Name("dismissView"), object: nil)
@@ -100,10 +106,15 @@ class AuthPopUpViewController: UIViewController {
 
     }
     
-    func requestSNSConnect(type: String,snsToken : String, Success: @escaping(JSON) -> ()) {
+    func requestSNSConnect(type: String,snsToken : String, Success: @escaping(JSON) -> (), Invalid : @escaping(JSON) -> ()) {
         
-        Request.shared.postSNSUserLogin(type: type, snsToken: snsToken) { json in
+        APIRequest.shared.postSNSUserLogin(type: type, snsToken: snsToken) { json in
             Success(json)
+        } invalid: { json in
+            Invalid(json)
+            self.showOkAlert(title: "타 계정에 연결 된 계정 입니다.", message: json["email"].stringValue) {
+                print("Okay")
+            }
         }
         
         
@@ -128,12 +139,6 @@ class AuthPopUpViewController: UIViewController {
     }
     
     @objc func handleKakaoLogin() {
-//        let controller = MainTC()
-//
-//        UserDefaults.standard.removeObject(forKey: "userId")
-//        UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
-//        UIApplication.shared.windows.first?.rootViewController = controller
-//        UIApplication.shared.windows.first?.makeKeyAndVisible()
 
         if (AuthApi.isKakaoTalkLoginAvailable()) {
             AuthApi.shared.loginWithKakaoTalk { [self](oauthToken, error) in
@@ -147,10 +152,25 @@ class AuthPopUpViewController: UIViewController {
                     }
                     print("loginWithKakaoTalk() success.")
                     print("토큰은? \(accessToken)")
-                    requestSNSConnect(type: "K", snsToken: accessToken) { json in
+                    requestSNSConnect(type: "kakao", snsToken: accessToken) { json in
                         print(json)
+
+                        
+
+                        let controller = MainTC()
+                        UIApplication.shared.windows.first?.rootViewController = controller
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        UserApi.shared.logout { error in
+                            print(error)
+                        }
+                    } Invalid: { json in
+                        self.showOkAlert(title: "타 계정에 연결 된 계정 입니다.", message: json["email"].stringValue) {
+                            print("Okay")
+
+                        
                     }
-                    //do something
+                    }
+                   
                    
                 }
             }
@@ -158,12 +178,9 @@ class AuthPopUpViewController: UIViewController {
     }
     
     @objc func handleGoogleLogin() {
-       // loginInstance?.requestDeleteToken()
-
-//        GIDSignIn.sharedInstance()?.presentingViewController = self
-//        GIDSignIn.sharedInstance().delegate = self
-//        GIDSignIn.sharedInstance()?.restorePreviousSignIn()
-//        GIDSignIn.sharedInstance().signIn()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signIn()
        
     }
     
@@ -178,14 +195,22 @@ class AuthPopUpViewController: UIViewController {
     }
     
     @objc func handleSignUp() {
+       
         
-        weak var pvc = self.presentingViewController
+
+        dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name("pushViewPhoneAuth"), object: nil)
+        }
         
-        self.dismiss(animated: true, completion: {
-            let vc = PrivateAuthVC()
-            vc.modalPresentationStyle = .overCurrentContext
-            pvc?.present(vc, animated: true, completion: nil)
-        })
+        
+        
+//        weak var pvc = self.presentingViewController
+//
+//        self.dismiss(animated: true, completion: {
+//            let vc = PrivateAuthVC()
+//            vc.modalPresentationStyle = .overCurrentContext
+//            pvc?.present(vc, animated: true, completion: nil)
+//        })
         
         
     }
@@ -223,19 +248,22 @@ class AuthPopUpViewController: UIViewController {
       if !isValidAccessToken {
         return
       }
-      
-      guard let tokenType = loginInstance?.tokenType else { return }
       guard let accessToken = loginInstance?.accessToken else { return }
-        
-        guard let refreshToken = loginInstance?.refreshToken else { return }
-      let urlStr = "https://openapi.naver.com/v1/nid/me"
-        requestSNSConnect(type: "N", snsToken: accessToken) { json in
-            print(json)
+        requestSNSConnect(type: "naver", snsToken: accessToken) { json in
+            let controller = MainTC()
+            self.loginInstance?.removeNaverLoginCookie()
+            UIApplication.shared.windows.first?.rootViewController = controller
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+        } Invalid: { _ in
+            self.loginInstance?.removeNaverLoginCookie()
+            
         }
 
     }
 
 }
+
+
 
 
 extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextProviding,ASAuthorizationControllerDelegate {
@@ -254,16 +282,31 @@ extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextP
     
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
+        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // Get user data with Apple ID credentitial
-            let userId = appleIDCredential.user
-            let userFirstName = appleIDCredential.fullName?.givenName
-            let userLastName = appleIDCredential.fullName?.familyName
-            let userEmail = appleIDCredential.email
-            print("User ID: \(userId)")
-            print("User First Name: \(userFirstName ?? "")")
-            print("User Last Name: \(userLastName ?? "")")
-            print("User Email: \(userEmail ?? "")")
+            
+            KeyChainService.shared.saveAppleEmail(email: appleIDCredential.email)
+            KeyChainService.shared.saveAppleUserName(name: "\(appleIDCredential.fullName?.familyName ?? "우물") \(appleIDCredential.fullName?.givenName ?? "김")")
+            
+            print(appleIDCredential.user)
+            
+            
+            
+            APIRequest.shared.postAppleUserLogin(id: appleIDCredential.user, name: KeyChainService.shared.appleUserName ?? "우물", email: KeyChainService.shared.appleUserEmail ?? "이메일을 설정해주세요") { json in
+                
+                let controller = MainTC()
+                UIApplication.shared.windows.first?.rootViewController = controller
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+                print(json)
+            } invalid: { json in
+                print(json)
+            }
+//            print(KeyChainService.shared.appleUserEmail)
+//            print(KeyChainService.shared.appleUserName)
+
+
             // Write your code here
         } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
             // Get user data using an existing iCloud Keychain credential
@@ -271,7 +314,18 @@ extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextP
             let applePassword = passwordCredential.password
             // Write your code here
         }
+        
+        
+
+        
+        
+
+        
+
+
     }
+    
+
     
 }
 
@@ -314,6 +368,8 @@ extension AuthPopUpViewController : GIDSignInDelegate
     
     // 연동을 시도 했을때 불러오는 메소드
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        
+        
         if let error = error {
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
                 print("The user has not signed in before or they have since signed out.")
@@ -322,19 +378,30 @@ extension AuthPopUpViewController : GIDSignInDelegate
             }
             return
         }
-            
+        
+        
+        
         // 사용자 정보 가져오기
-        if let userId = user.userID,                  // For client-side use only!
-            let idToken = user.authentication.idToken, // Safe to send to the server
-            let fullName = user.profile.name,
-            let givenName = user.profile.givenName,
-            let familyName = user.profile.familyName,
-            let email = user.profile.email {
+        if  let accessToken = user.authentication.accessToken
+       // Safe to send to the server
+           {
+
+            print(accessToken)
             
-            print("Token : \(idToken)")
-            print("User ID : \(userId)")
-            print("User Email : \(email)")
-            print("User Name : \((fullName))")
+
+                self.requestSNSConnect(type: "google", snsToken: accessToken) { json in
+                    print(json)
+                    let controller = MainTC()
+                    UIApplication.shared.windows.first?.rootViewController = controller
+                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+                } Invalid: { _ in
+
+                    
+            }
+
+            
+            
+            
      
         } else {
             print("Error : User Data Not Found")
@@ -347,3 +414,5 @@ extension AuthPopUpViewController : GIDSignInDelegate
     }
     
 }
+
+

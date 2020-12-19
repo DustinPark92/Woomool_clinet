@@ -56,6 +56,8 @@ class MyWoomoolViewModel {
     
     var storeId : Array<String> = []
     
+    var userLocation : Array<Double> = [0.0,0.0]
+    
     
     func setScopeIcon(scopeColor : String) -> UIImage{
         var imageName =  ""

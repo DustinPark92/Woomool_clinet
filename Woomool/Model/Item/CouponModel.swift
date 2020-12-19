@@ -19,7 +19,7 @@ struct CouponModel {
     let expiryDays  : Int
     let couponId : String
     let imgae : String
-    let serialNo : Int
+    let couponNo : Int
     /*
      {
        "expiryDate" : "2020-11-30",

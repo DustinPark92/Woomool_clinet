@@ -66,3 +66,20 @@ struct UserRankModel {
     
     
 }
+
+
+struct UserEnviroment {
+    /*
+     {
+       "carbon": "string",
+       "totalCount": 0,
+       "useCount": 0
+     }
+     */
+    
+    let carbon : String
+    let totalCount : Int
+    let userCount : Int
+    
+    
+}

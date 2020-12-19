@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 private let reuseIdetifier = "SignUpTableViewCell"
 
 
@@ -18,6 +19,7 @@ class SignUpViewController: UITableViewController {
     var testCode = "Woomool"
     var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     var viewUpSize = 1
+    var url = ""
     
     lazy var headerView : UIView = {
         let uv = UIView()
@@ -30,10 +32,11 @@ class SignUpViewController: UITableViewController {
         configureUI()
     }
     
-    let termsIdArray : Array<String>
+
+    let params : String
     
-    init(termsIdArray : Array<String>) {
-        self.termsIdArray = termsIdArray
+    init(params : String) {
+        self.params = params
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -84,42 +87,40 @@ class SignUpViewController: UITableViewController {
         
     }
     
+
+    
     func callRequest() {
         let params : [String : Any] =
-            [
-                "email": ViewModel.textFieldContents[0],
-                "inviteCd": "",
-                "nickname": ViewModel.textFieldContents[3],
-                "password": ViewModel.textFieldContents[2],
-                "terms":
-                    [
-                        ["status": "Y",
-                         "termsId": termsIdArray[0]]
-                        ,["status": "Y",
-                          "termsId": termsIdArray[1]]
-                        ,["status": "Y",
-                          "termsId": termsIdArray[2]]
-                    ]
-                
-            ]
-        Request.shared.postUserSignUp(parameters: params) { json in
-            let params = ["grant_type": "password",
-                          "scope" : "read+write",
-                          "username" : self.ViewModel.textFieldContents[0],
-                          "password" : self.ViewModel.textFieldContents[1]]
-
+                  [
+                      "email": ViewModel.textFieldContents[0],
+                      "inviteCd": "",
+                      "nickname": ViewModel.textFieldContents[3],
+                      "password": ViewModel.textFieldContents[2],
+                    "params" : self.params
+                      
+                  ]
+              APIRequest.shared.postUserSignUp(parameters: params) { json in
+                  let params = ["grant_type": "password",
+                                "scope" : "read+write",
+                                "username" : self.ViewModel.textFieldContents[0],
+                                "password" : self.ViewModel.textFieldContents[1]]
+                  
+                  
+                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                      
+                      APIRequest.shared.postUserToken(parameters: params) { json in
+                          print(json)
+                          
+                          let controller = MainTC()
+                          UIApplication.shared.windows.first?.rootViewController = controller
+                          UIApplication.shared.windows.first?.makeKeyAndVisible()
+                          
+                          
+                      }
+                      
+                  }
             
             
-            
-            Request.shared.postUserToken(parameters: params) { json in
-                print(json)
-
-                        let controller = MainTC()
-                        UIApplication.shared.windows.first?.rootViewController = controller
-                        UIApplication.shared.windows.first?.makeKeyAndVisible()
-                
-                
-            }
         }
         
     }
@@ -191,25 +192,25 @@ class SignUpViewController: UITableViewController {
         switch ViewModel.subjectList.count {
         case 1:
             if ViewModel.emailValid {
-                validCheckWithButton(listInsert: "비밀번호", placeHolderInsert: "영문과 숫자로 이루어진 6~12가지 조합", textFieldSecureList: true,count: 1,newMessage: "")
+                validCheckWithButton(listInsert: "비밀번호", placeHolderInsert: "영문+숫자+특수문자 8~16자리 조합", textFieldSecureList: true,count: 1,newMessage: "")
                 ViewModel.subjectList.remove(at: 1)
                 ViewModel.subjectList.insert("이메일", at: 1)
                 print(ViewModel.invalidMessage)
                 print(ViewModel.subjectList)
             } else {
-                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유요하지 않은 이메일 형식입니다.", subject: "", at: 0) : inValidMessage(invalid: "", subject: "이메일", at: 0)
+                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유효하지 않은 이메일 형식입니다.", subject: "", at: 0) : inValidMessage(invalid: "", subject: "이메일", at: 0)
             }
         case 2:
             if  ViewModel.passValid && ViewModel.emailValid{
-                validCheckWithButton(listInsert: "비밀번호 확인", placeHolderInsert: "영문과 숫자로 이루어진 6~12가지 조합", textFieldSecureList: true,count: 2,newMessage: "")
+                validCheckWithButton(listInsert: "비밀번호 확인", placeHolderInsert: "영문+숫자+특수문자 8~16자리 조합", textFieldSecureList: true,count: 2,newMessage: "")
                 ViewModel.subjectList.remove(at: 1)
                 ViewModel.subjectList.insert("비밀번호", at: 1)
                 ViewModel.subjectList.remove(at: 2)
                 ViewModel.subjectList.insert("이메일", at: 2)
             } else {
                 
-                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유요하지 않은 이메일 형식입니다.", subject: "", at: 1) : inValidMessage(invalid: "", subject: "이메일", at: 1)
-                _ = !ViewModel.passValid ? inValidMessage(invalid: "유요하지 않은 비밀번호", subject: "", at: 0) : inValidMessage(invalid: "", subject: "비밀번호", at: 0)
+                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유효하지 않은 이메일 형식입니다.", subject: "", at: 1) : inValidMessage(invalid: "", subject: "이메일", at: 1)
+                _ = !ViewModel.passValid ? inValidMessage(invalid: "유효하지 않은 비밀번호", subject: "", at: 0) : inValidMessage(invalid: "", subject: "비밀번호", at: 0)
             }
         case 3:
             if  ViewModel.passCheckValid && ViewModel.emailValid && ViewModel.passValid{
@@ -221,8 +222,8 @@ class SignUpViewController: UITableViewController {
                 ViewModel.subjectList.remove(at: 3)
                 ViewModel.subjectList.insert("이메일", at: 3)
             } else {
-                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유요하지 않은 이메일 형식입니다.", subject: "", at: 2) : inValidMessage(invalid: "", subject: "이메일", at: 2)
-                _ = !ViewModel.passValid ? inValidMessage(invalid: "유요하지 않은 비밀번호", subject: "", at: 1) : inValidMessage(invalid: "", subject: "비밀번호", at: 1)
+                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유효하지 않은 이메일 형식입니다.", subject: "", at: 2) : inValidMessage(invalid: "", subject: "이메일", at: 2)
+                _ = !ViewModel.passValid ? inValidMessage(invalid: "유효하지 않은 비밀번호", subject: "", at: 1) : inValidMessage(invalid: "", subject: "비밀번호", at: 1)
                 _ = !ViewModel.passCheckValid ? inValidMessage(invalid: "비밀번호가 맞지 않습니다.", subject: "", at: 0) : inValidMessage(invalid: "", subject: "비밀번호 확인", at: 0)
             }
             
@@ -238,12 +239,12 @@ class SignUpViewController: UITableViewController {
                 ViewModel.subjectList.insert("비밀번호", at: 3)
                 ViewModel.subjectList.remove(at: 4)
                 ViewModel.subjectList.insert("이메일", at: 4)
-                SendButton.setTitle("본인 인증 하러 가기", for: .normal)
+                SendButton.setTitle("회원가입 완료", for: .normal)
             } else {
                 
                 
-                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유요하지 않은 이메일 형식입니다.", subject: "", at: 3) : inValidMessage(invalid: "", subject: "이메일", at: 3)
-                _ = !ViewModel.passValid ? inValidMessage(invalid: "유요하지 않은 비밀번호", subject: "", at: 2) : inValidMessage(invalid: "", subject: "비밀번호", at: 2)
+                _ = !ViewModel.emailValid ? inValidMessage(invalid: "유효하지 않은 이메일 형식입니다.", subject: "", at: 3) : inValidMessage(invalid: "", subject: "이메일", at: 3)
+                _ = !ViewModel.passValid ? inValidMessage(invalid: "유효하지 않은 비밀번호", subject: "", at: 2) : inValidMessage(invalid: "", subject: "비밀번호", at: 2)
                 _ = !ViewModel.passCheckValid ? inValidMessage(invalid: "비밀번호가 맞지 않습니다.", subject: "", at: 1) : inValidMessage(invalid: "", subject: "비밀번호 확인", at: 1)
                 _ = !ViewModel.nickNameValid ? inValidMessage(invalid: "유효하지 않은 닉네임", subject: "", at: 0) : inValidMessage(invalid: "", subject: "닉네임", at: 0)
             }
@@ -251,7 +252,6 @@ class SignUpViewController: UITableViewController {
         case 5:
             if  ViewModel.nickNameValid && ViewModel.passCheckValid && ViewModel.emailValid && ViewModel.passValid {
                 callRequest()
-                
                 
             } else {
                 
@@ -383,6 +383,7 @@ extension SignUpViewController : UITextFieldDelegate  {
         return true
     }
 }
+
 
 
 

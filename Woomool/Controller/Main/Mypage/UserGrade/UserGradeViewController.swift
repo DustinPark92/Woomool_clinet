@@ -65,7 +65,7 @@ class UserGradeViewController: UIViewController {
     }
     
     func callRequest() {
-        Request.shared.getUserRank { [self] json in
+        APIRequest.shared.getUserRank { [self] json in
             print(json)
             
             for item in json.array! {

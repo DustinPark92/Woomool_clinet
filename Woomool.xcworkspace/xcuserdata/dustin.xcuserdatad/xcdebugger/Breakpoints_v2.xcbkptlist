@@ -7,112 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9A9C2539-E213-48FC-8C1D-2A597A57590D"
-            shouldBeEnabled = "No"
+            uuid = "9DCB1BFB-24A0-4CF1-99D5-CE55A95DD5FD"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
+            filePath = "Woomool/Model/DanalPaymentService/SchemeHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "getNaverInfo()"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "handleScheme(requestedURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "08132213-B08F-4FAD-95C9-06B38833B166"
-            shouldBeEnabled = "No"
+            uuid = "A5A3418B-E7DB-4EA9-B3CF-C9F7BE28D9AD"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
+            filePath = "Woomool/Model/DanalPaymentService/SchemeHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "getNaverInfo()"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "handleScheme(requestedURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BD87908D-105D-4DF2-AACE-D330D5DFB716"
-            shouldBeEnabled = "No"
+            uuid = "5C3D44EF-B5B1-4E38-BC61-1DB6A6178F08"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
+            filePath = "Woomool/Model/DanalPaymentService/SchemeHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "getNaverInfo()"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "handleScheme(requestedURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A52EAA3C-410C-4C92-872E-FB9ACF81EF68"
-            shouldBeEnabled = "No"
+            uuid = "FAFD7322-71E1-4385-97BF-E58F76CF445A"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
+            filePath = "Woomool/Model/DanalPaymentService/SchemeHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "getNaverInfo()"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "handleScheme(requestedURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "82E82482-CB2F-4BCA-9CF5-D6E96255DFA4"
-            shouldBeEnabled = "No"
+            uuid = "5BD0BCB5-5E8A-46B0-9608-1C5296102C16"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
+            filePath = "Woomool/Model/DanalPaymentService/SchemeHandler.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "getNaverInfo()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50FD8B50-66D4-48ED-AFFC-6B16A1FF4685"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "handleNaverLogin(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4DCF94FF-78BA-4B7E-8233-FC800392D935"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Woomool/Controller/Authentication/AuthPopUpViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "handleNaverLogin(_:)"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "handleScheme(requestedURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

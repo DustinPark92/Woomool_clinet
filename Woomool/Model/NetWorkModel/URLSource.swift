@@ -10,7 +10,7 @@ import Foundation
 
 struct URLSource {
     
-    static let common = "http://211.250.213.5:21100/wsa/"
+    static let common = "http://211.250.213.5:21100/app/"
     //MARK: - TOKEN
     //0. Access Token 관련
     /*
@@ -18,7 +18,7 @@ struct URLSource {
      
      */
     
-    static let token = "http://211.250.213.5:21100/woa/oauth/token"
+    static let token = "http://211.250.213.5:21100/oauth2/oauth/token"
     //MARK: - 회원처리
 
     //1. 회원처리
@@ -30,10 +30,12 @@ struct URLSource {
      4.탈퇴  DELETE : /v1/user/{userId}
      5.로그인 POST : /v1/user/login
      6.비밀번호 찾기 : /v1/user/password/{email}
+     7. 회원 환경 : /v1/user/environment/{userId}
      */
     static let user = common + "v1/user"
-    static let login = common + "/v1/login"
+    static let login = common + "v1/login"
     static let findPW = common + "v1/user/password/"
+    static let envir = common + "v1/user/environment/"
     
     
     
@@ -114,7 +116,7 @@ struct URLSource {
      */
     
     static let goods = common + "v1/goods/user/"
-    static let goodPurchase = common + "v1/goods/users/"
+    static let goodPurchase = common + "v1/goods/payment/"
     
     
     //MARK: - 불만 사항
@@ -158,5 +160,11 @@ struct URLSource {
     static let history = common + "v1/history"
     static let historyGoods = common + "v1/history/goods"
     static let historyStore = common + "v1/history/store"
+    
+    
+    
+    //MARK: - CERT / 인증
+    
+    static let cert = common + "v1/user/cert"
     
 }

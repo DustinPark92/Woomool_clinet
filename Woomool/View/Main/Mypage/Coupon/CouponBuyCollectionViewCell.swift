@@ -77,6 +77,12 @@ class CouponBuyCollectionViewCell: UICollectionViewCell {
         didSet {
             layer.borderColor = isSelected ? UIColor.blue500.cgColor : UIColor.gray300.cgColor
             
+            if isSelected {
+                dropShadow(opacity: 0.5)
+            } else {
+                dropShadow(opacity: 0)
+            }
+            
         }
     }
     

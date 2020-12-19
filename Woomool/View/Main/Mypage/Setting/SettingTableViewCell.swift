@@ -36,7 +36,7 @@ class SettingTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(mainLabel)
-        addSubview(toggleSwitch)
+        contentView.addSubview(toggleSwitch)
         addSubview(versionLabel)
         
         mainLabel.anchor(top:topAnchor,left: leftAnchor,paddingTop:16.3 ,paddingLeft:32 )

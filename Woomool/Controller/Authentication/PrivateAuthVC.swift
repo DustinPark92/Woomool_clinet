@@ -12,7 +12,21 @@ class PrivateAuthVC: UIViewController {
     
     let mainView = PrivateAuthView()
     let viewModel = TermsViewModel()
-    var termsModel = [TermsModel]()
+    
+    
+    let termsArray : Array<TermsModel>
+    
+    init(termsArray : Array<TermsModel>) {
+        self.termsArray = termsArray
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,34 +53,26 @@ class PrivateAuthVC: UIViewController {
     }
     
     func callRequest() {
-        Request.shared.getTerms { json in
+
             
-            
-            for item in json.array! {
-                let termsItem = TermsModel(required: item["required"].stringValue, contents: item["contents"].stringValue, title: item["title"].stringValue, termsId: item["termsId"].stringValue)
-                
-                self.termsModel.append(termsItem)
-                
-            }
-            
-            self.viewModel.termsCountArray = Array<String>(repeating: "", count: self.termsModel.count)
+            self.viewModel.termsCountArray = Array<String>(repeating: "", count: self.termsArray.count)
             
             self.mainView.tableView.reloadData()
             
             
-        }
+        
     }
     
     @objc func handleChceckBox(sender : UIButton) {
         
         
         
-        if viewModel.termsCountArray.contains(termsModel[sender.tag].termsId) {
+        if viewModel.termsCountArray.contains(termsArray[sender.tag].termsId) {
             viewModel.termsCountArray.remove(at: sender.tag)
             viewModel.termsCountArray.insert("", at: sender.tag)
         } else {
             viewModel.termsCountArray.remove(at: sender.tag)
-            viewModel.termsCountArray.insert(termsModel[sender.tag].termsId, at: sender.tag)
+            viewModel.termsCountArray.insert(termsArray[sender.tag].termsId, at: sender.tag)
            
             print("어레이는? \(viewModel.termsCountArray)")
             if !viewModel.termsCountArray.contains(""){
@@ -87,9 +93,9 @@ class PrivateAuthVC: UIViewController {
         let realController = AuthDetailTableViewController()
         let controller = UINavigationController(rootViewController: realController)
         controller.modalPresentationStyle = .fullScreen
-        realController.contentLabel = termsModel[sender.tag].contents
-        realController.navTitle = termsModel[sender.tag].title
-        realController.id = termsModel[sender.tag].termsId
+        realController.contentLabel = termsArray[sender.tag].contents
+        realController.navTitle = termsArray[sender.tag].title
+        realController.id = termsArray[sender.tag].termsId
         present(controller, animated:false, completion: nil)
     }
     
@@ -99,7 +105,7 @@ class PrivateAuthVC: UIViewController {
         
         mainView.confirmButton.backgroundColor = viewModel.allButtonConfirmButton()
         mainView.confirmButton.isEnabled = viewModel.allButtonConfirmButtonIsEnable()
-        viewModel.termsCountArrayValid(termsModel: termsModel, count: termsModel.count)
+        viewModel.termsCountArrayValid(termsModel: termsArray, count: termsArray.count)
         
 
         
@@ -110,15 +116,13 @@ class PrivateAuthVC: UIViewController {
     
     @objc func handleConfirm() {
         
-        print("결과는? \(viewModel.termsCountArray)")
+        APIRequest.shared.postTerms(termsIdArray: viewModel.termsCountArray) { json in
+            self.dismiss(animated: true) {
+                NotificationCenter.default.post(name: NSNotification.Name("privacyAuthAgree"), object: nil)
+            }
+        }
         
-        weak var pvc = self.presentingViewController
-        
-        self.dismiss(animated: true, completion: {
-            let vc = AuthPopUpViewController(termsIdArray: self.viewModel.termsCountArray)
-            vc.modalPresentationStyle = .overCurrentContext
-            pvc?.present(vc, animated: true, completion: nil)
-        })
+
         
         
     }
@@ -132,13 +136,13 @@ class PrivateAuthVC: UIViewController {
 
 extension PrivateAuthVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return termsModel.count
+        return termsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PrivateAuthCell", for: indexPath) as! PrivateAuthCell
         
-        let item = termsModel[indexPath.row]
+        let item = termsArray[indexPath.row]
         
         cell.checkBoxButton.addTarget(self, action: #selector(handleChceckBox), for: .touchUpInside)
         cell.detailButton.addTarget(self, action: #selector(handleDetail), for: .touchUpInside)

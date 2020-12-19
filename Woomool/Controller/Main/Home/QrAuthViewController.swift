@@ -47,7 +47,7 @@ class QrAuthViewController: UIViewController {
     private let starView = UIView()
     var counter = 60
     var storeLookUpModel = StoreLookUpModel()
-    var serialNo = 0
+    var storeNo = 0
     var scope : Float = 0.0
     
     override func viewDidLoad() {
@@ -116,16 +116,9 @@ class QrAuthViewController: UIViewController {
     }
     
     @objc func handleConfirm() {
-        Request.shared.postStoreUse(storeId: storeLookUpModel.storeId) { json in
-            self.serialNo = json["serialNo"].intValue
+        APIRequest.shared.postStoreUse(storeId: storeLookUpModel.storeId) { json in
+            self.storeNo = json["storeNo"].intValue
             self.configureConfirmView()
-        } refreshSuccess: {
-            Request.shared.postStoreUse(storeId: self.storeLookUpModel.storeId) { json in
-                self.serialNo = json["serialNo"].intValue
-                self.configureConfirmView()
-            } refreshSuccess: {
-                print("nil")
-            }
         }
 
 
@@ -133,21 +126,12 @@ class QrAuthViewController: UIViewController {
     
     @objc func handleComplete() {
         
-        Request.shared.putStoreScope(serialNo: serialNo, scope: scope) { json in
+        APIRequest.shared.putStoreScope(storeNo: storeNo, scope: scope) { json in
             print(json)
             self.dismiss(animated: true) {
                  NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
             }
-        } refreshSuccess: {
-            Request.shared.putStoreScope(serialNo: self.serialNo, scope: self.scope) { json in
-                print(json)
-                self.dismiss(animated: true) {
-                     NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
-                }
-            } refreshSuccess: {
-                print("nil")
-            }
-        }
+        } 
 
 
        

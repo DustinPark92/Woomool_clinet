@@ -124,7 +124,7 @@ class LoginViewController: UITableViewController {
                           "password" : ViewModel.textFieldContents[1]]
             
             
-            Request.shared.postUserToken(parameters: params) { json in
+            APIRequest.shared.postUserToken(parameters: params) { json in
                 print(json)
   
                 let params = [
@@ -133,15 +133,21 @@ class LoginViewController: UITableViewController {
                     
                 ]
                 
-                Request.shared.postUserLogin(parameters: params) { json in
-                    print(json)
-                    let controller = MainTC()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                     
-                    UserDefaults.standard.removeObject(forKey: "userId")
-                    UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
-                    UIApplication.shared.windows.first?.rootViewController = controller
-                    UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    APIRequest.shared.postUserLogin(parameters: params) { json in
+                        print(json)
+                        let controller = MainTC()
+                        
+                        UserDefaults.standard.removeObject(forKey: "userId")
+                        UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
+                        UIApplication.shared.windows.first?.rootViewController = controller
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    }
+                    
                 }
+                
+
                 
                 
             }

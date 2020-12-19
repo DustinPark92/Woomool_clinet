@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -46,13 +46,78 @@
 				<string>com.googleusercontent.apps.312835334837-i85na56d23ip1pk3i8gpmp8lmbvp27vt</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>woomooldanal</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>woomooldanal</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>naversearchapp</string>
-		<string>naversearchthirdlogin</string>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
+		<string>itmss</string>
+		<string>itms-appss</string>
+		<string>itms</string>
+		<string>itms-apps</string>
+		<string>shinhan-sr-ansimclick</string>
+		<string>shinhan-sr-ansimclick-payco</string>
+		<string>shinhan-sr-ansimclick-naverpay</string>
+		<string>smshinhanansimclick</string>
+		<string>hdcardappcardansimclick</string>
+		<string>smhyundaiansimclick</string>
+		<string>mpocket.online.ansimclick</string>
+		<string>scardcertiapp</string>
+		<string>cloudpay</string>
+		<string>hanaskcardmobileportal</string>
+		<string>nhappcardansimclick</string>
+		<string>nonghyupcardansimclick</string>
+		<string>kb-acp</string>
+		<string>lotteappcard</string>
+		<string>lottesmartpay</string>
+		<string>citispay</string>
+		<string>kpay</string>
+		<string>ispmobile</string>
+		<string>paypin</string>
+		<string>payco</string>
+		<string>tswansimclick</string>
+		<string>nhallonepayansimclick</string>
+		<string>citimobileapp</string>
+		<string>citicardappkr</string>
+		<string>lpayapp</string>
+		<string>kakaotalk</string>
+		<string>shinsegaeeasypayment</string>
+		<string>kftc-bankpay</string>
+		<string>bankwallet</string>
+		<string>uppay</string>
+		<string>banka</string>
+		<string>hanamopmoasign</string>
+		<string>iphoneSbank</string>
+		<string>wooripay</string>
+		<string>tauthlink</string>
+		<string>lguthepay</string>
+		<string>lguthepay-xpay</string>
+		<string>smartxpay-transfer</string>
+		<string>nhappcash-acp</string>
+		<string>SmartBank2WIB</string>
+		<string>SmartBank2WB</string>
+		<string>PortalCenterWB</string>
+		<string>woorimembers</string>
+		<string>wibeetalk</string>
+		<string>ansimclickscard</string>
+		<string>ansimclickipcollect</string>
+		<string>vguardstart</string>
+		<string>samsungpay</string>
+		<string>hanawalletmembers</string>
+		<string>ktauthexternalcall</string>
+		<string>payprotocolwalletkr</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -61,11 +126,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-    <key>LSApplicationQueriesSchemes</key>
-     <array>
-         <string>kakaokompassauth</string>
-         <string>kakaolink</string>
-     </array>
 	<key>NSCameraUsageDescription</key>
 	<string>Qr코드 인식을 위해서, 고객님의 카메라 기능을 사용 권한이 필요합니다.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
@@ -123,6 +183,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
-	<string>light</string>
+	<string>Light</string>
 </dict>
 </plist>

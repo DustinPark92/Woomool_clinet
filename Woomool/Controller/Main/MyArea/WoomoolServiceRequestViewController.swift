@@ -21,10 +21,14 @@ class WoomoolServiceRequestViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-
+        NotificationCenter.default.addObserver(self, selector: #selector(popWoomoolService(noti:)), name: NSNotification.Name("popWoomoolService"), object: nil)
 
 
     }
+    
+    @objc func popWoomoolService(noti : NSNotification) {
+        navigationController?.popViewController(animated: true)
+      }
     
 
     func configureUI() {
@@ -50,7 +54,10 @@ class WoomoolServiceRequestViewController: UITableViewController {
     }
     
     @objc func handleDismiss() {
-        navigationController?.popViewController(animated: true)
+        
+
+        
+     navigationController?.popViewController(animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,8 +104,12 @@ class WoomoolServiceRequestViewController: UITableViewController {
               "userId": userId
         ]
         
-        Request.shared.postStoreApply(parameters: params) { json in
-            self.navigationController?.popViewController(animated: true)
+        APIRequest.shared.postStoreApply(parameters: params) { json in
+            
+            let controller = CustomAlertViewController(beforeType: singleAlertContent.woomoolService.rawValue)
+            controller.modalPresentationStyle = .overCurrentContext
+            self.present(controller, animated: true, completion: nil)
+
         }
         
     }

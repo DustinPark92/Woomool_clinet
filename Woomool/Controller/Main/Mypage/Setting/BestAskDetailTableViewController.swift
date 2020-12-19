@@ -40,10 +40,10 @@ class BestAskDetailTableViewController: UITableViewController {
     }
     
     func callRequest() {
-        Request.shared.getFAQDetail(groupId: groupId) { json in
+        APIRequest.shared.getFAQDetail(groupId: groupId) { json in
             print(json)
         } refreshSuccess: {
-            Request.shared.getFAQDetail(groupId: self.groupId) { json in
+            APIRequest.shared.getFAQDetail(groupId: self.groupId) { json in
                 print(json)
             } refreshSuccess: {
                 print("nil")

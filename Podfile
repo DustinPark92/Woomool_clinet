@@ -14,6 +14,7 @@ pod 'Hex'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'Alamofire', '~> 5.2'
 pod 'Kingfisher', '~>4.7'
+pod 'SwiftKeychainWrapper'
 
 
 pod 'naveridlogin-sdk-ios'

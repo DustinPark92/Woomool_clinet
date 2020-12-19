@@ -73,11 +73,11 @@ class InviteViewController: UIViewController {
     
     func callRequst() {
         
-        Request.shared.getInviteCode { json in
+        APIRequest.shared.getInviteCode { json in
             self.inviteCodeLabel.text = json["inviteCd"].stringValue
             self.url = json["url"].stringValue
         } refreshSuccess: {
-            Request.shared.getInviteCode { json in
+            APIRequest.shared.getInviteCode { json in
                 self.inviteCodeLabel.text = json["inviteCd"].stringValue
                 self.url = json["url"].stringValue
             } refreshSuccess: {

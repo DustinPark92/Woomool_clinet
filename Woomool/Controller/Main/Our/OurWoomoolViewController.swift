@@ -41,7 +41,7 @@ class OurWoomoolViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Request.shared.getBestStoreList { json in
+        APIRequest.shared.getBestStoreList { json in
             
             for item in json.array! {
                 let bestWoomoolItem = BestStoreModel(orders: item["orders"].intValue, storeId: item["storeId"].stringValue, name: item["name"].stringValue, address: item["address"].stringValue, scope: item["scope"].doubleValue)
@@ -133,6 +133,7 @@ extension OurWoomoolViewController : UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: notiReuseIdentifier, for: indexPath) as! MyWoomoolNotiCollectionViewCell
+        cell.backgroundColor = .white
         cell.notiLabel.text = viewModel.notiTitle[indexPath.row]
         cell.notiImg.image = UIImage(named: viewModel.notiCVImage[indexPath.row])
         cell.backgroundColor = .white

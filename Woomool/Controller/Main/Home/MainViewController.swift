@@ -15,25 +15,58 @@ class MainViewController: UIViewController {
     
     var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
     
-
+    var termsModel = [TermsModel]()
     lazy var mainLabel : UILabel = {
         let lb = UILabel()
         lb.text =  ""
-        lb.font = UIFont.NotoMedium20
+        lb.font = UIFont.NotoMedium26
         
         return lb
     }()
     
     private let subLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "우물을 찾아 떠나볼까요?"
-        lb.font = UIFont.NotoMedium20
+        lb.text = "우물을 찾아 가볼까요?"
+        lb.font = UIFont.NotoMedium26
         return lb
+    }()
+    
+    lazy var goodsCountView : UIView = {
+        let view = UIView()
+        view.backgroundColor = .bestAsk
+        view.anchor(width:180,height: 32)
+        view.makeAborder(radius: 14)
+        let couponImage = UIImageView()
+        couponImage.image = UIImage(named: "coupon_home")
+        
+        view.addSubview(couponImage)
+        couponImage.anchor(top:view.topAnchor,left: view.leftAnchor,paddingTop: 4,paddingLeft: 16)
+        couponImage.setDimensions(width: 24, height: 24)
+        
+        let mainLabel = UILabel()
+        mainLabel.text = "나의 우물 이용권"
+        mainLabel.textColor = .gray400
+        mainLabel.font = UIFont.NotoMedium12
+        
+        view.addSubview(mainLabel)
+        mainLabel.anchor(top:view.topAnchor,left: couponImage.rightAnchor,paddingTop:7 ,paddingLeft: 4)
+        
+        
+
+        
+        return view
     }()
     
     let mainCetnerView = MainCenterView()
     var bannerModelHome = [BannerModelHome]()
     
+    var countLabel : UILabel = {
+        let lb = UILabel()
+        lb.font = UIFont.NotoMedium12
+        lb.textColor = .black900
+        return lb
+    }()
+
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -49,6 +82,8 @@ class MainViewController: UIViewController {
     //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(privacyAuthAgree(noti:)), name: NSNotification.Name("privacyAuthAgree"), object: nil)
         callRequest()
         configureUI()
         configureCV()
@@ -57,7 +92,7 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        callRequest()
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -68,17 +103,27 @@ class MainViewController: UIViewController {
 
         view.addSubview(mainLabel)
         view.addSubview(subLabel)
+        view.addSubview(goodsCountView)
         view.addSubview(mainCetnerView)
         view.addSubview(collectionView)
         
+ 
+        mainLabel.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 20)
+        mainLabel.anchor(height:44)
         
-        mainLabel.anchor(top:view.safeAreaLayoutGuide.topAnchor,left: view.leftAnchor,paddingTop: 24 ,paddingLeft: 28,height: 44)
-        subLabel.anchor(top:mainLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingLeft: 28,paddingBottom: 5,height: 44)
-  
-        mainCetnerView.anchor(left: view.leftAnchor,right: view.rightAnchor,paddingTop: 20,height: 234)
-        mainCetnerView.center(inView: view)
-        mainCetnerView.setDimensions(width: 400, height: 400)
+        subLabel.centerX(inView: view, topAnchor: mainLabel.bottomAnchor, paddingTop: 0)
+        subLabel.anchor(height:44)
         
+        goodsCountView.centerX(inView: view, topAnchor: subLabel.bottomAnchor, paddingTop: 8)
+        
+        
+        goodsCountView.addSubview(countLabel)
+        countLabel.anchor(top:goodsCountView.topAnchor,right: goodsCountView.rightAnchor,paddingTop: 7,paddingRight: 16)
+    
+        
+        mainCetnerView.anchor(top:goodsCountView.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 16)
+
+
         collectionView.anchor(top:mainCetnerView.bottomAnchor,left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,paddingTop: 20,paddingBottom: 27,height: 80)
         
         
@@ -87,11 +132,10 @@ class MainViewController: UIViewController {
         mainCetnerView.delegate = self
         view.backgroundColor = .white
         
-        let button = UIButton(type: UIButton.ButtonType.custom)
-        button.setImage(UIImage(named: "logo_navbar"), for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        let barButton = UIBarButtonItem(customView: button)
-        self.navigationItem.leftBarButtonItems = [barButton]
+        let iv = UIImageView()
+        iv.image = UIImage(named: "logo_navbar")
+        iv.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        self.navigationItem.titleView = iv
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(handleNotification))
         navigationItem.rightBarButtonItem?.tintColor = .blue500
@@ -106,7 +150,8 @@ class MainViewController: UIViewController {
     }
     
     func callBannerHomeRequst() {
-        Request.shared.getBanner(postion: "HOME") { json in
+        APIRequest.shared.getBanner(postion: "HOME") { json in
+            
             for item in json.arrayValue {
                 let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
             
@@ -117,7 +162,7 @@ class MainViewController: UIViewController {
             self.collectionView.reloadData()
             
         } refreshSuccess: {
-            Request.shared.getBanner(postion: "Home") { json in
+            APIRequest.shared.getBanner(postion: "Home") { json in
                 for item in json.arrayValue {
                     let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
                 
@@ -137,33 +182,35 @@ class MainViewController: UIViewController {
     
     func configure() {
         mainLabel.text  = "안녕하세요. \(userModel.nickname)님"
-        mainCetnerView.couponCountLabel.text = "\(userModel.remCount) 회"
+        countLabel.text = "\(userModel.remCount)개"
+
     }
     
     func callRequest() {
-            
-            Request.shared.getUserInfo() { [self] json in
-                
-                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
-                
-
-                
-                configure()
-    
-            } refreshSuccess: {
-                Request.shared.getUserInfo() { [self] json in
-                    
-                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
-                    configure()
-                    
         
-                } refreshSuccess: {
-                    print("nil")
+
+            
+            APIRequest.shared.getUserInfo() { [self] json in
+                
+                if json["terms"].arrayValue.count == 0 {
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                        configure()
+                } else {
+                    
+                    for item in json["terms"].arrayValue {
+                        let termsItem = TermsModel(required: item["required"].stringValue, contents: item["contents"].stringValue, title: item["title"].stringValue, termsId: item["termsId"].stringValue)
+                        
+                        
+                        self.termsModel.append(termsItem)
+                    }
+                    
+                    let controller = PrivateAuthVC(termsArray:termsModel)
+                    controller.modalPresentationStyle = .overCurrentContext
+                    present(controller, animated: true, completion: nil)
                     
                 }
                 
-            }
-           
+            }            
     }
     
 
@@ -173,14 +220,18 @@ class MainViewController: UIViewController {
     @objc func handleNotification() {
         let controller = NoticeTableViewController()
         navigationController?.pushViewController(controller, animated: true)
-       
     }
     
-    @objc func handleQrButton() {
-        let controller = QrScannverViewController()
-        navigationController?.pushViewController(controller, animated: true)
-        
-    }
+
+    
+    @objc func privacyAuthAgree(noti : NSNotification) {
+        APIRequest.shared.getUserInfo() { [self] json in
+
+                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                    configure()
+            }
+ 
+      }
     
 }
 
@@ -208,8 +259,15 @@ extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSour
 
 extension MainViewController : MainCenterViewDelegate {
     func goToScannerView() {
+        if userModel.remCount == 0 {
+            mainCetnerView.qrButton.isEnabled = false
+            let controller = CustomAlertViewController(beforeType: singleAlertContent.noWoomoolGoods.rawValue)
+            controller.modalPresentationStyle = .overCurrentContext
+            present(controller, animated: true, completion: nil)
+        } else {
         let controller = QrScannverViewController()
         navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     

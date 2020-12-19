@@ -25,11 +25,13 @@ class MyAreaDetailTableViewController: UIViewController {
     let tableView = UITableView()
     var storeModel = [StoreModel]()
     let viewModel = MyWoomoolViewModel()
+    var userLocation : Array<Double> = [0.0,0.0]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("유저 위치는? \(userLocation)")
         configureUI()
         callRequest()
     }
@@ -50,7 +52,7 @@ class MyAreaDetailTableViewController: UIViewController {
     }
     
     func callRequest() {
-        Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
+        APIRequest.shared.getStoreList(lat:userLocation[0],lon: userLocation[1]) { json in
             
             
             for item in json.array! {
@@ -63,23 +65,6 @@ class MyAreaDetailTableViewController: UIViewController {
             }
             
             self.tableView.reloadData()
-        } refreshSuccess: {
-            Request.shared.getStoreList(lat:37.4921514,lon: 127.0118619) { json in
-                
-                
-                for item in json.array! {
-                    
-                    let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                               , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
-                    
-                    
-                    self.storeModel.append(storeData)
-                }
-                
-                self.tableView.reloadData()
-            } refreshSuccess: {
-                
-            }
         }
     }
 

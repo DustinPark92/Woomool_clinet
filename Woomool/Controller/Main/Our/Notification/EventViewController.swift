@@ -18,24 +18,13 @@ class EventViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        Request.shared.getEventList { (json) in
+        APIRequest.shared.getEventList { (json) in
             for item in json.array! {
                 let eventItem = EventListModel(eventId: item["eventId"].stringValue, contents: item["contents"].stringValue, postDate: item["postDate"].stringValue, endDate: item["endDate"].stringValue, startDate: item["startDate"].stringValue, image: item["image"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
                     self.eventListModel.append(eventItem)
             }
             
             self.tableView.reloadData()
-        } refreshSuccess: {
-            Request.shared.getEventList { (json) in
-                for item in json.array! {
-                    let eventItem = EventListModel(eventId: item["eventId"].stringValue, contents: item["contents"].stringValue, postDate: item["postDate"].stringValue, endDate: item["endDate"].stringValue, startDate: item["startDate"].stringValue, image: item["image"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
-                        self.eventListModel.append(eventItem)
-                }
-                
-                self.tableView.reloadData()
-            } refreshSuccess: {
-              print("nil")
-            }
         }
         configureUI()
         addNavbackButton(selector: #selector(handleDismiss))

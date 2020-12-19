@@ -117,7 +117,7 @@ extension ManagementViewController : UITextFieldDelegate {
         
         
         
-        Request.shared.getFindStoreList(inputStoreName: textField.text ?? "") { json in
+        APIRequest.shared.getFindStoreList(inputStoreName: textField.text ?? "") { json in
 
             for item in json.array! {
                 let storeFindItem = StoreFindModel(storeId: item["storeId"].stringValue, name: item["name"].stringValue, address: item["address"].stringValue)
