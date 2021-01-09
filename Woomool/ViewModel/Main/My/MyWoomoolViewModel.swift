@@ -19,9 +19,9 @@ enum WoomoolService : Int, CaseIterable {
         switch self {
 
         case .name:
-            return "카페이름"
+            return "카페이름(필수)"
         case .adress:
-            return  "주소"
+            return  "주소(필수)"
         case .number:
             return  "전화번호"
         }

@@ -11,7 +11,7 @@ import UIKit
 private let reuseIdentifier = "EventTableViewCell"
 
 class EventDetailTableViewController: UITableViewController {
-    var eventModel = EventListModel(eventId: "", contents: "", postDate: "", endDate: "", startDate: "", image: "", title: "", displayDate: "", eventStatus: "")
+    var eventModel = EventListModel(banner: "", contents: "", endDate: "", eventId: "", image: "", postDate: "", startDate: "", statusEvent: "", statusImage: "", title: "")
     
     
     let footerView = UIView()
@@ -66,8 +66,9 @@ class EventDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! EventTableViewCell
         cell.dateLabel.text = eventModel.postDate
         cell.titleLabel.text = eventModel.title
-        cell.progressLabel.text = EventViewModel(event: eventModel).eventStatusLabel
-        cell.progressLabel.backgroundColor = EventViewModel(event: eventModel).eventStatusColor
+        cell.progressImage.kf.setImage(with: URL(string: eventModel.statusImage))
+//        cell.progressLabel.text = EventViewModel(event: eventModel).eventStatusLabel
+//        cell.progressLabel.backgroundColor = EventViewModel(event: eventModel).eventStatusColor
         return cell
     }
     

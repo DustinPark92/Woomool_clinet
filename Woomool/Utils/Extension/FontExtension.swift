@@ -17,7 +17,7 @@ extension UIFont {
     
     static let NotoMedium26 = UIFont.init(name: "NotoSansCJKkr-Medium", size: 26)
     
-    static let NotoMedium20 = UIFont.init(name: "NotoSansCJKkr-Medium", size: 26)
+    static let NotoMedium20 = UIFont.init(name: "NotoSansCJKkr-Medium", size: 20)
     
     static let NotoBold18 = UIFont.init(name: "NotoSansCJKkr-Bold", size: 18)
     

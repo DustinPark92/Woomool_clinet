@@ -46,11 +46,16 @@ extension tokenInterceptor {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        if request.response?.statusCode == 401 {
+        if request.response?.statusCode == 401 || request.response?.statusCode == 400{
             APIRequest.shared.postUserRefreshToken { json in
-                        completion(.retry)
+                self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    completion(.retry)
+                }
+                        
             }
-
+            
         
         } else {
             completion(.doNotRetry)

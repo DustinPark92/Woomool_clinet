@@ -143,12 +143,21 @@ class LoginViewController: UITableViewController {
                         UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
                         UIApplication.shared.windows.first?.rootViewController = controller
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    } fail: { error in
+                        self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                            
+                        }
                     }
                     
                 }
                 
 
                 
+                
+            } fail: { error in
+                self.showOkAlert(title: error, message: "") {
+                    
+                }
                 
             }
     

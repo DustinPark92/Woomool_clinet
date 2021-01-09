@@ -12,7 +12,7 @@ import UIKit
 class OurwoomoolViewModel {
     
     let bestwoomoolImg = ["best_rank_1","best_rank_2","best_rank_3"] 
-    let bestWoomoolRank = ["1st","2nd","3rd"]
+    let bestWoomoolRank = ["1위","2위","3위"]
 
 func attributedButton(_ firstPart: String) -> UIButton {
     let button = UIButton(type: .system)

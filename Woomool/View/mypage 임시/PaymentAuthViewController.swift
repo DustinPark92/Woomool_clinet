@@ -31,12 +31,12 @@ class PaymentAuthViewController: UIViewController, WKScriptMessageHandler {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+   
         
         print(url)
         
         let configuration = WKWebViewConfiguration()
-        configuration.userContentController.add(self, name: "closewebview")
+        configuration.userContentController.add(self, name: "okaydanalpay")
 
         let myWebView:WKWebView = WKWebView(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height),configuration: configuration)
         myWebView.navigationDelegate = self
@@ -52,8 +52,7 @@ class PaymentAuthViewController: UIViewController, WKScriptMessageHandler {
         let params = [
             paramsKey :  endcodingValue!
         ] as [String : Any]
-        
-        
+
         let postString = self.getPostString(params: params)
         print(postString)
         request.httpBody = postString.data(using: .utf8)
@@ -66,6 +65,12 @@ class PaymentAuthViewController: UIViewController, WKScriptMessageHandler {
         self.view.addSubview(myWebView)
         
    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
     }
 
     
@@ -112,7 +117,7 @@ extension PaymentAuthViewController: WKUIDelegate,WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, start urlSchemeTask: WKURLSchemeTask) {
-        if let url = urlSchemeTask.request.url, url.scheme == "closewebview" {
+        if let url = urlSchemeTask.request.url, url.scheme == "okaydanalpay" {
             
         }
     }

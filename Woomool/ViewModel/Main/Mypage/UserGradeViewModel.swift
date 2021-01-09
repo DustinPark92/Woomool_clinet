@@ -85,10 +85,45 @@ enum UsergradeOptions : Int, CaseIterable {
 
 
 class UserGradeViewModel {
+    
+    var userRankModel = [UserRankModel]()
+    var index = 0
+    var firstPage = 0
+    var percentage = 0
 
     
-    var firstPage = 0
-    var afterPage = 0 
+    func callRequest(success : @escaping() -> (), fail : @escaping(ErrorHandling) -> ()) {
+        APIRequest.shared.getUserRank { [self] json in
+
+            for item in json.array! {
+                let userRankItem = UserRankModel(levelId: item["levelId"].stringValue, name: item["name"].stringValue, orders: item["orders"].intValue, benefits: item["benefits"].stringValue, userStatus: item["userStatus"].stringValue, userRate: item["userRate"].intValue, standard: item["standard"].stringValue)
+                
+
+                    
+                
+                self.userRankModel.append(userRankItem)
+            }
+            
+            index = self.userRankModel.firstIndex {
+                $0.userStatus == "NOW"
+            }!
+            
+            
+            
+            DispatchQueue.main.async {
+                self.percentage = userRankModel[index].userRate
+                success()
+            }
+
+    } fail: { error in
+        fail(error)
+    }
+        
+    }
     
+
+
+
+
 
 }

@@ -51,6 +51,8 @@ class UserDelViewController: UIViewController {
     }()
     
     let tableView = UITableView()
+    
+    var deleteUserReason = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,8 +106,14 @@ class UserDelViewController: UIViewController {
     
     @objc func handleDeleteUser() {
         let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 1)!.rawValue)
-        
         controller.modalPresentationStyle = .overCurrentContext
+        if textView.text != "탈퇴 사유를 입력해주세요." {
+            controller.deleteUserReason = textView.text
+        } else {
+            controller.deleteUserReason = deleteUserReason
+            
+        }
+        
         present(controller, animated: true, completion: nil)
         
     }
@@ -115,7 +123,7 @@ class UserDelViewController: UIViewController {
 
 extension UserDelViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return userDelReason.allCases.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,6 +144,7 @@ extension UserDelViewController : UITableViewDelegate, UITableViewDataSource {
 
             switch indexPath.row {
             case 0,1,2 :
+                self.deleteUserReason = userDelReason.init(rawValue: indexPath.row)!.description
                 sendButton.isHidden = false
                 textView.isEditable = false
             case 3:

@@ -12,7 +12,6 @@ class BestWoomoolCollectionViewCell: UICollectionViewCell {
     
     let rankLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "1"
         lb.font = UIFont.NotoMedium14
         lb.textColor = .white
         return lb
@@ -20,7 +19,6 @@ class BestWoomoolCollectionViewCell: UICollectionViewCell {
     
     let storeNameLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "카페 알파카"
         lb.font = UIFont.NotoBold16
         lb.textColor = .white
         return lb
@@ -28,9 +26,7 @@ class BestWoomoolCollectionViewCell: UICollectionViewCell {
     
     let adressLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "서울시 성북구 49-2"
         lb.font = UIFont.NotoMedium14
-        lb.adjustsFontSizeToFitWidth = true
         return lb
     }()
     

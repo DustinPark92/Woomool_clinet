@@ -80,7 +80,6 @@ class CouponPayReciptTableViewCell: UITableViewCell {
     
     let usingCountLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "15회"
         lb.font = UIFont.NotoMedium20
         lb.textColor = .blue500
         return lb

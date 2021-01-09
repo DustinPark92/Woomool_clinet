@@ -33,6 +33,8 @@ class PrivateAuthVC: UIViewController {
         callRequest()
         configureUI()
         
+       
+        
     }
     
     func configureUI() {
@@ -55,7 +57,18 @@ class PrivateAuthVC: UIViewController {
     func callRequest() {
 
             
-            self.viewModel.termsCountArray = Array<String>(repeating: "", count: self.termsArray.count)
+        self.viewModel.termsCountArray = Array<String>(repeating: "", count: self.termsArray.count)
+        self.viewModel.statusCountArray = Array<String>(repeating: "N", count: self.termsArray.count)
+        self.viewModel.termsSelectedArray = self.termsArray.filter {
+            $0.required == "N"
+        }.map {
+            $0.termsId
+        }
+        
+
+        
+        print("필수 아닌 어레이는? \(viewModel.termsSelectedArray)")
+        print( "어레이는 \(viewModel.termsCountArray.filter { viewModel.termsSelectedArray.contains($0) })" )
             
             self.mainView.tableView.reloadData()
             
@@ -65,21 +78,36 @@ class PrivateAuthVC: UIViewController {
     
     @objc func handleChceckBox(sender : UIButton) {
         
+       
         
         
         if viewModel.termsCountArray.contains(termsArray[sender.tag].termsId) {
+            viewModel.allAuthValid = false
+            mainView.allAgreeButton.setImage(UIImage(named: "check_inactive"), for: .normal)
             viewModel.termsCountArray.remove(at: sender.tag)
             viewModel.termsCountArray.insert("", at: sender.tag)
+            viewModel.statusCountArray.remove(at: sender.tag)
+            viewModel.statusCountArray.insert("N", at: sender.tag)
+            mainView.confirmButton.backgroundColor = viewModel.allButtonConfirmButton()
+            mainView.confirmButton.isEnabled = viewModel.allButtonConfirmButtonIsEnable()
         } else {
             viewModel.termsCountArray.remove(at: sender.tag)
             viewModel.termsCountArray.insert(termsArray[sender.tag].termsId, at: sender.tag)
+            viewModel.statusCountArray.remove(at: sender.tag)
+            viewModel.statusCountArray.insert("Y", at: sender.tag)
+            
            
-            print("어레이는? \(viewModel.termsCountArray)")
+           
+            
             if !viewModel.termsCountArray.contains(""){
                 viewModel.allAuthValid = false
                 mainView.allAgreeButton.setImage(viewModel.allButtonCliecked(), for: .normal)
                 mainView.confirmButton.backgroundColor = viewModel.allButtonConfirmButton()
                 mainView.confirmButton.isEnabled = viewModel.allButtonConfirmButtonIsEnable()
+            } else if viewModel.termsCountArray[0] != "" && viewModel.termsCountArray[1] != "" && viewModel.termsCountArray[2] != "" && viewModel.termsCountArray[3] == "" {
+                mainView.confirmButton.backgroundColor = .blue500
+                mainView.confirmButton.isEnabled = true
+                
             }
         }
         
@@ -90,13 +118,13 @@ class PrivateAuthVC: UIViewController {
     }
     
     @objc func handleDetail(sender : UIButton) {
-        let realController = AuthDetailTableViewController()
-        let controller = UINavigationController(rootViewController: realController)
-        controller.modalPresentationStyle = .fullScreen
-        realController.contentLabel = termsArray[sender.tag].contents
-        realController.navTitle = termsArray[sender.tag].title
-        realController.id = termsArray[sender.tag].termsId
-        present(controller, animated:false, completion: nil)
+        
+
+            
+        let controller = TermsWebView(url: termsArray[sender.tag].url, navTitle: termsArray[sender.tag].subTitle, fromWhere: "Home")
+            controller.modalPresentationStyle = .fullScreen
+            present(controller, animated: false, completion: nil)
+ 
     }
     
     @objc func handleAllButton(sender : UIButton) {
@@ -107,8 +135,12 @@ class PrivateAuthVC: UIViewController {
         mainView.confirmButton.isEnabled = viewModel.allButtonConfirmButtonIsEnable()
         viewModel.termsCountArrayValid(termsModel: termsArray, count: termsArray.count)
         
-
-        
+        for item in 0..<termsArray.count {
+            viewModel.statusCountArray.remove(at: item)
+            viewModel.statusCountArray.insert("Y", at: item)
+            
+        }
+    
         
         mainView.tableView.reloadData()
         
@@ -116,7 +148,13 @@ class PrivateAuthVC: UIViewController {
     
     @objc func handleConfirm() {
         
-        APIRequest.shared.postTerms(termsIdArray: viewModel.termsCountArray) { json in
+        print("값은? \(viewModel.statusCountArray),\(viewModel.termsCountArray)")
+        
+        let termsIdArray = termsArray.map {
+            $0.termsId
+        }
+        
+        APIRequest.shared.postTerms(statusArray: viewModel.statusCountArray, termsIdArray: termsIdArray) { json in
             self.dismiss(animated: true) {
                 NotificationCenter.default.post(name: NSNotification.Name("privacyAuthAgree"), object: nil)
             }

@@ -186,7 +186,7 @@ class MypageViewModel {
     func historyAllTypeCountPrice(priceUnit : String , countUnit : String, price : Int, count : Int) -> String {
         
         if priceUnit == "" {
-            return "\(count)\(countUnit)"
+            return "\(countUnit)\(count)회"
         } else {
             return "\(price)\(priceUnit)"
         }
@@ -406,7 +406,7 @@ class MypageViewModel {
     
     //MypageNetwork Request
     
-    func callRequestMyPage(success : @escaping() -> ()) {
+    func callRequestMyPage(success : @escaping() -> (), fail : @escaping(ErrorHandling) -> ()) {
             
             APIRequest.shared.getUserInfo() {  json in
                 
@@ -420,12 +420,16 @@ class MypageViewModel {
                 }
  
                     
+            } fail: { error in
+                fail(error)
             }
 
     }
     
     
-    func callGoodsList(success: @escaping() ->()) {
+    func callGoodsList(success: @escaping() ->(), fail : @escaping(ErrorHandling) -> ()) {
+        
+        goodsModel.removeAll()
         APIRequest.shared.getGoodsList { json in
             
             self.couponAbleCount = json["couponCount"].intValue
@@ -443,14 +447,13 @@ class MypageViewModel {
             }
             
            
+        } fail: { error in
+            fail(error)
         }
         
     }
     
-    func callPostGoodsPurchase(suceess : @escaping(JSON) -> (), fail : @escaping() ->()) {
-        //        let controller = PaymentExtension()
-        //        present(controller, animated: true, completion: nil)
-        
+    func callPostGoodsPurchase(suceess : @escaping(JSON) -> (), fail : @escaping(ErrorHandling) ->()) {
         if paymentMethodSelected != "" {
         APIRequest.shared.PostGoodsPurchase(couponId: couponModel.couponId, goodsId: goodsModel[couponSelected].goodsId, payMethod: paymentMethodSelected, amount: goodsModel[couponSelected].salePrice) { json in
                     
@@ -458,28 +461,30 @@ class MypageViewModel {
                         suceess(json)
                     }
 
-//
-//                    }
+                } fail: { error in
+                    fail(error)
                 }
     
     } else {
-        fail()
+      
     }
     }
     
     
-    func callUserEnviroment(success : @escaping() -> ()) {
+    func callUserEnviroment(success : @escaping() -> (),fail : @escaping(ErrorHandling) -> ()) {
         APIRequest.shared.getUserEnviroment { json in
-            var myEnvirModel = self.myEnvirModel
+          
             
-            myEnvirModel.carbon = json["carbon"].stringValue
-            myEnvirModel.carbonUnit = json["carbonUnit"].stringValue
-            myEnvirModel.totalCount = json["totalCount"].intValue
-            myEnvirModel.useCount = json["useCount"].intValue
+            self.myEnvirModel.carbon = json["carbon"].stringValue
+            self.myEnvirModel.carbonUnit = json["carbonUnit"].stringValue
+            self.myEnvirModel.totalCount = json["totalCount"].intValue
+            self.myEnvirModel.useCount = json["useCount"].intValue
             
             DispatchQueue.main.async {
                 success()
             }
+        } fail: { error in
+            fail(error)
         }
         
         

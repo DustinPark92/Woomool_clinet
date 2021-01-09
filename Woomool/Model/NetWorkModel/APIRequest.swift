@@ -23,12 +23,33 @@ extension Data {
 }
 
 struct ErrorHandling : Codable {
-    let code : Int
+    /*
+     private String error;
+     private String code;
+     private String message;
+     private String path;
+     private String timestamp;
+     */
+    let status : Int
+    let error : String
+    let code = "999"
     let message : String
-    let method : String
-    let url : String
+    let path : String
+    let timestamp : String
+    
 }
 
+
+struct tokenErrorHandling : Codable {
+
+    let status : Int
+    let error : String
+    let code = "999"
+    let message : String
+    let path : String
+    let timestamp : String
+    
+}
 
 class APIRequest {
     
@@ -40,7 +61,7 @@ class APIRequest {
     
     
      //MARK: - TOKEN
-    func postUserToken(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+    func postUserToken(parameters : [String:Any], success : @escaping (JSON) -> () , fail : @escaping(String) -> ()) {
 
 
         let url = URLSource.token
@@ -67,6 +88,7 @@ class APIRequest {
                     self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
                     
                 case .failure(let error):
+                    fail(error.localizedDescription)
                     print(error.localizedDescription)
                 }
 
@@ -99,11 +121,6 @@ class APIRequest {
                             
                         
                         if response.response?.statusCode == 200 || response.response?.statusCode == 201 {
-                           
-                        self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                        self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                            
-                            
                             success(json)
                     }
   
@@ -119,7 +136,7 @@ class APIRequest {
     
     //MARK: - TERMS
     
-    func postTerms(termsIdArray : Array<String>,success : @escaping (JSON) -> () ) {
+    func postTerms(statusArray : Array<String>,termsIdArray : Array<String>,success : @escaping (JSON) -> ()) {
 
         
         let url = URLSource.terms
@@ -130,13 +147,13 @@ class APIRequest {
                        "userId": userId,
                        "terms":
                            [
-                               ["status": "Y",
+                               ["status": statusArray[0],
                                 "termsId": termsIdArray[0]]
-                               ,["status": "Y",
+                               ,["status": statusArray[1],
                                  "termsId": termsIdArray[1]]
-                               ,["status": "Y",
+                               ,["status": statusArray[2],
                                  "termsId": termsIdArray[2]]
-                               ,["status": "Y",
+                               ,["status": statusArray[3],
                                  "termsId": termsIdArray[3]]
                            ]
                        
@@ -160,9 +177,35 @@ class APIRequest {
 
          }
     }
+    
+    
+    func getTerms(success : @escaping(JSON) -> ()) {
+
+        let url = URLSource.requiredTerms
+        
+        
+        print(url)
+        AF.request(url, method: .get,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    
+                    
+                    print(error.localizedDescription)
+    
+                }
+
+            }
+        
+    }
 
     
-    //MARK: - USER
+    //MARK: - USER / 회원 관련
     func postUserSignUp(parameters : [String:Any], success : @escaping (JSON) -> () ) {
 
         let url = URLSource.user
@@ -183,7 +226,44 @@ class APIRequest {
             }
          }
     
-    func postUserLogin(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+    func postSNSUserSignUp(transData : String,addtionalDataContents : [String], success : @escaping (JSON) -> () , fail : @escaping(ErrorHandling) -> ()) {
+
+        let url = URLSource.user + "/sns"
+        
+        let params = [
+              "birth": addtionalDataContents[1],
+              "inviteCd": addtionalDataContents[4],
+              "email": addtionalDataContents[3],
+              "name": addtionalDataContents[0],
+              "sex": addtionalDataContents[2],
+              "transData": transData
+        ]
+
+        AF.request(url, method: .post, parameters: params, encoding: JSONEncoding.default).validate().responseJSON { response in
+
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+    
+                case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
+                }
+
+            }
+         }
+    
+    func postUserLogin(parameters : [String:Any], success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.login
  
@@ -198,6 +278,15 @@ class APIRequest {
                     self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
                 case .failure(let error):
                     print(error.localizedDescription)
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                 }
 
             }
@@ -205,7 +294,7 @@ class APIRequest {
     
     
     
-    func postSNSUserLogin(type: String,snsToken : String, success : @escaping (JSON) -> () , invalid : @escaping(JSON) -> ()) {
+    func postSNSUserLogin(type: String,snsToken : String, success : @escaping (JSON) -> () , newUser : @escaping(JSON) -> (), fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.login + "/" + type
 
@@ -224,16 +313,27 @@ class APIRequest {
                     print("JSON: \(json)")
                     
                     if response.response?.statusCode == 200 {
-                        invalid(json)
-                    } else {
-                    success(json)
-                    self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
-                    self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                    self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                        //기존 회원 일 경우
+                        success(json)
+                        self.defaults.setValue(json["userId"].stringValue, forKey: "userId")
+                        self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
+                        self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
+                    } else if response.response?.statusCode == 201{
+                        //신규 회원 일 경우
+                        newUser(json)
+
                     }
                     
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+        
+                        
+                        fail(error)
+                    }
                 }
 
             }
@@ -276,16 +376,14 @@ class APIRequest {
             }
          }
     
-    func getUserInfo(success : @escaping (JSON) -> ()) {
+    func getUserInfo(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
         
     
 
         guard let userId = defaults.object(forKey: "userId") else { return }
        
         let url = URLSource.user + "/" + "\(userId)"
-        
-        
-        print(url)
+   
         AF.request(url, method: .get,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
 
                 switch response.result {
@@ -295,7 +393,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                       fail(error)
+                    }
     
                 }
 
@@ -303,7 +409,40 @@ class APIRequest {
          }
     
     
-    func getUserEnviroment(success : @escaping (JSON) -> ()) {
+    func getUserPrivacy(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
+        
+    
+
+        guard let userId = defaults.object(forKey: "userId") else { return }
+       
+        let url = URLSource.privacy + "\(userId)"
+   
+        AF.request(url, method: .get,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
+    
+                }
+
+            }
+         }
+    
+    
+    func getUserEnviroment(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
         
     
 
@@ -323,18 +462,27 @@ class APIRequest {
 
                 case .failure(let error):
                     print(error.localizedDescription)
-    
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                 }
 
             }
          }
     
-    func delUser(success : @escaping (JSON) -> ()) {
+    
+    func getFindUserPassword(email : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
+        
 
-        guard let userId = defaults.object(forKey: "userId") else { return }
-
-        let url = URLSource.user + "/" + "\(userId)"
-        AF.request(url, method: .delete,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
+        let url = URLSource.findPW + email
+   
+        AF.request(url, method: .get,encoding: JSONEncoding.default).validate().responseJSON { response in
 
                 switch response.result {
                 case .success(let value):
@@ -343,7 +491,50 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                       
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
+    
+                }
+
+            }
+         }
+    
+    
+    
+    func delUser(reason : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
+
+        guard let userId = defaults.object(forKey: "userId") else { return }
+        
+        let params = ["reason" : reason]
+        
+        print(" 탈퇴 이유는?? \(reason)")
+
+        let url = URLSource.user + "/" + "\(userId)"
+        AF.request(url, method: .delete,parameters: params,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
+
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print("JSON: \(json)")
+                    success(json)
+
+                case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
         
                     print(error.localizedDescription)
                 }
@@ -351,7 +542,7 @@ class APIRequest {
             }
          }
     
-    func putChangeUserInfo(newPassword : String,nickname: String,oldPassword : String,success : @escaping (JSON) -> ()) {
+    func putChangeUserInfo(newPassword : String,nickname: String,oldPassword : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
         
         guard let userId = defaults.object(forKey: "userId") else { return }
 
@@ -374,6 +565,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -383,7 +583,7 @@ class APIRequest {
     
     //MARK: - STORE
     
-    func getStoreList(lat : Double,lon : Double,success : @escaping (JSON) -> ()) {
+    func getStoreList(lat : Double,lon : Double,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.store
 
@@ -402,12 +602,21 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
-    func getStoreDetail(storeId : String,lat : Double,lon : Double,success : @escaping (JSON) -> ()) {
+    func getStoreDetail(storeId : String,lat : Double,lon : Double,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.storeDetail
 
@@ -426,6 +635,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
 
                     print(error.localizedDescription)
                 }
@@ -433,7 +651,7 @@ class APIRequest {
             }
          }
     
-    func getBestStoreList(success : @escaping (JSON) -> ()) {
+    func getBestStoreList(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.storeBest
         AF.request(url, method: .get, interceptor: tokenInterceptor()).validate().responseJSON { response in
@@ -445,6 +663,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -452,7 +679,7 @@ class APIRequest {
          }
     
     
-    func getFindStoreList(inputStoreName Name : String,success : @escaping (JSON) -> ()) {
+    func getFindStoreList(inputStoreName Name : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
         let escapingCharacterSet: CharacterSet = {
             var cs = CharacterSet.alphanumerics
             cs.insert(charactersIn: "-_.~")
@@ -472,13 +699,22 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
     
-    func postStoreApply(parameters : [String:Any], success : @escaping (JSON) -> () ) {
+    func postStoreApply(parameters : [String:Any], success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.storeApply
 
@@ -492,13 +728,22 @@ class APIRequest {
                     success(json)
                     
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
     
-    func getStoreLookUp(storeId : String,success : @escaping (JSON) -> ()) {
+    func getStoreLookUp(storeId : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
      
         let url = URLSource.store + "/" + storeId
@@ -511,6 +756,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
 
                 }
@@ -518,7 +772,7 @@ class APIRequest {
             }
          }
     
-    func postStoreUse(storeId:String, success : @escaping (JSON) -> ()) {
+    func postStoreUse(storeId:String, success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.store
         guard let userId = defaults.object(forKey: "userId") as? String else { return }
@@ -541,13 +795,21 @@ class APIRequest {
                     success(json)
                     
                 case .failure(let error):
-        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
-    func putStoreScope(storeNo:Int,scope : Float, success : @escaping (JSON) -> ()) {
+    func putStoreScope(storeNo:Int,scope : Float, success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.store
 
@@ -568,7 +830,15 @@ class APIRequest {
                     success(json)
                     
                 case .failure(let error):
-         
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -579,7 +849,7 @@ class APIRequest {
     //MARK: - NOTICE
     
     
-    func getNoticeList(success : @escaping (JSON) -> ()) {
+    func getNoticeList(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.notice
         AF.request(url, method: .get,encoding: JSONEncoding.default, interceptor: tokenInterceptor()).validate().responseJSON { response in
@@ -591,13 +861,22 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
     
-    func getNoticeListDetail(inputNoticeId id : String,success : @escaping (JSON) -> ()) {
+    func getNoticeListDetail(inputNoticeId id : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.notice + "/" + id
         AF.request(url, method: .get,encoding: JSONEncoding.default, interceptor: tokenInterceptor()).validate().responseJSON { response in
@@ -609,6 +888,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -619,7 +907,7 @@ class APIRequest {
     //MARK: - EVENT
     
     
-    func getEventList(success : @escaping (JSON) -> ()) {
+    func getEventList(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.event
 
@@ -632,6 +920,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
 
                     print(error.localizedDescription)
                 }
@@ -639,7 +936,7 @@ class APIRequest {
             }
          }
     
-    func getEventListDetail(inputEventId id : String,success : @escaping (JSON) -> ()) {
+    func getEventListDetail(inputEventId id : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.event + "/" + id
 
@@ -652,6 +949,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -661,7 +967,7 @@ class APIRequest {
     //MARK: - Goods
     
     
-    func getGoodsList(success : @escaping (JSON) -> ()) {
+    func getGoodsList(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         
@@ -677,6 +983,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -684,7 +999,7 @@ class APIRequest {
          }
     
     
-    func getPurchaseHistory(success : @escaping (JSON) -> ()) {
+    func getPurchaseHistory(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         guard let userId = defaults.object(forKey: "userId") as? String else { return }
  
@@ -698,13 +1013,22 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
     
-    func PostGoodsPurchase(couponId : String, goodsId : String,payMethod : String , amount : Int , success : @escaping (JSON) -> ()) {
+    func PostGoodsPurchase(couponId : String, goodsId : String,payMethod : String , amount : Int , success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
 
         
@@ -729,18 +1053,15 @@ class APIRequest {
 
                 case .failure(let error):
                     print(error.errorDescription)
-                    
-        
                     if let responseData = response.data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        
-                    
-//
-                    
-                    print(error)
-                }
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
 
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
             }
          }
     }
@@ -749,7 +1070,7 @@ class APIRequest {
     //MARK: - FAQ
     
     
-    func getFAQCategory(success : @escaping (JSON) -> ()) {
+    func getFAQCategory(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.faq
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -763,6 +1084,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
          
                     print(error.localizedDescription)
                 }
@@ -771,7 +1101,7 @@ class APIRequest {
          }
     
     
-    func getFAQDetail(groupId : String,success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> ()) {
+    func getFAQDetail(groupId : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.faq  + "/" + groupId
 
@@ -784,13 +1114,22 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
             }
          }
     
-    func getEventListDetail(inputFAQId id : String,success : @escaping (JSON) -> ()) {
+    func getEventListDetail(inputFAQId id : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.faq + "/" + id
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -804,6 +1143,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -812,7 +1160,7 @@ class APIRequest {
     
     
     //MARK: - 회원 등급별 목록
-    func getUserRank(success : @escaping (JSON) -> ()) {
+    func getUserRank(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -829,6 +1177,15 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 
@@ -836,16 +1193,17 @@ class APIRequest {
          }
     
     
-    //MARK: - 배너
-    func getBanner(postion : String,success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
-
+    //MARK: - 광고
+    
+    func getAdsense(positionCd : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
         
-        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
-        
+    
 
-        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        let url = URLSource.banner + postion
-        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+        guard let userId = defaults.object(forKey: "userId") else { return }
+       
+        let url = URLSource.adsense + "/" + positionCd
+   
+        AF.request(url, method: .get,encoding: JSONEncoding.default,interceptor: tokenInterceptor()).validate().responseJSON { response in
 
                 switch response.result {
                 case .success(let value):
@@ -854,26 +1212,23 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                       fail(error)
                     }
+    
                 }
 
             }
          }
-    
     //MARK: - 유저 알림
     
-    func getUserNoti(success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+    func getUserNoti(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -890,25 +1245,24 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
+//                    if let responseData = response.data {
+//                        let decoder = JSONDecoder()
+//                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//
+//                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+//
+//
+//                        fail(error)
+//                    }
                     print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
-                    }
+
                 }
 
             }
          }
     
     
-    func putUserNotiReading(messageNo : Int,success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+    func putUserNotiReading(messageNo : Int,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -924,18 +1278,16 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
                     }
+                    print(error.localizedDescription)
                 }
 
             }
@@ -945,15 +1297,13 @@ class APIRequest {
     
     //MARK : - 초대 코드 발급
     
-    func getInviteCode(success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+    func getInviteCode(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
-        
-        guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
+
         guard let userId = defaults.object(forKey: "userId") else { return }
 
-        let header : HTTPHeaders = ["Authorization" : "Bearer \(token)"]
         let url = URLSource.invite + "\(userId)"
-        AF.request(url, method: .get,encoding: JSONEncoding.default, headers: header).validate().responseJSON { response in
+        AF.request(url, method: .get,encoding: JSONEncoding.default, interceptor: tokenInterceptor()).validate().responseJSON { response in
 
                 switch response.result {
                 case .success(let value):
@@ -962,25 +1312,24 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
                     }
+                    print(error.localizedDescription)
+       
                 }
 
             }
          }
     
     //MARK: - 쿠폰 / coupon
-    func getUserCoupon(success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+    func getUserCoupon(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -997,18 +1346,17 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
                     }
+                    print(error.localizedDescription)
+
                 }
 
             }
@@ -1017,7 +1365,7 @@ class APIRequest {
     
     //MARK: - 불만 사항 / Complain
     
-    func postStoreComplain(storeId:String,contents: String, success : @escaping (JSON) -> (),refreshSuccess : @escaping() -> () ) {
+    func postStoreComplain(storeId:String,contents: String, success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.storeComplain
         guard let token = defaults.object(forKey: "accessToken") else { return }
@@ -1041,16 +1389,14 @@ class APIRequest {
                     success(json)
                     
                 case .failure(let error):
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
                     }
                     print(error.localizedDescription)
                 }
@@ -1061,7 +1407,7 @@ class APIRequest {
     
     //MARK: - 내역 / History
     
-    func getHistory(type : String,searchMonth : String,success : @escaping (JSON) -> (),refreshSuccess: @escaping() -> ()) {
+    func getHistory(type : String,searchMonth : String,success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         
         guard let token = UserDefaults.standard.object(forKey: "accessToken") else { return }
@@ -1084,18 +1430,17 @@ class APIRequest {
                     success(json)
 
                 case .failure(let error):
-                    print(error.localizedDescription)
-                    if response.response?.statusCode == 401 {
-                        
-                        APIRequest.shared.postUserRefreshToken { json in
-                            refreshSuccess()
-    
-                            self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
-                            self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")
-                        }
-                       
-                        
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
                     }
+                    print(error.localizedDescription)
+
                 }
 
             }
@@ -1104,7 +1449,7 @@ class APIRequest {
     
     //MARK: - 인증 / CERT
     
-    func postCertUser(success : @escaping (JSON) -> ()) {
+    func postCertUser(success : @escaping (JSON) -> (),fail : @escaping(ErrorHandling) -> ()) {
 
         let url = URLSource.cert
 
@@ -1120,6 +1465,15 @@ class APIRequest {
                     success(json)
                     
                 case .failure(let error):
+                    if let responseData = response.data {
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                        let error : ErrorHandling = try! decoder.decode(ErrorHandling.self, from: responseData)
+
+
+                        fail(error)
+                    }
                     print(error.localizedDescription)
                 }
 

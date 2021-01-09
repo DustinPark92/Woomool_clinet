@@ -12,6 +12,7 @@ import KakaoSDKAuth
 import KakaoSDKTalk
 import KakaoSDKTemplate
 import KakaoSDKCommon
+import GoogleMobileAds
 
 class InviteViewController: UIViewController {
     
@@ -23,6 +24,12 @@ class InviteViewController: UIViewController {
     lazy var inviteCodeLabel = UILabel()
     
     let text = "친구초대하고 우물 이용권 받으세요!\\n\\n"
+    
+    lazy var bannerView: GADBannerView = {
+        let view = GADBannerView(adSize:kGADAdSizeLargeBanner)
+        view.rootViewController = self
+        return view
+    }()
 
 
     
@@ -76,14 +83,20 @@ class InviteViewController: UIViewController {
         APIRequest.shared.getInviteCode { json in
             self.inviteCodeLabel.text = json["inviteCd"].stringValue
             self.url = json["url"].stringValue
-        } refreshSuccess: {
-            APIRequest.shared.getInviteCode { json in
-                self.inviteCodeLabel.text = json["inviteCd"].stringValue
-                self.url = json["url"].stringValue
-            } refreshSuccess: {
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                 
             }
         }
+        
+        APIRequest.shared.getAdsense(positionCd: "invite") { json in
+            self.bannerView.adUnitID = json["adUnitId"].stringValue
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
+
 
     }
 
@@ -110,6 +123,13 @@ class InviteViewController: UIViewController {
         
         kakaoButton.addTarget(self, action: #selector(handleKaKaoButton), for: .touchUpInside)
         urlButton.addTarget(self, action: #selector(handleUrlButton), for: .touchUpInside)
+        
+        
+        bannerView.load(GADRequest())
+        bannerView.delegate = self
+        
+        view.addSubview(bannerView)
+        bannerView.anchor(left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,width: 320,height: 100)
         
         
         
@@ -165,3 +185,42 @@ class InviteViewController: UIViewController {
     }
 
 }
+
+
+
+extension InviteViewController : GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+      print("adViewDidReceiveAd")
+    }
+
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView,
+        didFailToReceiveAdWithError error: GADRequestError) {
+      print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+      print("adViewWillPresentScreen")
+    }
+
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewWillDismissScreen")
+    }
+
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+      print("adViewDidDismissScreen")
+    }
+
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+      print("adViewWillLeaveApplication")
+    }
+
+}
+

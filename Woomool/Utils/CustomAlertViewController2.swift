@@ -16,6 +16,7 @@ class CustomAlertViewController2: UIViewController {
     let cancelButton = UIButton()
     
     let beforeType : Int
+    var deleteUserReason = ""
     
     init(beforeType : Int) {
         self.beforeType = beforeType
@@ -48,8 +49,16 @@ class CustomAlertViewController2: UIViewController {
                 self.delUserInfo()
                 
             case twoAlertContent.userDelete.rawValue :
-                self.delUserInfo()
-                
+                APIRequest.shared.delUser(reason: self.deleteUserReason) { json in
+                    self.delUserInfo()
+                } fail: { error in
+                    
+                    print("[\(error.status)] \(error.code)=\(error.message)")
+                    self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                        
+                    }
+                }
+
                 
                 
             default : break

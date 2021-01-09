@@ -38,14 +38,14 @@ class SchemeHandler: NSObject {
                                           completionHandler: {
                                             (success) in
                                             
-                                            let tempStr = url.scheme ?? "알수없음";
+                            let tempStr = url.scheme ?? "알수없음";
                                             
-                                        if( true == success )
-                                        {
-                                            print("Open \(tempStr) : success");
+                            if true == success {
+                               print("Open \(tempStr) : success");
 
-
-                                            if tempStr == "woomooldanal" {
+                                            //MARK: - 결제 성공 : okaydanalpay
+                                            if tempStr == "okaydanalpay" {
+                                                
                                                 self.viewController?.showOkAlert(title: "결제가 완료 되었습니다", message: "", fail: {
                                                     let controller = MainTC()
                                                     controller.selectedIndex = 0
@@ -56,21 +56,31 @@ class SchemeHandler: NSObject {
                                                 })
                                                 
                                             }
-
-
-                                        }
-                                        else
-                                        {
+                                        } else {
                                             
-                                            if tempStr == "woomooldanalfail" {
-                                               print("fail")
-                                           }
-                                            print("App Scheme 값이 잘못 되었거나, 접근을 허용하지 않았거나, 앱이 설치 되어 있지 않습니다.\(tempStr))");
-                                            do {
-                                                try self.openUrlByCustomList(requestURL: requestedURL);
-                                            } catch {
-                                                print("error: \(error)")
+                                            
+                                            
+                                            switch tempStr {
+                                            //MARK: - 결제 취소, 결제 실패
+                                            case "canceldanalpay","errordanalpay":
+                                                do {
+                                                    try self.openUrlByCustomList(requestURL: requestedURL);
+                                                } catch {
+                                                    print("error: \(error)")
+                                                }
+                                            //MARK: - 본인 인증 성공
+                                            case "okaydanaluas":
+                                                NotificationCenter.default.post(name: NSNotification.Name("okaydanaluas"), object: nil)
+                                            //MARK: - 본인 인증 취소
+                                            case "canceldanaluas":
+                                                print("canceldanaluas")
+                                                
+                                            default:
+                                                break
                                             }
+                    
+                                            print("App Scheme 값이 잘못 되었거나, 접근을 허용하지 않았거나, 앱이 설치 되어 있지 않습니다.\(tempStr))");
+
                                         }
                                             
                 })
@@ -82,9 +92,7 @@ class SchemeHandler: NSObject {
                 {
                     
                     print("Open 1 \(tempStr): success");
-                }
-                else
-                {
+                } else {
                     print("App Scheme 값이 잘못 되었거나, 접근을 허용하지 않았거나, 앱이 설치 되어 있지 않습니다.\(tempStr)");
                     
                     do {

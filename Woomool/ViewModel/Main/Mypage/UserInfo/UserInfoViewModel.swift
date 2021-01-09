@@ -14,7 +14,6 @@ enum userInfoType: Int,CaseIterable {
     case sex
     case email
     case nickname
-    case phoneNumber
     case password
     
     var description: String{
@@ -29,8 +28,6 @@ enum userInfoType: Int,CaseIterable {
             return "이메일"
         case .nickname:
             return "닉네임"
-        case .phoneNumber:
-            return "휴대폰 번호"
         case .password:
             return "비밀번호"
         }

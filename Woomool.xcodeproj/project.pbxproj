@@ -38,6 +38,11 @@
 		DA3ED1F5250A265100E4D64C /* ChangePassAuthPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3ED1F4250A265100E4D64C /* ChangePassAuthPopUpViewController.swift */; };
 		DA4C10D324FF89D7009DBBE2 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C10D224FF89D7009DBBE2 /* NotificationViewModel.swift */; };
 		DA4C10D524FF8C4A009DBBE2 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4C10D424FF8C4A009DBBE2 /* NotificationTableViewCell.swift */; };
+		DA4EA0142594659600E59FB8 /* CompanyIntroduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4EA0132594659600E59FB8 /* CompanyIntroduceViewController.swift */; };
+		DA4EA0172594661E00E59FB8 /* CompanyIntroduceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4EA0162594661E00E59FB8 /* CompanyIntroduceCell.swift */; };
+		DA572B6525A69F0A002AC98F /* AppleLoginAdditionalDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA572B6425A69F0A002AC98F /* AppleLoginAdditionalDataVC.swift */; };
+		DA572B6825A69F23002AC98F /* AppleLoginAddtionalDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA572B6725A69F23002AC98F /* AppleLoginAddtionalDataCell.swift */; };
+		DA572B6C25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA572B6B25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift */; };
 		DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */; };
 		DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */; };
 		DA6A75A7250A15A200B96C32 /* MyAreaDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */; };
@@ -106,6 +111,8 @@
 		DA913DD6254FEB840087464A /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD5254FEB840087464A /* EventModel.swift */; };
 		DA913DD925500A620087464A /* GoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DD825500A620087464A /* GoodsModel.swift */; };
 		DA913DDC2550197F0087464A /* FAQModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA913DDB2550197F0087464A /* FAQModel.swift */; };
+		DA9318DC25948FCF00C370B2 /* TermsWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9318DB25948FCF00C370B2 /* TermsWebView.swift */; };
+		DA9318DF2595BB2500C370B2 /* ChagneInfoViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9318DE2595BB2500C370B2 /* ChagneInfoViewmodel.swift */; };
 		DA959745252716A1002A4271 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA959744252716A1002A4271 /* APIRequest.swift */; };
 		DAA3509C254C01D6005D4071 /* WoomoolImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */; };
 		DAA3509F254C07BD005D4071 /* TermsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3509E254C07BD005D4071 /* TermsModel.swift */; };
@@ -133,6 +140,8 @@
 		DAAB95C8257C949C00697104 /* SchemeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95C7257C949C00697104 /* SchemeHandler.swift */; };
 		DAAB95CB257C94B200697104 /* SamplePlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95CA257C94B200697104 /* SamplePlistManager.swift */; };
 		DAAB95CF257CA13B00697104 /* UserDelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB95CE257CA13B00697104 /* UserDelViewModel.swift */; };
+		DAACEC5125A4659300E7056A /* AdsenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAACEC5025A4659300E7056A /* AdsenseModel.swift */; };
+		DAACEC7425A4724600E7056A /* loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = DAACEC7325A4724500E7056A /* loader.gif */; };
 		DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */; };
 		DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */; };
 		DAAF04EC256CE99B004D18D1 /* PrivateAuthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */; };
@@ -148,6 +157,11 @@
 		DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */; };
 		DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */; };
 		DABD6D4D258CDF69000720C2 /* DeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */; };
+		DAC156CB259F179900A0BC99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAC156CA259F179900A0BC99 /* GoogleService-Info.plist */; };
+		DAC156D025A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC156CF25A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift */; };
+		DAC156D325A0693600A0BC99 /* SocialLoginAdditionalDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC156D225A0693600A0BC99 /* SocialLoginAdditionalDataCell.swift */; };
+		DAC156D625A0738B00A0BC99 /* SocialLoginAddtionalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC156D525A0738B00A0BC99 /* SocialLoginAddtionalViewModel.swift */; };
+		DAC156DB25A08ECA00A0BC99 /* LoadingHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC156DA25A08ECA00A0BC99 /* LoadingHUD.swift */; };
 		DAC73DFD24FF5ACF00E2B419 /* MyAreaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */; };
 		DAC73DFF24FF5B2B00E2B419 /* NearShopModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */; };
 		DAC73E0824FF5F9E00E2B419 /* NanumSquareRoundEB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAC73E0324FF5EBB00E2B419 /* NanumSquareRoundEB.ttf */; };
@@ -228,6 +242,11 @@
 		DA3EF11A25666DD0002FF5A5 /* Woomool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Woomool.entitlements; sourceTree = "<group>"; };
 		DA4C10D224FF89D7009DBBE2 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		DA4C10D424FF8C4A009DBBE2 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		DA4EA0132594659600E59FB8 /* CompanyIntroduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyIntroduceViewController.swift; path = ../../../../../../../CompanyIntroduceViewController.swift; sourceTree = "<group>"; };
+		DA4EA0162594661E00E59FB8 /* CompanyIntroduceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CompanyIntroduceCell.swift; path = ../../../../../../../CompanyIntroduceCell.swift; sourceTree = "<group>"; };
+		DA572B6425A69F0A002AC98F /* AppleLoginAdditionalDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginAdditionalDataVC.swift; sourceTree = "<group>"; };
+		DA572B6725A69F23002AC98F /* AppleLoginAddtionalDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginAddtionalDataCell.swift; sourceTree = "<group>"; };
+		DA572B6B25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginAddtionalViewModel.swift; sourceTree = "<group>"; };
 		DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServiceRequestViewController.swift; sourceTree = "<group>"; };
 		DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewController.swift; sourceTree = "<group>"; };
 		DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -296,6 +315,8 @@
 		DA913DD5254FEB840087464A /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
 		DA913DD825500A620087464A /* GoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsModel.swift; sourceTree = "<group>"; };
 		DA913DDB2550197F0087464A /* FAQModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQModel.swift; sourceTree = "<group>"; };
+		DA9318DB25948FCF00C370B2 /* TermsWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TermsWebView.swift; path = ../../../../../../../../TermsWebView.swift; sourceTree = "<group>"; };
+		DA9318DE2595BB2500C370B2 /* ChagneInfoViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChagneInfoViewmodel.swift; path = ../../../../../ChagneInfoViewmodel.swift; sourceTree = "<group>"; };
 		DA959744252716A1002A4271 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		DAA3509B254C01D6005D4071 /* WoomoolImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolImageCell.swift; sourceTree = "<group>"; };
 		DAA3509E254C07BD005D4071 /* TermsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsModel.swift; sourceTree = "<group>"; };
@@ -325,6 +346,8 @@
 		DAAB95C7257C949C00697104 /* SchemeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemeHandler.swift; sourceTree = "<group>"; };
 		DAAB95CA257C94B200697104 /* SamplePlistManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePlistManager.swift; sourceTree = "<group>"; };
 		DAAB95CE257CA13B00697104 /* UserDelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelViewModel.swift; sourceTree = "<group>"; };
+		DAACEC5025A4659300E7056A /* AdsenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsenseModel.swift; sourceTree = "<group>"; };
+		DAACEC7325A4724500E7056A /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
 		DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthVC.swift; sourceTree = "<group>"; };
 		DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthView.swift; sourceTree = "<group>"; };
 		DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAuthCell.swift; sourceTree = "<group>"; };
@@ -340,6 +363,11 @@
 		DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponSelectViewController.swift; sourceTree = "<group>"; };
 		DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
 		DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceExtension.swift; path = ../../../../../DeviceExtension.swift; sourceTree = "<group>"; };
+		DAC156CA259F179900A0BC99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DAC156CF25A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginAdditionalDataVC.swift; sourceTree = "<group>"; };
+		DAC156D225A0693600A0BC99 /* SocialLoginAdditionalDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginAdditionalDataCell.swift; sourceTree = "<group>"; };
+		DAC156D525A0738B00A0BC99 /* SocialLoginAddtionalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginAddtionalViewModel.swift; sourceTree = "<group>"; };
+		DAC156DA25A08ECA00A0BC99 /* LoadingHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingHUD.swift; sourceTree = "<group>"; };
 		DAC73DFC24FF5ACF00E2B419 /* MyAreaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaTableViewCell.swift; sourceTree = "<group>"; };
 		DAC73DFE24FF5B2B00E2B419 /* NearShopModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearShopModel.swift; sourceTree = "<group>"; };
 		DAC73E0124FF5EBB00E2B419 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -465,6 +493,7 @@
 				DA913DD825500A620087464A /* GoodsModel.swift */,
 				DA913DDB2550197F0087464A /* FAQModel.swift */,
 				DAAF5FB1256A60A200150773 /* BannerModel.swift */,
+				DAACEC5025A4659300E7056A /* AdsenseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -493,6 +522,7 @@
 				DAAF5FBD256A785C00150773 /* IntExtension.swift */,
 				DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */,
 				DAF4DED5258CE865005B3995 /* KeychainExtension.swift */,
+				DAC156DA25A08ECA00A0BC99 /* LoadingHUD.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -500,6 +530,9 @@
 		DA3645A524F68EF500294C2B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				DA8191CD24FA39880021F2B5 /* OnBoarding */,
+				DA572B6F25A6A03E002AC98F /* SNSLogin */,
+				DA572B6E25A6A038002AC98F /* AppleLogin */,
 				DA36459D24F684EB00294C2B /* LoginViewController.swift */,
 				DA3645A324F68ED600294C2B /* SignUpViewController.swift */,
 				DA88ED872584793F0078CB12 /* PhoneAuthViewController.swift */,
@@ -512,7 +545,7 @@
 				DAAF04E4256CE4A1004D18D1 /* PrivateAuthVC.swift */,
 				DAAF04E8256CE5A2004D18D1 /* PrivateAuthView.swift */,
 				DAAF04EB256CE99B004D18D1 /* PrivateAuthCell.swift */,
-				DA8191CD24FA39880021F2B5 /* OnBoarding */,
+				DA9318DE2595BB2500C370B2 /* ChagneInfoViewmodel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -609,6 +642,26 @@
 				DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */,
 			);
 			path = Notification;
+			sourceTree = "<group>";
+		};
+		DA572B6E25A6A038002AC98F /* AppleLogin */ = {
+			isa = PBXGroup;
+			children = (
+				DA572B6425A69F0A002AC98F /* AppleLoginAdditionalDataVC.swift */,
+				DA572B6725A69F23002AC98F /* AppleLoginAddtionalDataCell.swift */,
+				DA572B6B25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift */,
+			);
+			path = AppleLogin;
+			sourceTree = "<group>";
+		};
+		DA572B6F25A6A03E002AC98F /* SNSLogin */ = {
+			isa = PBXGroup;
+			children = (
+				DAC156CF25A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift */,
+				DAC156D225A0693600A0BC99 /* SocialLoginAdditionalDataCell.swift */,
+				DAC156D525A0738B00A0BC99 /* SocialLoginAddtionalViewModel.swift */,
+			);
+			path = SNSLogin;
 			sourceTree = "<group>";
 		};
 		DA6A75A2250A109E00B96C32 /* Home */ = {
@@ -715,10 +768,13 @@
 		DA6E2DA5250618AD00A0A548 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				DA9318DA25948FBB00C370B2 /* Terms */,
 				DA6B78AC250C7FE1000466F1 /* Management */,
 				DA6E2DA32506186D00A0A548 /* BestAskDetailTableViewController.swift */,
 				DA6E2D8C2504BA1500A0A548 /* BestAskTableViewController.swift */,
 				DA6E2D792504A52900A0A548 /* SettingViewController.swift */,
+				DA4EA0132594659600E59FB8 /* CompanyIntroduceViewController.swift */,
+				DA4EA0162594661E00E59FB8 /* CompanyIntroduceCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -801,6 +857,14 @@
 			path = SecretKey;
 			sourceTree = "<group>";
 		};
+		DA9318DA25948FBB00C370B2 /* Terms */ = {
+			isa = PBXGroup;
+			children = (
+				DA9318DB25948FCF00C370B2 /* TermsWebView.swift */,
+			);
+			path = Terms;
+			sourceTree = "<group>";
+		};
 		DAA35099254BFFD6005D4071 /* WoomoolStory */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +876,7 @@
 		DAAA7ECF24F23E91005F9C6D = {
 			isa = PBXGroup;
 			children = (
+				DAACEC7325A4724500E7056A /* loader.gif */,
 				DAAA7EDA24F23E91005F9C6D /* Woomool */,
 				DAAA7ED924F23E91005F9C6D /* Products */,
 				B374B3DC5731B089AAA1D3AE /* Pods */,
@@ -842,6 +907,7 @@
 				DAAA7EE124F23E91005F9C6D /* Main.storyboard */,
 				DAAA7EE424F23E94005F9C6D /* Assets.xcassets */,
 				DAAA7EE624F23E94005F9C6D /* LaunchScreen.storyboard */,
+				DAC156CA259F179900A0BC99 /* GoogleService-Info.plist */,
 				DAAB95BD257C938300697104 /* pay_app_urls.plist */,
 				DAAA7EE924F23E94005F9C6D /* Info.plist */,
 			);
@@ -1095,6 +1161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC156CB259F179900A0BC99 /* GoogleService-Info.plist in Resources */,
 				DAC73E0824FF5F9E00E2B419 /* NanumSquareRoundEB.ttf in Resources */,
 				DAC73E0924FF5F9E00E2B419 /* NotoSansCJKkr-Bold.otf in Resources */,
 				DAC73E0A24FF5F9E00E2B419 /* NotoSansCJKkr-Light.otf in Resources */,
@@ -1106,6 +1173,7 @@
 				DAAA7EE824F23E94005F9C6D /* LaunchScreen.storyboard in Resources */,
 				DAAA7EE524F23E94005F9C6D /* Assets.xcassets in Resources */,
 				DAAA7EE324F23E91005F9C6D /* Main.storyboard in Resources */,
+				DAACEC7425A4724600E7056A /* loader.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1263,7 @@
 				DA8191D824FA454C0021F2B5 /* ImageModel.swift in Sources */,
 				DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */,
 				DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */,
+				DAC156D025A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift in Sources */,
 				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
 				DAAB95A0257B80AF00697104 /* MyEnvirCell2.swift in Sources */,
 				DAAF5FB2256A60A200150773 /* BannerModel.swift in Sources */,
@@ -1220,8 +1289,11 @@
 				DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */,
 				DA6E2D7E2504A5AB00A0A548 /* SettingTableViewCell.swift in Sources */,
 				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
+				DA9318DF2595BB2500C370B2 /* ChagneInfoViewmodel.swift in Sources */,
+				DA572B6C25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift in Sources */,
 				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
 				DA8A31D6250F22600049CD8C /* PhoneAuthAgreeTableViewCell.swift in Sources */,
+				DA572B6825A69F23002AC98F /* AppleLoginAddtionalDataCell.swift in Sources */,
 				DAAF04E9256CE5A2004D18D1 /* PrivateAuthView.swift in Sources */,
 				DAAB95A7257B9D3400697104 /* CustomAlertViewController2.swift in Sources */,
 				DAAF5FC2256A822300150773 /* CouponModel.swift in Sources */,
@@ -1229,6 +1301,7 @@
 				DA3645B524F6979200294C2B /* NotificationViewController.swift in Sources */,
 				DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */,
 				DA3645CB24F7A20800294C2B /* MainCollectionViewCell.swift in Sources */,
+				DAC156DB25A08ECA00A0BC99 /* LoadingHUD.swift in Sources */,
 				DA6B78AB250C766B000466F1 /* ManagementViewModel.swift in Sources */,
 				DAAB95C8257C949C00697104 /* SchemeHandler.swift in Sources */,
 				DA6E2D872504B26400A0A548 /* UserRequestHeaderView.swift in Sources */,
@@ -1247,6 +1320,7 @@
 				DA36459E24F684EB00294C2B /* LoginViewController.swift in Sources */,
 				DA6E2D7A2504A52900A0A548 /* SettingViewController.swift in Sources */,
 				DA3645AE24F6901D00294C2B /* MainTC.swift in Sources */,
+				DA4EA0172594661E00E59FB8 /* CompanyIntroduceCell.swift in Sources */,
 				DAE783002507722F00944B4A /* HistoryFilterTableViewCell.swift in Sources */,
 				DAC73E1C24FF878700E2B419 /* OurWoomoolBestShopView.swift in Sources */,
 				DA8A31D4250F22350049CD8C /* PhoneAuthNameTableViewCell.swift in Sources */,
@@ -1262,6 +1336,7 @@
 				DAE782FA2507692F00944B4A /* HistoryFilterCollectionViewCell.swift in Sources */,
 				DAE782F625067A0600944B4A /* CouponUsingTableViewCell.swift in Sources */,
 				DAAB959C257B7C1600697104 /* MyEnvirCell1.swift in Sources */,
+				DAC156D625A0738B00A0BC99 /* SocialLoginAddtionalViewModel.swift in Sources */,
 				DA8191DD24FA52160021F2B5 /* SignUpTableViewCell.swift in Sources */,
 				DA6E2DAB2506263100A0A548 /* BestAskModel.swift in Sources */,
 				DA72B693250C819C006E6075 /* ManagementWriteTableViewCell.swift in Sources */,
@@ -1300,15 +1375,18 @@
 				DA72B695250C8896006E6075 /* OurwoomoolViewModel.swift in Sources */,
 				DAAF04E5256CE4A1004D18D1 /* PrivateAuthVC.swift in Sources */,
 				DAAB9598257B73FA00697104 /* CustomAlertViewController.swift in Sources */,
+				DAC156D325A0693600A0BC99 /* SocialLoginAdditionalDataCell.swift in Sources */,
 				DAA350A9254C19E0005D4071 /* TermsViewModel.swift in Sources */,
 				DA6E2DAD25062A8400A0A548 /* UILabelExtension.swift in Sources */,
 				DA30EE87255E4B16000F7356 /* FindPassViewController.swift in Sources */,
 				DA88ED8B2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift in Sources */,
 				DAF9EB59251610F700B40270 /* WoomoolStoryCollectionViewController.swift in Sources */,
 				DAAB95CF257CA13B00697104 /* UserDelViewModel.swift in Sources */,
+				DAACEC5125A4659300E7056A /* AdsenseModel.swift in Sources */,
 				DA8325D525026415005EA0EE /* URLSource.swift in Sources */,
 				DAF9EB5625160BB800B40270 /* HowtoUseViewModel.swift in Sources */,
 				DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */,
+				DA9318DC25948FCF00C370B2 /* TermsWebView.swift in Sources */,
 				DA3645D724F7C5A200294C2B /* MyCouponListCollectionViewCell.swift in Sources */,
 				DA3645AA24F68F6400294C2B /* MainViewController.swift in Sources */,
 				DA3645D124F7BA7900294C2B /* MyPageCollectionReusableView.swift in Sources */,
@@ -1332,6 +1410,7 @@
 				DA3645CD24F7A7D600294C2B /* QrViewModel.swift in Sources */,
 				DA6E2DA925061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift in Sources */,
 				DAE782EE2506637F00944B4A /* CouponBuyTableViewCell.swift in Sources */,
+				DA572B6525A69F0A002AC98F /* AppleLoginAdditionalDataVC.swift in Sources */,
 				DA3ED1F5250A265100E4D64C /* ChangePassAuthPopUpViewController.swift in Sources */,
 				DA8E89D22532E0620021BE23 /* SecretKey.swift in Sources */,
 				DA6E2DA42506186D00A0A548 /* BestAskDetailTableViewController.swift in Sources */,
@@ -1341,6 +1420,7 @@
 				DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */,
 				DAF4DED6258CE865005B3995 /* KeychainExtension.swift in Sources */,
 				DA6E2D932504BC0600A0A548 /* BestAskViewModel.swift in Sources */,
+				DA4EA0142594659600E59FB8 /* CompanyIntroduceViewController.swift in Sources */,
 				DA3645D324F7BC2700294C2B /* MypageFilterCell.swift in Sources */,
 				DA6E2DA7250618DC00A0A548 /* BestAskDetailTableViewCell.swift in Sources */,
 				DA7C245124FCD6B20061C1BE /* MainViewModel.swift in Sources */,
@@ -1499,7 +1579,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1521,7 +1601,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.2;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

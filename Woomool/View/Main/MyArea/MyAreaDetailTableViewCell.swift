@@ -63,11 +63,10 @@ class MyAreaDetailTableViewCell: UITableViewCell {
         
         
         cafeNameLabel.anchor(top:topAnchor,left: leftAnchor,paddingLeft: 24)
-        adressLabel.anchor(top:cafeNameLabel.bottomAnchor,left: leftAnchor,bottom: bottomAnchor,paddingTop: 4,paddingLeft: 24,paddingBottom: 18)
-        distanceLabel.anchor(top:topAnchor,left: cafeNameLabel.rightAnchor,paddingTop:8,paddingLeft: 8)
-        
         bestImageView.anchor(top:topAnchor,right: rightAnchor,paddingTop: 16.5,paddingRight: 24)
         newImageView.anchor(top:topAnchor,right: bestImageView.leftAnchor,paddingTop: 16.5,paddingRight: 8)
+        distanceLabel.anchor(top:topAnchor,left: cafeNameLabel.rightAnchor,right: newImageView.leftAnchor,paddingTop:8,paddingLeft: 8,paddingRight: 8)
+        adressLabel.anchor(top:cafeNameLabel.bottomAnchor,left: leftAnchor,bottom: bottomAnchor,right: rightAnchor,paddingTop: 4,paddingLeft: 24,paddingBottom: 18,paddingRight: 24)
         
     }
     

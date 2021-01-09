@@ -53,7 +53,13 @@ class ManagementWrtieViewController: UIViewController {
     }
     
     @objc func popWoomoolManagement(noti : NSNotification) {
-        navigationController?.popViewController(animated: true)
+        
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: UserRequestViewController.self) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
       }
     
     
@@ -91,19 +97,16 @@ class ManagementWrtieViewController: UIViewController {
     }
     
     @objc func handleNext() {
-        
+        LoadingHUD.show()
         APIRequest.shared.postStoreComplain(storeId: storeId, contents: contents) { json in
             print(json)
+            LoadingHUD.hide()
             let controller = CustomAlertViewController(beforeType: singleAlertContent.woomoolManagement.rawValue)
             controller.modalPresentationStyle = .overCurrentContext
             self.present(controller, animated: true, completion: nil)
-        } refreshSuccess: {
-            APIRequest.shared.postStoreComplain(storeId: self.storeId, contents: self.contents) { json in
-                self.showOkAlert(title: "고객님의 소중한 의견 감사합니다.", message: "") {
-                    self.navigationController?.popViewController(animated: true)
-                }
-            } refreshSuccess: {
-                print("nil")
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
             }
         }
 

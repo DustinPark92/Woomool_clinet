@@ -13,7 +13,7 @@ class ChagneNicknameViewController: UITableViewController {
 
 
         let color = UIColor()
-        let ViewModel = SignUpViewModel()
+        let ViewModel = ChagneNicknameViewModel()
         var testCode = "Woomool"
         var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
         var viewUpSize = 1
@@ -38,7 +38,7 @@ class ChagneNicknameViewController: UITableViewController {
                 self.SendButton.frame = CGRect(x: 0, y: -340, width: self.view.frame.width, height: 50)
             })
             SendButton.backgroundColor = UIColor.blue500
-            SendButton.setTitle("다음", for: .normal)
+            SendButton.setTitle("닉네임 변경 하기", for: .normal)
             SendButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
             
             navigationController?.navigationBar.isHidden = false
@@ -118,17 +118,21 @@ class ChagneNicknameViewController: UITableViewController {
             switch ViewModel.subjectList.count {
             case 1:
                 if ViewModel.nickNameValid {
-                    SendButton.setTitle("확인", for: .normal)
-                    print(123)
+                
+                    APIRequest.shared.putChangeUserInfo(newPassword: "", nickname: ViewModel.textFieldContents[0], oldPassword: "") { json in
+                        self.showOkAlert(title: "닉네임 변경이 완료되었습니다.", message: "완료") {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    } fail: { error in
+                        self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                            
+                        }
+                    }
                     
                 } else {
                 _ = !ViewModel.nickNameValid ? inValidMessage(invalid: "유효하지 않은 닉네임", subject: "", at: 0) : inValidMessage(invalid: "", subject: "닉네임", at: 0)
                     
                 }
-//            case 2:
-//                let controller = MainTC()
-//                UIApplication.shared.windows.first?.rootViewController = controller
-//                UIApplication.shared.windows.first?.makeKeyAndVisible()
             default:
                 break
             }
@@ -159,10 +163,10 @@ class ChagneNicknameViewController: UITableViewController {
             cell.TextField.placeholder = ViewModel.placeholderList[indexPath.row]
             cell.TextField.isSecureTextEntry = ViewModel.textFieldSecure[indexPath.row]
             cell.mainLabelInvalid.text = ViewModel.invalidMessage[indexPath.row]
+            cell.bottomLabel.isHidden = true
             cell.TextField.delegate = self
-            cell.bottomLabel.text = ViewModel.warningMessage[indexPath.row]
-            cell.bottomLabel.textColor = ViewModel.warningColor[indexPath.row]
             cell.TextField.tag = indexPath.row
+            
             if cell.TextField.text == "" {
                 cell.TextField.becomeFirstResponder()
                 
@@ -197,6 +201,7 @@ class ChagneNicknameViewController: UITableViewController {
             guard let text = textField.text else { return }
             
             if text.count < 8 {
+                ViewModel.textFieldContents.insert(text, at: 0)
                 ViewModel.nickNameValid = true
             }
             

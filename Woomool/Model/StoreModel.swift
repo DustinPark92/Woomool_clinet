@@ -31,6 +31,7 @@ struct StoreModel {
     let storeId : String
     let operTime : String
     let address : String
+    let distanceUnit : String
     let scope : Int
     let image : String
     let name : String
@@ -48,11 +49,12 @@ struct StoreModel {
 
 class PickUpStoreModel {
         
-        var contact : String = ""
+    var contact : String = ""
     var storeId : String = ""
     var operTime : String = ""
     var address : String = ""
     var scope : Double = 0
+    var distanceUnit : String = ""
     var image : String = ""
     var name : String = ""
     var latitude : Double = 0.0

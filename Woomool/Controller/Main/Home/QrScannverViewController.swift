@@ -152,6 +152,10 @@ class QrScannverViewController: UIViewController {
             controller.storeLookUpModel = self.storeLookUpModel
             self.present(controller, animated: true, completion: nil)
             
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
 
     }

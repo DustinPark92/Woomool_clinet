@@ -18,7 +18,8 @@ class ManagementViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
 
 
         
@@ -128,6 +129,10 @@ extension ManagementViewController : UITextFieldDelegate {
 
             self.tableView.reloadData()
 
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
         return true
     }

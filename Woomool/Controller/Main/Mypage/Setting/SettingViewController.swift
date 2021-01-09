@@ -20,9 +20,11 @@ class SettingViewController: UITableViewController {
     let headerViewRequestInfo = SettingHeaderView()
     let headerViewMarketing = SettingHeaderView()
     let headerViewAccount = SettingHeaderView()
+    let headerViewCompanyInfo = SettingHeaderView()
     let headerViewRequestCustomer = SettingHeaderView()
     
     let viewModel = SettingViewModel()
+    var requiredTemsModel = [RequiredTermsModel]()
     
     var userLogintype = ""
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
@@ -32,6 +34,21 @@ class SettingViewController: UITableViewController {
         super.viewDidLoad()
         configureTV()
         configureUI()
+        APIRequest.shared.getTerms() { json in
+           
+            for item in json.arrayValue {
+                
+                let termsItem = RequiredTermsModel(url: item["url"].stringValue, subTitle: item["subTitle"].stringValue)
+                
+                self.requiredTemsModel.append(termsItem)
+            }
+            
+            self.tableView.reloadData()
+            
+            
+            
+        }
+        
         
        
     }
@@ -109,7 +126,7 @@ class SettingViewController: UITableViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -118,10 +135,12 @@ class SettingViewController: UITableViewController {
         case 0:
             return viewModel.userRequest.count
         case 1:
-            return viewModel.clauseInfo.count
+            return requiredTemsModel.count
         case 2:
-            return viewModel.marketingInfo.count
+            return viewModel.companyInfo.count
         case 3:
+            return viewModel.marketingInfo.count
+        case 4:
             return viewModel.accountSetting.count
         default:
             return 0
@@ -136,11 +155,15 @@ class SettingViewController: UITableViewController {
         case 0:
             cell.mainLabel.text = viewModel.userRequest[indexPath.row]
         case 1:
-            cell.mainLabel.text = viewModel.clauseInfo[indexPath.row]
+            cell.mainLabel.text = requiredTemsModel[indexPath.row].subTitle
+            cell.toggleSwitch.isHidden = true
+            cell.versionLabel.isHidden = true
         case 2:
+            cell.mainLabel.text = viewModel.companyInfo[indexPath.row]
+        case 3:
             cell.mainLabel.text = viewModel.marketingInfo[indexPath.row]
             cell.toggleSwitch.isHidden = false
-        case 3:
+        case 4:
             cell.mainLabel.text = viewModel.accountSetting[indexPath.row]
             if indexPath.row == 0 {
                 cell.versionLabel.isHidden = false
@@ -164,10 +187,14 @@ class SettingViewController: UITableViewController {
             headerViewRequestInfo.mainImage.image = UIImage(named: "setting_paper")
             return headerViewRequestInfo
         case 2:
+            headerViewCompanyInfo.mainLabel.text = "회사 정보"
+            headerViewCompanyInfo.mainImage.image = UIImage(named: "setting_paper")
+            return headerViewCompanyInfo
+        case 3:
             headerViewMarketing.mainLabel.text = "마케팅 정보 수신 설정"
             headerViewMarketing.mainImage.image = UIImage(named: "setting_bell")
             return headerViewMarketing
-        case 3:
+        case 4:
             headerViewAccount.mainLabel.text = "계정 설정"
             headerViewAccount.mainImage.image = UIImage(named: "setting_my")
             return headerViewAccount
@@ -196,32 +223,31 @@ class SettingViewController: UITableViewController {
                 navigationController?.pushViewController(controller, animated: true)
         case 1:
             print("약관 정보")
+            switch indexPath.row {
+            case 0...requiredTemsModel.count:
+                let controller = TermsWebView(url: requiredTemsModel[indexPath.row].url, navTitle: requiredTemsModel[indexPath.row].subTitle, fromWhere: "Setting")
+                navigationController?.pushViewController(controller, animated: true)
+            default:
+                break
+            }
         case 2:
-            print("이메일 정보 수신 설정")
+            let controller = CompanyIntroduceViewController()
+            navigationController?.pushViewController(controller, animated: true)
         case 3:
+            print("이메일 정보 수신 설정")
+        case 4:
             if indexPath.row == 0 {
 
             } else if indexPath.row == 1 {
                 let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 0)!.rawValue)
                 controller.modalPresentationStyle = .overCurrentContext
                 present(controller, animated: true, completion: nil)
-                
-                self.snsTypesLogOut()
-                
 
             } else if indexPath.row == 2 {
                 
                 let controller = UserDelViewController()
                 navigationController?.pushViewController(controller, animated: true)
                 
-                
-//                let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 1)!.rawValue)
-//                controller.modalPresentationStyle = .overCurrentContext
-//                present(controller, animated: true, completion: nil)
-//
-//                APIRequest.shared.delUser { json in
-//                    self.snsTypesLogOut()
-//                }
             }
         default:
             break

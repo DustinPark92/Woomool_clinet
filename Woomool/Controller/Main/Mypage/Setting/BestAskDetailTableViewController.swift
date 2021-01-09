@@ -12,12 +12,12 @@ private let reuseIdentifier = "BestAskDetailTableViewCell"
 private let reuseIdentifierDetail = "BestAskDetailContentsTableViewCell"
 
 class BestAskDetailTableViewController: UITableViewController {
-    var bestAskModel = BestAskModel()
+    var bestAskModel = [BestAskModel]()
     
    let headerView = UIView()
-    let headerLabel : UILabel = {
+    lazy var headerLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "이용관련"
+        lb.text = bestAskTitle
         lb.font = UIFont.NotoRegular16
         lb.textColor = .black900
         return lb
@@ -30,8 +30,19 @@ class BestAskDetailTableViewController: UITableViewController {
         return uv
     }()
     
-    var groupId = ""
-
+    let groupId : String
+    let bestAskTitle : String
+    
+    init(groupId : String,bestAskTitle : String) {
+        self.groupId = groupId
+        self.bestAskTitle = bestAskTitle
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -41,12 +52,17 @@ class BestAskDetailTableViewController: UITableViewController {
     
     func callRequest() {
         APIRequest.shared.getFAQDetail(groupId: groupId) { json in
-            print(json)
-        } refreshSuccess: {
-            APIRequest.shared.getFAQDetail(groupId: self.groupId) { json in
-                print(json)
-            } refreshSuccess: {
-                print("nil")
+            for item in json.arrayValue {
+                let bestAskItem = BestAskModel(open: false, contents: item["contents"].stringValue, title: item["title"].stringValue, image: item["image"].stringValue)
+                
+                
+                self.bestAskModel.append(bestAskItem)
+            }
+            
+            self.tableView.reloadData()
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
             }
         }
 
@@ -60,6 +76,8 @@ class BestAskDetailTableViewController: UITableViewController {
         headerLabel.anchor(top:headerView.topAnchor,left: headerView.leftAnchor,paddingTop: 38, paddingLeft: 32)
         headerView.addSubview(sbView)
         sbView.anchor(left:headerView.leftAnchor,bottom: headerView.bottomAnchor,right: headerView.rightAnchor)
+        
+        
         
         tableView.register(BestAskDetailTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
             tableView.register(BestAskDetailContentsTableViewCell.self, forCellReuseIdentifier: reuseIdentifierDetail)
@@ -75,12 +93,12 @@ class BestAskDetailTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return bestAskModel.count
     }
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if bestAskModel.open == true {
+        if bestAskModel[section].open == true {
             return 1 + 1
             
         }else{
@@ -91,13 +109,17 @@ class BestAskDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        let item = bestAskModel[indexPath.section]
+        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! BestAskDetailTableViewCell
-            
+            cell.questionLabel.text = item.title
     
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierDetail, for: indexPath) as! BestAskDetailContentsTableViewCell
+            
+            cell.contentLabel.text = item.contents
 
             return cell
         }
@@ -125,15 +147,15 @@ class BestAskDetailTableViewController: UITableViewController {
         if index.row == indexPath.row {
             if index.row == 0 {
                 
-                if bestAskModel.open == true {
-                    bestAskModel.open = false
+                if bestAskModel[indexPath.section].open == true {
+                    bestAskModel[indexPath.section].open = false
                     
                     let section = IndexSet.init(integer: indexPath.section)
                     
                     tableView.reloadSections(section, with: .fade)
                     
                 }else {
-                    bestAskModel.open = true
+                    bestAskModel[indexPath.section].open = true
                     
                     let section = IndexSet.init(integer: indexPath.section)
                     tableView.reloadSections(section, with: .fade)

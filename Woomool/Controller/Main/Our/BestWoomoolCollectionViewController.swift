@@ -30,6 +30,10 @@ class BestWoomoolCollectionViewController: UICollectionViewController {
             
             self.collectionView.reloadData()
             
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
         
         

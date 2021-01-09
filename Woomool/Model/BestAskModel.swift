@@ -10,4 +10,9 @@ import UIKit
 
 struct BestAskModel {
     var open = false
+    let contents : String
+    let title : String
+    let image : String
+    
+    
 }

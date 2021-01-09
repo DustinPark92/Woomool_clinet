@@ -13,9 +13,17 @@ class TermsViewModel {
     
     
     var allAuthValid = false
+    var allAuthValidWithoutSelected = false
     
     
     var termsCountArray : Array<String> = []
+    //선택 동의만
+    var termsSelectedArray : Array<String> = []
+    //상태
+    var statusCountArray : Array<String> = []
+    
+    
+
 
     
     lazy var  detilAllAuthValid : Bool = {
@@ -24,9 +32,6 @@ class TermsViewModel {
         }
        return false
     }()
-    
-    
-    
     
 
     func allButtonCliecked() -> UIImage{

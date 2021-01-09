@@ -47,6 +47,7 @@ class WoomoolServiceRequestViewController: UITableViewController {
         UIView.animate(withDuration: 1, animations: {
             self.SendButton.frame = CGRect(x: 0, y: -340, width: self.view.frame.width, height: 50)
         })
+        SendButton.isHidden = true
         SendButton.backgroundColor = UIColor.blue500
         SendButton.setTitle("요청하기", for: .normal)
         SendButton.titleLabel?.font = UIFont.NotoBold18
@@ -54,8 +55,6 @@ class WoomoolServiceRequestViewController: UITableViewController {
     }
     
     @objc func handleDismiss() {
-        
-
         
      navigationController?.popViewController(animated: true)
     }
@@ -110,6 +109,10 @@ class WoomoolServiceRequestViewController: UITableViewController {
             controller.modalPresentationStyle = .overCurrentContext
             self.present(controller, animated: true, completion: nil)
 
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
         
     }
@@ -123,17 +126,28 @@ extension WoomoolServiceRequestViewController : UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
+
+        
+        
+        print(" 이름은?? \(viewModel.woomoolServiceTfContents[1]),\(viewModel.woomoolServiceTfContents[0])")
         
         switch textField.tag {
         case 0:
             viewModel.woomoolServiceTfContents.insert(text, at: 0)
+            viewModel.woomoolServiceTfContents.remove(at: 1)
         case 1:
             viewModel.woomoolServiceTfContents.insert(text, at: 1)
         case 2:
             viewModel.woomoolServiceTfContents.insert(text, at: 2)
-            
         default:
             break
+        }
+        
+        if viewModel.woomoolServiceTfContents[0] != ""
+            && viewModel.woomoolServiceTfContents[1] != "" {
+                SendButton.isHidden = false
+        } else {
+                SendButton.isHidden = true
         }
         
     }

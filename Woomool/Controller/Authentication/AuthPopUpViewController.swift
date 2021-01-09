@@ -55,10 +55,7 @@ class AuthPopUpViewController: UIViewController {
     var titleLabel = "회원가입"
     var emailButtonTitle = "이메일로 시작하기"
     let termsIdArray : Array<String>
-    
-    var appleUsername = ""
-    var appleUserEmail = ""
-    var appleId = ""
+
     
     init(termsIdArray : Array<String>) {
         self.termsIdArray = termsIdArray
@@ -73,14 +70,12 @@ class AuthPopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-
-        
-
-        
-        
-        
-        //googleButtonTest.style = .iconOnly
         NotificationCenter.default.post(name: NSNotification.Name("dismissView"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    
     }
     
     func configureUI() {
@@ -106,21 +101,24 @@ class AuthPopUpViewController: UIViewController {
 
     }
     
-    func requestSNSConnect(type: String,snsToken : String, Success: @escaping(JSON) -> (), Invalid : @escaping(JSON) -> ()) {
+    func requestSNSConnect(type: String,snsToken : String, Success: @escaping(JSON) -> (), newUser : @escaping(JSON) -> ()) {
         
         APIRequest.shared.postSNSUserLogin(type: type, snsToken: snsToken) { json in
             Success(json)
-        } invalid: { json in
-            Invalid(json)
-            self.showOkAlert(title: "타 계정에 연결 된 계정 입니다.", message: json["email"].stringValue) {
-                print("Okay")
+        } newUser: { json in
+            newUser(json)
+        } fail: { error in
+            LoadingHUD.hide()
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
             }
+            
         }
         
         
     }
     @objc func handleAppleLogin() {
-
+        LoadingHUD.show()
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
             request.requestedScopes = [.fullName, .email]
@@ -139,37 +137,38 @@ class AuthPopUpViewController: UIViewController {
     }
     
     @objc func handleKakaoLogin() {
-
+        
         if (AuthApi.isKakaoTalkLoginAvailable()) {
+            LoadingHUD.show()
             AuthApi.shared.loginWithKakaoTalk { [self](oauthToken, error) in
                 if let error = error {
                     print(error)
                 }
                 else {
-                    
                     guard let accessToken = oauthToken?.accessToken else {
                         return
                     }
                     print("loginWithKakaoTalk() success.")
                     print("토큰은? \(accessToken)")
+                    
+                    
                     requestSNSConnect(type: "kakao", snsToken: accessToken) { json in
-                        print(json)
-
-                        
-
+                        LoadingHUD.hide()
+                        //기존 카카오 회원일 경우 메인 페이지로 이동
                         let controller = MainTC()
                         UIApplication.shared.windows.first?.rootViewController = controller
                         UIApplication.shared.windows.first?.makeKeyAndVisible()
-                        UserApi.shared.logout { error in
-                            print(error)
-                        }
-                    } Invalid: { json in
-                        self.showOkAlert(title: "타 계정에 연결 된 계정 입니다.", message: json["email"].stringValue) {
-                            print("Okay")
 
-                        
+
+                    } newUser: { json in
+                        LoadingHUD.hide()
+                        print(json)
+                        self.dismiss(animated: true) {
+                            NotificationCenter.default.post(name: NSNotification.Name("goToSocialLogin"), object: json)
+                        }
+
                     }
-                    }
+
                    
                    
                 }
@@ -190,7 +189,7 @@ class AuthPopUpViewController: UIViewController {
     @objc func handleFindPass() {
         dismiss(animated: true) {
             NotificationCenter.default.post(name: NSNotification.Name("dismissView"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name("pushSignUp"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("pushFindPass"), object: nil)
         }
     }
     
@@ -202,15 +201,6 @@ class AuthPopUpViewController: UIViewController {
             NotificationCenter.default.post(name: NSNotification.Name("pushViewPhoneAuth"), object: nil)
         }
         
-        
-        
-//        weak var pvc = self.presentingViewController
-//
-//        self.dismiss(animated: true, completion: {
-//            let vc = PrivateAuthVC()
-//            vc.modalPresentationStyle = .overCurrentContext
-//            pvc?.present(vc, animated: true, completion: nil)
-//        })
         
         
     }
@@ -248,15 +238,26 @@ class AuthPopUpViewController: UIViewController {
       if !isValidAccessToken {
         return
       }
+        
+        LoadingHUD.show()
       guard let accessToken = loginInstance?.accessToken else { return }
+        
         requestSNSConnect(type: "naver", snsToken: accessToken) { json in
+            LoadingHUD.hide()
+            //기존 카카오 회원일 경우 메인 페이지로 이동
             let controller = MainTC()
-            self.loginInstance?.removeNaverLoginCookie()
             UIApplication.shared.windows.first?.rootViewController = controller
             UIApplication.shared.windows.first?.makeKeyAndVisible()
-        } Invalid: { _ in
             self.loginInstance?.removeNaverLoginCookie()
+
+        } newUser: { json in
             
+            self.dismiss(animated: true) {
+                LoadingHUD.hide()
+                NotificationCenter.default.post(name: NSNotification.Name("goToSocialLogin"), object: json)
+            }
+            print(json)
+
         }
 
     }
@@ -276,6 +277,7 @@ extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextP
     
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        LoadingHUD.hide()
         print(error.localizedDescription)
     }
 
@@ -287,22 +289,35 @@ extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextP
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             // Get user data with Apple ID credentitial
             
-            KeyChainService.shared.saveAppleEmail(email: appleIDCredential.email)
-            KeyChainService.shared.saveAppleUserName(name: "\(appleIDCredential.fullName?.familyName ?? "우물") \(appleIDCredential.fullName?.givenName ?? "김")")
+            print("애플아이디 \(appleIDCredential.user)")
             
-            print(appleIDCredential.user)
+            UserDefaults.standard.set("\(appleIDCredential.user)", forKey: "appleId")
             
-            
-            
-            APIRequest.shared.postAppleUserLogin(id: appleIDCredential.user, name: KeyChainService.shared.appleUserName ?? "우물", email: KeyChainService.shared.appleUserEmail ?? "이메일을 설정해주세요") { json in
+            requestSNSConnect(type: "apple", snsToken: appleIDCredential.user) { json in
+            LoadingHUD.hide()
+            let controller = MainTC()
+            UIApplication.shared.windows.first?.rootViewController = controller
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            } newUser: { json in
+                LoadingHUD.hide()
+                self.dismiss(animated: true) {
+                    NotificationCenter.default.post(name: NSNotification.Name("goToAppleLogin"), object: json)
+                }
                 
-                let controller = MainTC()
-                UIApplication.shared.windows.first?.rootViewController = controller
-                UIApplication.shared.windows.first?.makeKeyAndVisible()
-                print(json)
-            } invalid: { json in
-                print(json)
             }
+
+            
+            
+            
+//            APIRequest.shared.postAppleUserLogin(id: appleIDCredential.user, name: KeyChainService.shared.appleUserName ?? "우물", email: KeyChainService.shared.appleUserEmail ?? "이메일을 설정해주세요") { json in
+//
+//                let controller = MainTC()
+//                UIApplication.shared.windows.first?.rootViewController = controller
+//                UIApplication.shared.windows.first?.makeKeyAndVisible()
+//                print(json)
+//            } invalid: { json in
+//                print(json)
+//            }
 //            print(KeyChainService.shared.appleUserEmail)
 //            print(KeyChainService.shared.appleUserName)
 
@@ -315,8 +330,6 @@ extension AuthPopUpViewController: ASAuthorizationControllerPresentationContextP
             // Write your code here
         }
         
-        
-
         
         
 
@@ -368,39 +381,50 @@ extension AuthPopUpViewController : GIDSignInDelegate
     
     // 연동을 시도 했을때 불러오는 메소드
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
-        
+        GIDSignIn.sharedInstance().signOut()
+        GIDSignIn.sharedInstance().disconnect()
+
         if let error = error {
             if (error as NSError).code == GIDSignInErrorCode.hasNoAuthInKeychain.rawValue {
                 print("The user has not signed in before or they have since signed out.")
             } else {
+                GIDSignIn.sharedInstance().signOut()
+                GIDSignIn.sharedInstance().disconnect()
                 print("\(error.localizedDescription)")
             }
             return
         }
-        
-        
+ 
+    
         
         // 사용자 정보 가져오기
+        LoadingHUD.show()
         if  let accessToken = user.authentication.accessToken
+       
+    
        // Safe to send to the server
            {
-
-            print(accessToken)
             
+            
+            requestSNSConnect(type: "google", snsToken: accessToken) { json in
+                LoadingHUD.hide()
+                //기존 카카오 회원일 경우 메인 페이지로 이동
+                
+                let controller = MainTC()
+                UIApplication.shared.windows.first?.rootViewController = controller
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+                
+                
+               
+            } newUser: { json in
+                LoadingHUD.hide()
+                self.dismiss(animated: true) {
+                    signIn.disconnect()
+                    NotificationCenter.default.post(name: NSNotification.Name("goToSocialLogin"), object: json)
+                }
 
-                self.requestSNSConnect(type: "google", snsToken: accessToken) { json in
-                    print(json)
-                    let controller = MainTC()
-                    UIApplication.shared.windows.first?.rootViewController = controller
-                    UIApplication.shared.windows.first?.makeKeyAndVisible()
-                } Invalid: { _ in
-
-                    
             }
 
-            
-            
             
      
         } else {

@@ -28,7 +28,7 @@ struct EventViewModel {
     
     var eventStatusLabel: String {
         
-        if event.eventStatus == "Y" {
+        if event.statusEvent == "Y" {
             return "진행중"
         }
         return "마감"
@@ -36,7 +36,7 @@ struct EventViewModel {
     
     var eventStatusColor: UIColor {
         
-        if event.eventStatus == "Y" {
+        if event.statusEvent == "Y" {
             return .blue300
         }
         return .black400

@@ -12,7 +12,15 @@ import Foundation
 struct TermsModel {
 
     let required : String
-    let contents : String
+    let url : String
     let title : String
     let termsId : String
+    let subTitle : String
+    
+}
+
+
+struct RequiredTermsModel {
+    let url : String
+    let subTitle : String
 }

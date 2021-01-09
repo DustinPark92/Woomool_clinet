@@ -21,6 +21,8 @@ class UserRequestHeaderView: UIView {
     }()
     lazy var kakaoStringAttributedButton = viewModel.attributedButton("카카오톡 문의하기")
     
+    let kakaoAreaButton = UIButton()
+    
     let requestTimeLabel : UILabel = {
         let lb = UILabel()
         lb.text = "문의 시간: 평일 오전 9:00 - 오후 6:00 \n 점심시간: 오전 11:30 - 오후 12:30 \n 주말,공휴일 휴무"
@@ -41,10 +43,15 @@ class UserRequestHeaderView: UIView {
         addSubview(kakaoButton)
         addSubview(kakaoStringAttributedButton)
         addSubview(requestTimeLabel)
+        addSubview(kakaoAreaButton)
+        
+        
         
         kakaoButton.centerX(inView: self, topAnchor: topAnchor, paddingTop: 89)
         kakaoStringAttributedButton.centerX(inView: self, topAnchor: kakaoButton.bottomAnchor, paddingTop: 12)
         requestTimeLabel.centerX(inView: self, topAnchor: kakaoStringAttributedButton.bottomAnchor, paddingTop: 34)
+        kakaoAreaButton.anchor(top:topAnchor,left: leftAnchor,bottom: requestTimeLabel.topAnchor,right: rightAnchor,paddingTop: 50,paddingLeft: 50,paddingBottom: 30,paddingRight: 50)
+      
         
         
     }

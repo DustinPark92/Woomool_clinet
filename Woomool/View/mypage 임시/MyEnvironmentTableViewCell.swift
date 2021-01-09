@@ -17,6 +17,8 @@ class MyEnvironmentTableViewCell: UITableViewCell {
         
         return cv
     }()
+    
+    let viewModel = MypageViewModel()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,6 +32,13 @@ class MyEnvironmentTableViewCell: UITableViewCell {
         collectionView.register(MyEnvirCell1.self, forCellWithReuseIdentifier: "MyEnvirCell1")
         collectionView.register(MyEnvirCell2.self, forCellWithReuseIdentifier: "MyEnvirCell2")
         
+        viewModel.callUserEnviroment {
+            self.collectionView.reloadData()
+        } fail: { error in
+           print(error)
+        }
+
+        
     }
     
     required init?(coder: NSCoder) {
@@ -38,7 +47,7 @@ class MyEnvironmentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -46,6 +55,8 @@ class MyEnvironmentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+
 
 }
 
@@ -61,6 +72,7 @@ extension MyEnvironmentTableViewCell : UICollectionViewDelegate,UICollectionView
         switch indexPath.row {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyEnvirCell1", for: indexPath) as! MyEnvirCell1
+            cell.subLabel.text = "\(viewModel.myEnvirModel.useCount)회"
             
             return cell
         case 1:
@@ -69,11 +81,12 @@ extension MyEnvironmentTableViewCell : UICollectionViewDelegate,UICollectionView
             cell.mainImageView.backgroundColor = .white
             cell.mainLabel.textColor = .black400
             cell.mainLabel.text = "우리의 일회용 컵 소비 억제 횟수"
-            cell.subLabel.text = "100,000회"
+            cell.subLabel.text = "\(viewModel.myEnvirModel.totalCount)회"
             cell.subLabel.textColor = .black900
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyEnvirCell2", for: indexPath) as! MyEnvirCell2
+            cell.subLabel.text = "\(viewModel.myEnvirModel.carbon)\(viewModel.myEnvirModel.carbonUnit)"
             return cell
         default:
             break

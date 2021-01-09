@@ -12,6 +12,8 @@ import NaverThirdPartyLogin
 import KakaoSDKAuth
 import KakaoSDKCommon
 import GoogleSignIn
+import GoogleMobileAds
+import Firebase
 
 @UIApplicationMain
 
@@ -51,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.appName = kServiceAppName
         
         NMFAuthManager.shared().clientId = "h1ck34g0c5"
+        
+        
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        FirebaseApp.configure()
+        
         return true
     }
 
@@ -69,17 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         
-        NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
-        
-        
-        
+//        NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
+//
+//
+//
+//
+//
+//        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+//          return AuthController.handleOpenUrl(url: url)
+//        }
 
-        
-        if (AuthApi.isKakaoTalkLoginUrl(url)) {
-          return AuthController.handleOpenUrl(url: url)
-        }
-
-        return false
+       // return false
       }
 
     

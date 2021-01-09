@@ -12,14 +12,12 @@ class CouponBuyCollectionViewCell: UICollectionViewCell {
     
     let couponImg : UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "coupon_Img")
-        iv.contentMode = .scaleToFill
+        iv.setDimensions(width: 100, height: 80)
         return iv
     }()
     
     let couponQuantityLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "15"
         lb.font = UIFont.NanumExtraBold34
         lb.textColor = .white
         return lb
@@ -27,7 +25,7 @@ class CouponBuyCollectionViewCell: UICollectionViewCell {
     
     let couponQuantityRightLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "회"
+        //lb.text = "회"
         lb.font = UIFont.NanumExtraBold16
         lb.textColor = .white
         return lb
@@ -35,14 +33,13 @@ class CouponBuyCollectionViewCell: UICollectionViewCell {
     
     let priceLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "9,900원"
+        //lb.text = "9,900원"
         lb.textColor = .black900
         lb.font = UIFont.NotoBold16
         return lb
     }()
     let couponDescriptionLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "결제당 1000원 \n 할인 15회 이용권"
         lb.font = UIFont.NotoMedium12
         lb.textColor = .black400
         return lb

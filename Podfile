@@ -24,6 +24,12 @@ pod 'KakaoSDKUser'  # 사용자 관리
 pod 'KakaoSDKTalk'  # 친구, 메시지(카카오톡)
 pod 'KakaoSDKLink'
 pod 'GoogleSignIn'
+pod 'Firebase/Analytics'
+
+
+pod 'Google-Mobile-Ads-SDK'
+
+pod 'SwiftGifOrigin', '~> 1.7.0'
 
 
 end

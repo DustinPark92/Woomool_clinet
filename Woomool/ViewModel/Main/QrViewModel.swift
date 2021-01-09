@@ -129,8 +129,8 @@ class QrViewModel {
         ratingLabel.centerX(inView: view, topAnchor: sv.bottomAnchor, paddingTop: 14)
         
         
-   
-        starView.anchor(top:ratingLabel.bottomAnchor,left: view.leftAnchor,paddingTop: 8,paddingLeft: 86)
+        //starView.centerX(inView: view, topAnchor: ratingLabel.bottomAnchor, paddingTop: 8)
+        starView.anchor(top:ratingLabel.bottomAnchor,left: view.leftAnchor,right: view.rightAnchor,paddingTop: 8,paddingLeft: 80,paddingRight: 80)
         starView.setDimensions(width: 120, height: 30)
   
         let stack = UIStackView(arrangedSubviews: [cancelButton,confirmButton])
@@ -150,7 +150,7 @@ class QrViewModel {
         confirmButton.setTitleColor(.white, for: .normal)
         
         cancelButton.setTitle("연장하기", for: .normal)
-        confirmButton.setTitle("완료", for: .normal)
+        confirmButton.setTitle("확인", for: .normal)
         
         
         

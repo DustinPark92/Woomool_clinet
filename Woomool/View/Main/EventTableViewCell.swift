@@ -26,16 +26,25 @@ class EventTableViewCell: UITableViewCell {
             lb.numberOfLines = 0
            return lb
         }()
-    let progressLabel : UILabel = {
-        let lb = UILabel()
-        lb.text = "진행중"
-        lb.textColor = .white
-        lb.backgroundColor = .blue300
-        lb.textAlignment = .center
-        lb.setDimensions(width: 48, height: 48)
-        lb.makeAcircle(dimension: 48)
-        return lb
+        
+    let progressImage : UIImageView = {
+        let iv = UIImageView()
+        iv.setDimensions(width: 48, height: 48)
+        iv.makeAcircle(dimension: 48)
+        return iv
     }()
+    
+        
+//    let progressLabel : UILabel = {
+//        let lb = UILabel()
+//        lb.text = "진행중"
+//        lb.textColor = .white
+//        lb.backgroundColor = .blue300
+//        lb.textAlignment = .center
+//        lb.setDimensions(width: 48, height: 48)
+//        lb.makeAcircle(dimension: 48)
+//        return lb
+//    }()
         
     
     
@@ -44,13 +53,13 @@ class EventTableViewCell: UITableViewCell {
             
             addSubview(dateLabel)
             addSubview(titleLabel)
-            addSubview(progressLabel)
+            addSubview(progressImage)
             
             
             dateLabel.anchor(top:topAnchor,left: leftAnchor,paddingTop: 16,paddingLeft: 32)
             titleLabel.anchor(top:dateLabel.bottomAnchor,left: leftAnchor,paddingTop: 2,paddingLeft: 32)
             
-            progressLabel.anchor(top:topAnchor,left: titleLabel.rightAnchor,bottom: bottomAnchor,right: rightAnchor,paddingTop:36 ,paddingLeft: 5 ,paddingBottom:16 ,paddingRight:32)
+            progressImage.anchor(top:topAnchor,left: titleLabel.rightAnchor,bottom: bottomAnchor,right: rightAnchor,paddingTop:36 ,paddingLeft: 5 ,paddingBottom:16 ,paddingRight:32)
             
             
         }

@@ -52,19 +52,37 @@ class MyAreaDetailTableViewController: UIViewController {
     }
     
     func callRequest() {
+        
+//        APIRequest.shared.getStoreList(lat:37.56471692537232,lon: 127.19715351542689) { json in
+//
+//
+//            for item in json.array! {
+//
+//                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+//                                           , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
+//
+//
+//                self.storeModel.append(storeData)
+//            }
+//
+//            self.tableView.reloadData()
+//        }
         APIRequest.shared.getStoreList(lat:userLocation[0],lon: userLocation[1]) { json in
-            
-            
+
+
             for item in json.array! {
-                
-                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
-                                           , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
-                
-                
+
+                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, distanceUnit: item["distanceUnit"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue,longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
+
+
                 self.storeModel.append(storeData)
             }
-            
+
             self.tableView.reloadData()
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
     }
 
@@ -97,6 +115,7 @@ extension MyAreaDetailTableViewController : UITableViewDelegate,UITableViewDataS
         cell.cafeNameLabel.text = storeItem.name
         cell.adressLabel.text = storeItem.address
         cell.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
+        cell.distanceLabel.text = "\(storeItem.distance)\(storeItem.distanceUnit)"
         
         if storeItem.fresh == "N" {
             cell.newImageView.isHidden = true

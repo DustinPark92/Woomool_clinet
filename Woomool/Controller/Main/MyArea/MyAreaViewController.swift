@@ -63,20 +63,23 @@ class MyAreaViewController: UIViewController {
  
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewWillLayoutSubviews() {
+        
         
     }
     
     func callRequest() {
         
-        
-        print("유저 위치는? \(viewModel.userLocation)")
-        
         APIRequest.shared.getStoreList(lat:viewModel.userLocation[0],lon: viewModel.userLocation[1]) { json in
 
             for item in json.array! {
                 
-                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
+                let storeData = StoreModel(contact: item["contact"].stringValue, storeId: item["storeId"].stringValue, operTime: item["operTime"].stringValue, address: item["address"].stringValue, distanceUnit: item["distanceUnit"].stringValue, scope: item["scope"].intValue, image: item["image"].stringValue, name: item["name"].stringValue, latitude: item["latitude"].doubleValue
                                            , longitude: item["longitude"].doubleValue,scopeColor: item["scopeColor"].stringValue,distance:item["distance"].stringValue,fresh: item["fresh"].stringValue)
                 
                 
@@ -84,12 +87,23 @@ class MyAreaViewController: UIViewController {
             }
             
             self.tableView.reloadData()
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
     }
     
     //MARK: - Helpers
     
     func configureUI() {
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+        
+        
+        //상단 카드들..
+        bottomActionSheet.addGestureRecognizer(tap)
+        bottomActionSheet.isUserInteractionEnabled = true
         view.backgroundColor = .white
 
         title = "내 근처 우물"
@@ -130,6 +144,7 @@ class MyAreaViewController: UIViewController {
         cafeDetailView.distanceLabel.text = storeModel.distance
         cafeDetailView.cafeNameLabel.text = storeModel.name
         cafeDetailView.phoneLabel.text = storeModel.contact
+        cafeDetailView.scopeLabel.text = String(storeModel.scope)
         cafeDetailView.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeModel.scopeColor)
         
         if storeModel.fresh == "N" {
@@ -196,9 +211,14 @@ class MyAreaViewController: UIViewController {
             pickupStoreModel.name = json["name"].stringValue
             pickupStoreModel.image = json["image"].stringValue
             pickupStoreModel.contact = json["contact"].stringValue
+            pickupStoreModel.distanceUnit = json["distanceUnit"].stringValue
         
             success()
             
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
 
     }
@@ -303,11 +323,16 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         cell.cafeNameLabel.text = storeItem.name
         cell.adressLabel.text = storeItem.address
         cell.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
-        cell.distanceLabel.text = storeItem.distance
+        cell.distanceLabel.text = "\(storeItem.distance)\(storeItem.distanceUnit)"
         
         if storeItem.fresh == "N" {
             cell.newImageView.isHidden = true
         }
+        
+        if indexPath.row > 3 {
+            cell.alpha = 0.5
+        }
+  
         
         
      viewModel.setInActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_inactive")
@@ -318,7 +343,7 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -346,9 +371,10 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         
         
         cafeDetailView.adressLabel.text = storeItem.address
-        cafeDetailView.distanceLabel.text = storeItem.distance
+        cafeDetailView.distanceLabel.text = "\(storeItem.distance)\(storeItem.distanceUnit)"
         cafeDetailView.cafeNameLabel.text = storeItem.name
         cafeDetailView.phoneLabel.text = storeItem.contact
+        cafeDetailView.scopeLabel.text = "\(storeItem.scope)"
         cafeDetailView.bestImageView.image = viewModel.setScopeIcon(scopeColor: storeItem.scopeColor)
         
         viewModel.setActiveIcon(mapView: mapView, lat: storeItem.latitude, lng: storeItem.longitude, setActive: "pos_active", marker: self.activeMarker)
@@ -356,7 +382,7 @@ extension MyAreaViewController : UITableViewDelegate,UITableViewDataSource {
         if storeItem.fresh == "N" {
             cafeDetailView.isHidden = true
         }
-  
+
     }
     
     
@@ -441,12 +467,7 @@ extension MyAreaViewController: CLLocationManagerDelegate {
             
             return
         }
-        // 4
-        locationManager.startUpdatingLocation()
-        
-        //5
-//        mapView.isMyLocationEnabled = true
-//        mapView.settings.myLocationButton = true
+
     }
     
     // 6
@@ -455,17 +476,22 @@ extension MyAreaViewController: CLLocationManagerDelegate {
             return
         }
         viewModel.userLocation.removeAll()
+        storeModel.removeAll()
+        
+        
         viewModel.userLocation.append(location.coordinate.latitude)
         viewModel.userLocation.append(location.coordinate.longitude)
         
+        
         let cameraUpdate = NMFCameraUpdate(scrollTo: NMGLatLng(lat: viewModel.userLocation[0], lng: viewModel.userLocation[1]))
-
+        mapView.moveCamera(cameraUpdate)
         callRequest()
         
-        mapView.moveCamera(cameraUpdate)
+        
+        
         
         locationManager.stopUpdatingLocation()
-        
+       
 
     }
 }

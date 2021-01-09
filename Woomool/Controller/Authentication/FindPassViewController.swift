@@ -14,7 +14,6 @@ class FindPassViewController: UITableViewController {
 
     let color = UIColor()
     let ViewModel = SignUpViewModel()
-    var testCode = "Woomool"
     var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     var viewUpSize = 1
     
@@ -109,16 +108,20 @@ class FindPassViewController: UITableViewController {
         switch ViewModel.subjectList.count {
         case 1:
             if ViewModel.emailValid {
-                SendButton.setTitle("이메일로 재설정 링크 보내기 ", for: .normal)
+               
+                APIRequest.shared.getFindUserPassword(email: ViewModel.textFieldContents[0]) { json in
+                    print(json)
+                } fail: { error in
+                    self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                        
+                    }
+                }
+
                 
             } else {
             _ = !ViewModel.emailValid ? inValidMessage(invalid: "유효하지 않은 이메일", subject: "", at: 0) : inValidMessage(invalid: "", subject: "이메일", at: 0)
                 
             }
-//            case 2:
-//                let controller = MainTC()
-//                UIApplication.shared.windows.first?.rootViewController = controller
-//                UIApplication.shared.windows.first?.makeKeyAndVisible()
         default:
             break
         }

@@ -51,17 +51,9 @@ class CouponViewController: UIViewController {
             }
             
             self.collectionView.reloadData()
-        } refreshSuccess: {
-            APIRequest.shared.getUserCoupon { json in
-                for item in json.arrayValue {
-                    let couponItem = CouponModel(expiryDate: item["expiryDate"].stringValue, name: item["coupon"]["name"].stringValue, description: item["coupon"]["description"].stringValue, minusPrice: item["coupon"]["minusPrice"].intValue, types: item["coupon"]["types"].stringValue, plusCount: item["coupon"]["plusCount"].intValue, expiryDays: item["coupon"]["expiryDays"].intValue, couponId: item["coupon"]["couponId"].stringValue, imgae: item["coupon"]["imgae"].stringValue, couponNo: item["couponNo"].intValue)
-                    
-                    self.couponModol.append(couponItem)
-                }
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                 
-                self.collectionView.reloadData()
-            } refreshSuccess: {
-                print("nil")
             }
         }
 

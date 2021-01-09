@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 
 private let reuseIdentifier = "OnBoardingCollectionViewCell"
@@ -53,9 +54,15 @@ class OnBoardingViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewPhoneAuth(noti:)), name: NSNotification.Name("pushViewPhoneAuth"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(goToSocialLogin(noti:)), name: NSNotification.Name("goToSocialLogin"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(goToAppleLogin(noti:)), name: NSNotification.Name("goToAppleLogin"), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewLogin(noti:)), name: NSNotification.Name("pushLogin"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(pushFindPass(noti:)), name: NSNotification.Name("pushFindPass"), object: nil)
+        
+
         
 
         configureUI()
@@ -154,10 +161,32 @@ class OnBoardingViewController: UIViewController {
     
     @objc func pushFindPass(noti : NSNotification) {
         let controller = FindPassViewController()
-        present(controller, animated: true, completion: nil)
+        navigationController?.pushViewController(controller, animated: true)
       }
 
     
+    @objc func goToSocialLogin(noti:Notification) {
+        
+        guard let json = noti.object as? JSON else {
+            return
+        }
+        
+        let controller = SocialLoginAdditionalDataVC(json: json)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
+    @objc func goToAppleLogin(noti:Notification) {
+        
+        guard let json = noti.object as? JSON else {
+            return
+        }
+        
+        let controller = AppleLoginAdditionalDataVC(json: json)
+        navigationController?.pushViewController(controller, animated: true)
+        
+        
+    }
     
 
     

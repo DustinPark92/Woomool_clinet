@@ -12,6 +12,8 @@ import Kingfisher
 private let reuseIdentifier = "MainCollectionViewCell"
 
 class MainViewController: UIViewController {
+    var noticeList = [NoticeModel]()
+    var eventListModel = [EventListModel]()
     
     var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
     
@@ -83,16 +85,47 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        LoadingHUD.show()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+            LoadingHUD.hide()
+        }
+       
+
         NotificationCenter.default.addObserver(self, selector: #selector(privacyAuthAgree(noti:)), name: NSNotification.Name("privacyAuthAgree"), object: nil)
         callRequest()
         configureUI()
         configureCV()
-        callBannerHomeRequst()
+        callHomeEventRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callRequest()
+        
+        APIRequest.shared.getUserNoti { json in
+            LoadingHUD.show()
+            for item in json.arrayValue {
+                let notiItem = NoticeModel(open: false, messageNo: item["messageNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
+                self.noticeList.append(notiItem)
+                LoadingHUD.hide()
+            }
+            
+//            if self.noticeList.count > 0 {
+//                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "activeNotice"), style: .plain, target: self, action: #selector(self.handleNotification))
+//                self.navigationItem.rightBarButtonItem?.tintColor = .blue500
+//
+//            } else {
+//                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(self.handleNotification))
+//                self.navigationItem.rightBarButtonItem?.tintColor = .blue500
+//
+//            }
+            
+            
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -137,10 +170,10 @@ class MainViewController: UIViewController {
         iv.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
         self.navigationItem.titleView = iv
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(handleNotification))
-        navigationItem.rightBarButtonItem?.tintColor = .blue500
-        
+
         navigationController?.navigationBar.barTintColor = .white
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(self.handleNotification))
     }
     
     func configureCV() {
@@ -149,31 +182,17 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-    func callBannerHomeRequst() {
-        APIRequest.shared.getBanner(postion: "HOME") { json in
-            
-            for item in json.arrayValue {
-                let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
-            
-                
-                self.bannerModelHome.append(bannerItem)
+    func callHomeEventRequest() {
+        APIRequest.shared.getEventList { (json) in
+            for item in json.array! {
+                let eventItem = EventListModel(banner: item["banner"].stringValue, contents: item["contents"].stringValue, endDate: item["endDate"].stringValue, eventId: item["eventId"].stringValue, image: item["image"].stringValue, postDate: item["postDate"].stringValue, startDate: item["startDate"].stringValue, statusEvent: item["statusEvent"].stringValue, statusImage: item["statusImage"].stringValue, title: item["title"].stringValue)
+                    self.eventListModel.append(eventItem)
             }
             
             self.collectionView.reloadData()
-            
-        } refreshSuccess: {
-            APIRequest.shared.getBanner(postion: "Home") { json in
-                for item in json.arrayValue {
-                    let bannerItem = BannerModelHome(orders: item["orders"].intValue, bannerId: item["banner"]["bannerId"].stringValue, image: item["banner"]["image"].stringValue, link: item["banner"]["link"].stringValue, eventId: item["banner"]["eventId"].stringValue)
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                 
-                    
-                    self.bannerModelHome.append(bannerItem)
-                }
-                
-                self.collectionView.reloadData()
-                
-            } refreshSuccess: {
-                print("nil")
             }
         }
 
@@ -198,7 +217,7 @@ class MainViewController: UIViewController {
                 } else {
                     
                     for item in json["terms"].arrayValue {
-                        let termsItem = TermsModel(required: item["required"].stringValue, contents: item["contents"].stringValue, title: item["title"].stringValue, termsId: item["termsId"].stringValue)
+                        let termsItem = TermsModel(required: item["required"].stringValue, url: item["url"].stringValue, title: item["title"].stringValue, termsId: item["termsId"].stringValue, subTitle : item["subTitle"].stringValue)
                         
                         
                         self.termsModel.append(termsItem)
@@ -210,7 +229,11 @@ class MainViewController: UIViewController {
                     
                 }
                 
-            }            
+            } fail: { error in
+                self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                    
+                }
+            }
     }
     
 
@@ -229,6 +252,10 @@ class MainViewController: UIViewController {
 
                 userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
                     configure()
+            } fail: { error in
+                self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                    
+                }
             }
  
       }
@@ -238,16 +265,26 @@ class MainViewController: UIViewController {
 
 extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bannerModelHome.count
+        return eventListModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MainCollectionViewCell
         
-        cell.bannerImg.kf.setImage(with: URL(string: bannerModelHome[indexPath.item].image))
-        
+        cell.bannerImg.kf.setImage(with: URL(string: eventListModel[indexPath.item].banner))
+
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = eventListModel[indexPath.item]
+        
+        let controller = EventDetailTableViewController()
+        controller.eventModel = item
+        navigationController?.pushViewController(controller, animated: true)
+        
+        
     }
     
     

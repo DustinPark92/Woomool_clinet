@@ -166,6 +166,7 @@ class ChangePasswordViewController: UITableViewController {
                 case 2:
                     if  ViewModel.passValidOneMore && ViewModel.passValid{
                         validCheckWithButton(listInsert: "새 비밀 번호 확인", placeHolderInsert: "영문과 숫자로 이루어진 6~12가지 조합", textFieldSecureList: true,count: 2,newMessage: "")
+                        SendButton.setTitle("비밀번호 변경 하기", for: .normal)
                         ViewModel.subjectList.remove(at: 1)
                         ViewModel.subjectList.insert("새 비밀 번호", at: 1)
                         ViewModel.subjectList.remove(at: 2)
@@ -179,7 +180,13 @@ class ChangePasswordViewController: UITableViewController {
                     if  ViewModel.passCheckValid && ViewModel.passValid && ViewModel.passValidOneMore{
                         
                         APIRequest.shared.putChangeUserInfo(newPassword: ViewModel.textFieldContents[1], nickname: "", oldPassword: ViewModel.textFieldContents[0]) { json in
-                            print(json)
+                            self.showOkAlert(title: "비밀번호 변경이 완료 되었습니다.", message: "확인") {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        } fail: { error in
+                            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                                
+                            }
                         }
                        
              
@@ -220,8 +227,7 @@ class ChangePasswordViewController: UITableViewController {
                 cell.TextField.isSecureTextEntry = ViewModel.textFieldSecure[indexPath.row]
                 cell.mainLabelInvalid.text = ViewModel.invalidMessage[indexPath.row]
                 cell.TextField.delegate = self
-                cell.bottomLabel.text = ViewModel.warningMessage[indexPath.row]
-                cell.bottomLabel.textColor = ViewModel.warningColor[indexPath.row]
+                cell.bottomLabel.isHidden = true
                 cell.TextField.tag = indexPath.row
                 if cell.TextField.text == "" {
                     cell.TextField.becomeFirstResponder()
@@ -257,7 +263,7 @@ class ChangePasswordViewController: UITableViewController {
                 guard let text = textField.text else { return }
                 switch textField.tag {
                 case 0:
-                  validwithSwitch(tag: 0, text: text, testCode: testCode)
+                    validwithSwitch(tag: 0, text: text, testCode: testCode)
                 case 1:
                     validwithSwitch(tag: 1, text: text, testCode: testCode)
                 case 2:

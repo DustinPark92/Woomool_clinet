@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 private let reuseIdentifier = "EventTableViewCell"
 
@@ -15,17 +16,38 @@ class EventViewController: UITableViewController {
     let adView = UIView()
     var type = "공지사항"
     var eventListModel = [EventListModel]()
+    
+    lazy var bannerView: GADBannerView = {
+            let view = GADBannerView(adSize:kGADAdSizeLargeBanner)
+            
+            view.rootViewController = self
+            return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         APIRequest.shared.getEventList { (json) in
             for item in json.array! {
-                let eventItem = EventListModel(eventId: item["eventId"].stringValue, contents: item["contents"].stringValue, postDate: item["postDate"].stringValue, endDate: item["endDate"].stringValue, startDate: item["startDate"].stringValue, image: item["image"].stringValue, title: item["title"].stringValue, displayDate: item["displayDate"].stringValue, eventStatus: item["eventStatus"].stringValue)
+                let eventItem = EventListModel(banner: item["banner"].stringValue, contents: item["contents"].stringValue, endDate: item["endDate"].stringValue, eventId: item["eventId"].stringValue, image: item["image"].stringValue, postDate: item["postDate"].stringValue, startDate: item["startDate"].stringValue, statusEvent: item["statusEvent"].stringValue, statusImage: item["statusImage"].stringValue, title: item["title"].stringValue)
                     self.eventListModel.append(eventItem)
             }
             
             self.tableView.reloadData()
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
+        
+        APIRequest.shared.getAdsense(positionCd: "event") { json in
+            self.bannerView.adUnitID = json["adUnitId"].stringValue
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
+
+        
         configureUI()
         addNavbackButton(selector: #selector(handleDismiss))
        
@@ -44,6 +66,8 @@ class EventViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(EventTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.tableHeaderView = bannerView
+        bannerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
     }
     
     @objc func handleDismiss() {
@@ -57,8 +81,9 @@ class EventViewController: UITableViewController {
         
         cell.titleLabel.text = item.title
         cell.dateLabel.text = item.postDate
-        cell.progressLabel.text = EventViewModel(event: item).eventStatusLabel
-        cell.progressLabel.backgroundColor = EventViewModel(event: item).eventStatusColor
+        cell.progressImage.kf.setImage(with: URL(string: item.statusImage))
+//        cell.progressLabel.text = EventViewModel(event: item).eventStatusLabel
+//        cell.progressLabel.backgroundColor = EventViewModel(event: item).eventStatusColor
         
         return cell
     }

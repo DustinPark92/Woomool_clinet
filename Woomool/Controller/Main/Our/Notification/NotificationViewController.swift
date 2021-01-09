@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 private let reuseIdentifier = "EventTableViewCell"
 
@@ -15,6 +16,12 @@ class NotificationViewController: UITableViewController {
     let adView = UIView()
     var noticeListModel = [NoticeListModel]()
     var type = "공지사항"
+    
+    lazy var bannerView: GADBannerView = {
+            let view = GADBannerView(adSize:kGADAdSizeLargeBanner)
+            view.rootViewController = self
+            return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +49,19 @@ class NotificationViewController: UITableViewController {
             }
             
             self.tableView.reloadData()
-        } 
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
+        
+        APIRequest.shared.getAdsense(positionCd: "notice") { json in
+            self.bannerView.adUnitID = json["adUnitId"].stringValue
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
     }
     
     
@@ -53,6 +72,8 @@ class NotificationViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(NotificationTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.tableHeaderView = bannerView
+        bannerView.frame = CGRect(x: 0, y: 0, width: 320, height: 50)
         
         addNavbackButton(selector: #selector(handleDismiss))
     }
@@ -96,6 +117,9 @@ class NotificationViewController: UITableViewController {
         
         
     }
+    
+    
+    
     
     
     

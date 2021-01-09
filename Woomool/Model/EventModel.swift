@@ -12,26 +12,28 @@ import Foundation
 struct EventListModel {
     /*
      {
-     "eventId" : "ET20201111175648999",
-     "contents" : "이벤트 합니다.",
-     "title" : "오픈 이벤트",
-     "postDate" : "2020-11-11",
-     "endDate" : "2020-12-31",
-     "startDate" : "2020-11-11",
-     "image" : "http:\/\/",
-     "eventStatus" : "Y"
+       "banner": "string",
+       "contents": "string",
+       "endDate": "2021-01-02",
+       "eventId": "string",
+       "image": "string",
+       "postDate": "2021-01-02",
+       "startDate": "2021-01-02",
+       "statusEvent": "N",
+       "statusImage": "string",
+       "title": "string"
      }
      */
-    
-    let eventId : String
+    let banner : String
     let contents : String
-    let postDate : String
     let endDate : String
-    let startDate : String
+    let eventId : String
     let image : String
+    let postDate : String
+    let startDate : String
+    let statusEvent : String
+    let statusImage : String
     let title : String
-    let displayDate : String
-    let eventStatus : String
     
     
 

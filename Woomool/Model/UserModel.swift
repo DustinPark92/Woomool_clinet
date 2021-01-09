@@ -46,6 +46,13 @@ struct UserModel {
 }
 
 
+class userAddtionalData {
+    var birth = ""
+    var sex = ""
+    var name = ""
+    var transData = ""
+}
+
 struct UserRankModel {
     /*
      "levelId": "L1",
@@ -62,6 +69,7 @@ struct UserRankModel {
     let benefits : String
     let userStatus : String
     let userRate : Int
+    let standard : String
     
     
     
@@ -81,5 +89,23 @@ struct UserEnviroment {
     let totalCount : Int
     let userCount : Int
     
+    
+}
+
+
+class UserPrivacy {
+    /*
+     "name" : "박병호",
+     "email" : "u@u.com",
+     "dob" : "20140101",
+     "nickname" : "캬오캬오",
+     "sex" : "1"
+     */
+    
+    var name = ""
+    var email = ""
+    var dob = ""
+    var nickname = ""
+    var sex = ""
     
 }

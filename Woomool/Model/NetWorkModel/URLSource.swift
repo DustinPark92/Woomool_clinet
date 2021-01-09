@@ -31,11 +31,14 @@ struct URLSource {
      5.로그인 POST : /v1/user/login
      6.비밀번호 찾기 : /v1/user/password/{email}
      7. 회원 환경 : /v1/user/environment/{userId}
+     8. 회원 프라이버시 : /v1/user/privacy/
+     9. 회원 등록 POST : /v1/user/sns
      */
     static let user = common + "v1/user"
     static let login = common + "v1/login"
     static let findPW = common + "v1/user/password/"
     static let envir = common + "v1/user/environment/"
+    static let privacy = common + "v1/user/privacy/"
     
     
     
@@ -55,6 +58,7 @@ struct URLSource {
      */
     
     static let terms = common + "v1/terms"
+    static let requiredTerms = common + "v1/terms/required"
     
     //MARK: - 수질 신고
     //4. 수질신고
@@ -145,7 +149,7 @@ struct URLSource {
     
     //MARK: - 배너
     
-    static let banner = common + "v1/banner/position/"
+    static let adsense = common + "v1/adsense/"
     
     //MARK: - 유저 알림
     

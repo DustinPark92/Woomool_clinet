@@ -135,11 +135,11 @@ extension CouponBuyMethodTableViewCell : UICollectionViewDelegate, UICollectionV
 extension CouponBuyMethodTableViewCell : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2.2, height: 56)
+        return CGSize(width: frame.width / 2.3, height: 56)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 9)
+        return UIEdgeInsets(top: 0, left: 9, bottom: 0, right: 9)
     }
     
     

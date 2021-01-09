@@ -69,12 +69,13 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             self.topView.viewModel.couponCount = self.viewModel.couponCount
             self.topView.collectionViewTop.reloadData()
             
+        }, fail: { error in
+                self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                    
+                }
         })
         
-        viewModel.callUserEnviroment {
-            
-            
-        }
+
         
         
         tabBarController?.tabBar.isHidden = false
@@ -137,9 +138,9 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                 self.historyStoreModel.removeAll()
                 for item in json.arrayValue {
                     
+                    let historyStoreItem = HistoryStoreModel(historyNo: item["historyNo"].intValue, count: item["count"].intValue, storeId: item["store"]["storeId"].stringValue, name: item["store"]["name"].stringValue, date: item["date"].stringValue, countUnit: item["countUnit"].stringValue, image: item["image"].stringValue)
                     
-                    let historyStoreItem = HistoryStoreModel(historyNo: item["historyNo"].intValue, useCount: item["useCount"].intValue, storeId: item["store"]["storeId"].stringValue, name: item["store"]["name"].stringValue, useDate: item["useDate"].stringValue)
-                    
+
                     self.historyStoreModel.append(historyStoreItem)
                     
                 }
@@ -157,11 +158,15 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                 self.bottomView.reloadData()
                 
             }
-        } refreshSuccess: {
-            
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
         
     }
+    
+    
     
     
     
@@ -219,15 +224,11 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             
             
             print("결제 params\(json)")
-            
-            self.showOkAlert(title: "\(self.viewModel.goodsModel[self.viewModel.couponSelected].goodsId)\n\(self.viewModel.goodsModel[self.viewModel.couponSelected].salePrice)원 \(self.viewModel.couponModel.name)쿠폰 결제완료.", message: "결제완료") {
-                
-                
-                let controller = PaymentAuthViewController(url: json["urlValue"].stringValue,paramsValue: json["paramsValue"].stringValue,paramsKey: json["paramsKey"].stringValue)
+  
+                let controller = PaymentAuthViewController(url: json["url"].stringValue,paramsValue: json["paramsValue"].stringValue,paramsKey: json["paramsKey"].stringValue)
                 self.navigationController?.pushViewController(controller, animated: true)
-                
-            }
-        }, fail: {
+
+        }, fail: { error in
             self.showOkAlert(title: "결제 수단을 선택해주세요.", message: "") {
                 
             }
@@ -316,7 +317,9 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: myEnviromentCell , for: indexPath) as! MyEnvironmentTableViewCell
                 
+
                 cell.selectionStyle = .none
+                
                 return cell
             case 1:
                 switch indexPath.section {
@@ -353,8 +356,9 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                     } else if viewModel.historyType == "/store" {
                         let item = historyStoreModel[indexPath.row]
                         cell.nameLabel.text = item.name
-                        cell.dateLabel.text = item.useDate
-                        cell.countPriceLabel.text = "-\(item.useCount)회"
+                        cell.dateLabel.text = item.date
+                        cell.countPriceLabel.text = "\(item.countUnit)\(item.count)회"
+                        cell.typeImg.kf.setImage(with: URL(string: item.image))
                     }
                     cell.selectionStyle = .none
                     return cell
@@ -403,23 +407,28 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "CouponPayReciptTableViewCell", for: indexPath) as! CouponPayReciptTableViewCell
                     cell.selectionStyle = .none
                     
+                    
+                    // 첫번째로 결제 화면 접근 시
                     if viewModel.firstPaymentTab {
-                        
-                        
+                        //쿠폰 사용 했을 때
                         if viewModel.couponUsing {
+                            // 쿠폰 종류 C -> 추가 쿠폰, 할인금액 0원
                             if viewModel.couponModel.types == "C" {
-                                viewModel.goodsCount = "\(viewModel.goodsCount)\(viewModel.couponModel.description) 회"
+                                viewModel.goodsCount = "\(viewModel.goodsCount) + \(viewModel.couponModel.plusCount) 회"
                                 cell.discountPriceLabel.text = "0원"
                                 cell.totalPriceLabel.text = viewModel.goodsPrice
                             } else {
-                                cell.discountPriceLabel.text = "-\(viewModel.couponModel.description)원"
+                                cell.discountPriceLabel.text = "-\(viewModel.couponModel.minusPrice.withCommas())원"
                                 cell.totalPriceLabel.text = viewModel.goodsPrice
                             }
-                            
-                            cell.priceLabel.text = viewModel.goodsPrice
-                            cell.usingCountLabel.text = viewModel.goodsCount
-                           
-                        } // 첫번째로 접근 / 아닌지
+     
+                        }
+                        
+                        //쿠폰 사용 안했을 시 가격 , 쿠폰 가격은 0원
+                        cell.priceLabel.text = viewModel.goodsPrice
+                        cell.usingCountLabel.text = viewModel.goodsCount
+                        cell.totalPriceLabel.text = viewModel.goodsPrice
+                        cell.discountPriceLabel.text = "0원"
                         
                     } else {
                         //쿠폰 사용 사용 / 안 사용
@@ -428,11 +437,11 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                             
                             let item = viewModel.goodsModel[0]
                             if viewModel.couponModel.types == "C" {
-                                viewModel.goodsCount = "\(item.offerCount)\(viewModel.couponModel.description) 회"
+                                viewModel.goodsCount = "\(item.offerCount) + \(viewModel.couponModel.plusCount) 회"
                                 cell.discountPriceLabel.text = "0원"
                                 cell.totalPriceLabel.text = viewModel.goodsPrice
                             } else {
-                                cell.discountPriceLabel.text = "-\(viewModel.couponModel.description)원"
+                                cell.discountPriceLabel.text = "-\(viewModel.couponModel.minusPrice.withCommas())원"
                                 cell.totalPriceLabel.text = viewModel.goodsPrice
                             }
                             
@@ -489,6 +498,10 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             if index == 0 {
                 return 500
+            } else if index == 1 {
+                if indexPath.section == 2{
+                    return 80
+                }
             } else if index == 2 {
                 if indexPath.section == 2 {
                     //영수증
@@ -549,12 +562,9 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             
             switch index {
             case 0:
-                
-                viewModel.callUserEnviroment {
-                    print("나의 환경")
-                    self.bottomView.reloadData()
-                    self.delegate?.didSelect(filter: filter)
-                }
+                print("나의 환경")
+                self.bottomView.reloadData()
+                self.delegate?.didSelect(filter: filter)
 
             case 1:
                 print("이용내역")
@@ -566,6 +576,10 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
                 viewModel.callGoodsList {
                     self.bottomView.reloadData()
                     self.delegate?.didSelect(filter: filter)
+                } fail: { error in
+                    self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                        
+                    }
                 }
             default:
                 break
@@ -619,7 +633,8 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             
             cell.priceLabel.text = "\(item.salePrice.withCommas()) 원"
             cell.couponDescriptionLabel.text =  String(item.name)
-            cell.couponQuantityLabel.text = String(item.offerCount)
+//            cell.couponQuantityLabel.text = String(item.offerCount)
+           cell.couponImg.kf.setImage(with: URL(string: item.image))
             
             
             
@@ -646,6 +661,9 @@ class MypageVC: UIViewController, UIGestureRecognizerDelegate {
             viewModel.couponSelected = indexPath.item
             viewModel.goodsPrice = "\(item.salePrice.withCommas()) 원"
             viewModel.goodsCount = "\(item.offerCount) 회"
+            
+            
+            print("가격은? \(viewModel.goodsPrice)")
             
             let indexPath = IndexPath(row: 0, section: 2)
             

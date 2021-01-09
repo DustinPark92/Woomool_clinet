@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 private let reuseIdentifier = "BestAskTableViewCell"
 
-class BestAskTableViewController: UITableViewController {
+class BestAskTableViewController: UIViewController, GADBannerViewDelegate {
     
     var faqModel = [FAQModel]()
+    
+    lazy var bannerView: GADBannerView = {
+            let view = GADBannerView(adSize:kGADAdSizeLargeBanner)
+            view.rootViewController = self
+            return view
+    }()
+    
+    let tableView = UITableView()
 
 
     override func viewDidLoad() {
@@ -34,17 +43,40 @@ class BestAskTableViewController: UITableViewController {
             
             self.tableView.reloadData()
            
-        } 
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
+        
+        APIRequest.shared.getAdsense(positionCd: "faq") { json in
+            self.bannerView.adUnitID = json["adUnitId"].stringValue
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
         
     }
     
     func configureUI() {
          addNavbackButton(selector: #selector(handleDismiss))
+        bannerView.load(GADRequest())
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.delegate = self
+        view.addSubview(bannerView)
+        view.addSubview(tableView)
+        view.backgroundColor = .white
+        
+        tableView.anchor(top:view.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
+        bannerView.anchor(top:tableView.bottomAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,width: 320,height: 100)
         title = "자주하는 질문"
         
     }
     
     func configureTV() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.separatorInset = .zero
         tableView.register(BestAskTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView()
@@ -55,11 +87,17 @@ class BestAskTableViewController: UITableViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+
+}
+
+
+extension BestAskTableViewController : UITableViewDelegate, UITableViewDataSource {
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return faqModel.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! BestAskTableViewCell
         
         let item = faqModel[indexPath.row]
@@ -68,19 +106,20 @@ class BestAskTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = faqModel[indexPath.row]
-            let controller = BestAskDetailTableViewController()
-        controller.groupId = item.groupId
-        
+        let controller = BestAskDetailTableViewController(groupId: item.groupId, bestAskTitle: item.title)
         navigationController?.pushViewController(controller, animated: true)
 
 
     }
 
-
+    
+    
+    
+    
 }

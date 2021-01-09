@@ -20,7 +20,7 @@ class MyEnvirCell1: UICollectionViewCell {
     
     let subLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "1회"
+
         lb.font = UIFont.NotoMedium20
         lb.textColor = .white
         return lb

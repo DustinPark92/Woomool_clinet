@@ -10,15 +10,8 @@ import UIKit
 
 class UserGradeCollectionViewCell: UICollectionViewCell {
     
-    var option: UsergradeOptions! {
-        didSet {
-            levelNameLabel.text = option.levelName
-            benefitLabel.text = option.benefit
-            conditionLabel.text = option.condition
-            userGradeimg.image = option.gradeImage
-            
-        }
-    }
+    
+    var viewModel = UserGradeViewModel()
 
     
     let userGradeimg : UIImageView = {
@@ -59,7 +52,6 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         let lb = UILabel()
         lb.font = UIFont.NotoLight30
         lb.textColor = .black900
-        lb.text = "lv.1 이슬"
         return lb
     }()
     
@@ -78,6 +70,11 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         lb.numberOfLines = 0
         return lb
     }()
+    
+    var circularPathMain = UIBezierPath()
+    
+    
+    
     
 
     override init(frame: CGRect) {
@@ -107,7 +104,9 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         
         
         //바깥 선
-        let circularPath = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: -CGFloat.pi / 2 , endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPath = UIBezierPath(arcCenter: CGPoint(x:70,y:70), radius: 82,
+                                        startAngle: -.pi/2, endAngle: 2*(.pi) - .pi/2,
+                                        clockwise: true)
 
         trackLayer.path = circularPath.cgPath
         trackLayer.fillColor = UIColor.clear.cgColor
@@ -117,16 +116,15 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         mainView.layer.addSublayer(trackLayer)
         
         
+        
+        
+        
         //내부 파란선
-        let circularPathMain = UIBezierPath(arcCenter: CGPoint(x: 70, y: 70), radius: 82, startAngle: CGFloat.pi / 2 , endAngle: -CGFloat.pi / 2, clockwise: true)
 
-        shapeLayer.backgroundColor = UIColor.white.cgColor
-        shapeLayer.strokeEnd = 0
-        shapeLayer.path = circularPathMain.cgPath
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-        shapeLayer.strokeColor = UIColor.blue500.cgColor
-        shapeLayer.lineWidth = 5
+        
+
+
+
         mainView.layer.addSublayer(shapeLayer)
         
 
@@ -137,13 +135,7 @@ class UserGradeCollectionViewCell: UICollectionViewCell {
         
         
         //에니메이션
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 2
-        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
-        basicAnimation.isRemovedOnCompletion = false
-        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+
         
         
         

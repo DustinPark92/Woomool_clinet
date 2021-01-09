@@ -67,20 +67,24 @@ struct HistoryGoodsModel {
 struct HistoryStoreModel {
     /*
      {
-       "serialNo" : 13,
-       "useCount" : 1,
+       "date" : "2020-12-25",
+       "countUnit" : "-",
+       "image" : "http:\/\/211.250.213.5\/images\/my_usagehistory_use.png",
        "store" : {
-         "storeId" : "V7T1P08C895SPDJ78IZ8",
-         "name" : "앤트러사이트 강남점"
+         "storeId" : "7MKNPBMT62XV0XMB7A11",
+         "name" : "카페살렘"
        },
-       "useDate" : "2020-11-24"
+       "count" : 1,
+       "historyNo" : 1
      }
      */
     let historyNo : Int
-    let useCount : Int
+    let count : Int
     let storeId : String
     let name : String
-    let useDate : String
+    let date : String
+    let countUnit : String
+    let image : String
 
 
 }

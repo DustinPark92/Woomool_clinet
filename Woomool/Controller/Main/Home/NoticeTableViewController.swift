@@ -47,15 +47,9 @@ class NoticeTableViewController: UITableViewController {
                 self.noticeList.append(notiItem)
             }
             self.tableView.reloadData()
-        } refreshSuccess: {
-            APIRequest.shared.getUserNoti { json in
-                for item in json.arrayValue {
-                    let notiItem = NoticeModel(open: false, messageNo: item["messageNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
-                    self.noticeList.append(notiItem)
-                }
-                self.tableView.reloadData()
-            } refreshSuccess: {
-                print("nil")
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
             }
         }
     }
@@ -164,13 +158,9 @@ class NoticeTableViewController: UITableViewController {
                         self.noticeList[indexPath.section].open = true
                         let section = IndexSet.init(integer: indexPath.section)
                         tableView.reloadSections(section, with: .fade)
-                    } refreshSuccess: {
-                        APIRequest.shared.putUserNotiReading(messageNo: self.noticeList[indexPath.section].messageNo) { json in
-                            self.noticeList[indexPath.section].open = true
-                            let section = IndexSet.init(integer: indexPath.section)
-                            tableView.reloadSections(section, with: .fade)
-                        } refreshSuccess: {
-                            print("nil")
+                    } fail: { error in
+                        self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                            
                         }
                     }
 

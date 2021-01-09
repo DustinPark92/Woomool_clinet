@@ -119,6 +119,10 @@ class QrAuthViewController: UIViewController {
         APIRequest.shared.postStoreUse(storeId: storeLookUpModel.storeId) { json in
             self.storeNo = json["storeNo"].intValue
             self.configureConfirmView()
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
 
 
@@ -131,7 +135,11 @@ class QrAuthViewController: UIViewController {
             self.dismiss(animated: true) {
                  NotificationCenter.default.post(name: NSNotification.Name("pop"), object: nil)
             }
-        } 
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
+        }
 
 
        

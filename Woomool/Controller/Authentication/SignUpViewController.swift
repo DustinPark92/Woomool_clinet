@@ -20,6 +20,8 @@ class SignUpViewController: UITableViewController {
     var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
     var viewUpSize = 1
     var url = ""
+  
+
     
     lazy var headerView : UIView = {
         let uv = UIView()
@@ -33,10 +35,10 @@ class SignUpViewController: UITableViewController {
     }
     
 
-    let params : String
+    let transData : String
     
-    init(params : String) {
-        self.params = params
+    init(transData : String) {
+        self.transData = transData
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -62,6 +64,8 @@ class SignUpViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "left_arrow"), style: .plain, target: self, action: #selector(handledismiss))
         
         navigationItem.leftBarButtonItem?.tintColor = .black900
+        
+        print("애플아이디는? \(UserDefaults.standard.object(forKey: "appleId") as? String)")
         
         
     }
@@ -90,38 +94,49 @@ class SignUpViewController: UITableViewController {
 
     
     func callRequest() {
-        let params : [String : Any] =
-                  [
-                      "email": ViewModel.textFieldContents[0],
-                      "inviteCd": "",
-                      "nickname": ViewModel.textFieldContents[3],
-                      "password": ViewModel.textFieldContents[2],
-                    "params" : self.params
-                      
-                  ]
-              APIRequest.shared.postUserSignUp(parameters: params) { json in
-                  let params = ["grant_type": "password",
-                                "scope" : "read+write",
-                                "username" : self.ViewModel.textFieldContents[0],
-                                "password" : self.ViewModel.textFieldContents[1]]
-                  
-                  
-                  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                      
-                      APIRequest.shared.postUserToken(parameters: params) { json in
-                          print(json)
+        //애플 로그인
+
+            // 일반 회원가입
+            let params : [String : Any] =
+                      [
+                          "email": ViewModel.textFieldContents[0],
+                          "inviteCd": "",
+                          "nickname": ViewModel.textFieldContents[3],
+                          "password": ViewModel.textFieldContents[2],
+                           "transData" : self.transData
                           
-                          let controller = MainTC()
-                          UIApplication.shared.windows.first?.rootViewController = controller
-                          UIApplication.shared.windows.first?.makeKeyAndVisible()
+                      ]
+                  APIRequest.shared.postUserSignUp(parameters: params) { json in
+                      let params = ["grant_type": "password",
+                                    "scope" : "read+write",
+                                    "username" : self.ViewModel.textFieldContents[0],
+                                    "password" : self.ViewModel.textFieldContents[1]]
+                      
+                      
+                      DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                           
+                          APIRequest.shared.postUserToken(parameters: params) { json in
+                              print(json)
+                              
+                              let controller = MainTC()
+                              UIApplication.shared.windows.first?.rootViewController = controller
+                              UIApplication.shared.windows.first?.makeKeyAndVisible()
+                              
+                              
+                          } fail: { error in
+                            self.showOkAlert(title: error, message: "") {
+                                
+                            }
+                          }
                           
                       }
-                      
-                  }
-            
-            
-        }
+                
+                
+            }
+        
+        
+        
+
         
     }
     
@@ -355,7 +370,7 @@ extension SignUpViewController : UITextFieldDelegate  {
         case 0:
             viewUpSize = 0
             if ViewModel.subjectList.count == 5 {
-                SendButton.setTitle("본인 인증 하러 가기", for: .normal)
+                SendButton.setTitle("회원가입 완료", for: .normal)
             } else {
                 SendButton.setTitle("확인", for: .normal)
             }
@@ -369,7 +384,7 @@ extension SignUpViewController : UITextFieldDelegate  {
             viewUpSize = 50
             SendButton.setTitle("확인", for: .normal)
         case 4:
-            viewUpSize = 50
+            viewUpSize = 100
             SendButton.setTitle("확인", for: .normal)
         default:
             break

@@ -65,32 +65,19 @@ class UserGradeViewController: UIViewController {
     }
     
     func callRequest() {
-        APIRequest.shared.getUserRank { [self] json in
-            print(json)
-            
-            for item in json.array! {
-                let userRankItem = UserRankModel(levelId: item["levelId"].stringValue, name: item["name"].stringValue, orders: item["orders"].intValue, benefits: item["benefits"].stringValue, userStatus: item["userStatus"].stringValue, userRate: item["userRate"].intValue)
-                
-
-                    
-
-                self.userRankModel.append(userRankItem)
-            }
-            
-            index = self.userRankModel.firstIndex {
-                $0.userStatus == "NOW"
-            }!
-            
-      
-
-            
+        
+        viewModel.callRequest {
             self.collectionView.layoutIfNeeded()
             self.collectionView.reloadData()
-            self.pageControl.currentPage = index
-            self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: false)
-            
-            
+            self.pageControl.currentPage = self.viewModel.index
+            self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.index, section: 0), at: .right, animated: false)
+        } fail: { error in
+            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                
+            }
         }
+
+        
     }
     
     func configureUI() {
@@ -135,7 +122,7 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userRankModel.count
+        return viewModel.userRankModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -148,7 +135,7 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
         cell.userGradeimg.backgroundColor = .gray300
         cell.userNowImg.image = UIImage(named: "")
         
-        let item = userRankModel[indexPath.row]
+        let item = viewModel.userRankModel[indexPath.row]
         cell.userLockImg.isHidden = true
         if item.userStatus == "LOCK" {
             cell.trackLayer.isHidden = true
@@ -160,6 +147,7 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
 
             viewModel.firstPage = indexPath.row
 
+            
             cell.trackLayer.isHidden = false
             cell.shapeLayer.isHidden = false
             cell.userNowImg.isHidden = false
@@ -181,6 +169,34 @@ extension UserGradeViewController : UICollectionViewDelegate, UICollectionViewDa
         cell.userGradeimg.image = UsergradeOptions.init(rawValue: indexPath.row)!.gradeImage
         cell.benefitLabel.text = item.benefits
         cell.levelNameLabel.text = "\(item.levelId) \(item.name)"
+        cell.conditionLabel.text = item.standard
+        cell.viewModel = viewModel
+        
+        
+        
+        //circular Path
+        cell.circularPathMain = UIBezierPath(arcCenter: CGPoint(x:70,y:70), radius: 82,
+                                            startAngle: -CGFloat.pi/2, endAngle: 2*(CGFloat.pi)*(CGFloat(self.viewModel.percentage)/100) - CGFloat.pi/2,
+                                            clockwise: true)
+        cell.shapeLayer.backgroundColor = UIColor.white.cgColor
+        cell.shapeLayer.strokeEnd = 0
+        cell.shapeLayer.path = cell.circularPathMain.cgPath
+        cell.shapeLayer.fillColor = UIColor.clear.cgColor
+        cell.shapeLayer.lineCap = CAShapeLayerLineCap.round
+        cell.shapeLayer.strokeColor = UIColor.blue500.cgColor
+        cell.shapeLayer.lineWidth = 5
+        
+        
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 2
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        cell.shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        print("퍼센티지는?...\(item.userRate)")
+        
         
 
         return cell

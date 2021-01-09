@@ -22,8 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         if defaults.object(forKey: "accessToken") as? String != nil {
+            
+            let vc = MainTC()
 
-               let vc = MainTC()
+//               let vc = SocialLoginAdditionalDataVC()
+//                let nav = UINavigationController(rootViewController: vc)
                window?.rootViewController = vc
                window?.makeKeyAndVisible()
 

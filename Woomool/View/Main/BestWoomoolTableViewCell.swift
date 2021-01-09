@@ -12,7 +12,7 @@ class BestWoomoolTableViewCell: UITableViewCell {
     
     let rankLabel : UILabel = {
         let lb = UILabel()
-        lb.text = "1st"
+        lb.text = "1위"
         lb.textColor = .blue500
         lb.font = UIFont.RobotoBold16
         lb.textAlignment = .center
