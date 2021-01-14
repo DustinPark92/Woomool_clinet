@@ -94,28 +94,15 @@ class SignUpViewController: UITableViewController {
 
     
     func callRequest() {
-        //애플 로그인
 
-            // 일반 회원가입
-            let params : [String : Any] =
-                      [
-                          "email": ViewModel.textFieldContents[0],
-                          "inviteCd": "",
-                          "nickname": ViewModel.textFieldContents[3],
-                          "password": ViewModel.textFieldContents[2],
-                           "transData" : self.transData
-                          
-                      ]
-                  APIRequest.shared.postUserSignUp(parameters: params) { json in
-                      let params = ["grant_type": "password",
-                                    "scope" : "read+write",
-                                    "username" : self.ViewModel.textFieldContents[0],
-                                    "password" : self.ViewModel.textFieldContents[1]]
+        APIRequest.shared.postUserSignUp(userInfoArray : ViewModel.textFieldContents, transData : self.transData) { json in
                       
+                    
+                      UserDefaults.standard.setValue(json["userId"].stringValue, forKey: "userId")
                       
                       DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
                           
-                          APIRequest.shared.postUserToken(parameters: params) { json in
+                        APIRequest.shared.postUserToken(userInfoArray : self.ViewModel.textFieldContents) { json in
                               print(json)
                               
                               let controller = MainTC()
@@ -140,10 +127,17 @@ class SignUpViewController: UITableViewController {
         
     }
     
+    
+    //MARK: - 버튼 클릭시 유효성 검사 성공 시
     func validCheckWithButton(listInsert : String , placeHolderInsert: String , textFieldSecureList : Bool,count : Int , newMessage : String) {
+        
         ViewModel.subjectList.insert(listInsert, at: 0)
         ViewModel.placeholderList.insert(placeHolderInsert, at: 0)
         ViewModel.textFieldSecure.insert(textFieldSecureList, at: 0)
+        if ViewModel.subjectStarList.count != 4 {
+            ViewModel.subjectStarList.insert("*", at: 0)
+        }
+        
         
         ViewModel.warningMessage.insert(newMessage, at: 0)
         ViewModel.warningColor.insert(.blue, at: 0)
@@ -160,9 +154,13 @@ class SignUpViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    
+    //MARK: - 다음 버튼 클릭 시에 유효성 검사 실패 시
     func inValidMessage(invalid:String,subject:String,at:Int) {
         ViewModel.invalidMessage.remove(at: at)
         ViewModel.subjectList.remove(at: at)
+        ViewModel.subjectStarList.remove(at: at)
+        ViewModel.subjectStarList.insert("", at: at)
         ViewModel.invalidMessage.insert(invalid, at: at)
         ViewModel.subjectList.insert(subject, at: at)
         tableView.reloadData()
@@ -300,6 +298,7 @@ class SignUpViewController: UITableViewController {
         cell.backgroundColor = color.mainWhite
         cell.mainLabel.text = ViewModel.subjectList[indexPath.row]
         cell.mainLabelInvalid.text = ViewModel.invalidMessage[indexPath.row]
+        cell.requiredLabel.text = ViewModel.subjectStarList[indexPath.row]
         cell.TextField.placeholder = ViewModel.placeholderList[indexPath.row]
         cell.TextField.isSecureTextEntry = ViewModel.textFieldSecure[indexPath.row]
         cell.TextField.delegate = self

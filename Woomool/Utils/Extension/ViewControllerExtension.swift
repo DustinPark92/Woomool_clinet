@@ -31,7 +31,7 @@ extension UIViewController {
     
     func showOkAlert(title : String, message : String ,fail : @escaping () -> ()) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let addAction = UIAlertAction(title: "확인", style: .cancel) { _ in
+        let addAction = UIAlertAction(title: "확인", style: .default) { _ in
             fail()
             self.dismiss(animated: true, completion: nil)
         }

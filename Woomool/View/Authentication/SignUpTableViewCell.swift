@@ -32,6 +32,14 @@ class SignUpTableViewCell: UITableViewCell {
         
     }()
     
+    let requiredLabel : UILabel = {
+        let lb = UILabel()
+        lb.text = "*"
+        lb.textColor = .blue500
+        lb.font = UIFont.NotoBold16
+        return lb
+    }()
+    
     var sv = UIView()
     
     lazy var bottomLabel : UILabel = SignUpViewModel().Label()
@@ -46,9 +54,14 @@ class SignUpTableViewCell: UITableViewCell {
         contentView.addSubview(ContainerView)
         contentView.addSubview(mainLabelInvalid)
         
+        contentView.addSubview(requiredLabel)
+
+        
+        
         mainLabelInvalid.anchor(top:topAnchor,left: leftAnchor,paddingLeft: 50)
 
         mainLabel.anchor(top:topAnchor,left: leftAnchor,paddingLeft: 50)
+        requiredLabel.anchor(top:topAnchor,left: mainLabel.rightAnchor,paddingRight: 1)
         ContainerView.anchor(top:mainLabel.bottomAnchor,left: leftAnchor,bottom: bottomAnchor,right: rightAnchor ,paddingLeft: 41,paddingRight: 39)
         
         

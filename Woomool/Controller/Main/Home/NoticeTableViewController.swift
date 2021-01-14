@@ -158,6 +158,7 @@ class NoticeTableViewController: UITableViewController {
                         self.noticeList[indexPath.section].open = true
                         let section = IndexSet.init(integer: indexPath.section)
                         tableView.reloadSections(section, with: .fade)
+                        
                     } fail: { error in
                         self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                             

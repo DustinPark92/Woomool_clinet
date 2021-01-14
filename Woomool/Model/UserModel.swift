@@ -12,18 +12,23 @@ import Foundation
 struct UserModel {
     /*
      JSON: {
-       "remCount" : 0,
-       "useCount" : 0,
-       "userId" : "1c0b23efe07143968585ffdef3c02a84",
-       "buyCount" : 0,
-       "level" : {
-         "orders" : 1,
-         "name" : "이슬",
-         "levelId" : "LV1"
-       },
-       "email" : "p4569@naver.com",
-       "joinMonth" : "2020-11",
-       "nickname" : "테스토오호"
+     "types" : "K",
+     "nickname" : "박병호",
+     "joinMonth" : "2021-01",
+     "email" : "p4569@naver.com",
+     "statusMessage" : "N",
+     "buyCount" : 0,
+     "userId" : "587b39f807a8449fade9ef6af0a7690a",
+     "level" : {
+       "levelId" : "LV1",
+       "orders" : 1,
+       "name" : "이슬"
+     },
+     "useCount" : 0,
+     "terms" : [
+
+     ],
+     "remCount" : 0
      }
      */
     
@@ -38,6 +43,7 @@ struct UserModel {
     let levelOrder : Int
     let levelId : String
     let joinMonth : String
+    let statusMessage : String
     
 
     

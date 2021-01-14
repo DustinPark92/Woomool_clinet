@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+
+
+class DashedBorderView: UIView {
+
+}
+
 extension UIView {
     
     func anchor(
@@ -137,18 +143,38 @@ extension UIView {
         view.layer.addSublayer(shapeLayer)
     }
     
-    func createDashedLine(from point1: CGPoint, to point2: CGPoint, color: UIColor, strokeLength: NSNumber, gapLength: NSNumber, width: CGFloat) {
-        let shapeLayer = CAShapeLayer()
-
-        shapeLayer.strokeColor = color.cgColor
-        shapeLayer.lineWidth = width
-        shapeLayer.lineDashPattern = [strokeLength, gapLength]
-
-        let path = CGMutablePath()
-        path.addLines(between: [point1, point2])
-        shapeLayer.path = path
-        layer.addSublayer(shapeLayer)
+    
+    func createDottedLine(width: CGFloat, color: CGColor) {
+       let caShapeLayer = CAShapeLayer()
+       caShapeLayer.strokeColor = color
+       caShapeLayer.lineWidth = width
+       caShapeLayer.lineDashPattern = [2,3]
+       let cgPath = CGMutablePath()
+       let cgPoint = [CGPoint(x: 0, y: 0), CGPoint(x: self.frame.width, y: 0)]
+       cgPath.addLines(between: cgPoint)
+       caShapeLayer.path = cgPath
+       layer.addSublayer(caShapeLayer)
     }
+ 
+    
+    func addDashedBorder() {
+        let  path = UIBezierPath()
+
+        let  p0 = CGPoint(x: self.bounds.minX, y: self.bounds.midY)
+        path.move(to: p0)
+
+        let  p1 = CGPoint(x: self.bounds.maxX, y: self.bounds.midY)
+        path.addLine(to: p1)
+
+        let  dashes: [ CGFloat ] = [ 0.0, 16.0 ]
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        path.lineWidth = 8.0
+        path.lineCapStyle = .round
+        UIColor.magenta.set()
+        path.stroke()
+    }
+    
+    
     
     func dropShadow(scale: Bool = true,opacity : Float) {
         layer.cornerRadius = 14

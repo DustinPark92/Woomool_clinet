@@ -44,6 +44,8 @@
 		DA572B6825A69F23002AC98F /* AppleLoginAddtionalDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA572B6725A69F23002AC98F /* AppleLoginAddtionalDataCell.swift */; };
 		DA572B6C25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA572B6B25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift */; };
 		DA66B7E02514698D000D143A /* WoomoolServiceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */; };
+		DA681A1925ABE083008F31D2 /* PaymentVirtualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA681A1825ABE083008F31D2 /* PaymentVirtualViewController.swift */; };
+		DA681A1C25ABE08F008F31D2 /* PaymentBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA681A1B25ABE08F008F31D2 /* PaymentBankViewController.swift */; };
 		DA6A75A5250A146900B96C32 /* MyAreaDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */; };
 		DA6A75A7250A15A200B96C32 /* MyAreaDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */; };
 		DA6B78A6250C7496000466F1 /* ManagementHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6B78A5250C7496000466F1 /* ManagementHeaderView.swift */; };
@@ -156,6 +158,8 @@
 		DAB61A362500E8570066EA29 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */; };
 		DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */; };
 		DAB9D73C2514A1FF002C7867 /* CouponCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */; };
+		DABB7C3E25B00D3500ABAEF8 /* MyPageTopVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB7C3D25B00D3500ABAEF8 /* MyPageTopVIew.swift */; };
+		DABB7C4325B010D800ABAEF8 /* HistoryDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABB7C4225B010D800ABAEF8 /* HistoryDateTableViewCell.swift */; };
 		DABD6D4D258CDF69000720C2 /* DeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */; };
 		DAC156CB259F179900A0BC99 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAC156CA259F179900A0BC99 /* GoogleService-Info.plist */; };
 		DAC156D025A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC156CF25A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift */; };
@@ -179,16 +183,14 @@
 		DAC73E1A24FF853C00E2B419 /* MyWoomoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1924FF853C00E2B419 /* MyWoomoolViewModel.swift */; };
 		DAC73E1C24FF878700E2B419 /* OurWoomoolBestShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC73E1B24FF878700E2B419 /* OurWoomoolBestShopView.swift */; };
 		DAE782E52506585600944B4A /* MyPageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782E42506585600944B4A /* MyPageTableViewCell.swift */; };
-		DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782E825065BAB00944B4A /* MypageVC.swift */; };
-		DAE782EC25065C6600944B4A /* MyPageTopVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */; };
+		DAE782E925065BAB00944B4A /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782E825065BAB00944B4A /* MypageViewController.swift */; };
 		DAE782EE2506637F00944B4A /* CouponBuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782ED2506637F00944B4A /* CouponBuyTableViewCell.swift */; };
-		DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */; };
+		DAE782F0250664A600944B4A /* MyEnviromentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782EF250664A600944B4A /* MyEnviromentTableViewCell.swift */; };
 		DAE782F42506696500944B4A /* CouponBuyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */; };
 		DAE782F625067A0600944B4A /* CouponUsingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F525067A0600944B4A /* CouponUsingTableViewCell.swift */; };
 		DAE782F82506822D00944B4A /* CouponPayReciptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */; };
 		DAE782FA2507692F00944B4A /* HistoryFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */; };
 		DAE782FC25076A4300944B4A /* MypageHistoryFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */; };
-		DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */; };
 		DAE783002507722F00944B4A /* HistoryFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */; };
 		DAE783022507724000944B4A /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE783012507724000944B4A /* HistoryTableViewCell.swift */; };
 		DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF4D3392542C09A007F9AC5 /* StoreModel.swift */; };
@@ -248,6 +250,8 @@
 		DA572B6725A69F23002AC98F /* AppleLoginAddtionalDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginAddtionalDataCell.swift; sourceTree = "<group>"; };
 		DA572B6B25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginAddtionalViewModel.swift; sourceTree = "<group>"; };
 		DA66B7DF2514698D000D143A /* WoomoolServiceRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolServiceRequestViewController.swift; sourceTree = "<group>"; };
+		DA681A1825ABE083008F31D2 /* PaymentVirtualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVirtualViewController.swift; sourceTree = "<group>"; };
+		DA681A1B25ABE08F008F31D2 /* PaymentBankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentBankViewController.swift; sourceTree = "<group>"; };
 		DA6A75A4250A146900B96C32 /* MyAreaDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewController.swift; sourceTree = "<group>"; };
 		DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAreaDetailTableViewCell.swift; sourceTree = "<group>"; };
 		DA6B78A5250C7496000466F1 /* ManagementHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagementHeaderView.swift; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 		DAB61A352500E8570066EA29 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponSelectViewController.swift; sourceTree = "<group>"; };
 		DAB9D73B2514A1FF002C7867 /* CouponCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCollectionViewCell.swift; sourceTree = "<group>"; };
+		DABB7C3D25B00D3500ABAEF8 /* MyPageTopVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPageTopVIew.swift; sourceTree = "<group>"; };
+		DABB7C4225B010D800ABAEF8 /* HistoryDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDateTableViewCell.swift; sourceTree = "<group>"; };
 		DABD6D4C258CDF69000720C2 /* DeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceExtension.swift; path = ../../../../../DeviceExtension.swift; sourceTree = "<group>"; };
 		DAC156CA259F179900A0BC99 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DAC156CF25A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginAdditionalDataVC.swift; sourceTree = "<group>"; };
@@ -385,18 +391,16 @@
 		DAC73E1924FF853C00E2B419 /* MyWoomoolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWoomoolViewModel.swift; sourceTree = "<group>"; };
 		DAC73E1B24FF878700E2B419 /* OurWoomoolBestShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OurWoomoolBestShopView.swift; sourceTree = "<group>"; };
 		DAE782E42506585600944B4A /* MyPageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTableViewCell.swift; sourceTree = "<group>"; };
-		DAE782E825065BAB00944B4A /* MypageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageVC.swift; sourceTree = "<group>"; };
-		DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyPageTopVIew.swift; path = "../mypage 임시/MyPageTopVIew.swift"; sourceTree = "<group>"; };
+		DAE782E825065BAB00944B4A /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		DAE782ED2506637F00944B4A /* CouponBuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyTableViewCell.swift; sourceTree = "<group>"; };
-		DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyEnvironmentTableViewCell.swift; path = "../../mypage 임시/MyEnvironmentTableViewCell.swift"; sourceTree = "<group>"; };
+		DAE782EF250664A600944B4A /* MyEnviromentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyEnviromentTableViewCell.swift; sourceTree = "<group>"; };
 		DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponBuyCollectionViewCell.swift; sourceTree = "<group>"; };
 		DAE782F525067A0600944B4A /* CouponUsingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponUsingTableViewCell.swift; sourceTree = "<group>"; };
 		DAE782F72506822D00944B4A /* CouponPayReciptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponPayReciptTableViewCell.swift; sourceTree = "<group>"; };
-		DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryFilterCollectionViewCell.swift; path = "../../mypage 임시/HistoryFilterCollectionViewCell.swift"; sourceTree = "<group>"; };
-		DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MypageHistoryFilterView.swift; path = "../../mypage 임시/MypageHistoryFilterView.swift"; sourceTree = "<group>"; };
-		DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryDateTableViewCell.swift; path = "../../mypage 임시/HistoryDateTableViewCell.swift"; sourceTree = "<group>"; };
-		DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryFilterTableViewCell.swift; path = "../../mypage 임시/HistoryFilterTableViewCell.swift"; sourceTree = "<group>"; };
-		DAE783012507724000944B4A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryTableViewCell.swift; path = "../../mypage 임시/HistoryTableViewCell.swift"; sourceTree = "<group>"; };
+		DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHistoryFilterView.swift; sourceTree = "<group>"; };
+		DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFilterTableViewCell.swift; sourceTree = "<group>"; };
+		DAE783012507724000944B4A /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		DAF4D3392542C09A007F9AC5 /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		DAF4D33C2542D4D2007F9AC5 /* WoomoolStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryViewModel.swift; sourceTree = "<group>"; };
 		DAF4D3402542D57F007F9AC5 /* WoomoolStoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoomoolStoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -447,8 +451,6 @@
 		DA36459424F6830A00294C2B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DAE782EA25065C4900944B4A /* mypage 임시 */,
-				DA8191D224FA3C640021F2B5 /* OnBoarding */,
 				DA3645C924F7A1FA00294C2B /* Main */,
 				DA3645C324F7613A00294C2B /* Authentication */,
 			);
@@ -458,7 +460,6 @@
 		DA36459624F6831500294C2B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DA8191D924FA47850021F2B5 /* OnBoarding */,
 				DA3645C624F796D900294C2B /* Main */,
 				DA3645C024F75E9D00294C2B /* Authentication */,
 			);
@@ -468,6 +469,7 @@
 		DA36459724F6831A00294C2B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DAD6549B25AFFBB7007DE53F /* Payment */,
 				DA3645A824F68F3A00294C2B /* Main */,
 				DA3645A524F68EF500294C2B /* Authentication */,
 			);
@@ -578,6 +580,7 @@
 		DA3645C024F75E9D00294C2B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				DA8191D924FA47850021F2B5 /* OnBoarding */,
 				DA3645B624F6A0A700294C2B /* FindUserInfoViewModel.swift */,
 				DA3645A124F688CA00294C2B /* LoginViewModel.swift */,
 				DA3645BA24F6AE4B00294C2B /* SignUpViewModel.swift */,
@@ -590,6 +593,7 @@
 		DA3645C324F7613A00294C2B /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				DA8191D224FA3C640021F2B5 /* OnBoarding */,
 				DA8A31D0250F22070049CD8C /* PhoneAuth */,
 				DA8191DC24FA52160021F2B5 /* SignUpTableViewCell.swift */,
 				DAA350A4254C0971005D4071 /* AuthDetailTableViewCell.swift */,
@@ -617,9 +621,6 @@
 				DAB61A2E2500C8920066EA29 /* MyArea */,
 				DAB61A2C2500C8740066EA29 /* Home */,
 				DAB61A262500BFA50066EA29 /* Mypage */,
-				DAC73E1524FF755A00E2B419 /* SelfSizedTableView.swift */,
-				DAC73E1724FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift */,
-				DAE782EB25065C6600944B4A /* MyPageTopVIew.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -723,6 +724,10 @@
 				DAB61A282500C7BD0066EA29 /* UserInfoTableViewController.swift */,
 				DA6E2D962504BF4800A0A548 /* InviteViewController.swift */,
 				DA3ED1F4250A265100E4D64C /* ChangePassAuthPopUpViewController.swift */,
+				DAE782E825065BAB00944B4A /* MypageViewController.swift */,
+				DA30EE9A255E6E31000F7356 /* CouponViewController.swift */,
+				DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */,
+				DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -957,21 +962,20 @@
 		DAB61A262500BFA50066EA29 /* Mypage */ = {
 			isa = PBXGroup;
 			children = (
+				DAD654A025AFFCA9007DE53F /* Coupon */,
+				DAD6549D25AFFC17007DE53F /* MyEnviroment */,
+				DAD6549C25AFFC01007DE53F /* History */,
 				DAAB959A257B7BED00697104 /* MyEnviorment */,
 				DAF9EB3F2515C72C00B40270 /* UserGrade */,
-				DAB9D73A2514A1EA002C7867 /* Coupon */,
-				DAE782EF250664A600944B4A /* MyEnvironmentTableViewCell.swift */,
-				DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */,
-				DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */,
-				DAE782FD25076DE800944B4A /* HistoryDateTableViewCell.swift */,
-				DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */,
-				DAE783012507724000944B4A /* HistoryTableViewCell.swift */,
+				DAB9D73A2514A1EA002C7867 /* Goods */,
 				DA6E2D7C2504A59800A0A548 /* Setting */,
 				DAB61A272500C7640066EA29 /* UserInfo */,
 				DA3645D024F7BA7900294C2B /* MyPageCollectionReusableView.swift */,
 				DAB61A242500B9AE0066EA29 /* MypageFilterView.swift */,
 				DA3645D224F7BC2700294C2B /* MypageFilterCell.swift */,
 				DA3645D624F7C5A200294C2B /* MyCouponListCollectionViewCell.swift */,
+				DABB7C3D25B00D3500ABAEF8 /* MyPageTopVIew.swift */,
+				DAC73E1524FF755A00E2B419 /* SelfSizedTableView.swift */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -1035,11 +1039,12 @@
 				DA6A75A6250A15A200B96C32 /* MyAreaDetailTableViewCell.swift */,
 				DA2119182514839600419AD7 /* WoomoolServieceHeaderView.swift */,
 				DA21191A251488B400419AD7 /* WoomoolServiceTableViewCell.swift */,
+				DAC73E1724FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift */,
 			);
 			path = MyArea;
 			sourceTree = "<group>";
 		};
-		DAB9D73A2514A1EA002C7867 /* Coupon */ = {
+		DAB9D73A2514A1EA002C7867 /* Goods */ = {
 			isa = PBXGroup;
 			children = (
 				DAE782F32506696500944B4A /* CouponBuyCollectionViewCell.swift */,
@@ -1051,7 +1056,7 @@
 				DA88ED8A2585177E0078CB12 /* CouponBuyMethodTableViewCell.swift */,
 				DA88ED8D2585178E0078CB12 /* CouponBuyMethodCollectionViewCell.swift */,
 			);
-			path = Coupon;
+			path = Goods;
 			sourceTree = "<group>";
 		};
 		DAC73E0024FF5DF100E2B419 /* Font */ = {
@@ -1068,19 +1073,43 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		DAE782EA25065C4900944B4A /* mypage 임시 */ = {
+		DAD6549B25AFFBB7007DE53F /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				DAE782E825065BAB00944B4A /* MypageVC.swift */,
-				DA30EE9A255E6E31000F7356 /* CouponViewController.swift */,
-				DA30EE9D255E6E79000F7356 /* CouponHeader.swift */,
-				DA30EEA0255E6E93000F7356 /* CouponCell.swift */,
-				DAB9D73425149F1E002C7867 /* CouponSelectViewController.swift */,
-				DAF9EB2C2514C98F00B40270 /* CouponPopUpViewController.swift */,
+				DA681A1825ABE083008F31D2 /* PaymentVirtualViewController.swift */,
+				DA681A1B25ABE08F008F31D2 /* PaymentBankViewController.swift */,
 				DA88ED90258525150078CB12 /* PaymentAuthViewController.swift */,
 			);
-			name = "mypage 임시";
-			path = "mypage 임시";
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		DAD6549C25AFFC01007DE53F /* History */ = {
+			isa = PBXGroup;
+			children = (
+				DAE782FF2507722F00944B4A /* HistoryFilterTableViewCell.swift */,
+				DAE782F92507692F00944B4A /* HistoryFilterCollectionViewCell.swift */,
+				DABB7C4225B010D800ABAEF8 /* HistoryDateTableViewCell.swift */,
+				DAE782FB25076A4300944B4A /* MypageHistoryFilterView.swift */,
+				DAE783012507724000944B4A /* HistoryTableViewCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		DAD6549D25AFFC17007DE53F /* MyEnviroment */ = {
+			isa = PBXGroup;
+			children = (
+				DAE782EF250664A600944B4A /* MyEnviromentTableViewCell.swift */,
+			);
+			path = MyEnviroment;
+			sourceTree = "<group>";
+		};
+		DAD654A025AFFCA9007DE53F /* Coupon */ = {
+			isa = PBXGroup;
+			children = (
+				DA30EE9D255E6E79000F7356 /* CouponHeader.swift */,
+				DA30EEA0255E6E93000F7356 /* CouponCell.swift */,
+			);
+			path = Coupon;
 			sourceTree = "<group>";
 		};
 		DAF9EB3F2515C72C00B40270 /* UserGrade */ = {
@@ -1111,8 +1140,8 @@
 				DAAA7ED424F23E91005F9C6D /* Sources */,
 				DAAA7ED524F23E91005F9C6D /* Frameworks */,
 				DAAA7ED624F23E91005F9C6D /* Resources */,
-				2165F8E1D480FF65A195D01A /* [CP] Embed Pods Frameworks */,
-				2FBFF3CF9B09151A34F48834 /* [CP] Copy Pods Resources */,
+				2B63B04767E6623F03AEB9F5 /* [CP] Embed Pods Frameworks */,
+				BB9060F1726E31C0A2BD2117 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1202,7 +1231,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2165F8E1D480FF65A195D01A /* [CP] Embed Pods Frameworks */ = {
+		2B63B04767E6623F03AEB9F5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1219,7 +1248,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Woomool/Pods-Woomool-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2FBFF3CF9B09151A34F48834 /* [CP] Copy Pods Resources */ = {
+		BB9060F1726E31C0A2BD2117 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1248,11 +1277,13 @@
 				DAC73E1A24FF853C00E2B419 /* MyWoomoolViewModel.swift in Sources */,
 				DA6E2D952504BC4600A0A548 /* BestAskTableViewCell.swift in Sources */,
 				DA8E89BC2532D8910021BE23 /* NoticeTableViewCell.swift in Sources */,
+				DA681A1925ABE083008F31D2 /* PaymentVirtualViewController.swift in Sources */,
 				DA6B78AE250C803A000466F1 /* ManagementWrtieViewController.swift in Sources */,
 				DA6E2D972504BF4800A0A548 /* InviteViewController.swift in Sources */,
 				DAAB95AA257BA2F900697104 /* UserDelViewController.swift in Sources */,
 				DA6B78A8250C74DF000466F1 /* ManagementTableViewCell.swift in Sources */,
 				DAAA7EDC24F23E91005F9C6D /* AppDelegate.swift in Sources */,
+				DABB7C4325B010D800ABAEF8 /* HistoryDateTableViewCell.swift in Sources */,
 				DA913DD925500A620087464A /* GoodsModel.swift in Sources */,
 				DA6E2D8F2504BA5200A0A548 /* ViewControllerExtension.swift in Sources */,
 				DA6E2DB92506354700A0A548 /* BestWoomoolTableViewCell.swift in Sources */,
@@ -1261,7 +1292,7 @@
 				DA8A31D8250F25660049CD8C /* PhoneAuthViewModel.swift in Sources */,
 				DAC73E1424FF6E2B00E2B419 /* MyAreaBottomActionSheetFooterView.swift in Sources */,
 				DA8191D824FA454C0021F2B5 /* ImageModel.swift in Sources */,
-				DAE782E925065BAB00944B4A /* MypageVC.swift in Sources */,
+				DAE782E925065BAB00944B4A /* MypageViewController.swift in Sources */,
 				DAF4D33A2542C09A007F9AC5 /* StoreModel.swift in Sources */,
 				DAC156D025A0684F00A0BC99 /* SocialLoginAdditionalDataVC.swift in Sources */,
 				DA8E89D52532EADE0021BE23 /* UserModel.swift in Sources */,
@@ -1273,6 +1304,7 @@
 				DAAB95BB257C931F00697104 /* Define.swift in Sources */,
 				DA88ED882584793F0078CB12 /* PhoneAuthViewController.swift in Sources */,
 				DA8191DB24FA47940021F2B5 /* OnBoardingModel.swift in Sources */,
+				DA681A1C25ABE08F008F31D2 /* PaymentBankViewController.swift in Sources */,
 				DAAB95AE257BA4E500697104 /* UserDelReasonCell.swift in Sources */,
 				DAF9EB2D2514C98F00B40270 /* CouponPopUpViewController.swift in Sources */,
 				DA8191D424FA3E260021F2B5 /* OnBoardingCollectionViewCell.swift in Sources */,
@@ -1288,7 +1320,6 @@
 				DA8A43A8256B8619009CFACF /* HistoryModel.swift in Sources */,
 				DA3645BB24F6AE4B00294C2B /* SignUpViewModel.swift in Sources */,
 				DA6E2D7E2504A5AB00A0A548 /* SettingTableViewCell.swift in Sources */,
-				DAE782FE25076DE800944B4A /* HistoryDateTableViewCell.swift in Sources */,
 				DA9318DF2595BB2500C370B2 /* ChagneInfoViewmodel.swift in Sources */,
 				DA572B6C25A69FFA002AC98F /* AppleLoginAddtionalViewModel.swift in Sources */,
 				DA36459C24F6838400294C2B /* ViewExtension.swift in Sources */,
@@ -1368,6 +1399,7 @@
 				DAC73E1824FF82B000E2B419 /* MyWoomoolNotiCollectionViewCell.swift in Sources */,
 				DA3645D524F7C36300294C2B /* MypageViewModel.swift in Sources */,
 				DA913DDC2550197F0087464A /* FAQModel.swift in Sources */,
+				DABB7C3E25B00D3500ABAEF8 /* MyPageTopVIew.swift in Sources */,
 				DA6E2DB125062F2900A0A548 /* EventDetailTableViewController.swift in Sources */,
 				DABD6D4D258CDF69000720C2 /* DeviceExtension.swift in Sources */,
 				DAB61A292500C7BD0066EA29 /* UserInfoTableViewController.swift in Sources */,
@@ -1406,7 +1438,6 @@
 				DA79E98625020393001B73FA /* AuthPopUpViewController.swift in Sources */,
 				DA3645C824F79ACD00294C2B /* QrScannverViewController.swift in Sources */,
 				DAF9EB4D2515FD9D00B40270 /* UserGradeViewModel.swift in Sources */,
-				DAE782EC25065C6600944B4A /* MyPageTopVIew.swift in Sources */,
 				DA3645CD24F7A7D600294C2B /* QrViewModel.swift in Sources */,
 				DA6E2DA925061B0900A0A548 /* BestAskDetailContentsTableViewCell.swift in Sources */,
 				DAE782EE2506637F00944B4A /* CouponBuyTableViewCell.swift in Sources */,
@@ -1417,7 +1448,7 @@
 				DA6E2D802504A69000A0A548 /* SettingHeaderView.swift in Sources */,
 				DAB9D73525149F1E002C7867 /* CouponSelectViewController.swift in Sources */,
 				DA8E89C82532DAE40021BE23 /* NoticeModel.swift in Sources */,
-				DAE782F0250664A600944B4A /* MyEnvironmentTableViewCell.swift in Sources */,
+				DAE782F0250664A600944B4A /* MyEnviromentTableViewCell.swift in Sources */,
 				DAF4DED6258CE865005B3995 /* KeychainExtension.swift in Sources */,
 				DA6E2D932504BC0600A0A548 /* BestAskViewModel.swift in Sources */,
 				DA4EA0142594659600E59FB8 /* CompanyIntroduceViewController.swift in Sources */,
@@ -1579,11 +1610,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.9;
+				MARKETING_VERSION = 0.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1601,11 +1632,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.9;
+				MARKETING_VERSION = 0.0.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.woomool.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

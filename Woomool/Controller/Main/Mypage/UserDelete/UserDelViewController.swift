@@ -89,7 +89,7 @@ class UserDelViewController: UIViewController {
     
     @objc func keyboardWillShow(_ sender: Notification) {
         
-        self.view.frame.origin.y = -CGFloat(300) //
+        self.view.frame.origin.y = -CGFloat(290) //
         
     }
     
@@ -105,16 +105,25 @@ class UserDelViewController: UIViewController {
     }
     
     @objc func handleDeleteUser() {
-        let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 1)!.rawValue)
-        controller.modalPresentationStyle = .overCurrentContext
-        if textView.text != "탈퇴 사유를 입력해주세요." {
-            controller.deleteUserReason = textView.text
-        } else {
-            controller.deleteUserReason = deleteUserReason
-            
-        }
         
-        present(controller, animated: true, completion: nil)
+        if textView.text == "탈퇴 사유를 입력해주세요." && deleteUserReason == ""
+             || textView.text.count == 0 && deleteUserReason == "" {
+            showOkAlert(title: "탈퇴 사유를 입력해주세요", message: "") {
+                 
+            }
+        } else {
+            let controller = CustomAlertViewController2(beforeType: twoAlertContent.init(rawValue: 1)!.rawValue)
+            controller.modalPresentationStyle = .overCurrentContext
+            if textView.text != "탈퇴 사유를 입력해주세요." {
+                controller.deleteUserReason = textView.text
+            } else {
+                controller.deleteUserReason = deleteUserReason
+                
+            }
+            
+            present(controller, animated: true, completion: nil)
+        }
+
         
     }
 
@@ -220,6 +229,11 @@ extension UserDelViewController : UITextViewDelegate {
             
             return true
         
+    }
+    
+    func textViewShouldReturn(_ textField: UITextField) -> Bool {
+        textView.resignFirstResponder()
+        return true
     }
     
     

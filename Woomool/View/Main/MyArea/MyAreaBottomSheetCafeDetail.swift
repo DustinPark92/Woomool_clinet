@@ -120,7 +120,7 @@ class MyAreaBottomSheetCafeDetail: UIView {
         timeImageView.anchor(top:adressImageView.bottomAnchor,left: leftAnchor,paddingTop: 16,paddingLeft: 15)
         phoneImageView.anchor(top:timeImageView.bottomAnchor,left: leftAnchor,paddingTop: 16,paddingLeft: 15)
         
-        adressLabel.anchor(top:cafeNameLabel.bottomAnchor,left: adressImageView.rightAnchor,paddingTop:16 ,paddingLeft: 8,height: 24)
+        adressLabel.anchor(top:cafeNameLabel.bottomAnchor,left: adressImageView.rightAnchor,right: rightAnchor,paddingTop:16 ,paddingLeft: 8,paddingRight: 20,height: 24)
         timeLabel.anchor(top:adressLabel.bottomAnchor,left: timeImageView.rightAnchor,paddingTop:16 ,paddingLeft: 8,height: 24)
         phoneLabel.anchor(top:timeLabel.bottomAnchor,left: phoneImageView.rightAnchor,paddingTop:16 ,paddingLeft: 8,height: 24)
         

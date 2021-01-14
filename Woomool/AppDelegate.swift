@@ -73,20 +73,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         */
         }
         return true;
-
         
-        
-//        NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
-//
-//
-//
-//
-//
-//        if (AuthApi.isKakaoTalkLoginUrl(url)) {
-//          return AuthController.handleOpenUrl(url: url)
-//        }
 
-       // return false
+        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            return AuthController.handleOpenUrl(url: url)
+        }
+
+        return false
+        
+        NaverThirdPartyLoginConnection.getSharedInstance()?.application(app, open: url, options: options)
+//
+//
+//
+//
+//
+
+
+
+ 
       }
 
     

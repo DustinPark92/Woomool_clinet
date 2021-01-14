@@ -9,6 +9,23 @@
 import UIKit
 
 
+/*
+ emailValid : 이메일 유효성 검사
+ passValid : 패스워드 유효성 검사
+ passCheckValid : 패스워드 확인 유효성 검사
+ passValidOneMore : 비밀 번호 변경 시 사용
+ nickNameValid : 닉네임 유효성 검사
+ recomdValid : 추천 코드 유효성 검사
+ 
+ subjectList : 테이블 뷰의 셀의 타이틀 ex) 이메일, 비밀번호
+ subjectStarList : 테이블 뷰 셀의 * 표시
+ textFieldContents : 텍스트 필드에 유효성 검사 후 입력되는 데이터 값 -> 이메일,비밀번호,비밀번호 확인,닉네임,추천코드
+ textFieldSecure : 텍스트 필드의 타입 -> 비밀번호일 경우 * , 이메일 경우 이메일
+ invalidMessage : 유효성 검사 실패 후 , 경고 메세지
+ warningColor : 경고 컬러
+
+ */
+
 class SignUpViewModel {
     
     var emailValid = false
@@ -19,7 +36,8 @@ class SignUpViewModel {
     var recomdValid = false
     
     var subjectList = ["이메일"]
-    var placeholderList = ["이메일@naver.com"]
+    var subjectStarList = ["*"]
+    var placeholderList = ["woomool@woomool.kr"]
     var textFieldContents = ["이메일","비밀번호","비밀번호 확인","닉네임","추천코드"]
     var viewUpSize = [0,0,0,120,150]
     var textFieldSecure = [false]
@@ -36,6 +54,8 @@ class SignUpViewModel {
     
     
     
+    
+    //MARK: - 아래에서 위로 셀이 쌓이기 때문에, 가장 늦게 생성 된 셀의 index가 0이 되며, 그때마다 체크를 해야 한다.
     func ValidCheck(at number : Int, to content : String){
         textFieldContents.remove(at: number)
         textFieldContents.insert(content, at: number)
@@ -113,6 +133,8 @@ class SignUpViewModel {
         textField.textColor = .black900
         textField.font = UIFont.NotoBold16
         
+
+        
         
         
         view.addSubview(sv)
@@ -145,56 +167,103 @@ class SignUpViewModel {
         return lb
     }
     
-    func popUpView(naverButton : UIButton, googleButton : UIButton, kakaoButton : UIButton, appleButton : UIButton , emailButton : UIButton , mainLabel : UILabel, subLabel : UILabel, findPassButton : UIButton , signUpButton : UIButton, sv : UIView) -> UIView {
-        
-        let view = UIView()
-        view.backgroundColor = .white
-        view.makeAborder(radius: 5)
-        
-        view.addSubview(naverButton)
-        view.addSubview(googleButton)
-        view.addSubview(kakaoButton)
-        view.addSubview(appleButton)
-        view.addSubview(emailButton)
-        view.addSubview(mainLabel)
-        view.addSubview(subLabel)
-        
-        
+    func popUpView(naverButton : UIButton, googleButton : UIButton, kakaoButton : UIButton, appleButton : UIButton , emailButton : UIButton , mainLabel : UILabel, subLabel : UILabel, signUpButton : UIButton) -> UIView {
+ 
+         let view = UIView()
+         view.backgroundColor = .white
+         view.makeAborder(radius: 5)
+ 
+         view.addSubview(naverButton)
+         view.addSubview(googleButton)
+         view.addSubview(kakaoButton)
+         view.addSubview(appleButton)
+         view.addSubview(emailButton)
+         view.addSubview(mainLabel)
+         view.addSubview(subLabel)
+ 
+ 
+ 
+ 
+ 
+         mainLabel.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 45)
+         emailButton.centerX(inView: view, topAnchor: mainLabel.bottomAnchor, paddingTop: 53)
+         emailButton.setDimensions(width: 300, height: 56)
+         subLabel.centerX(inView: view, topAnchor: emailButton.bottomAnchor, paddingTop: 36)
+ 
+ 
+         let stack = UIStackView(arrangedSubviews: [googleButton,kakaoButton,naverButton,appleButton])
+ 
+         stack.distribution = .fillEqually
+         stack.axis = .horizontal
+         stack.spacing = 16
+         view.addSubview(stack)
+ 
+         stack.centerX(inView: view, topAnchor: subLabel.bottomAnchor, paddingTop: 16)
+ 
+ 
 
-        
-        
-        mainLabel.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 45)
-        emailButton.centerX(inView: view, topAnchor: mainLabel.bottomAnchor, paddingTop: 53)
-        emailButton.setDimensions(width: 300, height: 56)
-        subLabel.centerX(inView: view, topAnchor: emailButton.bottomAnchor, paddingTop: 36)
-        
-        
-        let stack = UIStackView(arrangedSubviews: [googleButton,kakaoButton,naverButton,appleButton])
-        
-        stack.distribution = .fillEqually
-        stack.axis = .horizontal
-        stack.spacing = 16
-        view.addSubview(stack)
-        
-        stack.centerX(inView: view, topAnchor: subLabel.bottomAnchor, paddingTop: 16)
-        
-
-        sv.setDimensions(width: 0.5, height: 16)
-        sv.backgroundColor = .black400
-        
-        let stackBottom = UIStackView(arrangedSubviews: [findPassButton,sv,signUpButton])
-        stackBottom.axis = .horizontal
-        stackBottom.spacing = 10
-        view.addSubview(stackBottom)
-        stackBottom.centerX(inView: view, topAnchor: stack.bottomAnchor, paddingTop: 40)
-        
-        
-        
-        
-        
-        
-        return view
-    }
+         view.addSubview(signUpButton)
+         signUpButton.centerX(inView: view, topAnchor: stack.bottomAnchor, paddingTop: 10)
+ 
+ 
+ 
+ 
+ 
+ 
+         return view
+     }
+    
+    //MARK: - 회원가입 / 패스워드 찾기 구분자 있는 버전
+//    func popUpView(naverButton : UIButton, googleButton : UIButton, kakaoButton : UIButton, appleButton : UIButton , emailButton : UIButton , mainLabel : UILabel, subLabel : UILabel, findPassButton : UIButton , signUpButton : UIButton, sv : UIView) -> UIView {
+//
+//        let view = UIView()
+//        view.backgroundColor = .white
+//        view.makeAborder(radius: 5)
+//
+//        view.addSubview(naverButton)
+//        view.addSubview(googleButton)
+//        view.addSubview(kakaoButton)
+//        view.addSubview(appleButton)
+//        view.addSubview(emailButton)
+//        view.addSubview(mainLabel)
+//        view.addSubview(subLabel)
+//
+//
+//
+//
+//
+//        mainLabel.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 45)
+//        emailButton.centerX(inView: view, topAnchor: mainLabel.bottomAnchor, paddingTop: 53)
+//        emailButton.setDimensions(width: 300, height: 56)
+//        subLabel.centerX(inView: view, topAnchor: emailButton.bottomAnchor, paddingTop: 36)
+//
+//
+//        let stack = UIStackView(arrangedSubviews: [googleButton,kakaoButton,naverButton,appleButton])
+//
+//        stack.distribution = .fillEqually
+//        stack.axis = .horizontal
+//        stack.spacing = 16
+//        view.addSubview(stack)
+//
+//        stack.centerX(inView: view, topAnchor: subLabel.bottomAnchor, paddingTop: 16)
+//
+//
+//        sv.setDimensions(width: 0.5, height: 16)
+//        sv.backgroundColor = .black400
+//
+//        let stackBottom = UIStackView(arrangedSubviews: [findPassButton,sv,signUpButton])
+//        stackBottom.axis = .horizontal
+//        stackBottom.spacing = 10
+//        view.addSubview(stackBottom)
+//        stackBottom.centerX(inView: view, topAnchor: stack.bottomAnchor, paddingTop: 40)
+//
+//
+//
+//
+//
+//
+//        return view
+//    }
     
     func privatePopUpView(allAgreeButton : UIButton, serviceButton : UIButton, privateInfoButton : UIButton, locationButton : UIButton, marketingButton : UIButton , emailButton : UIButton , smsButton : UIButton , pushButton : UIButton, serviceDetail : UIButton , privateDetail : UIButton , locationDetail : UIButton, comfirmButton : UIButton) -> UIView {
         let view = UIView()

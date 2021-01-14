@@ -9,6 +9,8 @@
 import UIKit
 import SwiftyJSON
 
+
+//MARK : - 마이페이지의 탭 리스트
 enum MypageFilterOptions : Int, CaseIterable {
     case my
     case history
@@ -26,7 +28,7 @@ enum MypageFilterOptions : Int, CaseIterable {
     }
 }
 
-
+//MARK: - 마이페이지의 이용내역의 탭 리스트
 enum MypageHistroyOption : Int, CaseIterable {
     case All
     case history
@@ -45,18 +47,19 @@ enum MypageHistroyOption : Int, CaseIterable {
 }
 
 
+//MARK : - 결제 방법 Method List ( 신용 카드 , 계좌 이체 , 가상 계좌)
 enum PaymethodList : Int , CaseIterable{
     case credit
-    case bank
-    case fakeAccount
+    case wire
+    case virtual
     
     var description : String {
         switch self {
         case .credit:
             return "신용 카드"
-        case .bank:
+        case .wire:
             return "계좌 이체"
-        case .fakeAccount:
+        case .virtual:
             return "가상 계좌"
         }
     }
@@ -65,9 +68,9 @@ enum PaymethodList : Int , CaseIterable{
         switch self {
         case .credit:
             return UIImage(named: "cardActive")!
-        case .bank:
+        case .wire:
             return UIImage(named: "bankActive")!
-        case .fakeAccount:
+        case .virtual:
             return UIImage(named: "fakeAccountActive")!
         }
     }
@@ -76,9 +79,9 @@ enum PaymethodList : Int , CaseIterable{
         switch self {
         case .credit:
             return UIImage(named: "cardInactive")!
-        case .bank:
+        case .wire:
             return UIImage(named: "bankInactive")!
-        case .fakeAccount:
+        case .virtual:
             return UIImage(named: "fakeAccountInactive")!
         }
     }
@@ -88,10 +91,10 @@ enum PaymethodList : Int , CaseIterable{
         switch self {
         case .credit:
             return "C"
-        case .bank:
-            return "B"
-        case .fakeAccount:
-            return "A"
+        case .wire:
+            return "W"
+        case .virtual:
+            return "V"
         }
     }
     
@@ -134,7 +137,7 @@ class MypageViewModel {
     var couponModel = CouponModel(expiryDate: "", name: "", description: "", minusPrice: 0, types: "", plusCount: 0, expiryDays: 0, couponId: "", imgae: "", couponNo: 0)
     
     
-    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
+    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "", statusMessage: "")
     
     var myEnvirModel = MyEnvirModel(useCount: 0, carbonUnit: "", totalCount: 0, carbon: "")
     
@@ -410,7 +413,7 @@ class MypageViewModel {
             
             APIRequest.shared.getUserInfo() {  json in
                 
-                self.userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                self.userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue, statusMessage: json["statusMessage"].stringValue)
                 
                 DispatchQueue.main.async {
                     self.couponCount.insert(self.userModel.buyCount, at: 0)

@@ -222,4 +222,53 @@ class Utilites {
 //
     
     
+    func findPassWithLoginButton(findPassButton : UIButton, loginButton : UIButton) -> UIView{
+        
+        let view = UIView()
+        view.anchor(height: 56)
+        
+        let sv = UIView()
+        
+        
+        view.addSubview(sv)
+        view.addSubview(findPassButton)
+        sv.anchor(top:view.topAnchor,left: view.leftAnchor,right: view.rightAnchor,height: 1)
+        sv.backgroundColor = .gray300
+        findPassButton.anchor(top:view.topAnchor,left: view.leftAnchor,paddingTop: 11,paddingLeft: 18)
+        view.addSubview(loginButton)
+        loginButton.anchor(top:view.topAnchor,right: view.rightAnchor,paddingTop: 6,paddingRight: 16,width: 96,height: 44)
+        
+        loginButton.backgroundColor = .gray300
+        loginButton.makeAborder(radius: 14)
+        loginButton.isEnabled = false
+        
+        let title = "비밀번호를 잊으셨나요?"
+        let attributedTitle = NSMutableAttributedString(string: title, attributes: [NSAttributedString.Key.font :UIFont.NotoMedium16!,NSAttributedString.Key.foregroundColor: UIColor.black400])
+        attributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, title.count))
+        findPassButton.setAttributedTitle(attributedTitle, for: .normal)
+        
+        
+        
+        
+        loginButton.setTitle("로그인", for: .normal)
+        
+        
+        
+        return view
+    }
+    
+    func attributedButton(_ firstPart: String , _ font : UIFont ,_ textColor : UIColor ) -> UIButton {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: firstPart, attributes: [NSAttributedString.Key.font :font,NSAttributedString.Key.foregroundColor: textColor])
+        attributedTitle.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, firstPart.count))
+               
+     
+        
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        
+        return button
+    }
+    
+    
 }

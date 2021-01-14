@@ -72,7 +72,7 @@ final public class AuthApi {
     
     /// 카카오톡 으로부터 리다이렉트 된 URL 인지 체크합니다.
     public static func isKakaoTalkLoginUrl(_ url:URL) -> Bool {
-        if url.absoluteString.hasPrefix(try! KakaoSDKCommon.shared.redirectUri()) {
+        if url.absoluteString.hasPrefix(KakaoSDKCommon.shared.redirectUri()) {
             return true
         }
         return false
@@ -165,18 +165,19 @@ final public class AuthApi {
     }
     
     /// 사용자 인증코드를 이용하여 신규 토큰 발급을 요청합니다.
-    public func token(grantType: String = "authorization_code",
-                      clientId: String = try! KakaoSDKCommon.shared.appKey(),
-                      redirectUri: String = try! KakaoSDKCommon.shared.redirectUri(),
-                      code: String,
+    public func token(code: String,
+                      codeVerifier: String? = nil,
+                      redirectUri: String = KakaoSDKCommon.shared.redirectUri(),
                       completion:@escaping (OAuthToken?, Error?) -> Void) {
         API.responseData(.post,
                                 Urls.compose(.Kauth, path:Paths.authToken),
-                                parameters: ["grant_type":grantType,
-                                             "client_id":clientId,
+                                parameters: ["grant_type":"authorization_code",
+                                             "client_id":try! KakaoSDKCommon.shared.appKey(),
                                              "redirect_uri":redirectUri,
                                              "code":code,
-                                             "ios_bundle_id":Bundle.main.bundleIdentifier].filterNil(),
+                                             "code_verifier":codeVerifier,
+                                             "ios_bundle_id":Bundle.main.bundleIdentifier,
+                                             "approval_type":KakaoSDKCommon.shared.approvalType().type].filterNil(),
                                 sessionType:.Auth,
                                 apiType: .KAuth) { (response, data, error) in
                                     if let error = error {
@@ -196,15 +197,15 @@ final public class AuthApi {
     }
     
     /// 기존 토큰을 갱신합니다.
-    public func refreshAccessToken(clientId: String = try! KakaoSDKCommon.shared.appKey(),
-                                   refreshToken: String? = nil,
+    public func refreshAccessToken(refreshToken: String? = nil,
                                    completion:@escaping (OAuthToken?, Error?) -> Void) {
         API.responseData(.post,
                                 Urls.compose(.Kauth, path:Paths.authToken),
                                 parameters: ["grant_type":"refresh_token",
-                                             "client_id":clientId,
+                                             "client_id":try! KakaoSDKCommon.shared.appKey(),
                                              "refresh_token":refreshToken ?? AUTH.tokenManager.getToken()?.refreshToken,
-                                             "ios_bundle_id":Bundle.main.bundleIdentifier].filterNil(),
+                                             "ios_bundle_id":Bundle.main.bundleIdentifier,
+                                             "approval_type":KakaoSDKCommon.shared.approvalType().type].filterNil(),
                                 sessionType:.Auth,
                                 apiType: .KAuth) { (response, data, error) in
                                     if let error = error {

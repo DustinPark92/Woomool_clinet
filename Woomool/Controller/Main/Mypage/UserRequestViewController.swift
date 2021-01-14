@@ -28,8 +28,16 @@ class UserRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTV()
+        configureUI()
+        
         APIRequest.shared.getAdsense(positionCd: "qna") { json in
-            self.bannerView.adUnitID = json["adUnitId"].stringValue
+            self.bannerView.adUnitID = json["adUnitId"].stringValue.replacingOccurrences(of: "\"", with: "")
+            self.bannerView.load(GADRequest())
+            self.bannerView.delegate = self
+            
+            self.view.addSubview(self.bannerView)
+            self.bannerView.anchor(left:self.view.leftAnchor,bottom: self.view.safeAreaLayoutGuide.bottomAnchor,right: self.view.rightAnchor,width: 320,height: 100)
         } fail: { error in
             self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                 
@@ -37,24 +45,17 @@ class UserRequestViewController: UIViewController {
         }
         
         
-        configureTV()
-        configureUI()
+
        
     }
     
     func configureUI() {
          addNavbackButton(selector: #selector(handleDismiss))
-        
-        
-        bannerView.load(GADRequest())
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.delegate = self
-        view.addSubview(bannerView)
         view.addSubview(tableView)
         view.backgroundColor = .white
         
-        tableView.anchor(top:view.topAnchor,left: view.leftAnchor,right: view.rightAnchor)
-        bannerView.anchor(top:tableView.bottomAnchor,left: view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,width: 320,height: 100)
+        tableView.anchor(top:view.topAnchor,left: view.leftAnchor,bottom: view.bottomAnchor,right: view.rightAnchor)
+ 
         title = "문의하기"
         
     }

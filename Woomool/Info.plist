@@ -120,6 +120,31 @@
 		<string>hanawalletmembers</string>
 		<string>ktauthexternalcall</string>
 		<string>payprotocolwalletkr</string>
+        <string>kftc-bankpay</string>
+        <string>kdb-bankpay</string>
+        <string>ibk-bankpay</string>
+        <string>kb-bankpay</string>
+        <string>keb-bankpay</string>
+        <string>sh-bankpay</string>
+        <string>nhb-bankpay</string>
+        <string>nh-bankpay</string>
+        <string>wr-bankpay</string>
+        <string>sc-bankpay</string>
+        <string>s-bankpay</string>
+        <string>ct-bankpay</string>
+        <string>dg-bankpay</string>
+        <string>bnk-bankpay</string>
+        <string>kj-bankpay</string>
+        <string>jj-bankpay</string>
+        <string>jb-bankpay</string>
+        <string>kn-bankpay</string>
+        <string>kp-bankpay</string>
+        <string>cu-bankpay</string>
+        <string>mg-bankpay</string>
+        <string>kbn-bankpay</string>
+        <string>kkb-bankpay</string>
+        <string>itms-apps</string>
+        <string>itmss</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

@@ -36,7 +36,7 @@ class MainTC: UITabBarController {
 
         let main = MainViewController()
         let recent = MyAreaViewController()
-        let mypage = MypageVC()
+        let mypage = MypageViewController()
         let ourWoomool = OurWoomoolViewController()
   
         

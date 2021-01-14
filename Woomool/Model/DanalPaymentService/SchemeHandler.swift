@@ -59,14 +59,21 @@ class SchemeHandler: NSObject {
                                         } else {
                                             
                                             
+                                            print("결제 사항은? \(tempStr)")
+                                            
                                             
                                             switch tempStr {
                                             //MARK: - 결제 취소, 결제 실패
                                             case "canceldanalpay","errordanalpay":
                                                 do {
                                                     try self.openUrlByCustomList(requestURL: requestedURL);
+                                                    
+                                                    
+                                                    self.viewController?.popViewController()
+                                    
                                                 } catch {
                                                     print("error: \(error)")
+                                                    
                                                 }
                                             //MARK: - 본인 인증 성공
                                             case "okaydanaluas":

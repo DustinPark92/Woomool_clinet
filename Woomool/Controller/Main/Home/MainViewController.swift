@@ -15,7 +15,7 @@ class MainViewController: UIViewController {
     var noticeList = [NoticeModel]()
     var eventListModel = [EventListModel]()
     
-    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "")
+    var userModel = UserModel(userId: "", email: "", nickname: "", types: "", useCount: 0, remCount: 0, buyCount: 0, levelName: "", levelOrder: 0, levelId: "", joinMonth: "", statusMessage: "")
     
     var termsModel = [TermsModel]()
     lazy var mainLabel : UILabel = {
@@ -92,6 +92,10 @@ class MainViewController: UIViewController {
        
 
         NotificationCenter.default.addObserver(self, selector: #selector(privacyAuthAgree(noti:)), name: NSNotification.Name("privacyAuthAgree"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(privacyAuthDetail(noti:)), name: NSNotification.Name("privacyAuthDetail"), object: nil)
+        
+        
+        
         callRequest()
         configureUI()
         configureCV()
@@ -101,31 +105,6 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         callRequest()
-        
-        APIRequest.shared.getUserNoti { json in
-            LoadingHUD.show()
-            for item in json.arrayValue {
-                let notiItem = NoticeModel(open: false, messageNo: item["messageNo"].intValue, category: item["category"].stringValue, title: item["title"].stringValue, contents: item["contents"].stringValue, status: item["status"].stringValue)
-                self.noticeList.append(notiItem)
-                LoadingHUD.hide()
-            }
-            
-//            if self.noticeList.count > 0 {
-//                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "activeNotice"), style: .plain, target: self, action: #selector(self.handleNotification))
-//                self.navigationItem.rightBarButtonItem?.tintColor = .blue500
-//
-//            } else {
-//                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(self.handleNotification))
-//                self.navigationItem.rightBarButtonItem?.tintColor = .blue500
-//
-//            }
-            
-            
-        } fail: { error in
-            self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
-                
-            }
-        }
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -170,10 +149,6 @@ class MainViewController: UIViewController {
         iv.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
         self.navigationItem.titleView = iv
         
-
-        navigationController?.navigationBar.barTintColor = .white
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell"), style: .plain, target: self, action: #selector(self.handleNotification))
     }
     
     func configureCV() {
@@ -202,20 +177,28 @@ class MainViewController: UIViewController {
     func configure() {
         mainLabel.text  = "안녕하세요. \(userModel.nickname)님"
         countLabel.text = "\(userModel.remCount)개"
+        
+        if userModel.statusMessage == "N" {
+            navigationController?.navigationBar.barTintColor = .white
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "inactive_bell")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.handleNotification))
+        } else if userModel.statusMessage == "Y"{
+            navigationController?.navigationBar.barTintColor = .white
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "active_bell")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.handleNotification))
+        }
+
 
     }
     
     func callRequest() {
-        
 
-            
             APIRequest.shared.getUserInfo() { [self] json in
                 
                 if json["terms"].arrayValue.count == 0 {
-                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+                    userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue, statusMessage: json["statusMessage"].stringValue)
                         configure()
                 } else {
                     
+                    self.termsModel.removeAll()
                     for item in json["terms"].arrayValue {
                         let termsItem = TermsModel(required: item["required"].stringValue, url: item["url"].stringValue, title: item["title"].stringValue, termsId: item["termsId"].stringValue, subTitle : item["subTitle"].stringValue)
                         
@@ -250,7 +233,7 @@ class MainViewController: UIViewController {
     @objc func privacyAuthAgree(noti : NSNotification) {
         APIRequest.shared.getUserInfo() { [self] json in
 
-                userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue)
+            userModel = UserModel(userId: json["userId"].stringValue, email: json["email"].stringValue, nickname: json["nickname"].stringValue, types: json["types"].stringValue, useCount: json["useCount"].intValue, remCount: json["remCount"].intValue, buyCount: json["buyCount"].intValue, levelName: json["level"]["name"].stringValue, levelOrder: json["level"]["orders"].intValue, levelId: json["level"]["levelId"].stringValue, joinMonth: json["joinMonth"].stringValue, statusMessage: json["statusMessage"].stringValue)
                     configure()
             } fail: { error in
                 self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
@@ -259,8 +242,19 @@ class MainViewController: UIViewController {
             }
  
       }
+    @objc func privacyAuthDetail(noti : Notification) {
+        
+        guard let termsArray = noti.object as? TermsModel else { return }
+       
+        
+        let controller = TermsWebView(url: termsArray.url, navTitle: termsArray.title, fromWhere: "")
+        navigationController?.pushViewController(controller, animated: true)
+        
+    }
     
 }
+
+
 
 
 extension MainViewController : UICollectionViewDelegate,UICollectionViewDataSource {

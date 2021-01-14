@@ -14,6 +14,7 @@ class AppleLoginAdditionalDataVC: UIViewController {
     let viewModel = AppleLoginAddtionalViewModel()
     let tableView = UITableView()
     var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
+    var viewUpSize = 0
     let json : JSON
     
     init(json : JSON) {
@@ -120,7 +121,7 @@ class AppleLoginAdditionalDataVC: UIViewController {
     
     @objc func keyboardWillShow(_ sender: Notification) {
         
-        self.view.frame.origin.y = -CGFloat(300) //
+        self.view.frame.origin.y = -CGFloat(viewUpSize) //
         
     }
     
@@ -301,13 +302,31 @@ extension AppleLoginAdditionalDataVC : UITextFieldDelegate {
         
     }
     
+    
+    
  
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            switch textField.tag {
+            case 0:
+                viewUpSize = 0
+            case 1:
+                viewUpSize = 40
+            case 2:
+                viewUpSize = 60
+            case 3:
+                viewUpSize = 80
+
+            default:
+                break
+            }
+
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         return true
     }

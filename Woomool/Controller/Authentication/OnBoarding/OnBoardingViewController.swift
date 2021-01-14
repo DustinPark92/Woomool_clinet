@@ -15,7 +15,7 @@ private let reuseIdentifier = "OnBoardingCollectionViewCell"
 
 class OnBoardingViewController: UIViewController {
     
-
+    //MARK: - Property
 //    private let loginLabel : UILabel = {
 //        let lb = UILabel()
 //        lb.text = "이미 가입하셨나요?"
@@ -50,16 +50,24 @@ class OnBoardingViewController: UIViewController {
     
     let layout = UICollectionViewFlowLayout()
     
+    
+    //MARK: - Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
+        //핸드폰 본인 인증으로 이동
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewPhoneAuth(noti:)), name: NSNotification.Name("pushViewPhoneAuth"), object: nil)
         
+        //SNS 로그인으로 이동
         NotificationCenter.default.addObserver(self, selector: #selector(goToSocialLogin(noti:)), name: NSNotification.Name("goToSocialLogin"), object: nil)
         
+        
+        //애플 로그인으로 이동
         NotificationCenter.default.addObserver(self, selector: #selector(goToAppleLogin(noti:)), name: NSNotification.Name("goToAppleLogin"), object: nil)
         
+        //로그인으로 이동
         NotificationCenter.default.addObserver(self, selector: #selector(pushViewLogin(noti:)), name: NSNotification.Name("pushLogin"), object: nil)
         
+        //비밀번호 찾기로 이동
         NotificationCenter.default.addObserver(self, selector: #selector(pushFindPass(noti:)), name: NSNotification.Name("pushFindPass"), object: nil)
         
 
@@ -75,6 +83,8 @@ class OnBoardingViewController: UIViewController {
         
         navigationController?.navigationBar.isHidden = true
     }
+    
+    //MARK: - Helpers
     
     func configureUI() {
         navigationController?.navigationBar.isHidden = true
@@ -230,6 +240,8 @@ extension OnBoardingViewController : UICollectionViewDelegate,UICollectionViewDa
     
     
 }
+
+//MARK: - UICollectionViewDelegateFlowLayout
 
 extension OnBoardingViewController : UICollectionViewDelegateFlowLayout {
     

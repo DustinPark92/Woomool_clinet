@@ -151,6 +151,7 @@ class SettingViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SettingTableViewCell
         
         cell.selectionStyle = .none
+        cell.versionLabel.isHidden = true
         switch indexPath.section {
         case 0:
             cell.mainLabel.text = viewModel.userRequest[indexPath.row]

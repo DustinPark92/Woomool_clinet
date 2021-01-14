@@ -77,6 +77,11 @@ class InviteViewController: UIViewController {
         configureUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = true
+    }
+    
     
     func callRequst() {
         
@@ -91,6 +96,11 @@ class InviteViewController: UIViewController {
         
         APIRequest.shared.getAdsense(positionCd: "invite") { json in
             self.bannerView.adUnitID = json["adUnitId"].stringValue
+            self.bannerView.load(GADRequest())
+            self.bannerView.delegate = self
+            
+            self.view.addSubview(self.bannerView)
+            self.bannerView.anchor(left:self.view.leftAnchor,bottom: self.view.safeAreaLayoutGuide.bottomAnchor,right: self.view.rightAnchor,width: 320,height: 100)
         } fail: { error in
             self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
                 
@@ -125,11 +135,7 @@ class InviteViewController: UIViewController {
         urlButton.addTarget(self, action: #selector(handleUrlButton), for: .touchUpInside)
         
         
-        bannerView.load(GADRequest())
-        bannerView.delegate = self
-        
-        view.addSubview(bannerView)
-        bannerView.anchor(left:view.leftAnchor,bottom: view.safeAreaLayoutGuide.bottomAnchor,right: view.rightAnchor,width: 320,height: 100)
+
         
         
         
@@ -143,21 +149,89 @@ class InviteViewController: UIViewController {
     
     @objc func handleKaKaoButton() {
         
-        let textTemplateJsonStringData =
-        """
-        {
-            "object_type": "text",
-            "text": "\(text)",
-            "link": {
-                "web_url": "http://dev.kakao.com",
-                "mobile_web_url": "http://dev.kakao.com"
-            },
-            "button_title": "바로 확인"
-        }
-        """.data(using: .utf8)!
         
         
-        if let templatable = try? SdkJSONDecoder.custom.decode(TextTemplate.self, from: textTemplateJsonStringData) {
+            let title = "커머스 메시지"
+            let description = "커머스 메시지 예제"
+
+            let textTemplateJsonStringData =
+                """
+                {
+                    "object_type": "commerce",
+                    "commerce": {
+                        "product_name": "Ivory long dress",
+                        "regular_price": 208800,
+                        "discount_price": 146160,
+                        "discount_rate": 30
+                    },
+                    "content": {
+                        "title": "Ivory long dress (4 Color)",
+                        "image_url": "http://mud-kage.kakao.co.kr/dn/RY8ZN/btqgOGzITp3/uCM1x2xu7GNfr7NS9QvEs0/kakaolink40_original.png",
+                        "link": {
+                            "mobile_web_url": "https://developers.kakao.com",
+                            "web_url": "https://developers.kakao.com"
+                        },
+                    },
+                    "buttons": [
+                        {
+                            "title": "구매하기",
+                            "link": {
+                                "mobile_web_url": "https://developers.kakao.com",
+                                "web_url": "https://developers.kakao.com"
+                            }
+                        },
+                        {
+                            "title": "공유하기",
+                            "link": {
+                                "android_execution_params": "key1=value1&key2=value2",
+                                "ios_execution_params": "key1=value1&key2=value2"
+                            }
+                        }
+                    ]
+                }
+                """.data(using: .utf8)!
+        print("url은 \(self.url)")
+//        let textTemplateJsonStringData =
+//        """
+//        {
+//            "object_type": "text",
+//            "text": "\(text)",
+//            "link": {
+//                "web_url": "\(self.url)",
+//                "mobile_web_url": "\(self.url)"
+//            },
+//            "button_title": "바로 확인"
+//        }
+//        """.data(using: .utf8)!
+        
+
+
+        let feedTemplateJsonStringData =
+            """
+            {
+                "object_type": "feed",
+                "content": {
+                    "title": "우물",
+                    "description": "우물 가입하고 초대코드 받자!",
+                    "image_url": "http://211.250.213.5/images/my_payment_product_1.png",
+                    "link": {
+                        "mobile_web_url": "\(self.url)",
+                        "web_url": "\(self.url)"
+                    }
+                },
+                "buttons": [
+                    {
+                        "title": "앱으로 보기",
+                        "link": {
+                            "mobile_web_url": "\(self.url)",
+                            "web_url": "\(self.url)"
+                        }
+                    }
+                ]
+            }
+            """.data(using: .utf8)!
+        
+        if let templatable = try? SdkJSONDecoder.custom.decode(FeedTemplate.self, from: feedTemplateJsonStringData) {
             
             
             
@@ -167,7 +241,7 @@ class InviteViewController: UIViewController {
                 }
                 else {
                     print("defaultLink() success.")
-
+                    print("url은 \(linkResult)")
                     if let linkResult = linkResult {
                         UIApplication.shared.open(linkResult.url, options: [:], completionHandler: nil)
                     }
@@ -181,7 +255,10 @@ class InviteViewController: UIViewController {
     
     @objc func handleUrlButton() {
         
-        UIPasteboard.general.string = url
+        showOkAlert(title: "클립보드에 복사 되었습니다.", message: "") {
+            UIPasteboard.general.string = self.url
+        }
+       
     }
 
 }

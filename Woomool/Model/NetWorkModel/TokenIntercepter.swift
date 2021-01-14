@@ -46,7 +46,7 @@ extension tokenInterceptor {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        if request.response?.statusCode == 401 || request.response?.statusCode == 400{
+        if request.response?.statusCode == 401 {
             APIRequest.shared.postUserRefreshToken { json in
                 self.defaults.setValue(json["access_token"].stringValue, forKey: "accessToken")
                 self.defaults.setValue(json["refresh_token"].stringValue, forKey: "refreshToken")

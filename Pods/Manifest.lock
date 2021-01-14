@@ -1,14 +1,75 @@
 PODS:
-  - Alamofire (5.4.0)
+  - Alamofire (5.4.1)
   - AppAuth (1.4.0):
     - AppAuth/Core (= 1.4.0)
     - AppAuth/ExternalUserAgent (= 1.4.0)
   - AppAuth/Core (1.4.0)
   - AppAuth/ExternalUserAgent (1.4.0)
+  - Firebase/Analytics (7.3.0):
+    - Firebase/Core
+  - Firebase/Core (7.3.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 7.3.0)
+  - Firebase/CoreOnly (7.3.0):
+    - FirebaseCore (= 7.3.0)
+  - FirebaseAnalytics (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleAppMeasurement (= 7.3.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30906.0)
+  - FirebaseCore (7.3.0):
+    - FirebaseCoreDiagnostics (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+  - FirebaseCoreDiagnostics (7.3.0):
+    - GoogleDataTransport (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/Logger (~> 7.0)
+    - nanopb (~> 2.30906.0)
+  - FirebaseInstallations (7.3.0):
+    - FirebaseCore (~> 7.0)
+    - GoogleUtilities/Environment (~> 7.0)
+    - GoogleUtilities/UserDefaults (~> 7.0)
+    - PromisesObjC (~> 1.2)
+  - Google-Mobile-Ads-SDK (7.69.0):
+    - GoogleAppMeasurement (~> 7.0)
+    - GoogleUserMessagingPlatform (~> 1.1)
+  - GoogleAppMeasurement (7.3.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
+    - GoogleUtilities/MethodSwizzler (~> 7.0)
+    - GoogleUtilities/Network (~> 7.0)
+    - "GoogleUtilities/NSData+zlib (~> 7.0)"
+    - nanopb (~> 2.30906.0)
+  - GoogleDataTransport (8.1.0):
+    - nanopb (~> 2.30906.0)
   - GoogleSignIn (5.0.2):
     - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleUserMessagingPlatform (1.4.0)
+  - GoogleUtilities/AppDelegateSwizzler (7.1.1):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (7.1.1):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (7.1.1):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (7.1.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (7.1.1):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (7.1.1)"
+  - GoogleUtilities/Reachability (7.1.1):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (7.1.1):
+    - GoogleUtilities/Logger
   - GTMAppAuth (1.1.0):
     - AppAuth/Core (~> 1.4)
     - GTMSessionFetcher (~> 1.4)
@@ -18,30 +79,39 @@ PODS:
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
   - Hex (6.1.0)
-  - KakaoSDKAuth (2.0.4):
-    - KakaoSDKCommon (= 2.0.4)
-  - KakaoSDKCommon (2.0.4):
+  - KakaoSDKAuth (2.2.0):
+    - KakaoSDKCommon (= 2.2.0)
+  - KakaoSDKCommon (2.2.0):
     - Alamofire (~> 5.1)
-  - KakaoSDKLink (2.0.4):
-    - KakaoSDKCommon (= 2.0.4)
-    - KakaoSDKTemplate (= 2.0.4)
-  - KakaoSDKTalk (2.0.4):
-    - KakaoSDKAuth (= 2.0.4)
-    - KakaoSDKCommon (= 2.0.4)
-    - KakaoSDKTemplate (= 2.0.4)
-  - KakaoSDKTemplate (2.0.4):
-    - KakaoSDKCommon (= 2.0.4)
-  - KakaoSDKUser (2.0.4):
-    - KakaoSDKAuth (= 2.0.4)
-    - KakaoSDKCommon (= 2.0.4)
+  - KakaoSDKLink (2.2.0):
+    - KakaoSDKCommon (= 2.2.0)
+    - KakaoSDKTemplate (= 2.2.0)
+  - KakaoSDKTalk (2.2.0):
+    - KakaoSDKAuth (= 2.2.0)
+    - KakaoSDKCommon (= 2.2.0)
+    - KakaoSDKTemplate (= 2.2.0)
+  - KakaoSDKTemplate (2.2.0):
+    - KakaoSDKCommon (= 2.2.0)
+  - KakaoSDKUser (2.2.0):
+    - KakaoSDKAuth (= 2.2.0)
+    - KakaoSDKCommon (= 2.2.0)
   - Kingfisher (4.10.1)
+  - nanopb (2.30906.0):
+    - nanopb/decode (= 2.30906.0)
+    - nanopb/encode (= 2.30906.0)
+  - nanopb/decode (2.30906.0)
+  - nanopb/encode (2.30906.0)
   - naveridlogin-sdk-ios (4.1.3)
   - NMapsMap (3.10.0)
+  - PromisesObjC (1.2.12)
+  - SwiftGifOrigin (1.7.0)
   - SwiftKeychainWrapper (4.0.1)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - Firebase/Analytics
+  - Google-Mobile-Ads-SDK
   - GoogleSignIn
   - Hex
   - KakaoSDKAuth
@@ -52,6 +122,7 @@ DEPENDENCIES:
   - Kingfisher (~> 4.7)
   - naveridlogin-sdk-ios
   - NMapsMap (= 3.10.0)
+  - SwiftGifOrigin (~> 1.7.0)
   - SwiftKeychainWrapper
   - SwiftyJSON (~> 4.0)
 
@@ -59,7 +130,17 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseInstallations
+    - Google-Mobile-Ads-SDK
+    - GoogleAppMeasurement
+    - GoogleDataTransport
     - GoogleSignIn
+    - GoogleUserMessagingPlatform
+    - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
     - Hex
@@ -70,30 +151,46 @@ SPEC REPOS:
     - KakaoSDKTemplate
     - KakaoSDKUser
     - Kingfisher
+    - nanopb
     - naveridlogin-sdk-ios
     - NMapsMap
+    - PromisesObjC
+    - SwiftGifOrigin
     - SwiftKeychainWrapper
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
+  Firebase: 26223c695fe322633274198cb19dca8cb7e54416
+  FirebaseAnalytics: 2580c2d62535ae7b644143d48941fcc239ea897a
+  FirebaseCore: 4d3c72622ce0e2106aaa07bb4b2935ba2c370972
+  FirebaseCoreDiagnostics: d50e11039e5984d92c8a512be2395f13df747350
+  FirebaseInstallations: 971df89b48ae5ee4cc2bf6935f3857a525d28550
+  Google-Mobile-Ads-SDK: 2f288748a42920d1c744946a460896a95b0e9110
+  GoogleAppMeasurement: 8d3c0aeede16ab7764144b5a4ca8e1d4323841b7
+  GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
+  GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
+  GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   Hex: 2f67dd0cbb178cb24992e7529b025b8d16ff0bdc
-  KakaoSDKAuth: 3a88e4a110243f8c6b9948c5ec85670c7acaebf6
-  KakaoSDKCommon: 070472d0638ea6b28684a23c195e47015349e51b
-  KakaoSDKLink: a90a919c4b00dc85bbf21d91842961c105317317
-  KakaoSDKTalk: 8cf6299b0eea7cf3139ab0f62b415fd054f83a29
-  KakaoSDKTemplate: 330007aea0b46de1ed93e4cbddc7b4c3b59bdc25
-  KakaoSDKUser: 7951e09f9e6de3908ae2d7f8486290c8607c217a
+  KakaoSDKAuth: a6fa63eb1a6a4e03de55d87da597a2976aad9cbf
+  KakaoSDKCommon: 90adb38b946ff42f26d70aadb67e679f79fe139c
+  KakaoSDKLink: 9aaf7e8e77a473c09c0b0630a1b899b1eee9cdd8
+  KakaoSDKTalk: cf4ce154335c4decfcba71cb68cd84761d691bda
+  KakaoSDKTemplate: ddf20dd6bb4e0dd08ffc86e94b0df4b7f2ae2b20
+  KakaoSDKUser: b5ddfcdaf4adce40f172cafc9d4864d1a8b4f938
   Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   NMapsMap: 17caab4af9a3fc5c25b79858de18bdeab1eaff87
+  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  SwiftGifOrigin: fbd6cf37afcfcf97a5c3db996ddc0492e5c5c145
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 7fd1bed6399b8ea138e93c2bba535a9edda91718
+PODFILE CHECKSUM: 8772c2ef4546210abb0cac2115211c0fe9b1aaba
 
 COCOAPODS: 1.10.0

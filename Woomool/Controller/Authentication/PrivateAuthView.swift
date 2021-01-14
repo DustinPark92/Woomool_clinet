@@ -77,7 +77,7 @@ class PrivateAuthView: UIView {
         sv1.backgroundColor = .gray200
         
         addSubview(allAgreeButton)
-        allAgreeButton.anchor(top:sv1.bottomAnchor,left: leftAnchor,paddingTop: 16,paddingLeft: 12)
+        allAgreeButton.anchor(top:sv1.bottomAnchor,left: leftAnchor,paddingTop: 20,paddingLeft: 12)
         
         addSubview(allAgreeLabel)
         allAgreeLabel.anchor(top:sv1.bottomAnchor,left: allAgreeButton.rightAnchor,paddingTop: 12,paddingLeft : 5)

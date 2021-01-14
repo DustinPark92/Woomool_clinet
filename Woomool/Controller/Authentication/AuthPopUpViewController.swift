@@ -21,7 +21,7 @@ class AuthPopUpViewController: UIViewController {
     
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
-    lazy var mainView = SignUpViewModel().popUpView(naverButton: naverButton, googleButton: googleButton, kakaoButton: kakaoButton, appleButton: appleButton, emailButton: emailBUtton, mainLabel: mainLabel, subLabel: subLabel,findPassButton: findPassButton,signUpButton: signUpButton, sv: sv)
+    lazy var mainView = SignUpViewModel().popUpView(naverButton: naverButton, googleButton: googleButton, kakaoButton: kakaoButton, appleButton: appleButton, emailButton: emailBUtton, mainLabel: mainLabel, subLabel: subLabel,signUpButton: signUpButton)
     
     lazy var naverButton = viewModel.oAuthButton(setImage: UIImage(named: "sns_naver")!)
     lazy var googleButton = viewModel.oAuthButton(setImage: UIImage(named: "sns_google")!)
@@ -34,24 +34,31 @@ class AuthPopUpViewController: UIViewController {
     lazy var mainLabel = viewModel.labelUI(setTitle: titleLabel, setFont: UIFont.NotoMedium26!, setColor: .black900)
     lazy var subLabel = viewModel.labelUI(setTitle: "간편 하게 시작하기", setFont: UIFont.NotoRegular16!, setColor: .black400)
     
-    lazy var findPassButton : UIButton = {
-        let bt = UIButton()
-        bt.setTitle("비밀번호 찾기", for: .normal)
-        bt.titleLabel?.font = UIFont.NotoRegular16
-        bt.setTitleColor(.black400, for: .normal)
+
+    
+    lazy var signUpButton = Utilites().attributedButton("이메일로 회원가입하기", UIFont.NotoRegular16!,.black400)
+    
+    
+    
+    //    lazy var findPassButton : UIButton = {
+    //        let bt = UIButton()
+    //        bt.setTitle("비밀번호 찾기", for: .normal)
+    //        bt.titleLabel?.font = UIFont.NotoRegular16
+    //        bt.setTitleColor(.black400, for: .normal)
+    //
+    //        return bt
+    //    }()
+    //
+    //    lazy var sv = UIView()
         
-        return bt
-    }()
-    
-    lazy var sv = UIView()
-    
-    lazy var signUpButton : UIButton = {
-        let bt = UIButton()
-        bt.setTitle("회원가입", for: .normal)
-        bt.titleLabel?.font = UIFont.NotoRegular16
-        bt.setTitleColor(.black400, for: .normal)
-        return bt
-    }()
+        //    lazy var signUpButton : UIButton = {
+        //        let bt = UIButton()
+        //        bt.setTitle("이메일로 회원가입 하기", for: .normal)
+        //        bt.titleLabel?.font = UIFont.NotoRegular16
+        //        bt.setTitleColor(.black400, for: .normal)
+        //        return bt
+        //    }()
+
     var titleLabel = "회원가입"
     var emailButtonTitle = "이메일로 시작하기"
     let termsIdArray : Array<String>
@@ -85,13 +92,13 @@ class AuthPopUpViewController: UIViewController {
         mainView.setDimensions(width: view.frame.width - 32, height: 400)
         emailBUtton.addTarget(self, action: #selector(handleEmailButton), for: .touchUpInside)
         
-        if titleLabel == "회원가입" {
-            findPassButton.isHidden = true
-            signUpButton.isHidden = true
-            sv.isHidden = true
-        }
-        
-        findPassButton.addTarget(self, action: #selector(handleFindPass), for: .touchUpInside)
+//        if titleLabel == "회원가입" {
+//            findPassButton.isHidden = true
+//            signUpButton.isHidden = true
+//            sv.isHidden = true
+//        }
+//
+//        findPassButton.addTarget(self, action: #selector(handleFindPass), for: .touchUpInside)
         signUpButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         naverButton.addTarget(self, action: #selector(handleNaverLogin), for: .touchUpInside)
         kakaoButton.addTarget(self, action: #selector(handleKakaoLogin), for: .touchUpInside)
@@ -143,6 +150,7 @@ class AuthPopUpViewController: UIViewController {
             AuthApi.shared.loginWithKakaoTalk { [self](oauthToken, error) in
                 if let error = error {
                     print(error)
+                    LoadingHUD.hide()
                 }
                 else {
                     guard let accessToken = oauthToken?.accessToken else {

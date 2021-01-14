@@ -8,7 +8,6 @@ target 'Woomool' do
   # Pods for Woomool
 
 
-
 pod 'NMapsMap','3.10.0'
 pod 'Hex'
 pod 'SwiftyJSON', '~> 4.0'
@@ -30,6 +29,7 @@ pod 'Firebase/Analytics'
 pod 'Google-Mobile-Ads-SDK'
 
 pod 'SwiftGifOrigin', '~> 1.7.0'
+
 
 
 end

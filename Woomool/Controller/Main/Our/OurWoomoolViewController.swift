@@ -90,6 +90,7 @@ class OurWoomoolViewController: UIViewController {
         bestWoolTableView.centerX(inView: view, topAnchor: bestShopView.bottomAnchor, paddingTop: 20)
         bestWoolTableView.anchor(bottom:view.safeAreaLayoutGuide.bottomAnchor,paddingBottom: view.frame.height / 6)
         bestWoolTableView.setDimensions(width: view.frame.width - 64, height: 144)
+        bestWoolTableView.allowsSelection = false
 
         
 

@@ -54,9 +54,12 @@ class CustomAlertViewController2: UIViewController {
                 } fail: { error in
                     
                     print("[\(error.status)] \(error.code)=\(error.message)")
-                    self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
-                        
-                    }
+
+                        self.showOkAlert(title:  "[\(error.status)] \(error.code)=\(error.message)", message: "") {
+                            
+                        }
+                    
+
                 }
 
                 

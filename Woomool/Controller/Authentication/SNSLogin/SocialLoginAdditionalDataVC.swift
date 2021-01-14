@@ -10,9 +10,13 @@ import UIKit
 import SwiftyJSON
 
 class SocialLoginAdditionalDataVC: UIViewController {
+    
+    
+    //MARK: - Property
     let viewModel = SocialLoginAddtionalViewModel()
     let tableView = UITableView()
     var SendButton: UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
+    var viewUpSize = 0
     let json : JSON
     
     init(json : JSON) {
@@ -25,15 +29,15 @@ class SocialLoginAdditionalDataVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
+    //MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         hideKeyboardWhenTappedAround()
-        
-        print("제이슨은 \(json)")
-        
     }
     
+    //MARK: - Helpers
     func configureUI() {
         navigationController?.navigationBar.isHidden = false
         addNavbackButton(selector: #selector(handleDismiss))
@@ -53,7 +57,11 @@ class SocialLoginAdditionalDataVC: UIViewController {
         SendButton.titleLabel?.font = UIFont.NotoBold18
         SendButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         
-        //이름,생년월일,성별,초대코드
+        //1.이름, 2.생년월일, 3.성별, 4.초대코드
+        
+        /*
+         SNS 정보 조회 Scope에 따라 Data가 달라 질 수 있음.
+         */
         
         if json["name"].stringValue.count > 2 {
             viewModel.nameValid = true
@@ -77,6 +85,15 @@ class SocialLoginAdditionalDataVC: UIViewController {
         
         
     }
+    
+    
+    func hideKeyboardWhenTappedAround() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                         action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    //MARK: - @Objc
     
     @objc func handleDismiss() {
         navigationController?.popViewController(animated: true)
@@ -118,7 +135,11 @@ class SocialLoginAdditionalDataVC: UIViewController {
     
     @objc func keyboardWillShow(_ sender: Notification) {
         
-        self.view.frame.origin.y = -CGFloat(300) //
+        UIView.animate(withDuration: 0.3) {
+            self.view.frame.origin.y = -CGFloat(self.viewUpSize) //
+        }
+        
+       
         
     }
     
@@ -145,11 +166,6 @@ class SocialLoginAdditionalDataVC: UIViewController {
     }
     
 
-    func hideKeyboardWhenTappedAround() {
-        let tapGesture = UITapGestureRecognizer(target: self,
-                         action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
-    }
 
     @objc func hideKeyboard() {
         view.endEditing(true)
@@ -165,6 +181,8 @@ class SocialLoginAdditionalDataVC: UIViewController {
 
 }
 
+
+//MARK: - UITableViewDelegate , UItableViewDataSource
 
 extension SocialLoginAdditionalDataVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -245,6 +263,8 @@ extension SocialLoginAdditionalDataVC : UITableViewDelegate, UITableViewDataSour
 }
 
 
+
+//MARK: - UITextFieldDelegate
 extension SocialLoginAdditionalDataVC : UITextFieldDelegate {
     
     
@@ -294,13 +314,27 @@ extension SocialLoginAdditionalDataVC : UITextFieldDelegate {
  
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        return true
-    }
+        switch textField.tag {
+        case 0:
+            viewUpSize = 0
+        case 1:
+            viewUpSize = 40
+        case 2:
+            viewUpSize = 60
+        case 3:
+            viewUpSize = 80
+
+        default:
+            break
+        }
+
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    
+    return true
+}
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

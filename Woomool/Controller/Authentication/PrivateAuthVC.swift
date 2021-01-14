@@ -118,12 +118,17 @@ class PrivateAuthVC: UIViewController {
     }
     
     @objc func handleDetail(sender : UIButton) {
+        dismiss(animated: false) {
+            NotificationCenter.default.post(name: NSNotification.Name("privacyAuthDetail"), object: self.termsArray[sender.tag])
+        }
         
-
+        
+        
+        
             
-        let controller = TermsWebView(url: termsArray[sender.tag].url, navTitle: termsArray[sender.tag].subTitle, fromWhere: "Home")
-            controller.modalPresentationStyle = .fullScreen
-            present(controller, animated: false, completion: nil)
+//        let controller = TermsWebView(url: termsArray[sender.tag].url, navTitle: termsArray[sender.tag].subTitle, fromWhere: "Home")
+//            controller.modalPresentationStyle = .fullScreen
+//            present(controller, animated: false, completion: nil)
  
     }
     

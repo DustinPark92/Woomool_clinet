@@ -61,7 +61,12 @@ class UserInfoTableViewController: UITableViewController {
             self.userPrivacyDateArr.append(self.settingUserPrivacySex(sex: json["sex"].stringValue))
             self.userPrivacyDateArr.append(json["email"].stringValue)
             self.userPrivacyDateArr.append(json["nickname"].stringValue)
-            self.userPrivacyDateArr.append("비밀 번호 변경")
+            if json["types"].stringValue == "W" {
+                self.userPrivacyDateArr.append("비밀 번호 변경")
+            } else {
+                
+            }
+            
             
             self.tableView.reloadData()
         } fail: { error in
